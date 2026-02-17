@@ -11,6 +11,7 @@ import threading
 from datetime import datetime
 import subprocess
 import time
+import re
 
 # --- ANIMATION UTILITY ---
 def interpolate_color(color1, color2, progress):
@@ -660,28 +661,71 @@ class ApplyCraftApp(ctk.CTk):
         current_job = None
         job_bullets = {}
         
+        # Regex for common date patterns (e.g., "Jan 2024 – May 2025", "May 2025 – Present", "2022 - 2023")
+        # Matches months + year, or year-year ranges, or just "Month Year"
+        date_pattern = re.compile(
+            r"(?i)\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)\b.*\d{2,4}"
+            r"|\b\d{4}\s?[\-–]\s?(Present|\d{4}|\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b)"
+            r"|^Present$|^\d{4}$"
+        )
+
+        def normalize_for_match(s):
+            # Remove all whitespace and common punctuation for a "fuzzy" match
+            return re.sub(r'[\s,.\-\|–]', '', s).upper()
+
         for line in lines:
             line = line.strip()
             if not line: continue
             
+            # 1. Check for Job Title match
             matched_job = None
+            norm_line = normalize_for_match(line)
+            
             for title in JOB_POSITIONS.keys():
-                if title.split("–")[0].strip().upper() in line.upper():
+                # Extract the company/main identifier (part before the delimiter)
+                company_part = re.split(r'[–\-\|]', title)[0].strip()
+                norm_company = normalize_for_match(company_part)
+                
+                # Use fuzzy normalized match
+                if norm_company and norm_company in norm_line and len(line) < 120:
                     matched_job = title
                     break
             
             if matched_job:
                 current_job = matched_job
                 job_bullets[current_job] = []
-            elif current_job:
-                job_bullets[current_job].append(line)
+                continue
+            
+            # 2. If we are within a job block, process bullets
+            if current_job:
+                # SKIP if it looks like a date range or metadata line
+                if date_pattern.search(line) and len(line) < 50:
+                    continue
+                
+                # CLEAN bullet characters from the start of the line
+                bullet_chars = ['•', '-', '*', '▪', '▫', '○', '●', '→', '►']
+                clean_line = line
+                for char in bullet_chars:
+                    if clean_line.startswith(char):
+                        # Some people paste " - Bullet", we want to remove the "-" and keep the rest
+                        clean_line = clean_line[1:].strip()
+                
+                # Further check: if line is just a city/country, it might be metadata too
+                # Usually these are very short lines right after dates
+                if len(clean_line) < 30 and any(x in line for x in [", ", "  "]):
+                    # Heuristic: might be "Bristol, UK" or similar
+                    # But we'll be careful not to skip actual short bullets
+                    pass
+
+                if clean_line:
+                    job_bullets[current_job].append(clean_line)
         
         for job, bullets in job_bullets.items():
             if job in self.job_text_widgets:
                 self.job_text_widgets[job].delete("0.0", "end")
                 self.job_text_widgets[job].insert("0.0", "\n".join(bullets))
         
-        self.set_status("Bullets Sorted", "success")
+        self.set_status("Bullets Sorted (Filtered Dates)", "success")
         self.show_cv_panel()
 
     def _animate_status_pulse(self, step):
