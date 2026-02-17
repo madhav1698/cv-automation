@@ -40,7 +40,9 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.sort_order = ctk.StringVar(value="Latest First")
         self.date_filter = ctk.StringVar(value="Last 30 Days")
         self.status_filter = ctk.StringVar(value="All")
+        self.country_filter = ctk.StringVar(value="All")
         self.radar_filter = ctk.StringVar(value="All") # New: Radar filtering
+        self.available_countries = ["All"]
         self.custom_date_from = None
         self.custom_date_to = None
         self.search_timer = None
@@ -148,7 +150,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         
         # Date Range Filter
         date_container = ctk.CTkFrame(controls_frame, fg_color="transparent")
-        date_container.pack(side="left", padx=(0, 15))
+        date_container.pack(side="left", padx=(0, 10))
         ctk.CTkLabel(date_container, text="Date Range", font=ctk.CTkFont(size=12), 
                      text_color=self.colors["text_muted"]).pack(anchor="w", pady=(0, 5))
         
@@ -160,14 +162,44 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                          values=date_options,
                          variable=self.date_filter,
                          command=self.on_date_filter_change,
-                         width=150, height=38,
+                         width=130, height=38,
                          fg_color=self.colors["input_bg"], text_color=self.colors["text"],
                          button_color=self.colors["accent"])
         self.date_menu.pack()
+
+        # Status Filter
+        status_dropdown_container = ctk.CTkFrame(controls_frame, fg_color="transparent")
+        status_dropdown_container.pack(side="left", padx=(0, 10))
+        ctk.CTkLabel(status_dropdown_container, text="Status", font=ctk.CTkFont(size=12), 
+                     text_color=self.colors["text_muted"]).pack(anchor="w", pady=(0, 5))
         
-        # Search Box
+        self.status_menu = ctk.CTkOptionMenu(status_dropdown_container,
+                         values=["All", "In Process", "Followed Up", "Rejected", "Unknown"],
+                         variable=self.status_filter,
+                         command=lambda v: self.refresh_data(),
+                         width=130, height=38,
+                         fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                         button_color=self.colors["accent"])
+        self.status_menu.pack()
+
+        # Country Filter
+        country_container = ctk.CTkFrame(controls_frame, fg_color="transparent")
+        country_container.pack(side="left", padx=(0, 10))
+        ctk.CTkLabel(country_container, text="Country", font=ctk.CTkFont(size=12), 
+                     text_color=self.colors["text_muted"]).pack(anchor="w", pady=(0, 5))
+        
+        self.country_menu = ctk.CTkOptionMenu(country_container,
+                         values=self.available_countries,
+                         variable=self.country_filter,
+                         command=lambda v: self.refresh_data(),
+                         width=130, height=38,
+                         fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                         button_color=self.colors["accent"])
+        self.country_menu.pack()
+        
+        # Search Box (Reduced width)
         search_container = ctk.CTkFrame(controls_frame, fg_color="transparent")
-        search_container.pack(side="left", fill="x", expand=True, padx=(0, 15))
+        search_container.pack(side="left", fill="x", expand=True, padx=(0, 10))
         ctk.CTkLabel(search_container, text="Search Company", font=ctk.CTkFont(size=12), 
                      text_color=self.colors["text_muted"]).pack(anchor="w", pady=(0, 5))
         search_entry = ctk.CTkEntry(search_container, height=38, placeholder_text="Type to search...", 
@@ -186,9 +218,17 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                          values=["Latest First", "Earliest First", "Status", "Company A-Z"],
                          variable=self.sort_order,
                          command=lambda v: self.refresh_data(),
-                         width=140, height=38,
+                         width=130, height=38,
                          fg_color=self.colors["input_bg"], text_color=self.colors["text"],
-                         button_color=self.colors["accent"]).pack()
+                         button_color=self.colors["accent"]).pack(side="left")
+
+        # Clear Button
+        ctk.CTkButton(sort_container, text="✕ Clear", width=80, height=38,
+                     fg_color=self.colors["input_bg"], text_color="#EF4444",
+                     hover_color=("#FEE2E2", "#450A0A"),
+                     border_width=1, border_color=self.colors["border"],
+                     command=self.clear_all_filters,
+                     font=ctk.CTkFont(size=12, weight="bold")).pack(side="left", padx=(10, 0))
 
     def setup_table(self, parent):
         # Give the table a fixed, large height now that the whole page scrolls
@@ -394,13 +434,6 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             self.radar_filter.set(key)
         self.refresh_data()
 
-    def toggle_status_filter(self, status):
-        """Toggle status filter on/off"""
-        if self.status_filter.get() == status:
-            self.status_filter.set("All")
-        else:
-            self.status_filter.set(status)
-        self.refresh_data()
 
     def lighten_color(self, hex_color):
         """Helper to create hover colors"""
@@ -417,6 +450,18 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             self.custom_date_from = None
             self.custom_date_to = None
             self.refresh_data()
+
+    def clear_all_filters(self):
+        """Reset all filter states to default"""
+        self.search_query.set("")
+        self.date_filter.set("All Time")
+        self.status_filter.set("All")
+        self.country_filter.set("All")
+        self.radar_filter.set("All")
+        self.sort_order.set("Latest First")
+        self.custom_date_from = None
+        self.custom_date_to = None
+        self.refresh_data()
 
     def open_custom_date_picker(self):
         """Open a dialog with calendar widgets for custom date range"""
@@ -517,6 +562,19 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
         stats = self.stats_manager.get_stats()
         
+        # 0. Update Country List
+        unique_countries = sorted(list(set(d.get('country', 'Unknown') for d in stats.values())))
+        # Standardize "Unknown" to be at the end
+        has_unknown = "Unknown" in unique_countries
+        filtered_countries = [c for c in unique_countries if c != "Unknown"]
+        self.available_countries = ["All"] + filtered_countries + (["Unknown"] if has_unknown else [])
+        
+        # Update dropdown values
+        self.country_menu.configure(values=self.available_countries)
+        if self.country_filter.get() not in self.available_countries:
+            self.country_filter.set("All")
+
+        
         # 1. Update Top Summary (Total + Status Pills)
         for widget in self.summary_container.winfo_children(): 
             widget.destroy()
@@ -538,16 +596,15 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                         "Followed Up": "#10B981", "Unknown": "#64748B"}
         
         for status in ["In Process", "Followed Up", "Rejected", "Unknown"]:
-            is_active = self.status_filter.get() == status
             target_count = status_counts.get(status, 0)
             
-            pill = ctk.CTkButton(self.summary_container, 
+            pill = ctk.CTkLabel(self.summary_container, 
                                text=f"{status.upper()}: 0", # Initial 0 for animation
-                               fg_color=status_colors[status] if not is_active else "#FFFFFF",
-                               text_color="white" if not is_active else status_colors[status],
-                               hover_color=status_colors[status], corner_radius=15, height=32,
-                               font=ctk.CTkFont(size=14, weight="bold"),
-                               command=lambda s=status: self.toggle_status_filter(s))
+                               fg_color=status_colors[status],
+                               text_color="white",
+                               corner_radius=15, height=32,
+                               padx=12,
+                               font=ctk.CTkFont(size=14, weight="bold"))
             pill.pack(side="left", padx=5)
             # Animate the count
             self._animate_number(pill, 0, target_count, status.upper())
@@ -961,6 +1018,11 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         status_filter = self.status_filter.get()
         if status_filter != "All":
             items = [(aid, data) for aid, data in items if data['status'] == status_filter]
+        
+        # Country filter (NEW)
+        country_filter = self.country_filter.get()
+        if country_filter != "All":
+            items = [(aid, data) for aid, data in items if data.get('country', 'Unknown') == country_filter]
         
         
         # Sort
