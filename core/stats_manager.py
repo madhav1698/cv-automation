@@ -2,6 +2,17 @@ import os
 import json
 from datetime import datetime
 
+COUNTRY_MAP = {
+    "Denmark": ["Denmark", "Copenhagen", "Aarhus", "Odense", "Aalborg"],
+    "Sweden": ["Sweden", "Stockholm", "Gothenburg", "Malmo", "Uppsala"],
+    "UK": ["UK", "London", "Manchester", "Birmingham", "Edinburgh", "Glasgow", "Leeds", "Bristol", "Liverpool"],
+    "Spain": ["Spain", "Madrid", "Barcelona", "Valencia", "Seville", "Malaga", "Bilbao", "Alicante", "Palma"],
+    "Ireland": ["Ireland", "Dublin", "Cork", "Galway", "Limerick", "Waterford", "Dundalk", "Drogheda", "Swords"],
+    "Norway": ["Norway", "Oslo", "Bergen", "Trondheim", "Stavanger"],
+    "Finland": ["Finland", "Helsinki", "Espoo", "Tampere", "Vantaa", "Oulu"],
+    "Netherlands": ["Netherlands", "Amsterdam", "Rotterdam", "Utrecht", "Eindhoven", "Den Haag", "The Hague"]
+}
+
 class StatsManager:
     def __init__(self, base_dir):
         self.base_dir = base_dir
@@ -80,6 +91,30 @@ class StatsManager:
                     if data.get('last_updated') != correct_timestamp:
                         data['last_updated'] = correct_timestamp
                         updated = True
+                    
+                    # Also re-check CV and Country for existing entries to fix legacy data
+                    files = os.listdir(expected_path)
+                    cv_found = False
+                    found_country = "Unknown"
+                    for filename in files:
+                        if "CV" in filename and filename.endswith(".pdf"):
+                            cv_found = True
+                            suffix = filename.replace("Madhav_Manohar_Gopal_CV_", "").replace(".pdf", "").replace("_", " ").lower()
+                            
+                            found_country = "Unknown"
+                            # Check for matches in the country map
+                            for country, keywords in COUNTRY_MAP.items():
+                                for kw in keywords:
+                                    if kw.lower() in suffix:
+                                        found_country = country
+                                        break
+                                if found_country != "Unknown": break
+                            break
+                    
+                    if data.get('cv_found') != cv_found or data.get('country') != found_country:
+                        data['cv_found'] = cv_found
+                        data['country'] = found_country
+                        updated = True
                 except:
                     pass
         
@@ -114,16 +149,27 @@ class StatsManager:
                 company_path = os.path.join(date_path, company_folder)
                 if not os.path.isdir(company_path): continue
 
+                cv_found = False
                 country = "Unknown"
                 try:
                     files = os.listdir(company_path)
+                    # Sort files so we prioritize PDF over docx if both exist
+                    files.sort(reverse=True) 
+                    
                     for filename in files:
-                        if filename.startswith("Madhav_Manohar_Gopal_CV_") and filename.endswith(".pdf"):
-                            parts = filename.replace("Madhav_Manohar_Gopal_CV_", "").replace(".pdf", "").split("_")
-                            if len(parts) > 1:
-                                potential_country = parts[-1]
-                                if potential_country.lower() != company_folder.lower():
-                                    country = potential_country.replace("_", " ")
+                        if "CV" in filename and filename.endswith(".pdf"):
+                            cv_found = True
+                            suffix = filename.replace("Madhav_Manohar_Gopal_CV_", "").replace(".pdf", "").replace("_", " ").lower()
+                            
+                            for country_name, keywords in COUNTRY_MAP.items():
+                                match_found = False
+                                for kw in keywords:
+                                    if kw.lower() in suffix:
+                                        country = country_name
+                                        match_found = True
+                                        break
+                                if match_found: break
+                            break
                 except:
                     pass
 
@@ -139,6 +185,7 @@ class StatsManager:
                     "company": company_folder.replace("_", " "),
                     "country": country,
                     "status": "Unknown",
+                    "cv_found": cv_found,
                     "last_updated": creation_timestamp  # Use folder creation time
                 }
                 updated = True

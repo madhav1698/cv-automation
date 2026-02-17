@@ -11,27 +11,29 @@
 - **Adaptive Dark Mode** - A sleek, custom-designed interface that intelligently shifts between high-contrast "Slate Blue" and professional "Clean Frost" themes.
 - **Scrollable Dashboard** - A modern, full-page scrolling engine (built with `CTkScrollableFrame`) that maximizes screen real estate for data analysis.
 
-### 📊 Application Audit & Tactical Intelligence (NEW)
-- **Action Radar** - A real-time urgency categorization system:
-    - ⚡ **Recent**: Highlights applications from the last 48 hours.
-    - ⌛ **Stale**: Identifies applications older than 14 days needing follow-up.
-    - ⚠️ **Stalled**: Surfaces inactive applications older than 30 days.
-- **Strategy Visualizations**:
-    - **Conversion Funnel**: A visual pipeline showing the volume drop-off from initial application to interview and outcome.
-    - **Market Strength**: Analytics identifying regional clusters where your applications are most concentrated.
-- **Pro Data Table**: A high-performance, theme-aware "spreadsheet" view with zebra striping and 14pt high-readability typography.
+### 📊 Application Audit & Tactical Intelligence
+- **Interactive Command Center** - A data-rich dashboard with a **Liquid-Motion Activity Graph**:
+    - **Dynamic Timeline**: Visualize application volume over time with interactive nodes.
+    - **Hover Intelligence**: Instant tooltips showing application density on specific dates.
+    - **Deep-Link Filtering**: CLICK a graph node to instantly filter the entire dashboard for that specific date.
+- **Action Radar & Intelligence**:
+    - ⚡ **Recent / ⌛ Stale / 🛑 Stalled**: Real-time urgency categorization for follow-ups.
+    - **Conversion Funnel**: Visual pipeline showing volume drop-off across your career stages.
+    - **Autonomous Market Strength**: Sophisticated **City-to-Country Mapping** (e.g. Barcelona → Spain, Amsterdam → Netherlands) that automatically categorizes applications based on filename intelligence.
+- **Micro-Animation Layer**: Premium, non-distracting motion including:
+    - **Staggered Entrance**: Dashboard cards "slide-up" in sequence for guided eye-tracking.
+    - **Number Pulsing**: Status counts count up dynamically during data refreshes.
+    - **Liquid Dot Pulse**: Visual feedback during CV tailoring to indicate active background processing.
 
 ### 💼 Professional Tailoring Engine
-- **Live Preview Architect** - Real-time rendering of CVs and Cover Letters in **10pt Times New Roman** professional standard.
-- **Smart Experience Manager** - Multi-job management with dedicated bullet controls and "Smart Import" fuzzy-matching logic.
-- **Multi-Template Logic** - Structure-aware injection into both table-based and paragraph-based `.docx` layouts.
-- **Floating Action Bar** - Contextual controls for lightning-fast document generation (CV, CL, or Both).
+- **Live Preview Architect** - Precise rendering of professional documents with **Sub-Pixel Zoom** and automatic **Page Estimation**.
+- **Accurate Content Sync**: Instant, clean updates when switching between CV and Cover Letter views.
+- **Floating Action Bar**: Contextual, hover-responsive controls for rapid document generation.
 
 ### ⌨️ Power-User Productivity
-- **Keyboard Shortcuts**:
-    - `Ctrl + G`: Instant document generation.
-    - `F`, `I`, `R`, `U`: Rapidly update application status (Followed Up, In Process, Rejected, Unknown).
-- **Pro Right-Click Menu**: Instant access to status updates and deep-links to specific local application folders in Windows Explorer.
+- **Sequential ID Tracking**: Automatically numbered entries for fast communication and referencing.
+- **Keyboard Shortcuts**: `F`, `I`, `R`, `U` for instantaneous status management.
+- **Smart Cleanup**: Automatic empty-defaults for new applications with helpful placeholders.
 
 ---
 

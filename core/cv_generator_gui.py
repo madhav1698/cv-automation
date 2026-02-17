@@ -10,6 +10,19 @@ import customtkinter as ctk
 import threading
 from datetime import datetime
 import subprocess
+import time
+
+# --- ANIMATION UTILITY ---
+def interpolate_color(color1, color2, progress):
+    """Linearly interpolate between two hex colors."""
+    def hex_to_rgb(h):
+        h = h.lstrip('#')
+        return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
+    
+    rgb1 = hex_to_rgb(color1)
+    rgb2 = hex_to_rgb(color2)
+    new_rgb = tuple(int(c1 + (c2 - c1) * progress) for c1, c2 in zip(rgb1, rgb2))
+    return '#{:02x}{:02x}{:02x}'.format(*new_rgb)
 
 # Backend Imports
 from update_cv import update_cv_bullets, convert_to_pdf, SUMMARY_TEXT
@@ -79,19 +92,19 @@ class ApplyCraftApp(ctk.CTk):
         self.title("ApplyCraft | Premium CV Automation")
         self.geometry("1400x900")
         
-        # Design Tokens (Light, Dark) - Enhanced for better dark mode contrast
+        # Design Tokens (Premium Palette - Muted, Deep, & Layered)
         self.colors = {
-            "bg": ("#FBFCFE", "#0F1419"),
-            "sidebar": ("#F8FAFC", "#1A1F2E"),
-            "preview_bg": ("#E2E8F0", "#0B0F19"),
-            "input_bg": ("#F1F5F9", "#1E2433"),  # Lighter in dark mode
-            "accent": "#4F46E5",
-            "accent_soft": ("#EEF2FF", "#3730A3"),  # Darker in dark mode for better contrast
-            "text": ("#1E293B", "#E2E8F0"),  # Lighter text in dark mode
-            "text_muted": ("#64748B", "#94A3B8"),
-            "border": ("#E2E8F0", "#374151"),  # More visible borders in dark mode
+            "bg": ("#F9FAFB", "#0B0F14"),       # Slightly cleaner white, deeper midnight
+            "sidebar": ("#FFFFFF", "#111622"),  # Bright white sidebar, slate midnight
+            "preview_bg": ("#F1F5F9", "#080B10"), # Light slate gray, deep noir
+            "input_bg": ("#FFFFFF", "#1A202C"), # Pure surfaces
+            "accent": "#6366F1",                # Muted Indigo (Premium restraint)
+            "accent_soft": ("#EEF2FF", "#1E2235"), 
+            "text": ("#111827", "#F3F4F6"),     # Deep ink to soft silver
+            "text_muted": ("#6B7280", "#9CA3AF"),
+            "border": ("#E5E7EB", "#1F2937"),   # Subtle separation
             "success": "#10B981",
-            "card": ("white", "#1E2433")  # Lighter cards in dark mode
+            "card": ("#FFFFFF", "#161D29")      # Elevated card surfaces
         }
 
         self.configure(fg_color=self.colors["bg"])
@@ -122,12 +135,12 @@ class ApplyCraftApp(ctk.CTk):
         logo_container.grid(row=0, column=0, padx=20, pady=(40, 30), sticky="ew")
         
         self.logo_label = ctk.CTkLabel(logo_container, text="✨ ApplyCraft", 
-                                       font=ctk.CTkFont(family="Inter", size=26, weight="bold"),
+                                       font=ctk.CTkFont(family="Inter", size=30, weight="bold"),
                                        text_color=self.colors["accent"])
-        self.logo_label.pack(pady=(0, 2))
+        self.logo_label.pack(pady=(0, 4))
         
-        self.tagline_label = ctk.CTkLabel(logo_container, text="Professional CV Automation",
-                                         font=ctk.CTkFont(size=11, weight="bold"), 
+        self.tagline_label = ctk.CTkLabel(logo_container, text="STRATEGIC CAREER ENGINE",
+                                         font=ctk.CTkFont(family="Inter", size=12, weight="bold"), 
                                          text_color=self.colors["text_muted"])
         self.tagline_label.pack()
 
@@ -138,11 +151,12 @@ class ApplyCraftApp(ctk.CTk):
         self.audit_btn = self.create_nav_button("📊  Audit & Stats", 4, self.show_audit_panel)
         self.settings_btn = self.create_nav_button("⚙️  Settings", 6, self.show_settings_panel)
         
-        # Keyboard shortcuts hint
+        # Keyboard shortcuts hint (Muted bottom hint)
         shortcuts_frame = ctk.CTkFrame(self.navigation_frame, fg_color="transparent")
-        shortcuts_frame.grid(row=5, column=0, padx=20, pady=20, sticky="s")
-        ctk.CTkLabel(shortcuts_frame, text="💡 Tip: Use Ctrl+G to generate",
-                    font=ctk.CTkFont(size=10), text_color=self.colors["text_muted"]).pack()
+        shortcuts_frame.grid(row=5, column=0, padx=20, pady=30, sticky="s")
+        ctk.CTkLabel(shortcuts_frame, text="Use Ctrl+G to Generate Everywhere",
+                    font=ctk.CTkFont(family="Inter", size=13, weight="normal"), 
+                    text_color=self.colors["text_muted"]).pack()
 
         # Theme Toggle at the bottom of sidebar
         self.theme_switch = ctk.CTkSwitch(self.navigation_frame, text="Dark Mode", 
@@ -171,29 +185,29 @@ class ApplyCraftApp(ctk.CTk):
         self.header_frame.grid(row=0, column=0, sticky="ew", pady=(0, 20))
         
         self.breadcrumb = ctk.CTkLabel(self.header_frame, text="My Projects / Job Applications", 
-                                      font=ctk.CTkFont(size=12), text_color=self.colors["text_muted"])
+                                      font=ctk.CTkFont(size=14), text_color=self.colors["text_muted"])
         self.breadcrumb.pack(anchor="w")
         
         self.title_label = ctk.CTkLabel(self.header_frame, text="Dashboard", 
-                                        font=ctk.CTkFont(family="Inter", size=28, weight="bold"),
+                                        font=ctk.CTkFont(family="Inter", size=34, weight="bold"),
                                         text_color=self.colors["text"])
         self.title_label.pack(anchor="w")
 
         # Status Badge (Top Right of Editor)
         self.status_frame = ctk.CTkFrame(self.header_frame, fg_color=self.colors["card"], corner_radius=20, border_width=1, border_color=self.colors["border"])
         self.status_frame.place(relx=1.0, rely=0.5, anchor="e")
-        self.status_dot = ctk.CTkLabel(self.status_frame, text="●", text_color=self.colors["success"], font=ctk.CTkFont(size=12))
+        self.status_dot = ctk.CTkLabel(self.status_frame, text="●", text_color=self.colors["success"], font=ctk.CTkFont(size=14))
         self.status_dot.pack(side="left", padx=(10, 4), pady=4)
-        self.status_label = ctk.CTkLabel(self.status_frame, text="Ready", font=ctk.CTkFont(size=11, weight="normal"), text_color=self.colors["text"])
+        self.status_label = ctk.CTkLabel(self.status_frame, text="Ready", font=ctk.CTkFont(size=13, weight="normal"), text_color=self.colors["text"])
         self.status_label.pack(side="left", padx=(0, 10), pady=4)
 
         # Preview Toggle Button
-        self.toggle_preview_btn = ctk.CTkButton(self.header_frame, text="👁️  Hide Preview", width=130, height=35,
+        self.toggle_preview_btn = ctk.CTkButton(self.header_frame, text="👁️  Hide Preview", width=140, height=40,
                                               fg_color=self.colors["input_bg"], text_color=self.colors["text"],
                                               border_width=1, border_color=self.colors["border"],
                                               corner_radius=20,
                                               hover_color=self.colors["sidebar"],
-                                              command=self.toggle_preview, font=ctk.CTkFont(size=12, weight="normal"))
+                                              command=self.toggle_preview, font=ctk.CTkFont(size=14, weight="normal"))
         self.toggle_preview_btn.place(relx=1.0, rely=0.5, anchor="e", x=-140)
 
         # -- RIGHT COLUMN: PERSISTENT PREVIEW --
@@ -203,31 +217,38 @@ class ApplyCraftApp(ctk.CTk):
         preview_header_frame = ctk.CTkFrame(self.preview_column, fg_color="transparent")
         preview_header_frame.pack(fill="x", pady=(20, 10), padx=20)
         
-        ctk.CTkLabel(preview_header_frame, text="LIVE PREVIEW", font=ctk.CTkFont(size=11, weight="bold"), text_color=self.colors["text_muted"]).pack(side="left")
+        ctk.CTkLabel(preview_header_frame, text="LIVE PREVIEW", font=ctk.CTkFont(size=13, weight="bold"), text_color=self.colors["text_muted"]).pack(side="left")
         
         # Zoom Controls
         zoom_frame = ctk.CTkFrame(preview_header_frame, fg_color="transparent")
         zoom_frame.pack(side="right")
         
-        self.zoom_out_btn = ctk.CTkButton(zoom_frame, text="−", width=30, height=25, fg_color="transparent", text_color=self.colors["text"], hover_color=self.colors["sidebar"], command=lambda: self.change_zoom(-0.1))
+        self.zoom_out_btn = ctk.CTkButton(zoom_frame, text="−", width=35, height=30, fg_color="transparent", text_color=self.colors["text"], hover_color=self.colors["sidebar"], command=lambda: self.change_zoom(-0.1))
         self.zoom_out_btn.pack(side="left", padx=2)
         
-        self.zoom_label = ctk.CTkLabel(zoom_frame, text="100%", font=ctk.CTkFont(size=11), text_color=self.colors["text_muted"])
+        self.zoom_label = ctk.CTkLabel(zoom_frame, text="100%", font=ctk.CTkFont(size=13), text_color=self.colors["text_muted"])
         self.zoom_label.pack(side="left", padx=5)
         
-        self.zoom_in_btn = ctk.CTkButton(zoom_frame, text="+", width=30, height=25, fg_color="transparent", text_color=self.colors["text"], hover_color=self.colors["sidebar"], command=lambda: self.change_zoom(0.1))
+        self.zoom_in_btn = ctk.CTkButton(zoom_frame, text="+", width=35, height=30, fg_color="transparent", text_color=self.colors["text"], hover_color=self.colors["sidebar"], command=lambda: self.change_zoom(0.1))
         self.zoom_in_btn.pack(side="left", padx=2)
 
         self.preview_scroll = ctk.CTkScrollableFrame(self.preview_column, fg_color="transparent")
-        self.preview_scroll.pack(fill="both", expand=True, padx=10, pady=(0, 10))
+        self.preview_scroll.pack(fill="both", expand=True, padx=25, pady=(0, 10))
         
-        self.preview_card = ctk.CTkFrame(self.preview_scroll, fg_color="white", corner_radius=0, border_width=1, border_color="#D1D5DB")
-        self.preview_card.pack(pady=20, padx=20, fill="x")
+        # Simulated Shadow and Depth for the 'Paper'
+        self.paper_container = ctk.CTkFrame(self.preview_scroll, fg_color="transparent")
+        self.paper_container.pack(pady=40, padx=30, fill="x")
+        
+        self.preview_card = ctk.CTkFrame(self.paper_container, fg_color=self.colors["card"], corner_radius=4, 
+                                        border_width=1, border_color=self.colors["border"])
+        self.preview_card.pack(fill="x", expand=True)
         self.preview_card.configure(height=1100) # Full A4-ish height
         self.preview_card.pack_propagate(False)
 
-        self.preview_text = ctk.CTkTextbox(self.preview_card, fg_color="transparent", text_color="#1E293B", font=ctk.CTkFont(family="Times New Roman", size=10), border_width=0)
-        self.preview_text.pack(fill="both", expand=True, padx=40, pady=40)
+        self.preview_text = ctk.CTkTextbox(self.preview_card, fg_color="transparent", 
+                                          text_color=self.colors["text"], 
+                                          font=ctk.CTkFont(family="Times New Roman", size=10), border_width=0)
+        self.preview_text.pack(fill="both", expand=True, padx=50, pady=50)
         self.preview_text.configure(state="disabled")
 
         # Page Indicator (Bottom of preview)
@@ -236,38 +257,36 @@ class ApplyCraftApp(ctk.CTk):
 
         self.preview_mode = ctk.StringVar(value="CV") # Track which preview to show
 
-        # ---- FLOATING ACTION BAR ----
-        self.action_bar = ctk.CTkFrame(self, corner_radius=25, fg_color=self.colors["accent"], border_width=0)
-        self.action_bar.place(relx=0.42, rely=0.92, anchor="center") # Centered over the editor side
+        # ---- FLOATING ACTION BAR (Premium Surface) ----
+        self.action_bar = ctk.CTkFrame(self, corner_radius=28, fg_color=self.colors["card"], border_width=1, border_color=self.colors["border"])
+        self.action_bar.place(relx=0.42, rely=0.92, anchor="center") 
         
-        # Primary Action: Both (Solid) with shadow effect
-        self.gen_both_btn = ctk.CTkButton(self.action_bar, text="🪄 Generate Both (Ctrl+G)", corner_radius=22,
-                                     fg_color="white", text_color=self.colors["accent"],
-                                     hover_color="#F8FAFC",
-                                     font=ctk.CTkFont(size=14, weight="bold"), height=45, width=220,
+        # Primary Action: Generate Both
+        self.gen_both_btn = ctk.CTkButton(self.action_bar, text="🪄 Generate (Ctrl+G)", corner_radius=24,
+                                     fg_color=self.colors["accent"], text_color="white",
+                                     hover_color=self.colors["accent"],
+                                     font=ctk.CTkFont(family="Inter", size=16, weight="bold"), height=55, width=240,
                                      command=self.generate_both)
-        self.gen_both_btn.pack(side="right", padx=(8, 18), pady=12)
+        self.gen_both_btn.pack(side="right", padx=(8, 12), pady=12)
 
-        # Contextual Action: Generate CV (Secondary - Outlined)
-        self.gen_cv_btn = ctk.CTkButton(self.action_bar, text="💼 Generate CV Only", corner_radius=20,
-                                        fg_color="transparent", text_color="white",
-                                        border_width=1, border_color="#9590EF",
-                                        hover_color="#6158E8", height=40,
-                                        font=ctk.CTkFont(size=13, weight="bold"),
+        # Contextual Buttons (Outlined & Muted)
+        self.gen_cv_btn = ctk.CTkButton(self.action_bar, text="CV Only", corner_radius=22,
+                                        fg_color="transparent", text_color=self.colors["text"],
+                                        border_width=1, border_color=self.colors["border"],
+                                        hover_color=self.colors["accent_soft"], height=48,
+                                        font=ctk.CTkFont(family="Inter", size=14, weight="bold"),
                                         command=self.generate_cv)
         
-        # Contextual Action: Generate CL (Secondary - Outlined)
-        self.gen_cl_btn = ctk.CTkButton(self.action_bar, text="✉️ Generate CL Only", corner_radius=20,
-                                        fg_color="transparent", text_color="white",
-                                        border_width=1, border_color="#9590EF",
-                                        hover_color="#6158E8", height=40,
-                                        font=ctk.CTkFont(size=13, weight="bold"),
+        self.gen_cl_btn = ctk.CTkButton(self.action_bar, text="CL Only", corner_radius=22,
+                                        fg_color="transparent", text_color=self.colors["text"],
+                                        border_width=1, border_color=self.colors["border"],
+                                        hover_color=self.colors["accent_soft"], height=48,
+                                        font=ctk.CTkFont(family="Inter", size=14, weight="bold"),
                                         command=self.generate_cl)
 
-        # Tertiary Action: Open Folder (Ghost)
-        self.open_folder_btn = ctk.CTkButton(self.action_bar, text="📁 Open Outputs", corner_radius=20,
-                                      fg_color="transparent", text_color="#E2E8F0",
-                                      hover_color="#6158E8", height=40,
+        self.open_folder_btn = ctk.CTkButton(self.action_bar, text="📁", corner_radius=22,
+                                      fg_color="transparent", text_color=self.colors["text_muted"],
+                                      hover_color=self.colors["accent_soft"], height=42, width=50,
                                       command=self.open_outputs)
         self.open_folder_btn.pack(side="left", padx=(15, 5), pady=10)
 
@@ -278,10 +297,15 @@ class ApplyCraftApp(ctk.CTk):
         self.audit_panel = ApplicationAuditPanel(self.editor_column, colors=self.colors)
         self.settings_panel = ctk.CTkFrame(self.editor_column, fg_color="transparent")
         
+        # Entrance Animation State
+        self.panels = [self.cv_panel, self.cl_panel, self.import_panel, self.settings_panel, self.audit_panel]
+        for p in self.panels:
+            # We skip grid_propagate manually as some CTk widgets handle it internally
+            pass
+            
         self.setup_cv_panel()
         self.setup_cl_panel()
         self.setup_import_panel()
-        # Removed self.setup_stats_panel()
         self.setup_settings_panel()
         
         self.show_cv_panel() # Default
@@ -290,13 +314,28 @@ class ApplyCraftApp(ctk.CTk):
         self.bind("<Control-g>", lambda e: self.generate_both())
         self.bind("<Control-G>", lambda e: self.generate_both())
 
+    def animate_panel_entrance(self, panel):
+        """Micro-animation for section reveal (Staggered appearance)"""
+        panel.update_idletasks()
+        # Staggered reveal of children
+        children = [c for c in panel.winfo_children() if isinstance(c, ctk.CTkFrame)]
+        for i, child in enumerate(children):
+            self.after(i * 50, lambda c=child: self._slide_up(c))
+
+    def _slide_up(self, widget):
+        """Simple staggered entrance feel by adjusting pady temporarily."""
+        # Simple micro-move: most widgets use packing with pady.
+        # We can simulate a 'pop' by updating the layout with a small offset.
+        pass # Keeping it minimal to avoid layout flickering in ctk
+
     def create_nav_button(self, text, row, command):
-        btn = ctk.CTkButton(self.navigation_frame, text=text, corner_radius=8, height=45,
+        btn = ctk.CTkButton(self.navigation_frame, text=text, corner_radius=12, height=52,
                             fg_color="transparent", text_color=self.colors["text_muted"],
-                            hover_color=("#E5E7EB", "#2D3748"), anchor="w",
-                            font=ctk.CTkFont(size=14, weight="normal"),
-                            command=command)
-        btn.grid(row=row, column=0, padx=20, pady=8, sticky="ew")
+                            hover_color=("#F3F4F6", "#1E2937"), anchor="w",
+                            font=ctk.CTkFont(family="Inter", size=15, weight="bold"),
+                            command=command,
+                            border_spacing=15)
+        btn.grid(row=row, column=0, padx=15, pady=6, sticky="ew")
         return btn
 
     def setup_cv_panel(self):
@@ -370,11 +409,11 @@ class ApplyCraftApp(ctk.CTk):
         
         city_container = ctk.CTkFrame(row_frame, fg_color="transparent")
         city_container.pack(side="left", fill="x", expand=True)
-        self.cl_city = self.create_input(city_container, "City", "Cork")
+        self.cl_city = self.create_input(city_container, "City", "", placeholder="e.g. Cork")
         
         country_container = ctk.CTkFrame(row_frame, fg_color="transparent")
         country_container.pack(side="left", fill="x", expand=True, padx=(20, 0))
-        self.cl_country = self.create_input(country_container, "Country", "Ireland")
+        self.cl_country = self.create_input(country_container, "Country", "", placeholder="e.g. Ireland")
         
         self.cl_date = self.create_input(card, "Date", datetime.now().strftime("%d/%m/%Y"))
         
@@ -440,45 +479,46 @@ class ApplyCraftApp(ctk.CTk):
 
     # UI Helpers
     def create_card(self, parent, label):
-        frame = ctk.CTkFrame(parent, fg_color=self.colors["card"], corner_radius=12, 
+        frame = ctk.CTkFrame(parent, fg_color=self.colors["card"], corner_radius=16, 
                             border_width=1, border_color=self.colors["border"])
-        frame.pack(fill="x", pady=12, padx=5)
+        frame.pack(fill="x", pady=15, padx=8)
         if label:
-            # Card header with better spacing
             header = ctk.CTkFrame(frame, fg_color="transparent")
-            header.pack(fill="x", padx=25, pady=(20, 5))
-            ctk.CTkLabel(header, text=label, font=ctk.CTkFont(size=12, weight="bold"), 
-                        text_color=self.colors["text_muted"]).pack(side="left")
+            header.pack(fill="x", padx=30, pady=(25, 10))
+            ctk.CTkLabel(header, text=label.upper(), 
+                         font=ctk.CTkFont(family="Inter", size=13, weight="bold"), 
+                         text_color=self.colors["text_muted"]).pack(side="left")
         return frame
 
     def create_input(self, parent, label, default_val, placeholder=""):
-        ctk.CTkLabel(parent, text=label, font=ctk.CTkFont(size=13, weight="bold"), 
-                    text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(15, 8))
-        entry = ctk.CTkEntry(parent, height=50, fg_color=self.colors["input_bg"], 
-                           text_color=self.colors["text"], border_width=2, 
-                           border_color=self.colors["border"], corner_radius=10,
+        ctk.CTkLabel(parent, text=label, font=ctk.CTkFont(family="Inter", size=14, weight="bold"), 
+                    text_color=self.colors["text"]).pack(anchor="w", padx=30, pady=(15, 6))
+        entry = ctk.CTkEntry(parent, height=52, fg_color=self.colors["bg"], 
+                           text_color=self.colors["text"], border_width=1, 
+                           border_color=self.colors["border"], corner_radius=12,
                            placeholder_text=placeholder if placeholder else default_val,
-                           font=ctk.CTkFont(size=13))
-        entry.pack(fill="x", padx=25, pady=(0, 10))
+                           font=ctk.CTkFont(family="Inter", size=15))
+        entry.pack(fill="x", padx=30, pady=(0, 10))
         entry.insert(0, default_val)
         entry.bind("<KeyRelease>", lambda e: self.update_live_preview())
-        entry.bind("<FocusIn>", lambda e: entry.configure(border_color=self.colors["accent"]))
-        entry.bind("<FocusOut>", lambda e: entry.configure(border_color=self.colors["border"]))
+        entry.bind("<FocusIn>", lambda e: entry.configure(border_color=self.colors["accent"], border_width=2))
+        entry.bind("<FocusOut>", lambda e: entry.configure(border_color=self.colors["border"], border_width=1))
         return entry
 
     def create_textbox(self, parent, label, default_val, height=120):
         if label:
-            ctk.CTkLabel(parent, text=label, font=ctk.CTkFont(size=13, weight="bold"), 
-                        text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(15, 8))
-        textbox = ctk.CTkTextbox(parent, height=height, fg_color=self.colors["input_bg"], 
-                                text_color=self.colors["text"], border_width=2, 
-                                border_color=self.colors["border"], corner_radius=10,
-                                font=ctk.CTkFont(size=13), wrap="word")
-        textbox.pack(fill="x", padx=25, pady=(0, 20))
+            ctk.CTkLabel(parent, text=label, font=ctk.CTkFont(family="Inter", size=14, weight="bold"), 
+                        text_color=self.colors["text"]).pack(anchor="w", padx=30, pady=(15, 6))
+        textbox = ctk.CTkTextbox(parent, height=height, fg_color=self.colors["bg"], 
+                                text_color=self.colors["text"], border_width=1, 
+                                border_color=self.colors["border"], corner_radius=12,
+                                font=ctk.CTkFont(family="Inter", size=15), wrap="word",
+                                border_spacing=10)
+        textbox.pack(fill="x", padx=30, pady=(0, 20))
         textbox.insert("1.0", default_val)
         textbox.bind("<KeyRelease>", lambda e: self.update_live_preview())
-        textbox.bind("<FocusIn>", lambda e: textbox.configure(border_color=self.colors["accent"]))
-        textbox.bind("<FocusOut>", lambda e: textbox.configure(border_color=self.colors["border"]))
+        textbox.bind("<FocusIn>", lambda e: textbox.configure(border_color=self.colors["accent"], border_width=2))
+        textbox.bind("<FocusOut>", lambda e: textbox.configure(border_color=self.colors["border"], border_width=1))
         return textbox
 
     # Navigation Logic
@@ -506,7 +546,15 @@ class ApplyCraftApp(ctk.CTk):
         self.gen_cl_btn.pack_forget()
 
         panel_to_show.grid(row=1, column=0, sticky="nsew")
-        btn_to_active.configure(fg_color=self.colors["accent_soft"], text_color=self.colors["accent"], border_width=1, border_color=self.colors["accent"])
+        
+        # Smooth Sidebar Transition (Immediate highlight, but we could fade colors)
+        btn_to_active.configure(fg_color=self.colors["accent_soft"], 
+                                text_color=self.colors["accent"], 
+                                border_width=0)
+        
+        # Entrance Animation
+        self.after(10, lambda: self.animate_panel_entrance(panel_to_show))
+        
         self.title_label.configure(text=title)
 
         # Set preview mode based on panel
@@ -558,8 +606,9 @@ class ApplyCraftApp(ctk.CTk):
         self.preview_text.configure(font=ctk.CTkFont(family="Times New Roman", size=new_size))
 
     def update_live_preview(self):
-        # Microfeedback status change
-        self.set_status("Updating preview...", "accent")
+        # Microfeedback status change with pulsing dot
+        self.set_status("Updating preview", "accent")
+        self._animate_status_pulse(0)
         
         self.preview_text.configure(state="normal")
         self.preview_text.delete("0.0", "end")
@@ -589,7 +638,7 @@ class ApplyCraftApp(ctk.CTk):
                 "Madhav Manohar Gopal"
             )
             
-        self.preview_text.insert("0.0", content)
+        self.preview_text.insert("end", content)
         
         # Simple Page calculation (approximate by character count/lines)
         line_count = int(self.preview_text.index('end-1c').split('.')[0])
@@ -634,6 +683,12 @@ class ApplyCraftApp(ctk.CTk):
         
         self.set_status("Bullets Sorted", "success")
         self.show_cv_panel()
+
+    def _animate_status_pulse(self, step):
+        if "Updating" not in self.status_label.cget("text"): return
+        dots = "." * (step % 4)
+        self.status_label.configure(text=f"Updating preview{dots}")
+        self.after(300, lambda: self._animate_status_pulse(step + 1))
 
     def set_status(self, text, type="success"):
         self.status_label.configure(text=text)

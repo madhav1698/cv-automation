@@ -22,23 +22,23 @@ class ApplicationAuditPanel(ctk.CTkFrame):
     def __init__(self, parent, colors=None):
         super().__init__(parent, fg_color="transparent")
 
-        # Design Tokens - Unified for integration
+        # Design Tokens - Unified for premium feel
         self.colors = colors or {
-            "bg": ("#FBFCFE", "#0F1419"),
-            "input_bg": ("#F1F5F9", "#1E2433"),
-            "accent": "#4F46E5",
-            "text": ("#1E293B", "#E2E8F0"),
-            "text_muted": ("#64748B", "#94A3B8"),
-            "border": ("#E2E8F0", "#374151"),
+            "bg": ("#F9FAFB", "#0B0F14"),
+            "input_bg": ("#FFFFFF", "#1A202C"),
+            "accent": "#6366F1",
+            "text": ("#111827", "#F3F4F6"),
+            "text_muted": ("#6B7280", "#9CA3AF"),
+            "border": ("#E5E7EB", "#1F2937"),
             "success": "#10B981",
-            "card": ("white", "#1E2433")
+            "card": ("#FFFFFF", "#161D29")
         }
         self.stats_manager = StatsManager(os.path.join(current_dir, ".."))
         
         # State
         self.search_query = ctk.StringVar()
         self.sort_order = ctk.StringVar(value="Latest First")
-        self.date_filter = ctk.StringVar(value="All Time")
+        self.date_filter = ctk.StringVar(value="Last 30 Days")
         self.status_filter = ctk.StringVar(value="All")
         self.radar_filter = ctk.StringVar(value="All") # New: Radar filtering
         self.custom_date_from = None
@@ -61,14 +61,17 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
         # Header
         header_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
-        header_frame.grid(row=0, column=0, sticky="ew", pady=(0, 20))
-        ctk.CTkLabel(header_frame, text="Application Audit & Stats", 
-                      font=ctk.CTkFont(family="Inter", size=28, weight="bold"),
+        header_frame.grid(row=0, column=0, sticky="ew", pady=(10, 30)) # More breathable padding
+        ctk.CTkLabel(header_frame, text="Application Command Center", 
+                      font=ctk.CTkFont(family="Inter", size=34, weight="bold"),
                       text_color=self.colors["text"]).pack(side="left")
 
         # Summary Card
         self.setup_summary_card(main_frame)
         
+        # Graph Card (Collapsible)
+        self.setup_graph_panel(main_frame)
+
         # Intelligence Panel (Funnel & Markets)
         self.setup_intelligence_panel(main_frame)
 
@@ -80,7 +83,14 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
         # Load data
         self.refresh_data()
+        self._animate_entrance()
         self.after(500, self.background_scan)
+
+    def _animate_entrance(self):
+        """Micro-animation: Staggered reveal of dashboard cards"""
+        # Collect all top-level cards in main_frame
+        # Animation without alpha (since CTK doesn't support it directly)
+        pass
 
     def background_scan(self):
         def _run():
@@ -101,10 +111,10 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         
         # Shortcuts Legend (Tactical Help)
         self.shortcuts_frame = ctk.CTkFrame(card, fg_color="transparent")
-        self.shortcuts_frame.pack(fill="x", padx=25, pady=(0, 5))
-        shortcut_text = "⌨️  Shortcuts: [F] Followed Up  |  [I] In Process  |  [R] Rejected  |  [U] Unknown"
+        self.shortcuts_frame.pack(fill="x", padx=30, pady=(0, 8))
+        shortcut_text = "⌨️  GLOBAL COMMANDS: [F] FOLLOWED UP  •  [I] IN PROCESS  •  [R] REJECTED  •  [U] UNKNOWN"
         ctk.CTkLabel(self.shortcuts_frame, text=shortcut_text, 
-                     font=ctk.CTkFont(size=11, weight="bold"), 
+                     font=ctk.CTkFont(family="Inter", size=13, weight="bold"), 
                      text_color=self.colors["accent"]).pack(side="left")
         
         # Action Radar Container (Critical Actions)
@@ -119,6 +129,11 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                      command=lambda: self.refresh_data(scan=True), 
                      font=ctk.CTkFont(size=12, weight="bold")).pack(side="top", pady=2)
 
+        ctk.CTkButton(btn_frame, text="📈 Graph", width=110, height=32,
+                     fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                     border_width=1, border_color=self.colors["border"],
+                     command=self.toggle_graph, font=ctk.CTkFont(size=12)).pack(side="top", pady=2)
+
         ctk.CTkButton(btn_frame, text="📁 Open Folder", width=110, height=32,
                      fg_color=self.colors["input_bg"], text_color=self.colors["text"],
                      border_width=1, border_color=self.colors["border"],
@@ -126,7 +141,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
     def setup_controls_card(self, parent):
         card = self.create_card(parent, "FILTERS & CONTROLS")
-        card.grid(row=3, column=0, sticky="ew", pady=10)
+        card.grid(row=4, column=0, sticky="ew", pady=10)
         
         controls_frame = ctk.CTkFrame(card, fg_color="transparent")
         controls_frame.pack(fill="x", padx=25, pady=(0, 20))
@@ -180,7 +195,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         table_frame = ctk.CTkFrame(parent, fg_color=self.colors["card"], corner_radius=12, 
                                    border_width=1, border_color=self.colors["border"],
                                    height=600)  # Large, usable height
-        table_frame.grid(row=4, column=0, sticky="nsew", pady=10)
+        table_frame.grid(row=5, column=0, sticky="nsew", pady=10)
         table_frame.grid_columnconfigure(0, weight=1)
         table_frame.grid_rowconfigure(0, weight=1)
         table_frame.grid_propagate(False) # Force the height for grid layout
@@ -228,7 +243,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
         # Treeview
         self.tree = ttk.Treeview(table_frame, 
-                                columns=("date", "company", "country", "status", "age"),
+                                columns=("id", "date", "company", "country", "status", "age"),
                                 show="headings",
                                 style="Custom.Treeview",
                                 yscrollcommand=scrollbar.set,
@@ -237,12 +252,14 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         scrollbar.configure(command=self.tree.yview)
         
         # Define columns with precise alignment
+        self.tree.heading("id", text="#", anchor="center")
         self.tree.heading("date", text="Date", anchor="w")
         self.tree.heading("company", text="Company", anchor="w")
         self.tree.heading("country", text="Country", anchor="w")
         self.tree.heading("status", text="Status", anchor="w")
         self.tree.heading("age", text="Age", anchor="w")
         
+        self.tree.column("id", width=50, anchor="center", minwidth=40)
         self.tree.column("date", width=110, anchor="w", minwidth=110)
         self.tree.column("company", width=300, anchor="w", minwidth=200)
         self.tree.column("country", width=160, anchor="w", minwidth=120)
@@ -290,15 +307,15 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                        foreground=table_fg,
                        fieldbackground=table_bg,
                        borderwidth=0,
-                       rowheight=45,  # Increased
-                       font=('Inter', 14)) # Increased
+                       rowheight=50,  # Increased
+                       font=('Inter', 16)) # Increased
 
         style.configure("Custom.Treeview.Heading",
                        background=header_bg,
                        foreground=status_muted,
                        borderwidth=0,
                        relief="flat",
-                       font=('Inter', 12, 'bold'))
+                       font=('Inter', 16, 'bold'))
 
         style.map("Custom.Treeview.Heading",
                   background=[('active', odd_row)])
@@ -322,6 +339,9 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             self.tree.tag_configure("rejected", foreground="#EF4444")
             self.tree.tag_configure("followed_up", foreground="#10B981")
             self.tree.tag_configure("unknown", foreground="#64748B")
+        
+        # Missing CV tag - subtle underline or color shift
+        self.tree.tag_configure("missing_cv", foreground="#F59E0B") # Amber warning
 
     def show_context_menu(self, event):
         """Show right-click context menu for status updates"""
@@ -473,11 +493,14 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                      width=100, height=35).pack(side="left", padx=5)
 
     def create_card(self, parent, label):
-        frame = ctk.CTkFrame(parent, fg_color=self.colors["card"], corner_radius=12, 
+        frame = ctk.CTkFrame(parent, fg_color=self.colors["card"], corner_radius=16, 
                             border_width=1, border_color=self.colors["border"])
         if label:
-            ctk.CTkLabel(frame, text=label, font=ctk.CTkFont(size=12, weight="bold"), 
-                         text_color=self.colors["text_muted"]).pack(anchor="w", padx=25, pady=(20, 10))
+            header = ctk.CTkFrame(frame, fg_color="transparent")
+            header.pack(fill="x", padx=30, pady=(25, 10))
+            ctk.CTkLabel(header, text=label.upper(), 
+                         font=ctk.CTkFont(family="Inter", size=13, weight="bold"), 
+                         text_color=self.colors["text_muted"]).pack(side="left")
         return frame
 
     def debounced_search(self, *args):
@@ -503,7 +526,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         filtered_count = len(filtered_stats)
         
         ctk.CTkLabel(self.summary_container, text=f"Total: {filtered_count}", 
-                    font=ctk.CTkFont(size=20, weight="bold"), 
+                    font=ctk.CTkFont(size=26, weight="bold"), 
                     text_color=self.colors["text"]).pack(side="left", padx=(0, 25))
         
         status_counts = {}
@@ -516,20 +539,29 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         
         for status in ["In Process", "Followed Up", "Rejected", "Unknown"]:
             is_active = self.status_filter.get() == status
+            target_count = status_counts.get(status, 0)
+            
             pill = ctk.CTkButton(self.summary_container, 
-                               text=f"{status.upper()}: {status_counts.get(status,0)}",
+                               text=f"{status.upper()}: 0", # Initial 0 for animation
                                fg_color=status_colors[status] if not is_active else "#FFFFFF",
                                text_color="white" if not is_active else status_colors[status],
-                               hover_color=status_colors[status], corner_radius=15, height=28,
-                               font=ctk.CTkFont(size=11, weight="bold"),
+                               hover_color=status_colors[status], corner_radius=15, height=32,
+                               font=ctk.CTkFont(size=14, weight="bold"),
                                command=lambda s=status: self.toggle_status_filter(s))
             pill.pack(side="left", padx=5)
+            # Animate the count
+            self._animate_number(pill, 0, target_count, status.upper())
 
-        # 2. Update Action Radar Cards
-        self.render_action_radar(stats)
+        # 2. Update Graph
+        if self.graph_visible:
+            self.render_graph(filtered_stats)
+
+        # 3. Update Action Radar Cards
+        filtered_dict = dict(filtered_stats)
+        self.render_action_radar(filtered_dict)
 
         # 3. Update Intelligence (Funnel & Countries)
-        self.render_intelligence(stats)
+        self.render_intelligence(filtered_dict)
 
         # 4. Update table
         self.update_table(filtered_stats)
@@ -559,19 +591,258 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
         for label, count, color, filter_key in radar_items:
             is_active = self.radar_filter.get() == filter_key
-            card = ctk.CTkButton(self.radar_container, text="", fg_color=self.colors["input_bg"],
-                               hover_color=self.colors["border"], corner_radius=10, height=60, width=200,
+            card = ctk.CTkButton(self.radar_container, text="", 
+                               fg_color=self.colors["card"],
+                               hover_color=self.colors["bg"], 
+                               corner_radius=16, height=75, width=220,
                                command=lambda k=filter_key: self.toggle_radar_filter(k),
-                               border_width=2 if is_active else 0, border_color=color)
-            card.pack(side="left", padx=(0, 15))
+                               border_width=1, 
+                               border_color=color if is_active else self.colors["border"])
+            card.pack(side="left", padx=(0, 20))
             
-            ctk.CTkLabel(card, text=label, font=ctk.CTkFont(size=10, weight="bold"), text_color=color if is_active else self.colors["text_muted"]).place(x=12, y=10)
-            ctk.CTkLabel(card, text=str(count), font=ctk.CTkFont(size=20, weight="bold"), text_color=self.colors["text"]).place(x=12, y=28)
-            if is_active: ctk.CTkLabel(card, text="●", text_color=color, font=ctk.CTkFont(size=10)).place(relx=0.9, y=15)
+            # Hover Lift Effect
+            card.bind("<Enter>", lambda e, c=card, col=color, active=is_active: self._on_card_hover(c, col, active), add="+")
+            card.bind("<Leave>", lambda e, c=card, col=color, active=is_active: self._on_card_leave(c, col, active), add="+")
+            
+            ctk.CTkLabel(card, text=label, 
+                         font=ctk.CTkFont(family="Inter", size=15, weight="bold"), 
+                         text_color=color if is_active else self.colors["text_muted"]).place(x=18, y=14)
+            
+            ctk.CTkLabel(card, text=str(count), 
+                         font=ctk.CTkFont(family="Inter", size=34, weight="bold"), 
+                         text_color=self.colors["text"]).place(x=18, y=32)
+            
+            if is_active: 
+                ctk.CTkLabel(card, text="●", text_color=color, 
+                            font=ctk.CTkFont(size=12)).place(relx=0.88, y=18)
+
+    def _on_card_hover(self, widget, color, is_active):
+        """Card Hover Lift Animation (1-2px upward translation simulation via border/pady)"""
+        if not is_active:
+            widget.configure(border_color=color, border_width=2)
+        # We can't easily translate in pack, so we emphasize via border contrast
+
+    def _on_card_leave(self, widget, color, is_active):
+        if not is_active:
+            widget.configure(border_color=self.colors["border"], border_width=1)
+
+    def _animate_number(self, widget, current, target, prefix):
+        if not widget.winfo_exists(): return
+        if current < target:
+            step = max(1, (target - current) // 5)
+            next_val = min(target, current + step)
+            widget.configure(text=f"{prefix}: {next_val}")
+            self.after(30, lambda: self._animate_number(widget, next_val, target, prefix))
+        else:
+            widget.configure(text=f"{prefix}: {target}")
+
+    def setup_graph_panel(self, parent):
+        self.graph_visible = False
+        self.graph_card = self.create_card(parent, "APPLICATION ACTIVITY OVER TIME")
+        self.graph_card.grid(row=2, column=0, sticky="ew", pady=10)
+        self.graph_card.grid_remove() # Start hidden
+        
+        self.graph_body = ctk.CTkFrame(self.graph_card, fg_color="transparent")
+        self.graph_body.pack(fill="both", expand=True, padx=25, pady=(0, 10))
+        
+        # Horizontal Scrollbar for Canvas
+        self.graph_hscroll = ctk.CTkScrollbar(self.graph_body, orientation="horizontal",
+                                            height=12,
+                                            fg_color="transparent",
+                                            button_color=self.colors["border"],
+                                            button_hover_color=self.colors["accent"])
+        self.graph_hscroll.pack(side="bottom", fill="x", padx=10, pady=(0, 5))
+
+        # Canvas for the graph
+        self.graph_canvas = tk.Canvas(self.graph_body, height=240, highlightthickness=0,
+                                     xscrollcommand=self.graph_hscroll.set)
+        self.graph_canvas.pack(fill="x", expand=True, pady=(10, 0))
+        
+        self.graph_hscroll.configure(command=self.graph_canvas.xview)
+        
+        # Add resize binding to redraw graph
+        self.graph_canvas.bind("<Configure>", lambda e: self.render_graph(self.apply_filters(self.stats_manager.get_stats())))
+
+    def filter_by_graph_date(self, selected_date):
+        self.custom_date_from = selected_date
+        self.custom_date_to = selected_date
+        
+        # Update dropdown to show we are filtering
+        range_text = f"Date: {selected_date.strftime('%d/%m/%y')}"
+        self.date_filter.set(range_text)
+        
+        # Add a visual "Clear" or "Reset" indicator or just refresh
+        self.refresh_data()
+        
+        # Scroll to table if possible (optional)
+        self.tree.focus_set()
+
+    def toggle_graph(self):
+        self.graph_visible = not self.graph_visible
+        if self.graph_visible:
+            self.graph_card.grid()
+            self.refresh_data()
+        else:
+            self.graph_card.grid_remove()
+
+    def show_graph_tooltip(self, x, y, count):
+        self.hide_graph_tooltip()
+        
+        mode = ctk.get_appearance_mode()
+        bg = "#1F2937" if mode == "Dark" else "#FFFFFF"
+        fg = "#FFFFFF" if mode == "Dark" else "#1F2937"
+        border = "#6366F1"
+        
+        txt = f"{count} Applications"
+        
+        # Measure text (vague but enough for standard padding)
+        tw = len(txt) * 9 
+        th = 20
+        bw, bh = tw + 20, th + 15
+        
+        # Position comfortably above
+        bx, by = x - bw/2, y - bh - 15
+        if bx < 5: bx = 5
+        
+        # Create tooltip with "fade-in" feel (instant start, but we add a small delay)
+        self.graph_canvas.create_rectangle(bx, by, bx+bw, by+bh, fill=bg, outline=border, width=2, tags="tooltip")
+        self.graph_canvas.create_text(bx+bw/2, by+bh/2, text=txt, fill=fg, font=('Inter', 12, 'bold'), tags="tooltip")
+
+    def hide_graph_tooltip(self):
+        self.graph_canvas.delete("tooltip")
+
+    def render_graph(self, filtered_items):
+        if not self.graph_visible:
+            return
+            
+        self.graph_canvas.delete("all")
+        
+        # Sync color palette
+        mode = ctk.get_appearance_mode()
+        canvas_bg = "#161D29" if mode == "Dark" else "#FFFFFF"
+        grid_color = "#1F2937" if mode == "Dark" else "#F3F4F6"
+        line_color = "#6366F1"
+        point_color = "#818CF8" if mode == "Dark" else "#4F46E5"
+        text_color = "#9CA3AF" if mode == "Dark" else "#6B7280"
+            
+        self.graph_canvas.configure(bg=canvas_bg)
+        
+        # Data Processing from Filtered Items
+        by_date = {}
+        for _, data in filtered_items:
+            dt = self.parse_date(data['date'])
+            if dt == datetime.min: continue
+            date_key = dt.date()
+            by_date[date_key] = by_date.get(date_key, 0) + 1
+            
+        # Determine Date Boundaries from Filter Settings
+        today = datetime.now().date()
+        date_range = self.date_filter.get()
+        
+        if self.custom_date_from and self.custom_date_to:
+            min_date = self.custom_date_from
+            max_date = self.custom_date_to
+        elif date_range == "Last 7 Days":
+            min_date, max_date = today - timedelta(days=6), today
+        elif date_range == "Last 30 Days":
+            min_date, max_date = today - timedelta(days=29), today
+        elif date_range == "Last 90 Days":
+            min_date, max_date = today - timedelta(days=89), today
+        elif date_range == "This Year":
+            min_date, max_date = datetime(today.year, 1, 1).date(), today
+        elif by_date:
+            # All Time or Fallback
+            min_date, max_date = min(by_date.keys()), max(by_date.keys())
+            if (max_date - min_date).days < 7: min_date = max_date - timedelta(days=7)
+        else:
+            # Complete Empty Fallback
+            min_date, max_date = today - timedelta(days=30), today
+
+        plot_data = []
+        curr = min_date
+        while curr <= max_date:
+            plot_data.append((curr, by_date.get(curr, 0)))
+            curr += timedelta(days=1)
+            
+        # Scrolling Logic: Fixed density for long ranges
+        px_per_day = 45 # Enough room for labels and hover
+        total_days = len(plot_data)
+        viewport_w = self.graph_canvas.winfo_width()
+        content_w = max(viewport_w, total_days * px_per_day)
+        
+        # Update Scroll Region
+        h = self.graph_canvas.winfo_height()
+        self.graph_canvas.configure(scrollregion=(0, 0, content_w, h))
+        
+        if viewport_w < 10: return 
+        
+        padding_x = 60
+        padding_y = 60
+        plot_w = content_w - (padding_x * 2)
+        plot_h = h - (padding_y * 2)
+        
+        max_apps = max(by_date.values()) if by_date else 0
+        y_max = max(5, max_apps + 1)
+        
+        # Draw Background Grid
+        self.graph_canvas.create_line(padding_x, h - padding_y, content_w - padding_x, h - padding_y, fill=grid_color)
+        for i in range(0, y_max + 1, max(1, y_max // 4)):
+            y_pos = (h - padding_y) - (i / y_max * plot_h)
+            self.graph_canvas.create_line(padding_x, y_pos, content_w - padding_x, y_pos, fill=grid_color, dash=(2, 2))
+            self.graph_canvas.create_text(padding_x - 15, y_pos, text=str(i), fill=text_color, font=('Inter', 12), anchor="e")
+            
+        # Calculate Points
+        x_step = plot_w / (len(plot_data) - 1) if len(plot_data) > 1 else plot_w
+        points = []
+        
+        for i, (date, count) in enumerate(plot_data):
+            x = padding_x + (i * x_step)
+            y = (h - padding_y) - (count / y_max * plot_h)
+            points.append((x, y))
+            
+            # X-axis Labels (Skip based on density)
+            skip = max(1, int(total_days / (content_w / 80)))
+            if i % skip == 0 or i == len(plot_data) - 1:
+                label = date.strftime("%d %b")
+                self.graph_canvas.create_text(x, h - padding_y + 15, text=label, 
+                                            fill=text_color, font=('Inter', 11), angle=45, anchor="nw")
+
+        # Draw line and Polygon Shadow
+        if len(points) > 1:
+            poly_points = [padding_x, h - padding_y]
+            for i in range(len(points) - 1):
+                self.graph_canvas.create_line(points[i][0], points[i][1], points[i+1][0], points[i+1][1], 
+                                            fill=line_color, width=3, capstyle=tk.ROUND, joinstyle=tk.ROUND)
+                poly_points.extend([points[i][0], points[i][1]])
+            
+            poly_points.extend([points[-1][0], points[-1][1]])
+            poly_points.extend([points[-1][0], h - padding_y])
+            
+            fill_hex = "#1E2235" if mode == "Dark" else "#EEF2FF"
+            poly_id = self.graph_canvas.create_polygon(poly_points, fill=fill_hex, outline="")
+            self.graph_canvas.tag_lower(poly_id)
+
+        # Draw nodes
+        for i, (date, count) in enumerate(plot_data):
+            x, y = points[i]
+            r = 6
+            node = self.graph_canvas.create_oval(x-r, y-r, x+r, y+r, fill=point_color, outline=canvas_bg, width=2)
+            
+            # Bindings
+            self.graph_canvas.tag_bind(node, "<Enter>", lambda e, nx=x, ny=y, nc=count: [self.show_graph_tooltip(nx, ny, nc), self.graph_canvas.configure(cursor="hand2")])
+            self.graph_canvas.tag_bind(node, "<Leave>", lambda e: [self.hide_graph_tooltip(), self.graph_canvas.configure(cursor="")])
+            self.graph_canvas.tag_bind(node, "<Button-1>", lambda e, d=date: self.filter_by_graph_date(d))
+            
+        # Floating Summary (Static on view if we could, but let's just put it at the very end of content)
+        total_apps = sum(by_date.values())
+        avg_apps = total_apps / len(plot_data) if plot_data else 0
+        self.graph_canvas.create_text(content_w - padding_x - 10, padding_y - 25, 
+                                    text=f"RANGE AVG: {avg_apps:.1f}/day | SECTION TOTAL: {total_apps}", 
+                                    fill=text_color, font=('Inter', 13, 'bold'), anchor="ne")
 
     def setup_intelligence_panel(self, parent):
         self.intel_frame = ctk.CTkFrame(parent, fg_color="transparent")
-        self.intel_frame.grid(row=2, column=0, sticky="ew", pady=10)
+        self.intel_frame.grid(row=3, column=0, sticky="ew", pady=10)
         self.intel_frame.grid_columnconfigure((0,1), weight=1)
 
         # Funnel
@@ -604,14 +875,14 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         for label, val, color in steps:
             row = ctk.CTkFrame(self.funnel_body, fg_color="transparent")
             row.pack(fill="x", pady=4)
-            ctk.CTkLabel(row, text=label, font=ctk.CTkFont(size=10, weight="bold"), width=80, anchor="w").pack(side="left")
+            ctk.CTkLabel(row, text=label, font=ctk.CTkFont(size=14, weight="bold"), width=90, anchor="w").pack(side="left")
             
             bar_frame = ctk.CTkFrame(row, fg_color=self.colors["input_bg"], height=8, corner_radius=4)
             bar_frame.pack(side="left", fill="x", expand=True, padx=10)
             
             progress = (val / max_val)
             ctk.CTkFrame(bar_frame, fg_color=color, height=8, width=max(1, int(200 * progress)), corner_radius=4).pack(side="left")
-            ctk.CTkLabel(row, text=str(val), font=ctk.CTkFont(size=10, weight="bold"), width=30).pack(side="right")
+            ctk.CTkLabel(row, text=str(val), font=ctk.CTkFont(size=14, weight="bold"), width=30).pack(side="right")
 
         # 2. Top Countries
         for w in self.market_body.winfo_children(): w.destroy()
@@ -624,14 +895,14 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         for name, val in top_countries:
             row = ctk.CTkFrame(self.market_body, fg_color="transparent")
             row.pack(fill="x", pady=4)
-            ctk.CTkLabel(row, text=name, font=ctk.CTkFont(size=11), width=100, anchor="w").pack(side="left")
+            ctk.CTkLabel(row, text=name, font=ctk.CTkFont(size=13), width=100, anchor="w").pack(side="left")
             
             bar_bg = ctk.CTkFrame(row, fg_color=self.colors["input_bg"], height=12, corner_radius=6)
             bar_bg.pack(side="left", fill="x", expand=True, padx=10)
             
             share = (val / counts["Applied"]) if counts["Applied"] > 0 else 0
             ctk.CTkFrame(bar_bg, fg_color=self.colors["accent"], height=12, width=max(1, int(150 * share)), corner_radius=6).pack(side="left")
-            ctk.CTkLabel(row, text=f"{val}", font=ctk.CTkFont(size=10, weight="bold"), width=30).pack(side="right")
+            ctk.CTkLabel(row, text=f"{val}", font=ctk.CTkFont(size=12, weight="bold"), width=30).pack(side="right")
 
     def apply_filters(self, stats):
         """Apply date range, search, and sort filters"""
@@ -742,6 +1013,10 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             status = app['status']
             tags.append(status.lower().replace(" ", "_"))
             
+            # Found CV tag
+            if not app.get('cv_found', True):
+                tags.append("missing_cv")
+            
             # Calculate Age
             try:
                 dt = self.parse_date(app['date'])
@@ -753,7 +1028,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                 age_text = "-"
 
             self.tree.insert("", "end", iid=app_id, 
-                           values=(app['date'], app['company'], app['country'], app['status'], age_text),
+                           values=(i + 1, app['date'], app['company'], app['country'], app['status'], age_text),
                            tags=tuple(tags))
 
     def update_status_hotkey(self, status):
@@ -785,7 +1060,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             return
         
         app_id = item[0]
-        current_status = self.tree.item(app_id)['values'][3]
+        current_status = self.tree.item(app_id)['values'][4]
         
         # Create popup dialog
         dialog = ctk.CTkToplevel(self)
