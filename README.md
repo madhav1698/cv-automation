@@ -1,49 +1,70 @@
-# ✨ ApplyCraft - Premium CV & Cover Letter Automation
+# ✨ ApplyCraft - Premium CV Automation & Strategic Command Center
 
-**ApplyCraft** is a sophisticated, high-performance automation suite designed to streamline the process of tailoring job applications. It transforms the tedious task of manual CV editing into a seamless, high-end experience with real-time previews and intelligent data parsing.
+**ApplyCraft** is a sophisticated, high-performance automation suite designed to transform the job application process into a high-end, data-driven experience. It combines a professional document generation engine with a powerful analytical dashboard to help you craft, track, and optimize your career trajectory.
 
 ---
 
 ## 💎 Premium Features
 
 ### 🚀 High-End User Interface
-- **Modern Aesthetics** - A sleek, custom-designed interface built with `customtkinter`.
-- **Dual-Pane Logic** - Edit on the left, preview in real-time on the right.
-- **Dark Mode Support** - Fully integrated theme switching for comfortable late-night application sessions.
-- **Floating Action Bar** - Context-aware controls for lightning-fast document generation.
+- **Unified Command Center** - A single-window hub with sidebar navigation for seamless transitions between building and auditing.
+- **Adaptive Dark Mode** - A sleek, custom-designed interface that intelligently shifts between high-contrast "Slate Blue" and professional "Clean Frost" themes.
+- **Scrollable Dashboard** - A modern, full-page scrolling engine (built with `CTkScrollableFrame`) that maximizes screen real estate for data analysis.
 
-### 👁️ Live Preview Engine
-- **Instant Updates** - See exactly how your CV or Cover Letter looks as you type.
-- **Intelligent Formatting** - Automatically applies bullet points and professional spacing in the preview.
-- **Document Simulation** - Realistic A4-style preview with page indicators and zoom controls (50% - 200%).
+### 📊 Application Audit & Tactical Intelligence (NEW)
+- **Action Radar** - A real-time urgency categorization system:
+    - ⚡ **Recent**: Highlights applications from the last 48 hours.
+    - ⌛ **Stale**: Identifies applications older than 14 days needing follow-up.
+    - ⚠️ **Stalled**: Surfaces inactive applications older than 30 days.
+- **Strategy Visualizations**:
+    - **Conversion Funnel**: A visual pipeline showing the volume drop-off from initial application to interview and outcome.
+    - **Market Strength**: Analytics identifying regional clusters where your applications are most concentrated.
+- **Pro Data Table**: A high-performance, theme-aware "spreadsheet" view with zebra striping and 14pt high-readability typography.
 
-### 💼 Professional Tailoring
-- **Multi-Template Support** - Choose between different CV layouts (Template 1 vs. Template 2) directly from the dashboard.
-- **Smart Experience Manager** - Dedicated tabs for each past role with individual bullet control.
-- **Automated Typography** - Standardizes all tailored sections to **Times New Roman, 10pt** for a consistent, professional look.
-- **Country-Specific Customization** - Tailor your CV for specific markets (e.g., "UK", "Germany") with dedicated file naming.
-- **Cover Letter Architect** - Dynamic generation with smart placeholders for [Company Name], Hiring Manager, and Location.
-- **Intelligence Engine** - One-click "Smart Import" to auto-sort raw bullets into their respective job sections.
-- **Date-Ready** - Automatically defaults to the current date while remaining fully editable.
+### 💼 Professional Tailoring Engine
+- **Live Preview Architect** - Real-time rendering of CVs and Cover Letters in **10pt Times New Roman** professional standard.
+- **Smart Experience Manager** - Multi-job management with dedicated bullet controls and "Smart Import" fuzzy-matching logic.
+- **Multi-Template Logic** - Structure-aware injection into both table-based and paragraph-based `.docx` layouts.
+- **Floating Action Bar** - Contextual controls for lightning-fast document generation (CV, CL, or Both).
 
-### 📂 Advanced Output Management
-- **Hierarchical Organization** - Outputs are saved in `outputs/[Date]/[Company]/` for perfect traceability.
-- **Dual-Format Delivery** - Generates both professional `.docx` and print-ready `.pdf` automatically.
-- **Smart Naming Convention**:
-  - CV: `Madhav_Manohar_Gopal_CV_{Country_or_Company}.pdf`
-  - Cover Letter: `Madhav_Manohar_Gopal_Cover_Letter_{Company}.pdf`
+### ⌨️ Power-User Productivity
+- **Keyboard Shortcuts**:
+    - `Ctrl + G`: Instant document generation.
+    - `F`, `I`, `R`, `U`: Rapidly update application status (Followed Up, In Process, Rejected, Unknown).
+- **Pro Right-Click Menu**: Instant access to status updates and deep-links to specific local application folders in Windows Explorer.
 
 ---
 
-## 🛠️ Installation & Setup
+## 📂 Project Architecture
+
+The project is engineered for clarity, speed, and reliability:
+
+```
+Cv Automation/
+├── core/                       # The Heart of the Application
+│   ├── cv_generator_gui.py     # Unified Application Hub
+│   ├── application_audit.py    # Analytics & Tracker Panel
+│   ├── stats_manager.py        # Central Data Engine & Metadata Manager
+│   ├── update_cv.py            # CV Structural Injection Logic
+│   └── generate_cover_letter.py # Cover Letter Architect
+├── templates/                  # Master Professional Layouts
+├── outputs/                    # Hierarchical Organized Results (outputs/[Date]/[Company]/)
+├── launch_cv_generator.bat     # One-click Suite Launcher
+├── requirements.txt            # Project System Dependencies
+└── README.md                   # This Strategic Guide
+```
+
+---
+
+## 🛠️ Installation & Quick Launch
 
 ### Prerequisites
 - Python 3.8+
-- Windows OS (for native PDF conversion via Microsoft Word)
-- `pip install -r requirements.txt` (Run from root folder)
+- Windows OS (for native `comtypes` PDF conversion)
+- `pip install -r requirements.txt`
 
-### Quick Launch
-Simply double-click `launch_cv_generator.bat` or run from the root directory:
+### Launch commands
+Simply double-click `launch_cv_generator.bat` or run:
 ```bash
 python core/cv_generator_gui.py
 ```
@@ -52,63 +73,22 @@ python core/cv_generator_gui.py
 
 ## 📖 The ApplyCraft Workflow
 
-### 1. Template Selection
-In the **CV Builder** panel, select your preferred layout (Template 1 or 2). ApplyCraft's engine is structure-aware and will adapt its injection logic to match the template's design (table-based vs. paragraph-based).
+### 1. Intelligence Engine (Smart Import)
+Paste raw experience bullets into the **⚡ Smart Import** panel. ApplyCraft uses its fuzzy-matching algorithm to map your history to the correct job categories automatically.
 
-### 2. Intelligence Engine (Smart Import)
-Paste all your raw experience bullets into the **⚡ Smart Import** panel. ApplyCraft will use its fuzzy-matching algorithm to distribute them into the correct job categories automatically.
+### 2. Tailoring & Execution
+Refine your bullets and Cover Letter body in the **Builder Panels**. Use the **Live Preview** to ensure your 10pt Times New Roman formatting is perfect, then hit **🪄 Generate Both**.
 
-### 3. Experience Refinement
-Navigate to the **💼 Experience (CV)** tab to fine-tune your bullets for a specific role. The **Live Preview** on the right will update instantly at **10pt Times New Roman** to show your progress.
+### 3. Tactical Command (Audit)
+Navigate to the **📊 Audit & Stats** tab to view your application log. Use the **Action Radar** cards to identify which companies require a follow-up today.
 
-### 4. Cover Letter Composition
-Switch to the **✉️ Cover Letter** tab. Fill in the hiring manager's name and location. ApplyCraft injects the company name and your custom body text into a professionally formatted layout.
-
-### 5. One-Click Magic
-Use the **🪄 Generate Both** button in the floating action bar to produce your tailored CV and Cover Letter simultaneously.
-
----
-
-
-## 📂 Project Architecture
-
-The project has been reorganized for clarity and maintainability:
-
-```
-Cv Automation/
-├── core/                       # The Heart of the Application
-│   ├── cv_generator_gui.py     # Main Application Entry Point
-│   ├── update_cv.py            # CV Processing Logic
-│   └── generate_cover_letter.py # Cover Letter Logic
-├── templates/                  # Your Master Documents
-│   ├── Madhav_Manohar Gopal_CV.docx   # Table-based Template
-│   └── Madhav_Manohar_Gopal_CV_2.docx # Paragraph-based Template
-├── tests/                      # Unit and integration tests
-├── archive/                    # Legacy scripts and tools
-├── outputs/                    # Generated CVs and Cover Letters
-├── launch_cv_generator.bat     # One-click Launcher
-├── requirements.txt            # Project Dependencies
-└── README.md                   # This file
-```
-
----
-
-## 🔧 Technical Deep Dive
-
-### Smart Bullet Parser
-The parsing logic uses a multi-delimiter strategy to identify job titles. Whether you use `–`, `|`, `:`, or `/`, ApplyCraft recognizes the company name and maps your content to the correct section of your `DOCX` template.
-
-### Document Injection Logic
-Unlike simple search-and-replace, ApplyCraft performs **structural injection**:
-- **Hybrid Detection**: Identifies job sections using both **Table Headers** (Template 1) and **Paragraph Patterns** (Template 2).
-- **Paragraph Management**: Intelligently adds or removes bullet points to match your input, preserving the original formatting.
-- **Typography Standardization**: Enforces **Times New Roman at size 10** for all tailored text blocks, ensuring professional uniformity regardless of the base template.
-- **Style Preservation**: Ensures that new bullets inherit the exact indentation and list style of the template.
+### 4. Rapid Management
+Select a row and use the **Hotkey Entry** (`F`, `R`, etc.) or **Right-Click** to update your progress. Use the right-click menu to jump directly into the application's local folder to retrieve your documents for submission.
 
 ---
 
 ## 🛡️ License & Credits
 
-Built with precision for streamlined professional success. 
+Built with precision to turn job hunting into a mathematical victory.
 
 **Happy Hunting! 🚀**
