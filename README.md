@@ -1,6 +1,6 @@
 # ✨ ApplyCraft - Premium CV Automation & Strategic Command Center
 
-**ApplyCraft** is a sophisticated, high-performance automation suite designed to transform the job application process into a high-end, data-driven experience. It combines a professional document generation engine with a powerful analytical dashboard to help you craft, track, and optimize your career trajectory.
+**ApplyCraft** is an all-in-one job application assistant. It helps you quickly create tailored CVs and Cover Letters for specific roles while keeping track of every application you've sent in a smart, interactive dashboard.
 
 ---
 
