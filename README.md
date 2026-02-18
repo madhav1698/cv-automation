@@ -25,6 +25,15 @@
     - **Number Pulsing**: Status counts count up dynamically during data refreshes.
     - **Liquid Dot Pulse**: Visual feedback during CV tailoring to indicate active background processing.
 
+### 💾 Data Persistence & Portability
+- **Hybrid Record Management**:
+    - **Auto-Sync**: Background scans the `outputs/` hierarchy to detect new applications.
+    - **Manual Injection**: A dedicated entry architect to log external or historic applications directly into the tracker.
+    - **Non-Volatile Storage**: Manual records persist in the `application_stats.json` engine even if local output directories are removed.
+- **Unified CSV Exporters**:
+    - **Filtered Data Portability**: Export specific dashboard views or your entire application history to CSV with a single click.
+    - **Reporting Schema**: Standardized headers (Company, Country, Status, Applied Date) ready for ingestion into Excel or CRM tools.
+
 ### 💼 Professional Tailoring Engine
 - **Live Preview Architect** - Precise rendering of professional documents with **Sub-Pixel Zoom** and automatic **Page Estimation**.
 - **Accurate Content Sync**: Instant, clean updates when switching between CV and Cover Letter views.
@@ -32,7 +41,8 @@
 
 ### ⌨️ Power-User Productivity
 - **Sequential ID Tracking**: Automatically numbered entries for fast communication and referencing.
-- **Keyboard Shortcuts**: `F`, `I`, `R`, `U` for instantaneous status management.
+- **Hotkey Status Management**: `F`, `I`, `R`, `U` for instantaneous status updates on selected rows.
+- **Visual Distinction**: Manual entries are automatically *italicized* in the data sheet for instant parity checks between tool-generated and external records.
 - **Smart Cleanup**: Automatic empty-defaults for new applications with helpful placeholders.
 
 ---

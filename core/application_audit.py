@@ -10,7 +10,8 @@ import customtkinter as ctk
 from datetime import datetime, timedelta
 from stats_manager import StatsManager
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, filedialog
+import csv
 try:
     from tkcalendar import DateEntry
     CALENDAR_AVAILABLE = True
@@ -222,6 +223,19 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                          fg_color=self.colors["input_bg"], text_color=self.colors["text"],
                          button_color=self.colors["accent"]).pack(side="left")
 
+        # Add Record
+        ctk.CTkButton(sort_container, text="➕ Add Record", width=110, height=38,
+                     fg_color=self.colors["accent"], text_color="white",
+                     command=self.open_add_record_dialog,
+                     font=ctk.CTkFont(size=12, weight="bold")).pack(side="left", padx=(10, 0))
+
+        # Export Button
+        ctk.CTkButton(sort_container, text="📥 Export CSV", width=110, height=38,
+                     fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                     border_width=1, border_color=self.colors["border"],
+                     command=self.export_to_csv,
+                     font=ctk.CTkFont(size=12, weight="bold")).pack(side="left", padx=(10, 0))
+
         # Clear Button
         ctk.CTkButton(sort_container, text="✕ Clear", width=80, height=38,
                      fg_color=self.colors["input_bg"], text_color="#EF4444",
@@ -382,6 +396,9 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         
         # Missing CV tag - subtle underline or color shift
         self.tree.tag_configure("missing_cv", foreground="#F59E0B") # Amber warning
+        
+        # Manual entry tag - Italics or subtle indicator
+        self.tree.tag_configure("manual_entry", font=('Inter', 16, 'italic'))
 
     def show_context_menu(self, event):
         """Show right-click context menu for status updates"""
@@ -581,7 +598,8 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             widget.destroy()
         
         # Apply current filters
-        filtered_stats = self.apply_filters(stats)
+        self.filtered_data = self.apply_filters(stats)
+        filtered_stats = self.filtered_data
         filtered_count = len(filtered_stats)
         
         ctk.CTkLabel(self.summary_container, text=f"Total: {filtered_count}", 
@@ -1080,6 +1098,10 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             if not app.get('cv_found', True):
                 tags.append("missing_cv")
             
+            # Manual record tag
+            if app.get('manual'):
+                tags.append("manual_entry")
+            
             # Calculate Age
             try:
                 dt = self.parse_date(app['date'])
@@ -1115,6 +1137,134 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         
         # Update summary cards after a short delay
         self.after(500, self.refresh_data)
+
+    def open_add_record_dialog(self):
+        """Open a dialog to manually add a new record"""
+        dialog = ctk.CTkToplevel(self)
+        dialog.title("Add New Application Record")
+        dialog.geometry("450x580")
+        dialog.transient(self)
+        dialog.grab_set()
+        
+        # Center the dialog
+        dialog.update_idletasks()
+        x = self.winfo_x() + (self.winfo_width() // 2) - (450 // 2)
+        y = self.winfo_y() + (self.winfo_height() // 2) - (580 // 2)
+        dialog.geometry(f"+{x}+{y}")
+        
+        main_frame = ctk.CTkFrame(dialog, fg_color="transparent")
+        main_frame.pack(fill="both", expand=True, padx=40, pady=30)
+        
+        ctk.CTkLabel(main_frame, text="Manual Entry", 
+                    font=ctk.CTkFont(family="Inter", size=24, weight="bold")).pack(pady=(0, 25))
+        
+        # Company Name
+        ctk.CTkLabel(main_frame, text="Company Name:", font=ctk.CTkFont(size=13, weight="bold"),
+                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 5))
+        company_entry = ctk.CTkEntry(main_frame, height=45, placeholder_text="e.g. OpenAI",
+                                    fg_color=self.colors["input_bg"], border_color=self.colors["border"])
+        company_entry.pack(fill="x")
+        
+        # Country
+        ctk.CTkLabel(main_frame, text="Country:", font=ctk.CTkFont(size=13, weight="bold"),
+                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(15, 5))
+        country_entry = ctk.CTkEntry(main_frame, height=45, placeholder_text="e.g. USA",
+                                    fg_color=self.colors["input_bg"], border_color=self.colors["border"])
+        country_entry.insert(0, "Denmark") # Default to Denmark or common country
+        country_entry.pack(fill="x")
+        
+        # Date
+        ctk.CTkLabel(main_frame, text="Date Applied:", font=ctk.CTkFont(size=13, weight="bold"),
+                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(15, 5))
+        
+        date_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
+        date_frame.pack(fill="x")
+        
+        if CALENDAR_AVAILABLE:
+            date_cal = DateEntry(date_frame, width=28, background='#6366F1', 
+                                foreground='white', borderwidth=2, font=('Inter', 12),
+                                date_pattern='dd-mm-yy')
+            date_cal.pack(pady=5, side="left")
+        else:
+            date_entry = ctk.CTkEntry(date_frame, height=45, placeholder_text="dd-mm-yy",
+                                    fg_color=self.colors["input_bg"], border_color=self.colors["border"])
+            date_entry.insert(0, datetime.now().strftime("%d-%m-%y"))
+            date_entry.pack(fill="x")
+            
+        # Status
+        ctk.CTkLabel(main_frame, text="Current Status:", font=ctk.CTkFont(size=13, weight="bold"),
+                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(15, 5))
+        status_var = ctk.StringVar(value="Unknown")
+        status_menu = ctk.CTkOptionMenu(main_frame, values=["In Process", "Followed Up", "Rejected", "Unknown"],
+                                       variable=status_var, height=45,
+                                       fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                                       button_color=self.colors["accent"])
+        status_menu.pack(fill="x")
+        
+        def save_record():
+            company = company_entry.get().strip()
+            country = country_entry.get().strip() or "Unknown"
+            if not company:
+                company_entry.configure(border_color="#EF4444")
+                return
+            
+            if CALENDAR_AVAILABLE:
+                date_str = date_cal.get_date().strftime("%d-%m-%y")
+            else:
+                date_str = date_entry.get().strip()
+            
+            status = status_var.get()
+            
+            # Logic to save to stats_manager
+            self.stats_manager.add_application(date_str, company, country, status, manual=True)
+            dialog.destroy()
+            self.refresh_data()
+            
+        ctk.CTkButton(main_frame, text="✨ Save Record", command=save_record,
+                     fg_color=self.colors["accent"], hover_color=self.lighten_color(self.colors["accent"]),
+                     height=50, corner_radius=12,
+                     font=ctk.CTkFont(size=15, weight="bold")).pack(pady=(35, 10), fill="x")
+        
+        ctk.CTkButton(main_frame, text="Cancel", command=dialog.destroy,
+                     fg_color="transparent", text_color=self.colors["text_muted"],
+                     height=40).pack(fill="x")
+
+    def export_to_csv(self):
+        """Export the currently filtered data to a CSV file"""
+        if not self.filtered_data:
+            return
+            
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".csv",
+            filetypes=[("CSV files", "*.csv"), ("All files", "*.*")],
+            title="Export Applications",
+            initialfile=f"applications_export_{datetime.now().strftime('%Y%m%d')}.csv"
+        )
+        
+        if not file_path:
+            return
+            
+        try:
+            with open(file_path, mode='w', newline='', encoding='utf-8') as f:
+                writer = csv.writer(f)
+                # Header
+                writer.writerow(["ID", "Date", "Company", "Country", "Status", "Manual Entry"])
+                
+                # Data
+                for i, (app_id, data) in enumerate(self.filtered_data):
+                    writer.writerow([
+                        i + 1,
+                        data.get('date', ''),
+                        data.get('company', ''),
+                        data.get('country', ''),
+                        data.get('status', ''),
+                        "Yes" if data.get('manual') else "No"
+                    ])
+            
+            # Subtle feedback (could be a toast, but using print/console for now)
+            print(f"Exported {len(self.filtered_data)} records to {file_path}")
+        except Exception as e:
+            print(f"Export Error: {e}")
 
     def on_row_double_click(self, event):
         """Open a comprehensive editor dialog on double-click"""

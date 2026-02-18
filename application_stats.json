@@ -3,7 +3,7 @@
         "date": "10-2-26",
         "company": "Academic Work",
         "country": "Unknown",
-        "status": "Unknown",
+        "status": "Rejected",
         "last_updated": "2026-02-10 08:53:21",
         "cv_found": true,
         "folder_name": "Academic_Work"
@@ -830,7 +830,7 @@
     "5-2-26_orange": {
         "date": "5-2-26",
         "company": "orange",
-        "country": "Unknown",
+        "country": "Sweden",
         "status": "Unknown",
         "last_updated": "2026-02-05 09:13:05",
         "cv_found": true,
@@ -839,7 +839,7 @@
     "5-2-26_Pagen": {
         "date": "5-2-26",
         "company": "Pagen",
-        "country": "Unknown",
+        "country": "Sweden",
         "status": "Unknown",
         "last_updated": "2026-02-05 10:18:41",
         "cv_found": true,
@@ -875,7 +875,7 @@
     "5-2-26_tataa": {
         "date": "5-2-26",
         "company": "tataa",
-        "country": "Unknown",
+        "country": "Sweden",
         "status": "Unknown",
         "last_updated": "2026-02-05 09:49:09",
         "cv_found": true,
@@ -974,7 +974,7 @@
     "6-2-26_Husqvarna_Group": {
         "date": "6-2-26",
         "company": "Husqvarna Group",
-        "country": "Unknown",
+        "country": "Sweden",
         "status": "Unknown",
         "last_updated": "2026-02-06 12:05:51",
         "cv_found": true,
@@ -1037,7 +1037,7 @@
     "6-2-26_volvo": {
         "date": "6-2-26",
         "company": "volvo",
-        "country": "Unknown",
+        "country": "Sweden",
         "status": "Unknown",
         "last_updated": "2026-02-06 09:20:35",
         "cv_found": true,
@@ -1055,7 +1055,7 @@
     "7-2-26_Digifarm": {
         "date": "7-2-26",
         "company": "Digifarm",
-        "country": "Unknown",
+        "country": "Norway",
         "status": "Unknown",
         "last_updated": "2026-02-07 10:31:23",
         "cv_found": true,
@@ -1082,7 +1082,7 @@
     "7-2-26_Qliro": {
         "date": "7-2-26",
         "company": "Qliro",
-        "country": "Unknown",
+        "country": "Sweden",
         "status": "Unknown",
         "last_updated": "2026-02-07 09:59:09",
         "cv_found": true,
@@ -1276,5 +1276,32 @@
         "cv_found": true,
         "last_updated": "2026-02-18 13:40:19",
         "folder_name": "Uber"
+    },
+    "18-2-26_Migx_Ag": {
+        "date": "18-2-26",
+        "company": "Migx Ag",
+        "folder_name": "Migx_Ag",
+        "country": "Spain",
+        "status": "Unknown",
+        "last_updated": "2026-02-18 14:07:41",
+        "cv_found": true
+    },
+    "27-01-26_Maynooth_University": {
+        "date": "27-01-26",
+        "company": "Maynooth University",
+        "folder_name": "Maynooth_University",
+        "country": "Ireland",
+        "status": "In Process",
+        "manual": true,
+        "last_updated": "2026-02-18 14:15:41"
+    },
+    "22-01-26_Handelsbanken": {
+        "date": "22-01-26",
+        "company": "Handelsbanken",
+        "folder_name": "Handelsbanken",
+        "country": "Sweden",
+        "status": "In Process",
+        "manual": true,
+        "last_updated": "2026-02-18 14:17:50"
     }
 }

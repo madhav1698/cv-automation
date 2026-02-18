@@ -55,7 +55,7 @@ class StatsManager:
         with open(self.stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.stats, f, indent=4)
 
-    def add_application(self, date_str, company, country, status="Unknown"):
+    def add_application(self, date_str, company, country, status="Unknown", manual=False):
         """Explicitly adds an application to the stats, avoiding the need for a full scan."""
         company_clean = "".join(c for c in company.replace(" ", "_") if c.isalnum() or c in ("_", "-"))
         app_id = f"{date_str}_{company_clean}"
@@ -66,6 +66,7 @@ class StatsManager:
             "folder_name": company.replace(" ", "_"), # Store original folder name
             "country": country,
             "status": status,
+            "manual": manual,
             "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
         self._save_stats()
@@ -91,7 +92,7 @@ class StatsManager:
             
             # Check if the folder still exists
             expected_path = os.path.join(self.outputs_dir, date_folder, folder_name)
-            if not os.path.exists(expected_path):
+            if not os.path.exists(expected_path) and not data.get('manual'):
                 to_remove.append(app_id)
             else:
                 # Refresh data from filesystem, but DON'T overwrite manual edits
