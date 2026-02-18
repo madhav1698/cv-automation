@@ -20,6 +20,12 @@ class StatsManager:
         self.stats_file = os.path.join(base_dir, "application_stats.json")
         self.stats = self._load_stats()
 
+    def _parse_last_updated(self, entry):
+        try:
+            return datetime.strptime(entry.get('last_updated', ''), "%Y-%m-%d %H:%M:%S")
+        except:
+            return datetime.min
+
     def _load_stats(self):
         if os.path.exists(self.stats_file):
             try:
@@ -52,6 +58,47 @@ class StatsManager:
         return {}
 
     def _save_stats(self):
+        # Merge with disk to avoid overwriting updates from another running instance.
+        disk_stats = {}
+        if os.path.exists(self.stats_file):
+            try:
+                with open(self.stats_file, 'r', encoding='utf-8') as f:
+                    disk_stats = json.load(f) or {}
+            except:
+                disk_stats = {}
+
+        merged = {}
+        all_ids = set(disk_stats.keys()) | set(self.stats.keys())
+        for app_id in all_ids:
+            a = disk_stats.get(app_id)
+            b = self.stats.get(app_id)
+            if a is None:
+                merged[app_id] = b
+                continue
+            if b is None:
+                merged[app_id] = a
+                continue
+
+            # Default conflict resolution: keep the entry with the most recent last_updated.
+            if self._parse_last_updated(b) >= self._parse_last_updated(a):
+                winner = dict(b)
+                loser = a
+            else:
+                winner = dict(a)
+                loser = b
+
+            # Field-level override: never clobber a manually-set country.
+            # If either side has country_manual=True, keep that country/country_manual.
+            if a.get('country_manual'):
+                winner['country'] = a.get('country', winner.get('country', 'Unknown'))
+                winner['country_manual'] = True
+            if b.get('country_manual'):
+                winner['country'] = b.get('country', winner.get('country', 'Unknown'))
+                winner['country_manual'] = True
+
+            merged[app_id] = winner
+
+        self.stats = merged
         with open(self.stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.stats, f, indent=4)
 
@@ -65,6 +112,7 @@ class StatsManager:
             "company": company.replace("_", " "),
             "folder_name": company.replace(" ", "_"), # Store original folder name
             "country": country,
+            "country_manual": manual,  # Mark as manual if manually added
             "status": status,
             "manual": manual,
             "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -95,32 +143,40 @@ class StatsManager:
             if not os.path.exists(expected_path) and not data.get('manual'):
                 to_remove.append(app_id)
             else:
-                # Refresh data from filesystem, but DON'T overwrite manual edits
-                try:
-                    # Sync CV existence (this is factual)
-                    files = os.listdir(expected_path)
-                    cv_found = any("CV" in f and f.endswith(".pdf") for f in files)
-                    
-                    if data.get('cv_found') != cv_found:
-                        data['cv_found'] = cv_found
-                        updated = True
-
-                    # Try to detect country ONLY if currently Unknown
-                    if data.get('country') == "Unknown" or not data.get('country'):
-                        found_country = "Unknown"
-                        for filename in files:
-                            if "CV" in filename and filename.endswith(".pdf"):
-                                suffix = filename.replace("Madhav_Manohar_Gopal_CV_", "").replace(".pdf", "").replace("_", " ").lower()
-                                for country_name, keywords in COUNTRY_MAP.items():
-                                    if any(kw.lower() in suffix for kw in keywords):
-                                        found_country = country_name
-                                        break
-                                if found_country != "Unknown": break
+                # Only refresh data from filesystem if this is NOT a manual country entry
+                if not data.get('country_manual', False):
+                    try:
+                        # Sync CV existence (this is factual)
+                        files = os.listdir(expected_path)
+                        cv_found = any("CV" in f and f.endswith(".pdf") for f in files)
                         
-                        if found_country != "Unknown":
-                            data['country'] = found_country
+                        if data.get('cv_found') != cv_found:
+                            data['cv_found'] = cv_found
+                            data['last_updated'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                             updated = True
-                except:
+
+                        # Try to detect country ONLY if currently Unknown AND not manually set
+                        current_country = data.get('country', 'Unknown')
+                        if (current_country == "Unknown" or not current_country):
+                            found_country = "Unknown"
+                            for filename in files:
+                                if "CV" in filename and filename.endswith(".pdf"):
+                                    suffix = filename.replace("Madhav_Manohar_Gopal_CV_", "").replace(".pdf", "").replace("_", " ").lower()
+                                    for country_name, keywords in COUNTRY_MAP.items():
+                                        if any(kw.lower() in suffix for kw in keywords):
+                                            found_country = country_name
+                                            break
+                                    if found_country != "Unknown": break
+                            
+                            if found_country != "Unknown" and found_country != current_country:
+                                data['country'] = found_country
+                                # Only auto-detected when currently Unknown; treat as fresh info.
+                                data['last_updated'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                                updated = True
+                    except:
+                        pass
+                else:
+                    # Skip validation for manual country entries
                     pass
         
         # Remove deleted entries
@@ -203,7 +259,20 @@ class StatsManager:
 
     def update_field(self, app_id, field, value):
         if app_id in self.stats:
+            old_value = self.stats[app_id].get(field)
             self.stats[app_id][field] = value
+            # Mark country as manually set if user changes it
+            if field == "country":
+                self.stats[app_id]['country_manual'] = True
+            self.stats[app_id]['last_updated'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self._save_stats()
+            return True
+        return False
+
+    def delete_application(self, app_id):
+        """Delete an application record from stats"""
+        if app_id in self.stats:
+            del self.stats[app_id]
             self._save_stats()
             return True
         return False

@@ -422,8 +422,62 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             menu.add_separator()
             menu.add_command(label="📝 Edit Details...", command=lambda: self.on_row_double_click(None))
             menu.add_command(label="📁 Open Application Folder", command=lambda: self.open_app_folder(row_id))
+            menu.add_separator()
+            menu.add_command(label="🗑️ Delete Record", command=lambda: self.delete_record(row_id))
             
             menu.post(event.x_root, event.y_root)
+
+    def delete_record(self, app_id):
+        """Delete a record after confirmation"""
+        stats = self.stats_manager.get_stats()
+        if app_id not in stats:
+            return
+        
+        app = stats[app_id]
+        company = app['company']
+        date = app['date']
+        
+        # Create confirmation dialog
+        dialog = ctk.CTkToplevel(self)
+        dialog.title("Confirm Delete")
+        dialog.geometry("400x200")
+        dialog.transient(self)
+        dialog.grab_set()
+        
+        # Center the dialog
+        dialog.update_idletasks()
+        x = self.winfo_x() + (self.winfo_width() // 2) - (400 // 2)
+        y = self.winfo_y() + (self.winfo_height() // 2) - (200 // 2)
+        dialog.geometry(f"+{x}+{y}")
+        
+        main_frame = ctk.CTkFrame(dialog, fg_color="transparent")
+        main_frame.pack(fill="both", expand=True, padx=30, pady=20)
+        
+        ctk.CTkLabel(main_frame, text="⚠️ Confirm Delete", 
+                    font=ctk.CTkFont(size=18, weight="bold"),
+                    text_color="#EF4444").pack(pady=(0, 15))
+        
+        ctk.CTkLabel(main_frame, text=f"Are you sure you want to delete the application for:\n\n📁 {company}\n📅 {date}\n\nThis action cannot be undone.", 
+                    font=ctk.CTkFont(size=13), 
+                    text_color=self.colors["text"],
+                    justify="center").pack(pady=10)
+        
+        btn_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
+        btn_frame.pack(fill="x", pady=20)
+        
+        def confirm_delete():
+            if self.stats_manager.delete_application(app_id):
+                self.refresh_data()
+            dialog.destroy()
+        
+        ctk.CTkButton(btn_frame, text="Cancel", command=dialog.destroy,
+                     fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                     border_width=1, border_color=self.colors["border"],
+                     width=120, height=40).pack(side="left", padx=(0, 10))
+                     
+        ctk.CTkButton(btn_frame, text="Delete", command=confirm_delete, 
+                     fg_color="#EF4444", hover_color="#DC2626",
+                     width=120, height=40).pack(side="left")
 
     def open_app_folder(self, app_id):
         """Open the specific application folder with robust path detection"""
@@ -1309,6 +1363,34 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
         company_entry = create_input("Company Name", current_company)
         
+        # Date Input
+        ctk.CTkLabel(main_frame, text="Date Applied", font=ctk.CTkFont(size=12), 
+                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
+        
+        date_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
+        date_frame.pack(fill="x", pady=(0, 5))
+        
+        if CALENDAR_AVAILABLE:
+            # Parse current date for DateEntry
+            try:
+                current_dt = datetime.strptime(current_date, "%d-%m-%y")
+                date_cal = DateEntry(date_frame, width=28, background='#6366F1', 
+                                    foreground='white', borderwidth=2, font=('Inter', 12),
+                                    date_pattern='dd-mm-yy')
+                date_cal.set_date(current_dt)
+                date_cal.pack(side="left")
+            except:
+                # Fallback to entry if date parsing fails
+                date_entry = ctk.CTkEntry(date_frame, width=200, height=35)
+                date_entry.insert(0, current_date)
+                date_entry.pack(side="left")
+                date_cal = None
+        else:
+            date_entry = ctk.CTkEntry(date_frame, width=200, height=35)
+            date_entry.insert(0, current_date)
+            date_entry.pack(side="left")
+            date_cal = None
+        
         # Country Dropdown
         ctk.CTkLabel(main_frame, text="Country", font=ctk.CTkFont(size=12), 
                     text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
@@ -1341,6 +1423,12 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             new_country = country_var.get()
             new_status = status_var.get()
             
+            # Get new date
+            if CALENDAR_AVAILABLE and date_cal:
+                new_date = date_cal.get_date().strftime("%d-%m-%y")
+            else:
+                new_date = date_entry.get().strip()
+            
             updated = False
             if new_company != current_company:
                 self.stats_manager.update_field(app_id, "company", new_company)
@@ -1351,9 +1439,12 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             if new_status != current_status:
                 self.stats_manager.update_field(app_id, "status", new_status)
                 updated = True
+            if new_date != current_date:
+                self.stats_manager.update_field(app_id, "date", new_date)
+                updated = True
                 
             if updated:
-                self.refresh_data()
+                self.refresh_data(scan=False)  # Don't trigger scan after manual edit
             dialog.destroy()
         
         btn_frame = ctk.CTkFrame(main_frame, fg_color="transparent")

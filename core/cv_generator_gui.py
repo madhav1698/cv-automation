@@ -119,8 +119,6 @@ class ApplyCraftApp(ctk.CTk):
         self.job_text_widgets = {}
         self.preview_zoom = 1.0
         self.stats_manager = StatsManager(os.path.join(current_dir, ".."))
-        self.preview_zoom = 1.0
-        self.stats_manager = StatsManager(os.path.join(current_dir, ".."))
 
         # Layout Grid
         self.grid_columnconfigure(1, weight=1)
