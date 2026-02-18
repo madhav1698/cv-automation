@@ -23,20 +23,28 @@ class StatsManager:
     def _load_stats(self):
         if os.path.exists(self.stats_file):
             try:
-                with open(self.stats_file, 'r') as f:
+                with open(self.stats_file, 'r', encoding='utf-8') as f:
                     stats = json.load(f)
                 
-                # Migrate old entries: add last_updated if missing
+                # Migrate old entries
                 needs_save = False
                 for app_id, data in stats.items():
+                    updated_entry = False
                     if 'last_updated' not in data:
-                        # Use a very old timestamp for legacy entries so they appear last
                         data['last_updated'] = "2000-01-01 00:00:00"
+                        updated_entry = True
+                    
+                    if 'folder_name' not in data:
+                        # Derive folder name from company if missing
+                        data['folder_name'] = data.get('company', '').replace(' ', '_')
+                        updated_entry = True
+                    
+                    if updated_entry:
                         needs_save = True
                 
                 if needs_save:
-                    with open(self.stats_file, 'w') as f:
-                        json.dump(stats, f, indent=4)
+                    self.stats = stats # Need to set self.stats before calling _save_stats if we used it, but here we return it
+                    self._save_stats()
                 
                 return stats
             except:
@@ -44,7 +52,7 @@ class StatsManager:
         return {}
 
     def _save_stats(self):
-        with open(self.stats_file, 'w') as f:
+        with open(self.stats_file, 'w', encoding='utf-8') as f:
             json.dump(self.stats, f, indent=4)
 
     def add_application(self, date_str, company, country, status="Unknown"):
@@ -55,6 +63,7 @@ class StatsManager:
         self.stats[app_id] = {
             "date": date_str,
             "company": company.replace("_", " "),
+            "folder_name": company.replace(" ", "_"), # Store original folder name
             "country": country,
             "status": status,
             "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -77,44 +86,39 @@ class StatsManager:
         to_remove = []
         for app_id, data in self.stats.items():
             date_folder = data.get('date', '')
-            company = data.get('company', '').replace(' ', '_')
+            # Use folder_name if available, fallback to company
+            folder_name = data.get('folder_name', data.get('company', '').replace(' ', '_'))
             
             # Check if the folder still exists
-            expected_path = os.path.join(self.outputs_dir, date_folder, company)
+            expected_path = os.path.join(self.outputs_dir, date_folder, folder_name)
             if not os.path.exists(expected_path):
                 to_remove.append(app_id)
             else:
-                # ALWAYS refresh timestamp from filesystem to fix any corrupted timestamps
+                # Refresh data from filesystem, but DON'T overwrite manual edits
                 try:
-                    folder_ctime = os.path.getctime(expected_path)
-                    correct_timestamp = datetime.fromtimestamp(folder_ctime).strftime("%Y-%m-%d %H:%M:%S")
-                    if data.get('last_updated') != correct_timestamp:
-                        data['last_updated'] = correct_timestamp
-                        updated = True
-                    
-                    # Also re-check CV and Country for existing entries to fix legacy data
+                    # Sync CV existence (this is factual)
                     files = os.listdir(expected_path)
-                    cv_found = False
-                    found_country = "Unknown"
-                    for filename in files:
-                        if "CV" in filename and filename.endswith(".pdf"):
-                            cv_found = True
-                            suffix = filename.replace("Madhav_Manohar_Gopal_CV_", "").replace(".pdf", "").replace("_", " ").lower()
-                            
-                            found_country = "Unknown"
-                            # Check for matches in the country map
-                            for country, keywords in COUNTRY_MAP.items():
-                                for kw in keywords:
-                                    if kw.lower() in suffix:
-                                        found_country = country
+                    cv_found = any("CV" in f and f.endswith(".pdf") for f in files)
+                    
+                    if data.get('cv_found') != cv_found:
+                        data['cv_found'] = cv_found
+                        updated = True
+
+                    # Try to detect country ONLY if currently Unknown
+                    if data.get('country') == "Unknown" or not data.get('country'):
+                        found_country = "Unknown"
+                        for filename in files:
+                            if "CV" in filename and filename.endswith(".pdf"):
+                                suffix = filename.replace("Madhav_Manohar_Gopal_CV_", "").replace(".pdf", "").replace("_", " ").lower()
+                                for country_name, keywords in COUNTRY_MAP.items():
+                                    if any(kw.lower() in suffix for kw in keywords):
+                                        found_country = country_name
                                         break
                                 if found_country != "Unknown": break
-                            break
-                    
-                    if data.get('cv_found') != cv_found or data.get('country') != found_country:
-                        data['cv_found'] = cv_found
-                        data['country'] = found_country
-                        updated = True
+                        
+                        if found_country != "Unknown":
+                            data['country'] = found_country
+                            updated = True
                 except:
                     pass
         
@@ -183,6 +187,7 @@ class StatsManager:
                 self.stats[app_id] = {
                     "date": date_folder,
                     "company": company_folder.replace("_", " "),
+                    "folder_name": company_folder, # Store the actual folder name
                     "country": country,
                     "status": "Unknown",
                     "cv_found": cv_found,
@@ -195,10 +200,9 @@ class StatsManager:
         
         return self.stats
 
-    def update_status(self, app_id, new_status):
+    def update_field(self, app_id, field, value):
         if app_id in self.stats:
-            self.stats[app_id]["status"] = new_status
-            # Don't update last_updated - keep original folder creation time for sorting
+            self.stats[app_id][field] = value
             self._save_stats()
             return True
         return False

@@ -403,6 +403,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             menu.add_command(label="🔴 Mark Rejected", command=lambda: self.update_status_hotkey("Rejected"))
             menu.add_command(label="⚪ Mark Unknown", command=lambda: self.update_status_hotkey("Unknown"))
             menu.add_separator()
+            menu.add_command(label="📝 Edit Details...", command=lambda: self.on_row_double_click(None))
             menu.add_command(label="📁 Open Application Folder", command=lambda: self.open_app_folder(row_id))
             
             menu.post(event.x_root, event.y_root)
@@ -1028,15 +1029,15 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         # Sort
         sort_by = self.sort_order.get()
         if sort_by == "Latest First":
-            # Sort by last_updated timestamp (actual insertion order), then by date as fallback
+            # Sort primarily by the actual application date, then by creation/last_sync time
             items.sort(key=lambda x: (
-                self.parse_timestamp(x[1].get('last_updated', '')),
-                self.parse_date(x[1]['date'])
+                self.parse_date(x[1]['date']),
+                self.parse_timestamp(x[1].get('last_updated', ''))
             ), reverse=True)
         elif sort_by == "Earliest First":
             items.sort(key=lambda x: (
-                self.parse_timestamp(x[1].get('last_updated', '')),
-                self.parse_date(x[1]['date'])
+                self.parse_date(x[1]['date']),
+                self.parse_timestamp(x[1].get('last_updated', ''))
             ))
         elif sort_by == "Status":
             items.sort(key=lambda x: x[1]['status'])
@@ -1100,7 +1101,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             return
         
         for app_id in selected:
-            if self.stats_manager.update_status(app_id, status):
+            if self.stats_manager.update_field(app_id, "status", status):
                 # We don't want to refresh the whole data (expensive)
                 # Just update the specific row in tree and re-render summary
                 self.tree.set(app_id, "status", status)
@@ -1116,36 +1117,106 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.after(500, self.refresh_data)
 
     def on_row_double_click(self, event):
-        """Open status update dialog on double-click"""
+        """Open a comprehensive editor dialog on double-click"""
         item = self.tree.selection()
         if not item:
             return
         
         app_id = item[0]
-        current_status = self.tree.item(app_id)['values'][4]
+        values = self.tree.item(app_id)['values']
+        current_date = values[1]
+        current_company = values[2]
+        current_country = values[3]
+        current_status = values[4]
         
         # Create popup dialog
         dialog = ctk.CTkToplevel(self)
-        dialog.title("Update Status")
-        dialog.geometry("300x200")
+        dialog.title("Edit Application Details")
+        dialog.geometry("400x500")
         dialog.transient(self)
         dialog.grab_set()
         
-        ctk.CTkLabel(dialog, text=f"Update status for:\n{app_id}", 
-                    font=ctk.CTkFont(size=13)).pack(pady=20)
+        # Center the dialog
+        dialog.update_idletasks()
+        x = self.winfo_x() + (self.winfo_width() // 2) - (400 // 2)
+        y = self.winfo_y() + (self.winfo_height() // 2) - (500 // 2)
+        dialog.geometry(f"+{x}+{y}")
         
+        main_frame = ctk.CTkFrame(dialog, fg_color="transparent")
+        main_frame.pack(fill="both", expand=True, padx=30, pady=20)
+        
+        ctk.CTkLabel(main_frame, text="Update Application Details", 
+                    font=ctk.CTkFont(family="Inter", size=18, weight="bold")).pack(pady=(0, 20))
+        
+        # Helper to create labeled inputs
+        def create_input(label, current_val):
+            ctk.CTkLabel(main_frame, text=label, font=ctk.CTkFont(size=12), 
+                        text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
+            entry = ctk.CTkEntry(main_frame, width=340, height=35)
+            entry.insert(0, str(current_val))
+            entry.pack(pady=(0, 5))
+            return entry
+
+        company_entry = create_input("Company Name", current_company)
+        
+        # Country Dropdown
+        ctk.CTkLabel(main_frame, text="Country", font=ctk.CTkFont(size=12), 
+                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
+        
+        # Filter "All" from available countries and ensure current/Unknown are available
+        country_options = [c for c in self.available_countries if c != "All"]
+        if current_country not in country_options:
+            country_options.append(current_country)
+        if "Unknown" not in country_options:
+            country_options.append("Unknown")
+        country_options = sorted(list(set(country_options)))
+            
+        country_var = ctk.StringVar(value=current_country)
+        ctk.CTkOptionMenu(main_frame, values=country_options,
+                         variable=country_var, width=340, height=35,
+                         fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                         button_color=self.colors["accent"]).pack(pady=(0, 5))
+        
+        # Status Dropdown
+        ctk.CTkLabel(main_frame, text="Status", font=ctk.CTkFont(size=12), 
+                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
         status_var = ctk.StringVar(value=current_status)
-        ctk.CTkOptionMenu(dialog, values=["Unknown", "In Process", "Followed Up", "Rejected"],
-                         variable=status_var, width=200).pack(pady=10)
+        ctk.CTkOptionMenu(main_frame, values=["Unknown", "In Process", "Followed Up", "Rejected"],
+                         variable=status_var, width=340, height=35,
+                         fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                         button_color=self.colors["accent"]).pack(pady=(0, 20))
         
         def save():
+            new_company = company_entry.get().strip()
+            new_country = country_var.get()
             new_status = status_var.get()
-            if self.stats_manager.update_status(app_id, new_status):
+            
+            updated = False
+            if new_company != current_company:
+                self.stats_manager.update_field(app_id, "company", new_company)
+                updated = True
+            if new_country != current_country:
+                self.stats_manager.update_field(app_id, "country", new_country)
+                updated = True
+            if new_status != current_status:
+                self.stats_manager.update_field(app_id, "status", new_status)
+                updated = True
+                
+            if updated:
                 self.refresh_data()
             dialog.destroy()
         
-        ctk.CTkButton(dialog, text="Save", command=save, 
-                     fg_color=self.colors["accent"]).pack(pady=10)
+        btn_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
+        btn_frame.pack(fill="x", pady=20)
+        
+        ctk.CTkButton(btn_frame, text="Discard", command=dialog.destroy,
+                     fg_color=self.colors["input_bg"], text_color=self.colors["text"],
+                     border_width=1, border_color=self.colors["border"],
+                     width=160, height=40).pack(side="left", padx=(0, 10))
+                     
+        ctk.CTkButton(btn_frame, text="Save Changes", command=save, 
+                     fg_color=self.colors["accent"],
+                     width=160, height=40).pack(side="left")
 
     def open_outputs(self):
         outputs_dir = os.path.join(current_dir, "..", "outputs")

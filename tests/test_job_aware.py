@@ -35,7 +35,7 @@ test_summary = (
     "enforcing schemas and metadata, and balancing correctness, usability, and long-term maintainability."
 )
 
-input_file = "Madhav_Manohar Gopal_CV .docx"
+input_file = "templates/Madhav_Manohar Gopal_CV .docx"
 output_file = "outputs/test_job_aware_cv.docx"
 
 print("Testing job-aware bullet replacement...")

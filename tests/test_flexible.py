@@ -40,7 +40,7 @@ test_bullets = {
 
 test_summary = "Test summary for flexible bullet counts."
 
-input_file = "Madhav_Manohar Gopal_CV .docx"
+input_file = "templates/Madhav_Manohar Gopal_CV .docx"
 output_file = "outputs/test_flexible_bullets.docx"
 
 print("Testing flexible bullet counts...")
