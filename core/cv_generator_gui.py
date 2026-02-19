@@ -391,6 +391,17 @@ class ApplyCraftApp(ctk.CTk):
         self.cv_country_entry.bind("<FocusIn>", lambda e: self.cv_country_entry.configure(border_color=self.colors["accent"]))
         self.cv_country_entry.bind("<FocusOut>", lambda e: self.cv_country_entry.configure(border_color=self.colors["border"]))
 
+        ctk.CTkLabel(card, text="Role Title", font=ctk.CTkFont(size=13, weight="bold"), text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(10, 8))
+        self.role_title_entry = ctk.CTkEntry(card, height=50, fg_color=self.colors["input_bg"],
+                                            text_color=self.colors["text"], border_width=2,
+                                            border_color=self.colors["border"], corner_radius=10,
+                                            placeholder_text="e.g. Data Analyst",
+                                            font=ctk.CTkFont(size=13))
+        self.role_title_entry.pack(fill="x", padx=25)
+        self.role_title_entry.bind("<KeyRelease>", lambda e: self.update_live_preview())
+        self.role_title_entry.bind("<FocusIn>", lambda e: self.role_title_entry.configure(border_color=self.colors["accent"]))
+        self.role_title_entry.bind("<FocusOut>", lambda e: self.role_title_entry.configure(border_color=self.colors["border"]))
+
         self.summary_text = self.create_textbox(card, "Professional Summary", SUMMARY_TEXT)
         
         for job_title, default_bullets in JOB_POSITIONS.items():
@@ -816,7 +827,12 @@ class ApplyCraftApp(ctk.CTk):
             
             # Add to stats immediately to bypass scan
             date_str = f"{today.day}-{today.month}-{today.strftime('%y')}"
-            self.stats_manager.add_application(date_str, company, cv_country or cl_data['country'])
+            role_title = ""
+            try:
+                role_title = self.role_title_entry.get().strip()
+            except:
+                role_title = ""
+            self.stats_manager.add_application(date_str, company, cv_country or cl_data['country'], role_title=role_title)
             
             self.after(0, lambda: self._complete(True))
         except Exception as e:

@@ -297,7 +297,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
         # Treeview
         self.tree = ttk.Treeview(table_frame, 
-                                columns=("id", "date", "company", "country", "status", "age"),
+                                columns=("id", "date", "company", "role_title", "country", "status", "age"),
                                 show="headings",
                                 style="Custom.Treeview",
                                 yscrollcommand=scrollbar.set,
@@ -309,6 +309,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.tree.heading("id", text="#", anchor="center")
         self.tree.heading("date", text="Date", anchor="w")
         self.tree.heading("company", text="Company", anchor="w")
+        self.tree.heading("role_title", text="Role Title", anchor="w")
         self.tree.heading("country", text="Country", anchor="w")
         self.tree.heading("status", text="Status", anchor="w")
         self.tree.heading("age", text="Age", anchor="w")
@@ -316,6 +317,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.tree.column("id", width=50, anchor="center", minwidth=40)
         self.tree.column("date", width=110, anchor="w", minwidth=110)
         self.tree.column("company", width=300, anchor="w", minwidth=200)
+        self.tree.column("role_title", width=220, anchor="w", minwidth=140)
         self.tree.column("country", width=160, anchor="w", minwidth=120)
         self.tree.column("status", width=160, anchor="w", minwidth=120)
         self.tree.column("age", width=130, anchor="w", minwidth=100)
@@ -440,7 +442,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         # Create confirmation dialog
         dialog = ctk.CTkToplevel(self)
         dialog.title("Confirm Delete")
-        dialog.geometry("400x200")
+        dialog.geometry("420x280")
         dialog.transient(self)
         dialog.grab_set()
         
@@ -460,6 +462,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         ctk.CTkLabel(main_frame, text=f"Are you sure you want to delete the application for:\n\n📁 {company}\n📅 {date}\n\nThis action cannot be undone.", 
                     font=ctk.CTkFont(size=13), 
                     text_color=self.colors["text"],
+                    wraplength=340,
                     justify="center").pack(pady=10)
         
         btn_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
@@ -1085,7 +1088,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         query = self.search_query.get().lower()
         if query:
             items = [(aid, data) for aid, data in items 
-                    if query in data['company'].lower() or query in data['country'].lower()]
+                    if query in data.get('company', '').lower() or query in data.get('country', '').lower() or query in data.get('role_title', '').lower()]
         
         # Status filter (NEW)
         status_filter = self.status_filter.get()
@@ -1101,16 +1104,11 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         # Sort
         sort_by = self.sort_order.get()
         if sort_by == "Latest First":
-            # Sort primarily by the actual application date, then by creation/last_sync time
-            items.sort(key=lambda x: (
-                self.parse_date(x[1]['date']),
-                self.parse_timestamp(x[1].get('last_updated', ''))
-            ), reverse=True)
+            # Sort by application date only.
+            # Do not use last_updated as a tiebreaker because edits would reorder rows.
+            items.sort(key=lambda x: self.parse_date(x[1]['date']), reverse=True)
         elif sort_by == "Earliest First":
-            items.sort(key=lambda x: (
-                self.parse_date(x[1]['date']),
-                self.parse_timestamp(x[1].get('last_updated', ''))
-            ))
+            items.sort(key=lambda x: self.parse_date(x[1]['date']))
         elif sort_by == "Status":
             items.sort(key=lambda x: x[1]['status'])
         elif sort_by == "Company A-Z":
@@ -1133,6 +1131,16 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
     def update_table(self, items):
         """Update treeview - MUCH faster than custom widgets"""
+        # Preserve scroll position and selection so edits don't jump the user's view.
+        try:
+            selected = self.tree.selection()
+            selected_iid = selected[0] if selected else None
+            yview = self.tree.yview()
+            yview_top = yview[0] if yview else 0.0
+        except:
+            selected_iid = None
+            yview_top = 0.0
+
         # Clear existing
         for item in self.tree.get_children():
             self.tree.delete(item)
@@ -1167,8 +1175,17 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                 age_text = "-"
 
             self.tree.insert("", "end", iid=app_id, 
-                           values=(i + 1, app['date'], app['company'], app['country'], app['status'], age_text),
+                           values=(i + 1, app.get('date', ''), app.get('company', ''), app.get('role_title', ''), app.get('country', ''), app.get('status', ''), age_text),
                            tags=tuple(tags))
+
+        # Restore selection and scroll position
+        try:
+            if selected_iid and self.tree.exists(selected_iid):
+                self.tree.selection_set(selected_iid)
+                self.tree.focus(selected_iid)
+            self.tree.yview_moveto(yview_top)
+        except:
+            pass
 
     def update_status_hotkey(self, status):
         """Update status using keyboard shortcut"""
@@ -1226,6 +1243,12 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                                     fg_color=self.colors["input_bg"], border_color=self.colors["border"])
         country_entry.insert(0, "Denmark") # Default to Denmark or common country
         country_entry.pack(fill="x")
+
+        ctk.CTkLabel(main_frame, text="Role Title (Optional):", font=ctk.CTkFont(size=13, weight="bold"),
+                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(15, 5))
+        role_title_entry = ctk.CTkEntry(main_frame, height=45, placeholder_text="e.g. Data Analyst",
+                                       fg_color=self.colors["input_bg"], border_color=self.colors["border"])
+        role_title_entry.pack(fill="x")
         
         # Date
         ctk.CTkLabel(main_frame, text="Date Applied:", font=ctk.CTkFont(size=13, weight="bold"),
@@ -1258,6 +1281,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         def save_record():
             company = company_entry.get().strip()
             country = country_entry.get().strip() or "Unknown"
+            role_title = role_title_entry.get().strip()
             if not company:
                 company_entry.configure(border_color="#EF4444")
                 return
@@ -1270,7 +1294,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             status = status_var.get()
             
             # Logic to save to stats_manager
-            self.stats_manager.add_application(date_str, company, country, status, manual=True)
+            self.stats_manager.add_application(date_str, company, country, status, manual=True, role_title=role_title)
             dialog.destroy()
             self.refresh_data()
             
@@ -1302,7 +1326,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             with open(file_path, mode='w', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 # Header
-                writer.writerow(["ID", "Date", "Company", "Country", "Status", "Manual Entry"])
+                writer.writerow(["ID", "Date", "Company", "Role Title", "Country", "Status", "Manual Entry"])
                 
                 # Data
                 for i, (app_id, data) in enumerate(self.filtered_data):
@@ -1310,6 +1334,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                         i + 1,
                         data.get('date', ''),
                         data.get('company', ''),
+                        data.get('role_title', ''),
                         data.get('country', ''),
                         data.get('status', ''),
                         "Yes" if data.get('manual') else "No"
@@ -1330,13 +1355,14 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         values = self.tree.item(app_id)['values']
         current_date = values[1]
         current_company = values[2]
-        current_country = values[3]
-        current_status = values[4]
+        current_role_title = values[3]
+        current_country = values[4]
+        current_status = values[5]
         
         # Create popup dialog
         dialog = ctk.CTkToplevel(self)
         dialog.title("Edit Application Details")
-        dialog.geometry("400x500")
+        dialog.geometry("420x560")
         dialog.transient(self)
         dialog.grab_set()
         
@@ -1362,6 +1388,8 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             return entry
 
         company_entry = create_input("Company Name", current_company)
+
+        role_title_entry = create_input("Role Title", current_role_title)
         
         # Date Input
         ctk.CTkLabel(main_frame, text="Date Applied", font=ctk.CTkFont(size=12), 
@@ -1420,6 +1448,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         
         def save():
             new_company = company_entry.get().strip()
+            new_role_title = role_title_entry.get().strip()
             new_country = country_var.get()
             new_status = status_var.get()
             
@@ -1432,6 +1461,9 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             updated = False
             if new_company != current_company:
                 self.stats_manager.update_field(app_id, "company", new_company)
+                updated = True
+            if new_role_title != current_role_title:
+                self.stats_manager.update_field(app_id, "role_title", new_role_title)
                 updated = True
             if new_country != current_country:
                 self.stats_manager.update_field(app_id, "country", new_country)
@@ -1450,12 +1482,12 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         btn_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
         btn_frame.pack(fill="x", pady=20)
         
-        ctk.CTkButton(btn_frame, text="Discard", command=dialog.destroy,
+        ctk.CTkButton(btn_frame, text="Cancel", command=dialog.destroy,
                      fg_color=self.colors["input_bg"], text_color=self.colors["text"],
                      border_width=1, border_color=self.colors["border"],
                      width=160, height=40).pack(side="left", padx=(0, 10))
                      
-        ctk.CTkButton(btn_frame, text="Save Changes", command=save, 
+        ctk.CTkButton(btn_frame, text="OK", command=save,
                      fg_color=self.colors["accent"],
                      width=160, height=40).pack(side="left")
 
