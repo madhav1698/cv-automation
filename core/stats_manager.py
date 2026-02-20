@@ -285,8 +285,7 @@ class StatsManager:
 
     def add_application(self, date_str, company, country, status="Unknown", manual=False, role_title=""):
         """Explicitly adds an application to the stats, avoiding the need for a full scan."""
-        company_clean = "".join(c for c in company.replace(" ", "_") if c.isalnum() or c in ("_", "-"))
-        app_id = f"{date_str}_{company_clean}"
+        app_id = self._build_app_id(date_str, company)
 
         entry = {
             "date": date_str,
@@ -310,6 +309,52 @@ class StatsManager:
         self._refresh_cache_from_db()
         self._write_json_mirror()
         return app_id
+
+    def _build_app_id(self, date_str, company):
+        company_clean = "".join(c for c in company.replace(" ", "_") if c.isalnum() or c in ("_", "-"))
+        return f"{date_str}_{company_clean}"
+
+    def rename_application(self, app_id, new_date, new_company):
+        """Rename the application identity (app_id) when date/company are edited."""
+        self._refresh_cache_from_db()
+        if app_id not in self.stats:
+            return False, app_id
+
+        current = dict(self.stats[app_id])
+        target_date = new_date or current.get("date", "")
+        target_company = (new_company or current.get("company", "")).replace("_", " ")
+        new_app_id = self._build_app_id(target_date, target_company)
+
+        # If the ID remains unchanged, only patch values and save.
+        if new_app_id == app_id:
+            current["date"] = target_date
+            current["company"] = target_company
+            current["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.stats[app_id] = current
+            self._save_stats()
+            return True, app_id
+
+        if new_app_id in self.stats:
+            return False, app_id
+
+        old_company = current.get("company", "")
+        old_folder_default = old_company.replace(" ", "_")
+        if current.get("folder_name", old_folder_default) == old_folder_default:
+            current["folder_name"] = target_company.replace(" ", "_")
+
+        current["date"] = target_date
+        current["company"] = target_company
+        current["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        with self._db_lock:
+            with self.conn:
+                self._upsert_application_row(new_app_id, current, commit=False)
+                self.conn.execute("DELETE FROM applications WHERE app_id = ?", (app_id,))
+                self.conn.execute("DELETE FROM deleted_ids WHERE app_id = ?", (new_app_id,))
+
+        self._refresh_cache_from_db()
+        self._write_json_mirror()
+        return True, new_app_id
 
     def get_stats(self):
         """Returns the currently loaded/cached stats without scanning disk."""

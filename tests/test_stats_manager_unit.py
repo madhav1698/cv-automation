@@ -39,5 +39,18 @@ class TestStatsManager(unittest.TestCase):
         self.assertEqual(summary["by_status"]["Applied"], 2)
         self.assertEqual(summary["by_status"]["Rejected"], 1)
 
+    def test_rename_application_rekeys_id(self):
+        app_id = self.manager.add_application("2026-02-17", "Test Company", "Denmark", "Unknown")
+
+        ok, new_app_id = self.manager.rename_application(app_id, "2026-02-18", "Renamed Company")
+        self.assertTrue(ok)
+        self.assertNotEqual(app_id, new_app_id)
+
+        stats = self.manager.get_stats()
+        self.assertNotIn(app_id, stats)
+        self.assertIn(new_app_id, stats)
+        self.assertEqual(stats[new_app_id]["date"], "2026-02-18")
+        self.assertEqual(stats[new_app_id]["company"], "Renamed Company")
+
 if __name__ == "__main__":
     unittest.main()
