@@ -314,6 +314,9 @@ class StatsManager:
         company_clean = "".join(c for c in company.replace(" ", "_") if c.isalnum() or c in ("_", "-"))
         return f"{date_str}_{company_clean}"
 
+    def _build_folder_name(self, company):
+        return (company or "").replace(" ", "_")
+
     def rename_application(self, app_id, new_date, new_company):
         """Rename the application identity (app_id) when date/company are edited."""
         self._refresh_cache_from_db()
@@ -327,8 +330,12 @@ class StatsManager:
 
         # If the ID remains unchanged, only patch values and save.
         if new_app_id == app_id:
+            old_company = current.get("company", "")
+            old_folder_default = self._build_folder_name(old_company)
             current["date"] = target_date
             current["company"] = target_company
+            if current.get("folder_name", old_folder_default) == old_folder_default:
+                current["folder_name"] = self._build_folder_name(target_company)
             current["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self.stats[app_id] = current
             self._save_stats()
@@ -338,9 +345,9 @@ class StatsManager:
             return False, app_id
 
         old_company = current.get("company", "")
-        old_folder_default = old_company.replace(" ", "_")
+        old_folder_default = self._build_folder_name(old_company)
         if current.get("folder_name", old_folder_default) == old_folder_default:
-            current["folder_name"] = target_company.replace(" ", "_")
+            current["folder_name"] = self._build_folder_name(target_company)
 
         current["date"] = target_date
         current["company"] = target_company
@@ -350,6 +357,7 @@ class StatsManager:
             with self.conn:
                 self._upsert_application_row(new_app_id, current, commit=False)
                 self.conn.execute("DELETE FROM applications WHERE app_id = ?", (app_id,))
+                self.conn.execute("DELETE FROM deleted_ids WHERE app_id = ?", (app_id,))
                 self.conn.execute("DELETE FROM deleted_ids WHERE app_id = ?", (new_app_id,))
 
         self._refresh_cache_from_db()

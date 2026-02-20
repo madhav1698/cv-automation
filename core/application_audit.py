@@ -10,7 +10,8 @@ import customtkinter as ctk
 from datetime import datetime, timedelta
 from stats_manager import StatsManager
 import tkinter as tk
-from tkinter import ttk, filedialog
+from tkinter import ttk, filedialog, messagebox
+import subprocess
 import csv
 try:
     from tkcalendar import DateEntry
@@ -495,11 +496,20 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             folder_path = os.path.join(outputs_root, date_folder, company_folder)
             
             if os.path.exists(folder_path):
-                os.startfile(folder_path)
+                self._open_path(folder_path)
             else:
                 # Fallback: try searching for the folder if names were modified
                 print(f"Path not found: {folder_path}. Trying fallback search...")
-                os.startfile(outputs_root) # At least open the root outputs
+                self._open_path(outputs_root) # At least open the root outputs
+
+    def _open_path(self, path):
+        if os.name == "nt":
+            os.startfile(path)
+            return
+        if sys.platform == "darwin":
+            subprocess.Popen(["open", path])
+            return
+        subprocess.Popen(["xdg-open", path])
 
     def toggle_radar_filter(self, key):
         """Toggle action radar filtering"""
@@ -1468,6 +1478,10 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                     new_company
                 )
                 if not ok:
+                    messagebox.showerror(
+                        "Rename Failed",
+                        "Could not rename this record. Another application may already use the same date/company combination."
+                    )
                     dialog.destroy()
                     return
                 updated = True

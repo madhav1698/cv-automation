@@ -52,5 +52,16 @@ class TestStatsManager(unittest.TestCase):
         self.assertEqual(stats[new_app_id]["date"], "2026-02-18")
         self.assertEqual(stats[new_app_id]["company"], "Renamed Company")
 
+    def test_rename_application_updates_folder_name_when_id_unchanged(self):
+        app_id = self.manager.add_application("2026-02-17", "A/B Co", "Denmark", "Unknown")
+
+        ok, same_app_id = self.manager.rename_application(app_id, "2026-02-17", "AB Co")
+        self.assertTrue(ok)
+        self.assertEqual(app_id, same_app_id)
+
+        stats = self.manager.get_stats()
+        self.assertEqual(stats[same_app_id]["company"], "AB Co")
+        self.assertEqual(stats[same_app_id]["folder_name"], "AB_Co")
+
 if __name__ == "__main__":
     unittest.main()
