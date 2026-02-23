@@ -2,7 +2,16 @@ import os
 import json
 import sqlite3
 import threading
+import sys
 from datetime import datetime
+
+# Set up paths for internal imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+from helpers.logger import logger
 
 COUNTRY_MAP = {
     "Denmark": ["Denmark", "Copenhagen", "Aarhus", "Odense", "Aalborg"],
@@ -40,8 +49,8 @@ class StatsManager:
         with self._db_lock:
             try:
                 self.conn.close()
-            except Exception:
-                pass
+            except Exception as e:
+                logger.error(f"Error closing StatsManager database connection: {e}")
 
     def __del__(self):
         self.close()
@@ -88,7 +97,8 @@ class StatsManager:
                     return set(str(x) for x in data)
                 if isinstance(data, dict) and isinstance(data.get('deleted_ids'), list):
                     return set(str(x) for x in data.get('deleted_ids'))
-            except Exception:
+            except Exception as e:
+                logger.error(f"Error loading deleted IDs from legacy JSON: {e}")
                 return set()
         return set()
 
@@ -98,7 +108,8 @@ class StatsManager:
         try:
             with open(self.stats_file, 'r', encoding='utf-8') as f:
                 stats = json.load(f) or {}
-        except Exception:
+        except Exception as e:
+            logger.error(f"Error loading stats from legacy JSON: {e}")
             return {}
 
         needs_fix = False
@@ -129,8 +140,8 @@ class StatsManager:
             try:
                 with open(self.stats_file, 'w', encoding='utf-8') as f:
                     json.dump(stats, f, indent=4)
-            except Exception:
-                pass
+            except Exception as e:
+                logger.error(f"Error fixing legacy stats JSON: {e}")
 
         return stats
 
@@ -255,14 +266,14 @@ class StatsManager:
         try:
             with open(self.stats_file, 'w', encoding='utf-8') as f:
                 json.dump(self.stats, f, indent=4)
-        except Exception:
-            pass
+        except Exception as e:
+            logger.error(f"Error writing stats JSON mirror: {e}")
 
         try:
             with open(self.deleted_file, 'w', encoding='utf-8') as f:
                 json.dump({"deleted_ids": sorted(self._deleted_ids)}, f, indent=4)
-        except Exception:
-            pass
+        except Exception as e:
+            logger.error(f"Error writing deleted items JSON mirror: {e}")
 
     def _refresh_cache_from_db(self):
         self._deleted_ids = self._load_deleted_ids_from_db()
@@ -395,43 +406,49 @@ class StatsManager:
                 to_remove.append(app_id)
                 continue
 
-            if data.get('country_manual', False):
-                continue
+            # Only try to scan files if the folder actually exists
+            if os.path.isdir(expected_path):
+                try:
+                    files = os.listdir(expected_path)
+                    
+                    cv_found = any("CV" in f and f.endswith(".pdf") for f in files)
+                    current_cv_found = data.get('cv_found', False)
+                    if current_cv_found != cv_found:
+                        data['cv_found'] = cv_found
+                        data['last_updated'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        updated = True
 
-            try:
-                files = os.listdir(expected_path)
-            except Exception:
-                continue
+                    if not data.get('country_manual', False):
+                        current_country = data.get('country', 'Unknown')
+                        if current_country == "Unknown" or not current_country:
+                            found_country = "Unknown"
+                            for filename in files:
+                                if "CV" in filename and filename.endswith(".pdf"):
+                                    suffix = (
+                                        filename.replace("Madhav_Manohar_Gopal_CV_", "")
+                                        .replace(".pdf", "")
+                                        .replace("_", " ")
+                                        .lower()
+                                    )
+                                    for country_name, keywords in COUNTRY_MAP.items():
+                                        if any(kw.lower() in suffix for kw in keywords):
+                                            found_country = country_name
+                                            break
+                                    if found_country != "Unknown":
+                                        break
 
-            cv_found = any("CV" in f and f.endswith(".pdf") for f in files)
-            current_cv_found = data.get('cv_found', False)
-            if current_cv_found != cv_found:
-                data['cv_found'] = cv_found
-                data['last_updated'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                updated = True
-
-            current_country = data.get('country', 'Unknown')
-            if current_country == "Unknown" or not current_country:
-                found_country = "Unknown"
-                for filename in files:
-                    if "CV" in filename and filename.endswith(".pdf"):
-                        suffix = (
-                            filename.replace("Madhav_Manohar_Gopal_CV_", "")
-                            .replace(".pdf", "")
-                            .replace("_", " ")
-                            .lower()
-                        )
-                        for country_name, keywords in COUNTRY_MAP.items():
-                            if any(kw.lower() in suffix for kw in keywords):
-                                found_country = country_name
-                                break
-                        if found_country != "Unknown":
-                            break
-
-                if found_country != "Unknown" and found_country != current_country:
-                    data['country'] = found_country
-                    data['last_updated'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    updated = True
+                            if found_country != "Unknown" and found_country != current_country:
+                                data['country'] = found_country
+                                data['last_updated'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                                updated = True
+                except Exception as e:
+                    logger.warning(f"Error listing folder {expected_path}: {e}")
+            else:
+                # If folder doesn't exist but we're keeping the record (manual/edited),
+                # we just ensure cv_found is False if not manually set.
+                if not has_manual_edits and data.get('cv_found'):
+                     data['cv_found'] = False
+                     updated = True
 
         for app_id in to_remove:
             self.delete_application(app_id)
@@ -440,7 +457,8 @@ class StatsManager:
         # Scan for new entries
         try:
             folders = os.listdir(self.outputs_dir)
-        except Exception:
+        except Exception as e:
+            logger.error(f"Error scanning outputs root: {e}")
             if updated:
                 self._save_stats()
             return self.stats
@@ -455,7 +473,8 @@ class StatsManager:
 
             try:
                 companies = os.listdir(date_path)
-            except Exception:
+            except Exception as e:
+                logger.warning(f"Error listing date folder {date_path}: {e}")
                 continue
 
             for company_folder in companies:
@@ -486,13 +505,14 @@ class StatsManager:
                                     country = country_name
                                     break
                             break
-                except Exception:
-                    pass
+                except Exception as e:
+                    logger.warning(f"Error processing files in {company_path}: {e}")
 
                 try:
                     folder_ctime = os.path.getctime(company_path)
                     creation_timestamp = datetime.fromtimestamp(folder_ctime).strftime("%Y-%m-%d %H:%M:%S")
-                except Exception:
+                except Exception as e:
+                    logger.debug(f"Could not get ctime for {company_path}: {e}")
                     creation_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
                 self.stats[app_id] = {

@@ -1,8 +1,17 @@
 import os
+import sys
 from docx import Document
 from docx.shared import Pt
 from datetime import datetime
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+
+# Set up paths for internal imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+from helpers.logger import logger
 
 def generate_cover_letter(output_path, company_name, city, country, date_str, body_text, hiring_manager="Hiring Manager", candidate_name="Madhav Manohar Gopal"):
     """

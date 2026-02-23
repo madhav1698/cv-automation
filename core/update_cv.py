@@ -1,46 +1,25 @@
 import os
+import copy
+import shutil
+import pythoncom
+import comtypes.client
+import PyPDF2
+import sys
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
-import PyPDF2
+from docx.text.paragraph import Paragraph
 
-# Summary paragraph to insert before the fixed EU-citizen line
-SUMMARY_TEXT = (
-    "Data Analytics professional with experience across music rights, consulting, and research, "
-    "specialising in turning complex operational data into decision-ready reporting and BI products. "
-    "Skilled in Python, SQL, and modern BI tools, with a track record of automating workflows, "
-    "improving data quality, and driving adoption among non-technical stakeholders."
-)
+# Set up paths for internal imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
-# Updated CV bullet points (in order of appearance)
-dummy_bullets = [
-    # PEERMUSIC – Data Analytics Developer
-    "Delivered production BI dashboards used by operational and finance teams to monitor music rights data, improving visibility into revenue drivers and data completeness.",
-    "Took ownership of stakeholder requirements and translated business questions into decision-ready reporting, reducing turnaround time for insights.",
-    "Automated metadata ingestion and validation using Python, cutting manual setup effort and reducing reporting errors.",
-    "Built and maintained structured SQL-based data models to ensure consistent, reliable reporting across datasets.",
-    "Produced clear documentation and walkthroughs that increased dashboard adoption across international teams.",
+from helpers.logger import logger
+from core.config import SUMMARY_TEXT, JOB_POSITIONS
 
-    # REPHRAIN, University of Bristol – Research Data Scientist
-    "Owned delivery of analytical outputs across multiple projects, ensuring datasets were accurate, compliant, and usable by stakeholders.",
-    "Built a Python-based data quality tool that reduced review time by 80 percent, accelerating project delivery.",
-    "Produced dashboards and analytical summaries that enabled stakeholders to interpret sensitive data with confidence.",
-    "Scoped data requirements directly with researchers and ensured outputs aligned with governance and security constraints.",
-    "Presented findings clearly to mixed technical and non-technical audiences, supporting informed project decisions.",
-
-    # IBA GROUP – Data Scientist
-    "Delivered Power BI and QlikSense dashboards that enabled management to identify operational issues and data gaps earlier.",
-    "Automated ETL and validation workflows using Python, SQL, and Excel, improving data accuracy by 75 percent.",
-    "Worked directly with department heads to diagnose data issues and implement practical, business-focused analytical solutions.",
-    "Managed large, multi-source datasets with a strong emphasis on precision, traceability, and reporting reliability.",
-    "Improved efficiency of recurring reporting cycles by 50 percent, reducing manual effort under tight timelines.",
-
-    # BRISTOL DIGITAL FUTURES INSTITUTE – Data Analyst
-    "Delivered analytical reports and dashboards that directly informed senior stakeholder decisions.",
-    "Ensured data accuracy through structured cleaning, validation, and hypothesis testing.",
-    "Presented insights at an international conference, adapting technical content for non-technical audiences.",
-    "Met fixed research and delivery deadlines within a multi-stakeholder project environment."
-]
+dummy_bullets = [bullet for bullets in JOB_POSITIONS.values() for bullet in bullets]
 
 def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bullets=None):
     """Read CV, update summary and bullet points, and save
@@ -193,7 +172,7 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
         # Second pass: replace/add/remove bullets for each job
         for job_title, new_bullets in bullets_dict.items():
             if job_title not in job_to_bullets:
-                print(f"Warning: Job '{job_title}' not found in document, skipping")
+                logger.warning(f"Job '{job_title}' not found in document, skipping")
                 continue
             
             old_bullet_paras = job_to_bullets[job_title]
@@ -219,10 +198,8 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
                     parent = last_element.getparent()
                     insert_index = list(parent).index(last_element) + 1
                     
-                    # Add new bullet paragraphs
                     for i in range(num_old, num_new):
                         # Create a deep copy of the last bullet paragraph element
-                        import copy
                         new_p_element = copy.deepcopy(last_element)
                         
                         # Clear the text content from the copied element
@@ -234,7 +211,6 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
                         insert_index += 1
                         
                         # Create paragraph object wrapper
-                        from docx.text.paragraph import Paragraph
                         new_para = Paragraph(new_p_element, last_para._parent)
                         
                         # Clear and add new text
@@ -252,8 +228,8 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
                     para._element.getparent().remove(para._element)
                     total_removed += 1
         
-        print(f"Updated CV saved to: {output_file}")
-        print(f"Replaced: {total_replaced}, Added: {total_added}, Removed: {total_removed} bullet points")
+        logger.info(f"Updated CV saved to: {output_file}")
+        logger.info(f"Replaced: {total_replaced}, Added: {total_added}, Removed: {total_removed} bullet points")
         
     else:
         # Legacy mode: replace all bullets sequentially
@@ -283,11 +259,11 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
                     for paragraph in cell.paragraphs:
                         update_paragraph_legacy(paragraph)
         
-        print(f"Updated CV saved to: {output_file}")
-        print(f"Replaced {bullet_index} bullet points with dummy text")
+        logger.info(f"Updated CV saved to: {output_file}")
+        logger.info(f"Replaced {bullet_index} bullet points with dummy text")
     
     # Remove trailing empty paragraphs to prevent blank pages
-    print("Cleaning up trailing empty paragraphs...")
+    logger.debug("Cleaning up trailing empty paragraphs...")
     while len(doc.paragraphs) > 0:
         last_para = doc.paragraphs[-1]
         if not last_para.text.strip():
@@ -306,7 +282,7 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
         # This is what usually causes the 'blank page' in Template 2
         last_para = doc.paragraphs[-1] if doc.paragraphs else None
         if last_para and last_para._p.pPr is not None and last_para._p.pPr.sectPr is not None:
-            print("Removing trailing section break...")
+            logger.debug("Removing trailing section break...")
             
             # Capture properties of the 'good' section (usually the first one)
             first_sec = doc.sections[0]
@@ -331,28 +307,21 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
     # Save the updated document
     doc.save(output_file)
     return output_file
-
 def convert_to_pdf(docx_file, pdf_file):
     """Convert DOCX to PDF"""
-    import pythoncom
     # Initialize COM for this thread
     pythoncom.CoInitialize()
     
     try:
-        # Try using docx2pdf library
         from docx2pdf import convert
         convert(docx_file, pdf_file)
-        print(f"PDF created: {pdf_file}")
+        logger.info(f"PDF created: {pdf_file}")
         remove_blank_pages(pdf_file)
         return True
     except Exception as e:
-        print(f"docx2pdf conversion failed: {e}")
-        print("Trying alternative method with comtypes...")
+        logger.warning(f"docx2pdf conversion failed: {e}")
+        logger.info("Trying alternative method with comtypes...")
         try:
-            # Alternative: Use comtypes (Windows only)
-            import comtypes.client
-            import time
-            
             # Ensure paths are absolute
             doc_path = os.path.abspath(docx_file)
             pdf_path = os.path.abspath(pdf_file)
@@ -366,19 +335,14 @@ def convert_to_pdf(docx_file, pdf_file):
                 # 17 = wdExportFormatPDF
                 doc.SaveAs(pdf_path, FileFormat=17)
                 doc.Close()
-                print(f"PDF created via comtypes: {pdf_file}")
-                remove_blank_pages(pdf_file)
+                logger.info(f"PDF created via comtypes: {pdf_file}")
+                remove_blank_pages(pdf_path)
                 return True
             finally:
                 word.Quit()
                 
         except Exception as e2:
-            print(f"Alternative conversion also failed: {e2}")
-            print("\nYou can manually convert the DOCX to PDF:")
-            print(f"1. Open '{docx_file}' in Microsoft Word")
-            print(f"2. Go to File > Save As")
-            print(f"3. Choose PDF format")
-            print(f"4. Save as '{pdf_file}'")
+            logger.error(f"Alternative conversion also failed: {e2}")
             return False
     finally:
         # Uninitialize COM for this thread
@@ -425,7 +389,7 @@ def remove_blank_pages(pdf_path):
                     writer.add_page(page)
                     new_page_count += 1
                 else:
-                    print(f"Removing blank/sparse page {i+1} from PDF (text len: {len(cleaned_text)})")
+                    logger.debug(f"Removing blank/sparse page {i+1} from PDF (text len: {len(cleaned_text)})")
                     has_changes = True
 
             # If no changes, just return (unless we want to rebuild for other reasons)
@@ -436,12 +400,11 @@ def remove_blank_pages(pdf_path):
                 writer.write(out_f)
 
         # Replace original file with cleaned version
-        import shutil
         shutil.move(temp_output, pdf_path)
-        print(f"PDF cleaned: {original_page_count} -> {new_page_count} pages")
+        logger.info(f"PDF cleaned: {original_page_count} -> {new_page_count} pages")
         
     except Exception as e:
-        print(f"Error removing blank pages: {e}")
+        logger.error(f"Error removing blank pages: {e}")
         # Clean up temp file if it exists
         if os.path.exists(temp_output):
             try:

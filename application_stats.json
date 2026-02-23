@@ -97,11 +97,11 @@
         "country": "Netherlands",
         "country_manual": false,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 13:40:19"
+        "last_updated": "2026-02-23 14:18:44"
     },
     "7-2-26_Unity": {
         "date": "07-02-26",
@@ -110,11 +110,11 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:03:17"
+        "last_updated": "2026-02-23 09:28:27"
     },
     "18-2-26_Frostlogic_Careers": {
         "date": "18-2-26",
@@ -214,11 +214,11 @@
         "country": "Norway",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 16:59:39"
+        "last_updated": "2026-02-23 09:28:23"
     },
     "10-2-26_Solita": {
         "date": "10-02-26",
@@ -318,11 +318,11 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:04:19"
+        "last_updated": "2026-02-20 10:20:09"
     },
     "16-2-26_Publicis_Groupe": {
         "date": "16-2-26",
@@ -370,11 +370,11 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "Data engineer",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-19 10:19:38"
+        "last_updated": "2026-02-23 09:28:20"
     },
     "11-2-26_Vellox": {
         "date": "11-02-26",
@@ -396,11 +396,11 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 18:02:16"
+        "last_updated": "2026-02-23 09:28:26"
     },
     "18-2-26_EpiqEnergy": {
         "date": "18-2-26",
@@ -474,11 +474,11 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 18:02:54"
+        "last_updated": "2026-02-20 10:21:40"
     },
     "12-2-26_Konecranes": {
         "date": "12-02-26",
@@ -539,11 +539,11 @@
         "country": "Spain",
         "country_manual": false,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-17 13:58:13"
+        "last_updated": "2026-02-23 10:11:08"
     },
     "4-2-26_UHG": {
         "date": "04-02-26",
@@ -617,11 +617,11 @@
         "country": "Norway",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 18:01:34"
+        "last_updated": "2026-02-23 12:59:19"
     },
     "5-2-26_Nokia": {
         "date": "05-02-26",
@@ -669,11 +669,11 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 16:47:55"
+        "last_updated": "2026-02-23 09:32:07"
     },
     "10-2-26_Dnv": {
         "date": "10-02-26",
@@ -682,11 +682,11 @@
         "country": "Norway",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:38:12"
+        "last_updated": "2026-02-23 13:55:51"
     },
     "18-02-26_Handelsbanken": {
         "date": "22-01-26",
@@ -799,11 +799,11 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:34:51"
+        "last_updated": "2026-02-23 09:30:56"
     },
     "6-2-26_smadex": {
         "date": "06-02-26",
@@ -812,11 +812,11 @@
         "country": "Spain",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:00:44"
+        "last_updated": "2026-02-20 10:18:03"
     },
     "13-2-26_Deutsche_Bank": {
         "date": "13-02-26",
@@ -877,11 +877,11 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 18:03:21"
+        "last_updated": "2026-02-20 10:19:32"
     },
     "16-2-26_Danish_Refugee_Council": {
         "date": "16-2-26",
@@ -1020,11 +1020,11 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 16:43:52"
+        "last_updated": "2026-02-23 09:06:38"
     },
     "11-2-26_Kongsberg_Maritime": {
         "date": "11-02-26",
@@ -1059,11 +1059,11 @@
         "country": "Sweden",
         "country_manual": false,
         "role_title": "Data Platform Engineer",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-19 11:44:55"
+        "last_updated": "2026-02-23 09:01:21"
     },
     "10-2-26_Kognity": {
         "date": "10-02-26",
@@ -1228,11 +1228,11 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:40:16"
+        "last_updated": "2026-02-23 09:18:10"
     },
     "15-2-26_Karolinska_Institute": {
         "date": "15-02-26",
@@ -1345,11 +1345,11 @@
         "country": "Ireland",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:03:33"
+        "last_updated": "2026-02-20 10:23:52"
     },
     "12-2-26_Postnord": {
         "date": "12-02-26",
@@ -1397,11 +1397,11 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 16:48:34"
+        "last_updated": "2026-02-23 09:20:14"
     },
     "5-2-26_reach_subsea": {
         "date": "05-02-26",
@@ -1800,11 +1800,11 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:34:38"
+        "last_updated": "2026-02-20 10:24:32"
     },
     "17-2-26_Bending_Spoons": {
         "date": "17-2-26",
@@ -1813,11 +1813,11 @@
         "country": "Spain",
         "country_manual": false,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-17 16:44:18"
+        "last_updated": "2026-02-20 17:29:13"
     },
     "17-2-26_Trustpilot": {
         "date": "17-2-26",
@@ -1982,11 +1982,11 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Followed Up",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:33:31"
+        "last_updated": "2026-02-20 10:24:35"
     },
     "16-2-26_BookingCom": {
         "date": "16-2-26",
@@ -2008,11 +2008,11 @@
         "country": "Spain",
         "country_manual": false,
         "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-17 14:08:27"
+        "last_updated": "2026-02-20 16:43:12"
     },
     "5-2-26_tataa": {
         "date": "05-02-26",
@@ -2150,12 +2150,12 @@
         "folder_name": "Veritaz",
         "country": "Sweden",
         "country_manual": false,
-        "role_title": "Solutions Consultants",
+        "role_title": "CRM BI Analyst Customer Data & Insights",
         "status": "Unknown",
         "status_manual": false,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-20 08:58:49"
+        "last_updated": "2026-02-20 16:58:49"
     },
     "20-2-26_Lovable": {
         "date": "20-2-26",
@@ -2182,5 +2182,278 @@
         "manual": false,
         "cv_found": true,
         "last_updated": "2026-02-20 10:13:56"
+    },
+    "20-2-26_Conversionista": {
+        "date": "20-2-26",
+        "company": "Conversionista",
+        "folder_name": "Conversionista",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-20 14:29:14"
+    },
+    "20-2-26_Utmost_Group_Limited": {
+        "date": "20-2-26",
+        "company": "Utmost Group Limited",
+        "folder_name": "Utmost_Group_Limited",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-20 14:53:13"
+    },
+    "20-2-26_Jazz_Pharmaceuticals": {
+        "date": "20-2-26",
+        "company": "Jazz Pharmaceuticals",
+        "folder_name": "Jazz_Pharmaceuticals",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "Global Finance Data & Reporting Senior Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-20 15:38:16"
+    },
+    "20-2-26_Tcs": {
+        "date": "20-2-26",
+        "company": "Tcs",
+        "folder_name": "Tcs",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "Data Engineer",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-20 15:38:16"
+    },
+    "20-2-26_Omnitel": {
+        "date": "20-2-26",
+        "company": "Omnitel",
+        "folder_name": "Omnitel",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-20 15:57:42"
+    },
+    "20-2-26_Sas": {
+        "date": "20-2-26",
+        "company": "Sas",
+        "folder_name": "Sas",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "Customer Service Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-20 16:26:49"
+    },
+    "20-2-26_Coeo": {
+        "date": "20-2-26",
+        "company": "Coeo",
+        "folder_name": "Coeo",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "Data & BI Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-20 17:26:48"
+    },
+    "20-2-26_Seb": {
+        "date": "20-2-26",
+        "company": "Seb",
+        "folder_name": "Seb",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-20 17:28:57"
+    },
+    "21-2-26_Designer_Group": {
+        "date": "21-2-26",
+        "company": "Designer Group",
+        "folder_name": "Designer_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "Data Engineer",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-22 21:26:51"
+    },
+    "22-2-26_Scania_Group": {
+        "date": "22-2-26",
+        "company": "Scania Group",
+        "folder_name": "Scania_Group",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "Use Case Team Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 09:01:10"
+    },
+    "22-2-26_Lundbeck": {
+        "date": "22-2-26",
+        "company": "Lundbeck",
+        "folder_name": "Lundbeck",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "People Data Engineer",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 09:01:10"
+    },
+    "22-2-26_Netcompany": {
+        "date": "22-2-26",
+        "company": "Netcompany",
+        "folder_name": "Netcompany",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "Analytics Consultant",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 09:01:10"
+    },
+    "22-2-26_Workhuman": {
+        "date": "22-2-26",
+        "company": "Workhuman",
+        "folder_name": "Workhuman",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "People Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 09:01:10"
+    },
+    "22-2-26_Arrive": {
+        "date": "22-2-26",
+        "company": "Arrive",
+        "folder_name": "Arrive",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "Business Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 09:01:10"
+    },
+    "23-2-26_Tui": {
+        "date": "23-2-26",
+        "company": "Tui",
+        "folder_name": "Tui",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "Reporting and Analysis Specialist M&CP",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 11:42:50"
+    },
+    "23-2-26_Fruition_Group": {
+        "date": "23-2-26",
+        "company": "Fruition Group",
+        "folder_name": "Fruition_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "Business Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 11:42:50"
+    },
+    "23-2-26_Edreams_Odigeo": {
+        "date": "23-2-26",
+        "company": "Edreams Odigeo",
+        "folder_name": "Edreams_Odigeo",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "BI Data Engineer",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 11:42:50"
+    },
+    "23-2-26_Glovo": {
+        "date": "23-2-26",
+        "company": "Glovo",
+        "folder_name": "Glovo",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 11:42:50"
+    },
+    "23-2-26_Sabia_Personal": {
+        "date": "23-2-26",
+        "company": "Sabia Personal",
+        "folder_name": "Sabia_Personal",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "Business Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 11:42:50"
+    },
+    "23-2-26_Vidaxl": {
+        "date": "23-2-26",
+        "company": "Vidaxl",
+        "folder_name": "Vidaxl",
+        "country": "Netherlands",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 13:55:40"
+    },
+    "23-2-26_Brainrocket": {
+        "date": "23-2-26",
+        "company": "Brainrocket",
+        "folder_name": "Brainrocket",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "Analytics Engineer",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 15:10:15"
     }
 }

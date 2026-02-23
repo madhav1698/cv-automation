@@ -1,90 +1,29 @@
-import sys
 import os
-
-# Set up paths for internal imports
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
-
-import customtkinter as ctk
 import threading
+import sys
 from datetime import datetime
 import subprocess
 import time
 import re
 
+# Set up paths for internal imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+import customtkinter as ctk
+from helpers.logger import logger
+from core.config import DESIGN_TOKENS, JOB_POSITIONS, DEFAULT_CL_BODY, SUMMARY_TEXT
+from core.cv_service import CVGeneratorService
+from core.stats_manager import StatsManager
+from core.application_audit import ApplicationAuditPanel
+
 # --- ANIMATION UTILITY ---
-def interpolate_color(color1, color2, progress):
-    """Linearly interpolate between two hex colors."""
-    def hex_to_rgb(h):
-        h = h.lstrip('#')
-        return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
-    
-    rgb1 = hex_to_rgb(color1)
-    rgb2 = hex_to_rgb(color2)
-    new_rgb = tuple(int(c1 + (c2 - c1) * progress) for c1, c2 in zip(rgb1, rgb2))
-    return '#{:02x}{:02x}{:02x}'.format(*new_rgb)
 
-# Backend Imports
-from update_cv import update_cv_bullets, convert_to_pdf, SUMMARY_TEXT
-from generate_cover_letter import generate_cover_letter
-from stats_manager import StatsManager
-from application_audit import ApplicationAuditPanel
-
-# --- CONFIGURATION & CONSTANTS ---
+# Appearance defaults
 ctk.set_appearance_mode("Light")
 ctk.set_default_color_theme("blue")
-
-DEFAULT_CL_BODY = (
-    "At scale, employee listening fails for one simple reason: feedback is collected faster than organisations "
-    "can decide what to do with it. What drew me to this role at [Company Name] is that it treats listening as a system "
-    "with ownership, governance, and consequences, not just a survey cycle.\n\n"
-    "In my work, the most difficult part has never been analysis. It has been deciding which signals deserve attention, "
-    "which patterns are noise, and how insights should be framed so leaders actually act. I have spent much of my time "
-    "operating in that gap between data and decision, working with stakeholders to clarify intent upfront, "
-    "stress-test findings, and narrow focus to actions that are both realistic and measurable.\n\n"
-    "[Company Name]’s context makes this discipline especially important. When employee data is sensitive and trust is "
-    "non-negotiable, insight must be precise, defensible, and handled with care. My background has made me deliberate about "
-    "governance, data quality, and how findings are shared, particularly when results affect perception, prioritisation, or "
-    "leadership accountability. Credibility, once lost, cannot be dashboarded back.\n\n"
-    "I am particularly interested in the combination of employee listening and hands-on people analytics in this role. "
-    "Building dashboards, defining meaningful KPIs, and supporting leaders through data-driven conversations are how "
-    "listening becomes embedded rather than episodic. I care about consistency and usability because insights only "
-    "matter if they are understood the same way across teams and over time.\n\n"
-    "I am applying because this role sits where research judgment, analytics, and organisational responsibility intersect. "
-    "I would value the opportunity to contribute to [Company Name]’s employee listening strategy and help ensure feedback "
-    "leads to focused, durable change rather than well-intentioned reporting."
-)
-
-JOB_POSITIONS = {
-    "PEERMUSIC – Data Analytics Developer": [
-        "Delivered production BI dashboards used by operational and finance teams to monitor music rights data, improving visibility into revenue drivers and data completeness.",
-        "Took ownership of stakeholder requirements and translated business questions into decision-ready reporting, reducing turnaround time for insights.",
-        "Automated metadata ingestion and validation using Python, cutting manual setup effort and reducing reporting errors.",
-        "Built and maintained structured SQL-based data models to ensure consistent, reliable reporting across datasets.",
-        "Produced clear documentation and walkthroughs that increased dashboard adoption across international teams."
-    ],
-    "REPHRAIN, University of Bristol – Research Data Scientist": [
-        "Owned delivery of analytical outputs across multiple projects, ensuring datasets were accurate, compliant, and usable by stakeholders.",
-        "Built a Python-based data quality tool that reduced review time by 80 percent, accelerating project delivery.",
-        "Produced dashboards and analytical summaries that enabled stakeholders to interpret sensitive data with confidence.",
-        "Scoped data requirements directly with researchers and ensured outputs aligned with governance and security constraints.",
-        "Presented findings clearly to mixed technical and non-technical audiences, supporting informed project decisions."
-    ],
-    "IBA GROUP – Data Scientist": [
-        "Delivered Power BI and QlikSense dashboards that enabled management to identify operational issues and data gaps earlier.",
-        "Automated ETL and validation workflows using Python, SQL, and Excel, improving data accuracy by 75 percent.",
-        "Worked directly with department heads to diagnose data issues and implement practical, business-focused analytical solutions.",
-        "Managed large, multi-source datasets with a strong emphasis on precision, traceability, and reporting reliability.",
-        "Improved efficiency of recurring reporting cycles by 50 percent, reducing manual effort under tight timelines."
-    ],
-    "BRISTOL DIGITAL FUTURES INSTITUTE – Data Analyst": [
-        "Delivered analytical reports and dashboards that directly informed senior stakeholder decisions.",
-        "Ensured data accuracy through structured cleaning, validation, and hypothesis testing.",
-        "Presented insights at an international conference, adapting technical content for non-technical audiences.",
-        "Met fixed research and delivery deadlines within a multi-stakeholder project environment."
-    ]
-}
 
 class ApplyCraftApp(ctk.CTk):
     def __init__(self):
@@ -93,20 +32,8 @@ class ApplyCraftApp(ctk.CTk):
         self.title("ApplyCraft | Premium CV Automation")
         self.geometry("1400x900")
         
-        # Design Tokens (Premium Palette - Muted, Deep, & Layered)
-        self.colors = {
-            "bg": ("#F9FAFB", "#0B0F14"),       # Slightly cleaner white, deeper midnight
-            "sidebar": ("#FFFFFF", "#111622"),  # Bright white sidebar, slate midnight
-            "preview_bg": ("#F1F5F9", "#080B10"), # Light slate gray, deep noir
-            "input_bg": ("#FFFFFF", "#1A202C"), # Pure surfaces
-            "accent": "#6366F1",                # Muted Indigo (Premium restraint)
-            "accent_soft": ("#EEF2FF", "#1E2235"), 
-            "text": ("#111827", "#F3F4F6"),     # Deep ink to soft silver
-            "text_muted": ("#6B7280", "#9CA3AF"),
-            "border": ("#E5E7EB", "#1F2937"),   # Subtle separation
-            "success": "#10B981",
-            "card": ("#FFFFFF", "#161D29")      # Elevated card surfaces
-        }
+        # Design Tokens
+        self.colors = DESIGN_TOKENS
 
         self.configure(fg_color=self.colors["bg"])
 
@@ -118,7 +45,8 @@ class ApplyCraftApp(ctk.CTk):
         self.current_template_name = ctk.StringVar(value="Template 1")
         self.job_text_widgets = {}
         self.preview_zoom = 1.0
-        self.stats_manager = StatsManager(os.path.join(current_dir, ".."))
+        self.stats_manager = StatsManager(os.path.dirname(current_dir))
+        self.cv_service = CVGeneratorService(self.stats_manager)
 
         # Layout Grid
         self.grid_columnconfigure(1, weight=1)
@@ -798,45 +726,24 @@ class ApplyCraftApp(ctk.CTk):
 
     def _run_generation(self, mode, template, company, cv_country, summary, bullets, cl_data):
         try:
-            # Setup paths
-            company_clean = "".join(c for c in company.replace(" ", "_") if c.isalnum() or c in ("_", "-"))
-            today = datetime.now()
-            date_folder = f"{today.day}-{today.month}-{today.strftime('%y')}"
-            out_dir = os.path.join(current_dir, "..", "outputs", date_folder, company_clean)
-            os.makedirs(out_dir, exist_ok=True)
+            role_title = self.role_title_entry.get().strip()
             
-            # Execute based on mode
-            country_clean = "".join(c for c in cv_country.replace(" ", "_") if c.isalnum() or c in ("_", "-"))
+            if mode == "cv":
+                success, result = self.cv_service.generate_cv(template, company, cv_country, summary, bullets)
+            elif mode == "cl":
+                success, result = self.cv_service.generate_cl(company, cl_data)
+            else:
+                success, result = self.cv_service.generate_both(template, company, cv_country, summary, bullets, cl_data)
             
-            # Construct filename suffix: Company_Country or just Company or just Country
-            file_suffix = company_clean
-            if country_clean and country_clean.lower() != company_clean.lower():
-                file_suffix = f"{company_clean}_{country_clean}"
-            
-            if mode in ["cv", "both"]:
-                cv_docx = os.path.join(out_dir, f"Madhav_Manohar_Gopal_CV_{file_suffix}.docx")
-                cv_pdf = os.path.join(out_dir, f"Madhav_Manohar_Gopal_CV_{file_suffix}.pdf")
-                update_cv_bullets(template, cv_docx, custom_summary=summary, custom_bullets=bullets)
-                convert_to_pdf(cv_docx, cv_pdf)
-            
-            if mode in ["cl", "both"]:
-                cl_docx = os.path.join(out_dir, f"Madhav_Manohar_Gopal_Cover_Letter_{company_clean}.docx")
-                cl_pdf = os.path.join(out_dir, f"Madhav_Manohar_Gopal_Cover_Letter_{company_clean}.pdf")
-                generate_cover_letter(cl_docx, company, cl_data['city'], cl_data['country'], cl_data['date'], cl_data['body'], cl_data['hiring_manager'])
-                convert_to_pdf(cl_docx, cl_pdf)
-            
-            # Add to stats immediately to bypass scan
-            date_str = f"{today.day}-{today.month}-{today.strftime('%y')}"
-            role_title = ""
-            try:
-                role_title = self.role_title_entry.get().strip()
-            except:
-                role_title = ""
-            self.stats_manager.add_application(date_str, company, cv_country or cl_data['country'], role_title=role_title)
-            
-            self.after(0, lambda: self._complete(True))
+            # Additional update for role title in stats if it was provided
+            if success and role_title:
+                timestamp = datetime.now().strftime("%d-%m-%y")
+                app_id = f"{timestamp}_{company.replace(' ', '_')}"
+                self.stats_manager.update_field(app_id, "role_title", role_title)
+
+            self.after(0, lambda: self._complete(success))
         except Exception as e:
-            print(f"Error: {e}")
+            logger.error(f"Error in generation thread: {e}")
             self.after(0, lambda: self._complete(False))
 
     def _complete(self, success):

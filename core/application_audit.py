@@ -3,22 +3,31 @@ import os
 
 # Set up paths for internal imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
-import customtkinter as ctk
-from datetime import datetime, timedelta
-from stats_manager import StatsManager
-import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
 import subprocess
 import csv
+import threading
+import tkinter as tk
+from datetime import datetime, timedelta
+from tkinter import ttk, filedialog, messagebox
+
+import customtkinter as ctk
+
+from helpers.logger import logger
+from core.stats_manager import StatsManager
+from core.audit_dialogs import AuditDialogs
+from core.audit_graph import AuditGraph
+from core.audit_intel import AuditIntel
+
 try:
     from tkcalendar import DateEntry
     CALENDAR_AVAILABLE = True
 except ImportError:
     CALENDAR_AVAILABLE = False
-    print("tkcalendar not installed. Install with: pip install tkcalendar")
+    logger.warning("tkcalendar not installed. Install with: pip install tkcalendar")
 
 class ApplicationAuditPanel(ctk.CTkFrame):
     def __init__(self, parent, colors=None):
@@ -724,7 +733,8 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                 if data['status'] == "Unknown" and 14 <= diff < 30: stale.append(aid)
                 if data['status'] == "Unknown" and diff >= 30: stalled.append(aid)
                 if diff <= 2: recent.append(aid)
-            except: pass
+            except Exception as e:
+                logger.debug(f"Error parsing date in action radar for {aid}: {e}")
 
         radar_items = [
             ("⚡ RECENT (48H)", len(recent), "#8B5CF6", "Recent"),
@@ -855,133 +865,10 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.graph_canvas.delete("tooltip")
 
     def render_graph(self, filtered_items):
-        if not self.graph_visible:
-            return
-            
-        self.graph_canvas.delete("all")
-        
-        # Sync color palette
-        mode = ctk.get_appearance_mode()
-        canvas_bg = "#161D29" if mode == "Dark" else "#FFFFFF"
-        grid_color = "#1F2937" if mode == "Dark" else "#F3F4F6"
-        line_color = "#6366F1"
-        point_color = "#818CF8" if mode == "Dark" else "#4F46E5"
-        text_color = "#9CA3AF" if mode == "Dark" else "#6B7280"
-            
-        self.graph_canvas.configure(bg=canvas_bg)
-        
-        # Data Processing from Filtered Items
-        by_date = {}
-        for _, data in filtered_items:
-            dt = self.parse_date(data['date'])
-            if dt == datetime.min: continue
-            date_key = dt.date()
-            by_date[date_key] = by_date.get(date_key, 0) + 1
-            
-        # Determine Date Boundaries from Filter Settings
-        today = datetime.now().date()
-        date_range = self.date_filter.get()
-        
-        if self.custom_date_from and self.custom_date_to:
-            min_date = self.custom_date_from
-            max_date = self.custom_date_to
-        elif date_range == "Last 7 Days":
-            min_date, max_date = today - timedelta(days=6), today
-        elif date_range == "Last 30 Days":
-            min_date, max_date = today - timedelta(days=29), today
-        elif date_range == "Last 90 Days":
-            min_date, max_date = today - timedelta(days=89), today
-        elif date_range == "This Year":
-            min_date, max_date = datetime(today.year, 1, 1).date(), today
-        elif by_date:
-            # All Time or Fallback
-            min_date, max_date = min(by_date.keys()), max(by_date.keys())
-            if (max_date - min_date).days < 7: min_date = max_date - timedelta(days=7)
-        else:
-            # Complete Empty Fallback
-            min_date, max_date = today - timedelta(days=30), today
-
-        plot_data = []
-        curr = min_date
-        while curr <= max_date:
-            plot_data.append((curr, by_date.get(curr, 0)))
-            curr += timedelta(days=1)
-            
-        # Scrolling Logic: Fixed density for long ranges
-        px_per_day = 45 # Enough room for labels and hover
-        total_days = len(plot_data)
-        viewport_w = self.graph_canvas.winfo_width()
-        content_w = max(viewport_w, total_days * px_per_day)
-        
-        # Update Scroll Region
-        h = self.graph_canvas.winfo_height()
-        self.graph_canvas.configure(scrollregion=(0, 0, content_w, h))
-        
-        if viewport_w < 10: return 
-        
-        padding_x = 60
-        padding_y = 60
-        plot_w = content_w - (padding_x * 2)
-        plot_h = h - (padding_y * 2)
-        
-        max_apps = max(by_date.values()) if by_date else 0
-        y_max = max(5, max_apps + 1)
-        
-        # Draw Background Grid
-        self.graph_canvas.create_line(padding_x, h - padding_y, content_w - padding_x, h - padding_y, fill=grid_color)
-        for i in range(0, y_max + 1, max(1, y_max // 4)):
-            y_pos = (h - padding_y) - (i / y_max * plot_h)
-            self.graph_canvas.create_line(padding_x, y_pos, content_w - padding_x, y_pos, fill=grid_color, dash=(2, 2))
-            self.graph_canvas.create_text(padding_x - 15, y_pos, text=str(i), fill=text_color, font=('Inter', 12), anchor="e")
-            
-        # Calculate Points
-        x_step = plot_w / (len(plot_data) - 1) if len(plot_data) > 1 else plot_w
-        points = []
-        
-        for i, (date, count) in enumerate(plot_data):
-            x = padding_x + (i * x_step)
-            y = (h - padding_y) - (count / y_max * plot_h)
-            points.append((x, y))
-            
-            # X-axis Labels (Skip based on density)
-            skip = max(1, int(total_days / (content_w / 80)))
-            if i % skip == 0 or i == len(plot_data) - 1:
-                label = date.strftime("%d %b")
-                self.graph_canvas.create_text(x, h - padding_y + 15, text=label, 
-                                            fill=text_color, font=('Inter', 11), angle=45, anchor="nw")
-
-        # Draw line and Polygon Shadow
-        if len(points) > 1:
-            poly_points = [padding_x, h - padding_y]
-            for i in range(len(points) - 1):
-                self.graph_canvas.create_line(points[i][0], points[i][1], points[i+1][0], points[i+1][1], 
-                                            fill=line_color, width=3, capstyle=tk.ROUND, joinstyle=tk.ROUND)
-                poly_points.extend([points[i][0], points[i][1]])
-            
-            poly_points.extend([points[-1][0], points[-1][1]])
-            poly_points.extend([points[-1][0], h - padding_y])
-            
-            fill_hex = "#1E2235" if mode == "Dark" else "#EEF2FF"
-            poly_id = self.graph_canvas.create_polygon(poly_points, fill=fill_hex, outline="")
-            self.graph_canvas.tag_lower(poly_id)
-
-        # Draw nodes
-        for i, (date, count) in enumerate(plot_data):
-            x, y = points[i]
-            r = 6
-            node = self.graph_canvas.create_oval(x-r, y-r, x+r, y+r, fill=point_color, outline=canvas_bg, width=2)
-            
-            # Bindings
-            self.graph_canvas.tag_bind(node, "<Enter>", lambda e, nx=x, ny=y, nc=count: [self.show_graph_tooltip(nx, ny, nc), self.graph_canvas.configure(cursor="hand2")])
-            self.graph_canvas.tag_bind(node, "<Leave>", lambda e: [self.hide_graph_tooltip(), self.graph_canvas.configure(cursor="")])
-            self.graph_canvas.tag_bind(node, "<Button-1>", lambda e, d=date: self.filter_by_graph_date(d))
-            
-        # Floating Summary (Static on view if we could, but let's just put it at the very end of content)
-        total_apps = sum(by_date.values())
-        avg_apps = total_apps / len(plot_data) if plot_data else 0
-        self.graph_canvas.create_text(content_w - padding_x - 10, padding_y - 25, 
-                                    text=f"RANGE AVG: {avg_apps:.1f}/day | SECTION TOTAL: {total_apps}", 
-                                    fill=text_color, font=('Inter', 13, 'bold'), anchor="ne")
+        if not self.graph_visible: return
+        AuditGraph.render_graph(self.graph_canvas, self.stats_manager, self.date_filter.get(), 
+                              self.custom_date_from, self.custom_date_to, self.colors, 
+                              self.filter_by_graph_date, (self.show_graph_tooltip, self.hide_graph_tooltip))
 
     def setup_intelligence_panel(self, parent):
         self.intel_frame = ctk.CTkFrame(parent, fg_color="transparent")
@@ -1001,51 +888,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.market_body.pack(fill="both", expand=True, padx=25, pady=(0, 20))
 
     def render_intelligence(self, stats):
-        # 1. Pipeline Funnel
-        for w in self.funnel_body.winfo_children(): w.destroy()
-        counts = {"Applied": len(stats), "Interview": 0, "Rejected": 0}
-        for d in stats.values():
-            if d['status'] == "In Process": counts["Interview"] += 1
-            if d['status'] == "Rejected": counts["Rejected"] += 1
-        
-        steps = [
-            ("APPLIED", counts["Applied"], self.colors["accent"]),
-            ("INTERVIEW", counts["Interview"], "#3B82F6"),
-            ("REJECTED", counts["Rejected"], "#EF4444")
-        ]
-        
-        max_val = max(counts.values()) or 1
-        for label, val, color in steps:
-            row = ctk.CTkFrame(self.funnel_body, fg_color="transparent")
-            row.pack(fill="x", pady=4)
-            ctk.CTkLabel(row, text=label, font=ctk.CTkFont(size=14, weight="bold"), width=90, anchor="w").pack(side="left")
-            
-            bar_frame = ctk.CTkFrame(row, fg_color=self.colors["input_bg"], height=8, corner_radius=4)
-            bar_frame.pack(side="left", fill="x", expand=True, padx=10)
-            
-            progress = (val / max_val)
-            ctk.CTkFrame(bar_frame, fg_color=color, height=8, width=max(1, int(200 * progress)), corner_radius=4).pack(side="left")
-            ctk.CTkLabel(row, text=str(val), font=ctk.CTkFont(size=14, weight="bold"), width=30).pack(side="right")
-
-        # 2. Top Countries
-        for w in self.market_body.winfo_children(): w.destroy()
-        countries = {}
-        for d in stats.values():
-            c = d.get('country', 'Unknown')
-            countries[c] = countries.get(c, 0) + 1
-        
-        top_countries = sorted(countries.items(), key=lambda x: x[1], reverse=True)[:4]
-        for name, val in top_countries:
-            row = ctk.CTkFrame(self.market_body, fg_color="transparent")
-            row.pack(fill="x", pady=4)
-            ctk.CTkLabel(row, text=name, font=ctk.CTkFont(size=13), width=100, anchor="w").pack(side="left")
-            
-            bar_bg = ctk.CTkFrame(row, fg_color=self.colors["input_bg"], height=12, corner_radius=6)
-            bar_bg.pack(side="left", fill="x", expand=True, padx=10)
-            
-            share = (val / counts["Applied"]) if counts["Applied"] > 0 else 0
-            ctk.CTkFrame(bar_bg, fg_color=self.colors["accent"], height=12, width=max(1, int(150 * share)), corner_radius=6).pack(side="left")
-            ctk.CTkLabel(row, text=f"{val}", font=ctk.CTkFont(size=12, weight="bold"), width=30).pack(side="right")
+        AuditIntel.render_intelligence(self.funnel_body, self.market_body, stats, self.colors)
 
     def apply_filters(self, stats):
         """Apply date range, search, and sort filters"""
@@ -1220,102 +1063,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.after(500, self.refresh_data)
 
     def open_add_record_dialog(self):
-        """Open a dialog to manually add a new record"""
-        dialog = ctk.CTkToplevel(self)
-        dialog.title("Add New Application Record")
-        dialog.geometry("450x580")
-        dialog.transient(self)
-        dialog.grab_set()
-        
-        # Center the dialog
-        dialog.update_idletasks()
-        x = self.winfo_x() + (self.winfo_width() // 2) - (450 // 2)
-        y = self.winfo_y() + (self.winfo_height() // 2) - (580 // 2)
-        dialog.geometry(f"+{x}+{y}")
-        
-        main_frame = ctk.CTkFrame(dialog, fg_color="transparent")
-        main_frame.pack(fill="both", expand=True, padx=40, pady=30)
-        
-        ctk.CTkLabel(main_frame, text="Manual Entry", 
-                    font=ctk.CTkFont(family="Inter", size=24, weight="bold")).pack(pady=(0, 25))
-        
-        # Company Name
-        ctk.CTkLabel(main_frame, text="Company Name:", font=ctk.CTkFont(size=13, weight="bold"),
-                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 5))
-        company_entry = ctk.CTkEntry(main_frame, height=45, placeholder_text="e.g. OpenAI",
-                                    fg_color=self.colors["input_bg"], border_color=self.colors["border"])
-        company_entry.pack(fill="x")
-        
-        # Country
-        ctk.CTkLabel(main_frame, text="Country:", font=ctk.CTkFont(size=13, weight="bold"),
-                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(15, 5))
-        country_entry = ctk.CTkEntry(main_frame, height=45, placeholder_text="e.g. USA",
-                                    fg_color=self.colors["input_bg"], border_color=self.colors["border"])
-        country_entry.insert(0, "Denmark") # Default to Denmark or common country
-        country_entry.pack(fill="x")
-
-        ctk.CTkLabel(main_frame, text="Role Title (Optional):", font=ctk.CTkFont(size=13, weight="bold"),
-                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(15, 5))
-        role_title_entry = ctk.CTkEntry(main_frame, height=45, placeholder_text="e.g. Data Analyst",
-                                       fg_color=self.colors["input_bg"], border_color=self.colors["border"])
-        role_title_entry.pack(fill="x")
-        
-        # Date
-        ctk.CTkLabel(main_frame, text="Date Applied:", font=ctk.CTkFont(size=13, weight="bold"),
-                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(15, 5))
-        
-        date_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
-        date_frame.pack(fill="x")
-        
-        if CALENDAR_AVAILABLE:
-            date_cal = DateEntry(date_frame, width=28, background='#6366F1', 
-                                foreground='white', borderwidth=2, font=('Inter', 12),
-                                date_pattern='dd-mm-yy')
-            date_cal.pack(pady=5, side="left")
-        else:
-            date_entry = ctk.CTkEntry(date_frame, height=45, placeholder_text="dd-mm-yy",
-                                    fg_color=self.colors["input_bg"], border_color=self.colors["border"])
-            date_entry.insert(0, datetime.now().strftime("%d-%m-%y"))
-            date_entry.pack(fill="x")
-            
-        # Status
-        ctk.CTkLabel(main_frame, text="Current Status:", font=ctk.CTkFont(size=13, weight="bold"),
-                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(15, 5))
-        status_var = ctk.StringVar(value="Unknown")
-        status_menu = ctk.CTkOptionMenu(main_frame, values=["In Process", "Followed Up", "Rejected", "Unknown"],
-                                       variable=status_var, height=45,
-                                       fg_color=self.colors["input_bg"], text_color=self.colors["text"],
-                                       button_color=self.colors["accent"])
-        status_menu.pack(fill="x")
-        
-        def save_record():
-            company = company_entry.get().strip()
-            country = country_entry.get().strip() or "Unknown"
-            role_title = role_title_entry.get().strip()
-            if not company:
-                company_entry.configure(border_color="#EF4444")
-                return
-            
-            if CALENDAR_AVAILABLE:
-                date_str = date_cal.get_date().strftime("%d-%m-%y")
-            else:
-                date_str = date_entry.get().strip()
-            
-            status = status_var.get()
-            
-            # Logic to save to stats_manager
-            self.stats_manager.add_application(date_str, company, country, status, manual=True, role_title=role_title)
-            dialog.destroy()
-            self.refresh_data()
-            
-        ctk.CTkButton(main_frame, text="✨ Save Record", command=save_record,
-                     fg_color=self.colors["accent"], hover_color=self.lighten_color(self.colors["accent"]),
-                     height=50, corner_radius=12,
-                     font=ctk.CTkFont(size=15, weight="bold")).pack(pady=(35, 10), fill="x")
-        
-        ctk.CTkButton(main_frame, text="Cancel", command=dialog.destroy,
-                     fg_color="transparent", text_color=self.colors["text_muted"],
-                     height=40).pack(fill="x")
+        AuditDialogs.open_add_record_dialog(self, self.stats_manager, self.colors, self.refresh_data, CALENDAR_AVAILABLE)
 
     def export_to_csv(self):
         """Export the currently filtered data to a CSV file"""
@@ -1356,161 +1104,9 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             print(f"Export Error: {e}")
 
     def on_row_double_click(self, event):
-        """Open a comprehensive editor dialog on double-click"""
         item = self.tree.selection()
-        if not item:
-            return
-        
-        app_id = item[0]
-        values = self.tree.item(app_id)['values']
-        current_date = values[1]
-        current_company = values[2]
-        current_role_title = values[3]
-        current_country = values[4]
-        current_status = values[5]
-        
-        # Create popup dialog
-        dialog = ctk.CTkToplevel(self)
-        dialog.title("Edit Application Details")
-        dialog.geometry("420x560")
-        dialog.transient(self)
-        dialog.grab_set()
-        
-        # Center the dialog
-        dialog.update_idletasks()
-        x = self.winfo_x() + (self.winfo_width() // 2) - (400 // 2)
-        y = self.winfo_y() + (self.winfo_height() // 2) - (500 // 2)
-        dialog.geometry(f"+{x}+{y}")
-        
-        main_frame = ctk.CTkFrame(dialog, fg_color="transparent")
-        main_frame.pack(fill="both", expand=True, padx=30, pady=20)
-        
-        ctk.CTkLabel(main_frame, text="Update Application Details", 
-                    font=ctk.CTkFont(family="Inter", size=18, weight="bold")).pack(pady=(0, 20))
-        
-        # Helper to create labeled inputs
-        def create_input(label, current_val):
-            ctk.CTkLabel(main_frame, text=label, font=ctk.CTkFont(size=12), 
-                        text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
-            entry = ctk.CTkEntry(main_frame, width=340, height=35)
-            entry.insert(0, str(current_val))
-            entry.pack(pady=(0, 5))
-            return entry
-
-        company_entry = create_input("Company Name", current_company)
-
-        role_title_entry = create_input("Role Title", current_role_title)
-        
-        # Date Input
-        ctk.CTkLabel(main_frame, text="Date Applied", font=ctk.CTkFont(size=12), 
-                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
-        
-        date_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
-        date_frame.pack(fill="x", pady=(0, 5))
-        
-        if CALENDAR_AVAILABLE:
-            # Parse current date for DateEntry
-            try:
-                current_dt = datetime.strptime(current_date, "%d-%m-%y")
-                date_cal = DateEntry(date_frame, width=28, background='#6366F1', 
-                                    foreground='white', borderwidth=2, font=('Inter', 12),
-                                    date_pattern='dd-mm-yy')
-                date_cal.set_date(current_dt)
-                date_cal.pack(side="left")
-            except:
-                # Fallback to entry if date parsing fails
-                date_entry = ctk.CTkEntry(date_frame, width=200, height=35)
-                date_entry.insert(0, current_date)
-                date_entry.pack(side="left")
-                date_cal = None
-        else:
-            date_entry = ctk.CTkEntry(date_frame, width=200, height=35)
-            date_entry.insert(0, current_date)
-            date_entry.pack(side="left")
-            date_cal = None
-        
-        # Country Dropdown
-        ctk.CTkLabel(main_frame, text="Country", font=ctk.CTkFont(size=12), 
-                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
-        
-        # Filter "All" from available countries and ensure current/Unknown are available
-        country_options = [c for c in self.available_countries if c != "All"]
-        if current_country not in country_options:
-            country_options.append(current_country)
-        if "Unknown" not in country_options:
-            country_options.append("Unknown")
-        country_options = sorted(list(set(country_options)))
-            
-        country_var = ctk.StringVar(value=current_country)
-        ctk.CTkOptionMenu(main_frame, values=country_options,
-                         variable=country_var, width=340, height=35,
-                         fg_color=self.colors["input_bg"], text_color=self.colors["text"],
-                         button_color=self.colors["accent"]).pack(pady=(0, 5))
-        
-        # Status Dropdown
-        ctk.CTkLabel(main_frame, text="Status", font=ctk.CTkFont(size=12), 
-                    text_color=self.colors["text_muted"]).pack(anchor="w", pady=(10, 2))
-        status_var = ctk.StringVar(value=current_status)
-        ctk.CTkOptionMenu(main_frame, values=["Unknown", "In Process", "Followed Up", "Rejected"],
-                         variable=status_var, width=340, height=35,
-                         fg_color=self.colors["input_bg"], text_color=self.colors["text"],
-                         button_color=self.colors["accent"]).pack(pady=(0, 20))
-        
-        def save():
-            new_company = company_entry.get().strip()
-            new_role_title = role_title_entry.get().strip()
-            new_country = country_var.get()
-            new_status = status_var.get()
-            
-            # Get new date
-            if CALENDAR_AVAILABLE and date_cal:
-                new_date = date_cal.get_date().strftime("%d-%m-%y")
-            else:
-                new_date = date_entry.get().strip()
-            
-            updated = False
-            effective_app_id = app_id
-
-            if new_company != current_company or new_date != current_date:
-                ok, effective_app_id = self.stats_manager.rename_application(
-                    app_id,
-                    new_date,
-                    new_company
-                )
-                if not ok:
-                    messagebox.showerror(
-                        "Rename Failed",
-                        "Could not rename this record. Another application may already use the same date/company combination."
-                    )
-                    dialog.destroy()
-                    return
-                updated = True
-
-            if new_role_title != current_role_title:
-                self.stats_manager.update_field(effective_app_id, "role_title", new_role_title)
-                updated = True
-            if new_country != current_country:
-                self.stats_manager.update_field(effective_app_id, "country", new_country)
-                updated = True
-            if new_status != current_status:
-                self.stats_manager.update_field(effective_app_id, "status", new_status)
-                updated = True
-                
-            if updated:
-                self.refresh_data(scan=False)  # Don't trigger scan after manual edit
-            dialog.destroy()
-        
-        btn_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
-        btn_frame.pack(fill="x", pady=20)
-        
-        ctk.CTkButton(btn_frame, text="Cancel", command=dialog.destroy,
-                     fg_color=self.colors["input_bg"], text_color=self.colors["text"],
-                     border_width=1, border_color=self.colors["border"],
-                     width=160, height=40).pack(side="left", padx=(0, 10))
-                     
-        ctk.CTkButton(btn_frame, text="OK", command=save,
-                     fg_color=self.colors["accent"],
-                     width=160, height=40).pack(side="left")
+        if not item: return
+        AuditDialogs.open_edit_dialog(self, item[0], self.stats_manager, self.colors, self.refresh_data, CALENDAR_AVAILABLE, self.available_countries, self.tree)
 
     def open_outputs(self):
         outputs_dir = os.path.join(current_dir, "..", "outputs")
