@@ -27,13 +27,13 @@ class CVGeneratorService:
             output_pdf = output_docx.replace(".docx", ".pdf")
             
             # 1. Update Word Doc
-            update_cv_bullets(template_path, output_docx, bullets, summary)
+            update_cv_bullets(template_path, output_docx, summary, bullets)
             
             # 2. Convert to PDF
             convert_to_pdf(output_docx, output_pdf)
             
             # 3. Update Stats
-            self.stats_manager.add_application(timestamp, company, country, status="In Process", manual=False)
+            self.stats_manager.add_application(timestamp, company, country, status="Unknown", manual=False)
             
             logger.info(f"Generated CV for {company} in {country}")
             return True, output_pdf
@@ -47,20 +47,24 @@ class CVGeneratorService:
             output_dir = os.path.join(self.stats_manager.outputs_dir, timestamp, company.replace(" ", "_"))
             os.makedirs(output_dir, exist_ok=True)
             
-            output_path = os.path.join(output_dir, f"Cover_Letter_{company.replace(' ', '_')}.pdf")
+            output_docx = os.path.join(output_dir, "Madhav_Manohar_Gopal_Cover_Letter.docx")
+            output_pdf = output_docx.replace(".docx", ".pdf")
             
             generate_cover_letter(
-                output_path,
-                cl_data["hiring_manager"],
-                company,
-                cl_data["city"],
-                cl_data["country"],
-                cl_data["date"],
-                cl_data["body"]
+                output_path=output_docx,
+                company_name=company,
+                city=cl_data["city"],
+                country=cl_data["country"],
+                date_str=cl_data["date"],
+                body_text=cl_data["body"],
+                hiring_manager=cl_data["hiring_manager"]
             )
             
+            # Convert the CL docx to pdf
+            convert_to_pdf(output_docx, output_pdf)
+            
             logger.info(f"Generated Cover Letter for {company}")
-            return True, output_path
+            return True, output_pdf
         except Exception as e:
             logger.error(f"Failed to generate Cover Letter: {e}")
             return False, str(e)

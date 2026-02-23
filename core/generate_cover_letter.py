@@ -15,10 +15,21 @@ from helpers.logger import logger
 
 def generate_cover_letter(output_path, company_name, city, country, date_str, body_text, hiring_manager="Hiring Manager", candidate_name="Madhav Manohar Gopal"):
     """
-    Generates a cover letter docx file.
+    Generates a cover letter docx file with premium formatting.
     """
-    hiring_manager = hiring_manager.title()
+    # Only title case if it's a short string (likely a name), not if it's the whole body by mistake
+    if len(hiring_manager) < 100:
+        hiring_manager = hiring_manager.title()
+    
     doc = Document()
+    
+    # Set Margins (Standard 1 inch)
+    from docx.shared import Inches
+    for section in doc.sections:
+        section.top_margin = Inches(1)
+        section.bottom_margin = Inches(1)
+        section.left_margin = Inches(1)
+        section.right_margin = Inches(1)
     
     # Set default style
     style = doc.styles['Normal']

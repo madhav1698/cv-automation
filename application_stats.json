@@ -2455,5 +2455,18 @@
         "manual": false,
         "cv_found": true,
         "last_updated": "2026-02-23 15:10:15"
+    },
+    "23-02-26_Ryanair": {
+        "date": "23-02-26",
+        "company": "Ryanair",
+        "folder_name": "Ryanair",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "CS Business Analyst",
+        "status": "Unknown",
+        "status_manual": true,
+        "manual": false,
+        "cv_found": true,
+        "last_updated": "2026-02-23 16:22:19"
     }
 }

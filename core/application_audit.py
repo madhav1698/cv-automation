@@ -957,11 +957,11 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         # Sort
         sort_by = self.sort_order.get()
         if sort_by == "Latest First":
-            # Sort by application date only.
-            # Do not use last_updated as a tiebreaker because edits would reorder rows.
-            items.sort(key=lambda x: self.parse_date(x[1]['date']), reverse=True)
+            # Sort by application date descending, then by last_updated descending for same-day items
+            items.sort(key=lambda x: (self.parse_date(x[1]['date']), self.parse_timestamp(x[1].get('last_updated', ''))), reverse=True)
         elif sort_by == "Earliest First":
-            items.sort(key=lambda x: self.parse_date(x[1]['date']))
+            # Sort by application date ascending, then by last_updated ascending for same-day items
+            items.sort(key=lambda x: (self.parse_date(x[1]['date']), self.parse_timestamp(x[1].get('last_updated', ''))))
         elif sort_by == "Status":
             items.sort(key=lambda x: x[1]['status'])
         elif sort_by == "Company A-Z":

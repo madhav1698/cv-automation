@@ -3,3 +3,29 @@
 2026-02-23 15:10:15,251 - CvAutomation - WARNING - Error listing folder C:\Users\catch\Desktop\Cv Automation\core\..\outputs\27-01-26\Maynooth_University: [WinError 3] The system cannot find the path specified: 'C:\\Users\\catch\\Desktop\\Cv Automation\\core\\..\\outputs\\27-01-26\\Maynooth_University'
 2026-02-23 15:10:15,254 - CvAutomation - WARNING - Error listing folder C:\Users\catch\Desktop\Cv Automation\core\..\outputs\17-02-26\Magma_Math: [WinError 3] The system cannot find the path specified: 'C:\\Users\\catch\\Desktop\\Cv Automation\\core\\..\\outputs\\17-02-26\\Magma_Math'
 2026-02-23 15:10:15,255 - CvAutomation - WARNING - Error listing folder C:\Users\catch\Desktop\Cv Automation\core\..\outputs\03-02-26\ICIMS: [WinError 3] The system cannot find the path specified: 'C:\\Users\\catch\\Desktop\\Cv Automation\\core\\..\\outputs\\03-02-26\\ICIMS'
+2026-02-23 15:57:03,946 - CvAutomation - ERROR - Failed to generate CV: unsupported operand type(s) for +: 'dict' and 'str'
+Traceback (most recent call last):
+  File "C:\Users\catch\Desktop\Cv Automation\core\cv_service.py", line 30, in generate_cv
+    update_cv_bullets(template_path, output_docx, bullets, summary)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\Desktop\Cv Automation\core\update_cv.py", line 58, in update_cv_bullets
+    run1 = paragraph.add_run(summary_text + " ")
+                             ~~~~~~~~~~~~~^~~~~
+TypeError: unsupported operand type(s) for +: 'dict' and 'str'
+2026-02-23 15:57:04,014 - CvAutomation - INFO - Generated Cover Letter for Ryanair
+2026-02-23 16:00:48,795 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\23-02-26\Ryanair\Madhav_Manohar_Gopal_CV_Ireland.docx
+2026-02-23 16:00:48,796 - CvAutomation - INFO - Replaced: 20, Added: 2, Removed: 1 bullet points
+2026-02-23 16:00:48,796 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-23 16:00:55,377 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-02-26\Ryanair\Madhav_Manohar_Gopal_CV_Ireland.pdf
+2026-02-23 16:00:55,455 - CvAutomation - INFO - Generated CV for Ryanair in Ireland
+2026-02-23 16:00:55,491 - CvAutomation - INFO - Generated Cover Letter for Ryanair
+2026-02-23 16:04:34,964 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-02-26\Ryanair\Cover_Letter_Ryanair.pdf
+2026-02-23 16:04:34,982 - CvAutomation - INFO - Generated Cover Letter for Ryanair
+2026-02-23 16:05:05,880 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-02-26\Ryanair\Cover_Letter_Ryanair.pdf
+2026-02-23 16:05:05,897 - CvAutomation - INFO - Generated Cover Letter for Ryanair
+2026-02-23 16:09:24,249 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-02-26\Ryanair\Madhav_Manohar_Gopal_Cover_Letter.pdf
+2026-02-23 16:09:24,278 - CvAutomation - INFO - Generated Cover Letter for Ryanair
+2026-02-23 16:10:10,167 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-02-26\Ryanair\Madhav_Manohar_Gopal_Cover_Letter.pdf
+2026-02-23 16:10:10,201 - CvAutomation - INFO - Generated Cover Letter for Ryanair
+2026-02-23 16:13:57,071 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-02-26\Ryanair\Madhav_Manohar_Gopal_Cover_Letter.pdf
+2026-02-23 16:13:57,092 - CvAutomation - INFO - Generated Cover Letter for Ryanair
