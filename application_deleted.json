@@ -1,11 +1,26 @@
 {
     "deleted_ids": [
+        "02-03-26_Jones_Engineering",
+        "02-03-26_Kognity",
+        "02-03-26_Opera",
+        "03-03-26_Perk",
+        "03-03-26_The_Lego_Group",
+        "04-03-26_Kognic",
+        "13-2-26_Swedbank",
+        "14-2-26_Royal_College_Of_Surgeons_In_Ireland",
         "16-2-26_Keystone_Recruitment",
+        "16-2-26_Nexer_Tech_Talent",
+        "17-12-25_Stillfront",
+        "17-2-26_Tetra_Pak",
         "18-02-26_Test_Company",
+        "19-03-26_Johnson_&_Johnson",
+        "19-2-26_Academic_Work",
         "19-2-26_Gothenburg",
         "19-2-26_Hedvig",
         "19-2-26_Munsters",
+        "20-2-26_Jazz_Pharmaceuticals",
         "22-01-26_Handelsbanken",
+        "22-2-26_Workhuman",
         "23-02-26_Brainrocket",
         "23-02-26_Edreams_Odigeo",
         "23-02-26_Fruition_Group",
@@ -13,6 +28,8 @@
         "23-02-26_Sabia_Personal",
         "23-02-26_Tui",
         "23-02-26_Vidaxl",
+        "23-03-26_Na",
+        "25-03-26_Health_Products_Regulatory_Authority_Hpra",
         "6-2-26_testing_cover_letter"
     ]
 }

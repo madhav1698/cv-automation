@@ -1,0 +1,89 @@
+2026-05-02 15:46:48,335 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Holafly\Madhav_Manohar_Gopal_CV_Holafly_Ireland.docx
+2026-05-02 15:46:48,336 - CvAutomation - INFO - Replaced: 21, Added: 5, Removed: 0 bullet points
+2026-05-02 15:46:48,336 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 15:46:55,327 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Holafly\Madhav_Manohar_Gopal_CV_Holafly_Ireland.pdf
+2026-05-02 15:46:55,453 - CvAutomation - INFO - Generated CV for Holafly in Ireland
+2026-05-02 15:55:26,661 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\templates\test_output.docx
+2026-05-02 15:55:26,662 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-05-02 15:55:26,662 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 15:59:00,112 - CvAutomation - WARNING - Job 'REPHRAIN, University of Bristol – Research Data Scientist' not found in document, skipping
+2026-05-02 15:59:00,118 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\templates\test_output_2.docx
+2026-05-02 15:59:00,118 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 6 bullet points
+2026-05-02 15:59:00,119 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 15:59:48,656 - CvAutomation - WARNING - Job 'REPHRAIN, University of Bristol – Research Data Scientist' not found in document, skipping
+2026-05-02 15:59:48,660 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\templates\test_output_final.docx
+2026-05-02 15:59:48,660 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 6 bullet points
+2026-05-02 15:59:48,661 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 16:02:27,797 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\templates\test_output_final.docx
+2026-05-02 16:02:27,797 - CvAutomation - INFO - Replaced: 24, Added: 0, Removed: 2 bullet points
+2026-05-02 16:02:27,797 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 16:10:16,929 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Holafly\Madhav_Manohar_Gopal_CV_Holafly_Ireland.docx
+2026-05-02 16:10:16,929 - CvAutomation - INFO - Replaced: 25, Added: 3, Removed: 1 bullet points
+2026-05-02 16:10:16,929 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 16:10:24,354 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Holafly\Madhav_Manohar_Gopal_CV_Holafly_Ireland.pdf
+2026-05-02 16:10:24,494 - CvAutomation - INFO - Generated CV for Holafly in Ireland
+2026-05-02 16:11:26,819 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Holafly\Madhav_Manohar_Gopal_CV_Holafly_Ireland.docx
+2026-05-02 16:11:26,819 - CvAutomation - INFO - Replaced: 25, Added: 3, Removed: 1 bullet points
+2026-05-02 16:11:26,819 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 16:11:33,064 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Holafly\Madhav_Manohar_Gopal_CV_Holafly_Ireland.pdf
+2026-05-02 16:11:33,184 - CvAutomation - INFO - Generated CV for Holafly in Ireland
+2026-05-02 16:11:50,188 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Holafly\Madhav_Manohar_Gopal_Cover_Letter_Holafly_Ireland.pdf
+2026-05-02 16:11:50,221 - CvAutomation - INFO - Generated Cover Letter for Holafly
+2026-05-02 16:25:52,553 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Lidl\Madhav_Manohar_Gopal_CV_Lidl_Ireland.docx
+2026-05-02 16:25:52,553 - CvAutomation - INFO - Replaced: 24, Added: 0, Removed: 2 bullet points
+2026-05-02 16:25:52,554 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 16:25:58,967 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Lidl\Madhav_Manohar_Gopal_CV_Lidl_Ireland.pdf
+2026-05-02 16:25:59,078 - CvAutomation - INFO - Generated CV for Lidl in Ireland
+2026-05-02 16:28:32,457 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Lidl\Madhav_Manohar_Gopal_CV_Lidl_Ireland.docx
+2026-05-02 16:28:32,457 - CvAutomation - INFO - Replaced: 24, Added: 1, Removed: 2 bullet points
+2026-05-02 16:28:32,457 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-02 16:28:36,954 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Lidl\Madhav_Manohar_Gopal_CV_Lidl_Ireland.pdf
+2026-05-02 16:28:37,038 - CvAutomation - INFO - Generated CV for Lidl in Ireland
+2026-05-02 16:28:40,330 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\02-05-26\Lidl\Madhav_Manohar_Gopal_Cover_Letter_Lidl_Ireland.pdf
+2026-05-02 16:28:40,365 - CvAutomation - INFO - Generated Cover Letter for Lidl
+2026-05-03 09:43:27,054 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.docx
+2026-05-03 09:43:27,057 - CvAutomation - INFO - Replaced: 26, Added: 11, Removed: 0 bullet points
+2026-05-03 09:43:27,057 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-03 09:43:34,588 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.pdf
+2026-05-03 09:43:34,753 - CvAutomation - INFO - Generated CV for The Citco Group Limited in Ireland
+2026-05-03 09:43:38,142 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_Cover_Letter_The_Citco_Group_Limited_Ireland.pdf
+2026-05-03 09:43:38,204 - CvAutomation - INFO - Generated Cover Letter for The Citco Group Limited
+2026-05-03 09:44:51,908 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.docx
+2026-05-03 09:44:51,908 - CvAutomation - INFO - Replaced: 26, Added: 4, Removed: 0 bullet points
+2026-05-03 09:44:51,909 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-03 09:44:55,569 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.pdf
+2026-05-03 09:44:55,740 - CvAutomation - INFO - Generated CV for The Citco Group Limited in Ireland
+2026-05-03 09:53:36,554 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.docx
+2026-05-03 09:53:36,555 - CvAutomation - INFO - Replaced: 25, Added: 13, Removed: 1 bullet points
+2026-05-03 09:53:36,555 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-03 09:53:43,982 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.pdf
+2026-05-03 09:53:44,104 - CvAutomation - INFO - Generated CV for The Citco Group Limited in Ireland
+2026-05-03 09:53:53,441 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.docx
+2026-05-03 09:53:53,441 - CvAutomation - INFO - Replaced: 25, Added: 6, Removed: 1 bullet points
+2026-05-03 09:53:53,442 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-03 09:53:59,481 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.pdf
+2026-05-03 09:53:59,703 - CvAutomation - INFO - Generated CV for The Citco Group Limited in Ireland
+2026-05-03 09:54:20,291 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.docx
+2026-05-03 09:54:20,291 - CvAutomation - INFO - Replaced: 25, Added: 6, Removed: 1 bullet points
+2026-05-03 09:54:20,291 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-03 09:54:27,512 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_CV_The_Citco_Group_Limited_Ireland.pdf
+2026-05-03 09:54:27,644 - CvAutomation - INFO - Generated CV for The Citco Group Limited in Ireland
+2026-05-03 09:54:32,683 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\The_Citco_Group_Limited\Madhav_Manohar_Gopal_Cover_Letter_The_Citco_Group_Limited_Ireland.pdf
+2026-05-03 09:54:32,727 - CvAutomation - INFO - Generated Cover Letter for The Citco Group Limited
+2026-05-03 10:08:06,513 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\Sse\Madhav_Manohar_Gopal_CV_Sse_Ireland.docx
+2026-05-03 10:08:06,514 - CvAutomation - INFO - Replaced: 25, Added: 2, Removed: 1 bullet points
+2026-05-03 10:08:06,514 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-03 10:08:13,742 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\Sse\Madhav_Manohar_Gopal_CV_Sse_Ireland.pdf
+2026-05-03 10:08:13,902 - CvAutomation - INFO - Generated CV for Sse in Ireland
+2026-05-03 10:08:18,296 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\Sse\Madhav_Manohar_Gopal_Cover_Letter_Sse_Ireland.pdf
+2026-05-03 10:08:18,334 - CvAutomation - INFO - Generated Cover Letter for Sse
+2026-05-03 17:16:27,477 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\Sourced\Madhav_Manohar_Gopal_CV_Sourced_Ireland.docx
+2026-05-03 17:16:27,480 - CvAutomation - INFO - Replaced: 23, Added: 0, Removed: 3 bullet points
+2026-05-03 17:16:27,480 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-03 17:16:34,806 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\Sourced\Madhav_Manohar_Gopal_CV_Sourced_Ireland.pdf
+2026-05-03 17:16:34,956 - CvAutomation - INFO - Generated CV for Sourced in Ireland
+2026-05-03 17:26:27,824 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\Ai_Jobs\Madhav_Manohar_Gopal_CV_Ai_Jobs_Ireland.docx
+2026-05-03 17:26:27,825 - CvAutomation - INFO - Replaced: 25, Added: 2, Removed: 1 bullet points
+2026-05-03 17:26:27,825 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-03 17:26:35,518 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\03-05-26\Ai_Jobs\Madhav_Manohar_Gopal_CV_Ai_Jobs_Ireland.pdf
+2026-05-03 17:26:35,659 - CvAutomation - INFO - Generated CV for Ai Jobs in Ireland

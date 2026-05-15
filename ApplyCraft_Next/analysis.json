@@ -1,0 +1,998 @@
+{
+    "paragraphs": [
+        {
+            "index": 0,
+            "text": "Madhav Manohar Gopal",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 14.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 144.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 1,
+            "text": "madhavoffic@gmail.com",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "CENTER (1)",
+                "indent_left": 180.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 2,
+            "text": "https://www.linkedin.com/in/madhavmg/",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": null,
+                "font_name": null,
+                "font_size": null,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 3,
+            "text": "Summary",
+            "style_name": "Heading 1",
+            "signature": {
+                "style_name": "Heading 1",
+                "font_name": null,
+                "font_size": 12.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 4,
+            "text": "Data Analyst with 3+ years of experience delivering end-to-end analytics across product, customer, and commercial domains, frequently within contract and time-bound engagements. Proven ability to rapidly embed with Product Managers and commercial teams, translate hypotheses into KPIs, and deliver actionable insights that inform prioritization and strategic decisions. Strong track record of driving product performance analysis, customer behavior insights, and stakeholder decision support using SQL, Databricks, Power BI, and cloud analytics platforms in large, matrix organizations. EU citizen, no visa required to work in EU. Currently in Stockholm, willing to relocate.",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "JUSTIFY (3)",
+                "indent_left": 7.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 5,
+            "text": "Work Experience",
+            "style_name": "Heading 1",
+            "signature": {
+                "style_name": "Heading 1",
+                "font_name": null,
+                "font_size": 12.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 6,
+            "text": "Peermusic",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 7,
+            "text": "London, UK",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 8,
+            "text": "Data Analytics Developer",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": true,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 9,
+            "text": "Apr 2025 – Oct 2025",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 10,
+            "text": "Owned end-to-end analytics across digital music rights operations, turning loosely defined business questions into measurable KPIs, insights, and concrete recommendations.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 11,
+            "text": "Partnered with product and commercial stakeholders to identify performance gaps, prioritize initiatives, and assess commercial impact across markets.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 12,
+            "text": "Built Power BI dashboards on Databricks that leadership used to track product performance, operational efficiency, and revenue-relevant metrics.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 13,
+            "text": "Analyzed behavioral and usage patterns within music rights data to surface inconsistencies and performance risks that informed corrective actions.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 14,
+            "text": "Designed and maintained SQL data models (bronze, silver, gold) to ensure reliable, scalable analysis and consistent metric definitions.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 15,
+            "text": "Increased adoption of analytics by delivering clear narratives and explanations, enabling non-technical stakeholders to confidently act on insights.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 16,
+            "text": "REPHRAIN Project, University of Bristol",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 17,
+            "text": "Bristol, UK",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 18,
+            "text": "Research Data Scientist",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": true,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 19,
+            "text": "Jan 2024 – Apr 2025",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 20,
+            "text": "Led hypothesis-driven analysis on complex datasets to support strategic decisions around data usage, prioritization, and governance.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 21,
+            "text": "Built a data validation and quality framework that reduced assessment time by 80%, directly improving speed and confidence in decision-making.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 22,
+            "text": "Explored behavioral and operational patterns using Python and Tableau to identify trends, risks, and opportunities relevant to senior stakeholders.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 23,
+            "text": "Translated complex findings into clear, decision-focused insights, supporting discussions across academic, policy, and technical teams.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 24,
+            "text": "Operated effectively within a large, matrix organization, aligning analytics outputs with broader strategic goals.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 25,
+            "text": "Strengthened analytics maturity by mentoring researchers on KPI interpretation and insight-driven decision-making.",
+            "style_name": "Normal",
+            "signature": {
+                "style_name": "Normal",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 26,
+            "text": "IBA Group",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 27,
+            "text": "London, UK",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 28,
+            "text": "Graduate Data Scientist",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": true,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 29,
+            "text": "Sep 2022 - Sep 2023",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 30,
+            "text": "Delivered commercial and operational analytics for aviation clients, supporting leadership decisions through structured analysis and KPI-led reporting.",
+            "style_name": "List Paragraph",
+            "signature": {
+                "style_name": "List Paragraph",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": true,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 31,
+            "text": "Analyzed customer and operational behaviour data using SQL and Python to identify inefficiencies and revenue-impacting issues.",
+            "style_name": "List Paragraph",
+            "signature": {
+                "style_name": "List Paragraph",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": true,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 32,
+            "text": "Developed a regression-based validation model that improved data accuracy by 75%, increasing trust in reporting and downstream decisions.",
+            "style_name": "List Paragraph",
+            "signature": {
+                "style_name": "List Paragraph",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": true,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 33,
+            "text": "Built Power BI dashboards used by management to monitor performance, evaluate trends, and prioritize improvement initiatives.",
+            "style_name": "List Paragraph",
+            "signature": {
+                "style_name": "List Paragraph",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": true,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 34,
+            "text": "Acted as a consultative analytics partner, shaping problem framing, analytical approach, and business cases.",
+            "style_name": "List Paragraph",
+            "signature": {
+                "style_name": "List Paragraph",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": true,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 35,
+            "text": "Bristol Digital Futures Institute",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 36,
+            "text": "Bristol, UK",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 37,
+            "text": "Data Analyst",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": true,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 38,
+            "text": "May 2022 - Sep 2022",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 39,
+            "text": "Conducted exploratory analysis and hypothesis testing to support strategic planning initiatives.",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 40,
+            "text": "Built interactive dashboards to visualize performance trends and insights for senior stakeholders.",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 41,
+            "text": "Presented findings at the DTW Conference in Copenhagen, contributing to executive-level discussions and decisions. Interview link",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 42,
+            "text": "Contributed to a peer-reviewed publication informing workforce and recruitment-related policy and industry practice.",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 43,
+            "text": "Skills",
+            "style_name": "Heading 1",
+            "signature": {
+                "style_name": "Heading 1",
+                "font_name": null,
+                "font_size": 12.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 44,
+            "text": "Python, PySpark, Databricks (medallion architecture), SQL, DBT, Airflow, Git, AWS Cloud Practitioner Certified, Azure",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 45,
+            "text": "Microsoft Office tools (Word, Excel, PowerPoint), PowerBI (DAX), Qliksense, Tableau",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 46,
+            "text": "English, Hindi, Spanish, French, Swedish (learning)",
+            "style_name": "Body Text",
+            "signature": {
+                "style_name": "Body Text",
+                "font_name": "Times New Roman",
+                "font_size": 10.0,
+                "is_bold": false,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 47,
+            "text": "Education",
+            "style_name": "Heading 1",
+            "signature": {
+                "style_name": "Heading 1",
+                "font_name": null,
+                "font_size": 12.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "body",
+            "confidence": 0.0
+        },
+        {
+            "index": 48,
+            "text": "University of Bristol",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 49,
+            "text": "Bristol, United Kingdom",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 50,
+            "text": "MSc Data Science",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": true,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 51,
+            "text": "Sep 2021 - Sep 2022",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 52,
+            "text": "SRM Institute of Science and Technology",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 53,
+            "text": "Chennai, India",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 54,
+            "text": "Bachelor of Engineering in Electrical and Electronics",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": true,
+                "alignment": "left",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        },
+        {
+            "index": 55,
+            "text": "Sep 2016 - Sep 2020",
+            "style_name": "Heading 3",
+            "signature": {
+                "style_name": "Heading 3",
+                "font_name": null,
+                "font_size": 10.0,
+                "is_bold": true,
+                "is_italic": false,
+                "alignment": "RIGHT (2)",
+                "indent_left": 0.0
+            },
+            "is_bullet": false,
+            "location": "table_cell",
+            "confidence": 0.0
+        }
+    ],
+    "inferred_sections": [
+        {
+            "section_type": "Experience",
+            "start_index": 5,
+            "end_index": 42,
+            "confidence": 0.9
+        }
+    ],
+    "inferred_experience_blocks": [
+        {
+            "company_idx": 6,
+            "role_idx": 8,
+            "location_idx": 7,
+            "date_idx": null,
+            "bullet_start_idx": 10,
+            "bullet_end_idx": 15
+        },
+        {
+            "company_idx": null,
+            "role_idx": 18,
+            "location_idx": 17,
+            "date_idx": null,
+            "bullet_start_idx": 20,
+            "bullet_end_idx": 25
+        },
+        {
+            "company_idx": 26,
+            "role_idx": 28,
+            "location_idx": 27,
+            "date_idx": null,
+            "bullet_start_idx": 30,
+            "bullet_end_idx": 34
+        },
+        {
+            "company_idx": 38,
+            "role_idx": 37,
+            "location_idx": 36,
+            "date_idx": null,
+            "bullet_start_idx": 39,
+            "bullet_end_idx": 42
+        }
+    ]
+}

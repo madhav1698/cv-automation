@@ -1,0 +1,38 @@
+2026-03-18 13:43:24,504 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Lex_Consultancy_Recruitment\Madhav_Manohar_Gopal_CV_Lex_Consultancy_Recruitment_Ireland.docx
+2026-03-18 13:43:24,505 - CvAutomation - INFO - Replaced: 20, Added: 2, Removed: 1 bullet points
+2026-03-18 13:43:24,505 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-18 13:43:32,155 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Lex_Consultancy_Recruitment\Madhav_Manohar_Gopal_CV_Lex_Consultancy_Recruitment_Ireland.pdf
+2026-03-18 13:43:32,253 - CvAutomation - INFO - Generated CV for Lex Consultancy Recruitment in Ireland
+2026-03-18 13:51:08,803 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Intercom\Madhav_Manohar_Gopal_CV_Intercom_Ireland.docx
+2026-03-18 13:51:08,803 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-18 13:51:08,804 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-18 13:51:14,594 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Intercom\Madhav_Manohar_Gopal_CV_Intercom_Ireland.pdf
+2026-03-18 13:51:14,676 - CvAutomation - INFO - Generated CV for Intercom in Ireland
+2026-03-18 13:51:18,216 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Intercom\Madhav_Manohar_Gopal_Cover_Letter_Intercom_Ireland.pdf
+2026-03-18 13:51:18,256 - CvAutomation - INFO - Generated Cover Letter for Intercom
+2026-03-18 13:59:48,384 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Trackunit\Madhav_Manohar_Gopal_CV_Trackunit_Denmark.docx
+2026-03-18 13:59:48,385 - CvAutomation - INFO - Replaced: 18, Added: 0, Removed: 3 bullet points
+2026-03-18 13:59:48,385 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-18 13:59:52,752 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Trackunit\Madhav_Manohar_Gopal_CV_Trackunit_Denmark.pdf
+2026-03-18 13:59:52,833 - CvAutomation - INFO - Generated CV for Trackunit in Denmark
+2026-03-18 13:59:56,189 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Trackunit\Madhav_Manohar_Gopal_Cover_Letter_Trackunit_Denmark.pdf
+2026-03-18 13:59:56,219 - CvAutomation - INFO - Generated Cover Letter for Trackunit
+2026-03-18 14:16:49,861 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Hse\Madhav_Manohar_Gopal_CV_Hse_Ireland.docx
+2026-03-18 14:16:49,862 - CvAutomation - INFO - Replaced: 21, Added: 1, Removed: 0 bullet points
+2026-03-18 14:16:49,862 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-18 14:16:55,745 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Hse\Madhav_Manohar_Gopal_CV_Hse_Ireland.pdf
+2026-03-18 14:16:55,839 - CvAutomation - INFO - Generated CV for Hse in Ireland
+2026-03-18 14:26:11,193 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Hibernian_Recruitment\Madhav_Manohar_Gopal_CV_Hibernian_Recruitment_Ireland.docx
+2026-03-18 14:26:11,194 - CvAutomation - INFO - Replaced: 21, Added: 1, Removed: 0 bullet points
+2026-03-18 14:26:11,194 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-18 14:26:17,267 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\Hibernian_Recruitment\Madhav_Manohar_Gopal_CV_Hibernian_Recruitment_Ireland.pdf
+2026-03-18 14:26:17,344 - CvAutomation - INFO - Generated CV for Hibernian Recruitment in Ireland
+2026-03-18 18:51:38,162 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\University_Of_Galway\Madhav_Manohar_Gopal_CV_University_Of_Galway_Ireland.docx
+2026-03-18 18:51:38,163 - CvAutomation - INFO - Replaced: 20, Added: 2, Removed: 1 bullet points
+2026-03-18 18:51:38,164 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-18 18:51:47,104 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\University_Of_Galway\Madhav_Manohar_Gopal_CV_University_Of_Galway_Ireland.pdf
+2026-03-18 18:51:47,254 - CvAutomation - INFO - Generated CV for University Of Galway in Ireland
+2026-03-18 18:51:54,125 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\University_Of_Galway\Madhav_Manohar_Gopal_Cover_Letter_University_Of_Galway_Ireland.pdf
+2026-03-18 18:51:54,171 - CvAutomation - INFO - Generated Cover Letter for University Of Galway
+2026-03-18 18:57:20,712 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\18-03-26\University_Of_Galway\Madhav_Manohar_Gopal_Cover_Letter_University_Of_Galway_Ireland.pdf
+2026-03-18 18:57:20,744 - CvAutomation - INFO - Generated Cover Letter for University Of Galway

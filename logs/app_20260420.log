@@ -1,0 +1,5 @@
+2026-04-20 14:41:15,628 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\20-04-26\Recruiters\Madhav_Manohar_Gopal_CV_Recruiters_Ireland.docx
+2026-04-20 14:41:15,629 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-04-20 14:41:15,629 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-04-20 14:41:22,386 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\20-04-26\Recruiters\Madhav_Manohar_Gopal_CV_Recruiters_Ireland.pdf
+2026-04-20 14:41:22,511 - CvAutomation - INFO - Generated CV for Recruiters in Ireland

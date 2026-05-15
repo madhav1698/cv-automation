@@ -1,0 +1,6 @@
+python-docx>=0.8.11
+docx2pdf>=0.1.8
+flask>=2.3.0
+pywin32>=306
+comtypes>=1.4.15
+PyPDF2>=3.0.0

@@ -1,0 +1,22 @@
+{
+    "template_hash": "8a45480f31163782d3e2eb1873a05601",
+    "experience_section": {
+        "start": 5,
+        "end": 42
+    },
+    "item_pattern": {
+        "company_offset": 0,
+        "role_offset": 2,
+        "bullet_start_offset": 4
+    },
+    "bullet_style": {
+        "style_name": "Normal",
+        "font_name": "Times New Roman",
+        "font_size": 10.0,
+        "is_bold": false,
+        "is_italic": false,
+        "alignment": "left",
+        "indent_left": 0.0
+    },
+    "header_mapping": {}
+}

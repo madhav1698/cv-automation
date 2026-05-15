@@ -39,11 +39,12 @@ class ApplyCraftApp(ctk.CTk):
 
         # State Variables
         self.templates = {
-            "Template 1": os.path.join(current_dir, "..", "templates", "Madhav_Manohar Gopal_CV .docx"),
+            "Template 1": os.path.join(current_dir, "..", "templates", "Madhav_Manohar Gopal_CV.docx"),
             "Template 2": os.path.join(current_dir, "..", "templates", "Madhav_Manohar_Gopal_CV_2.docx")
         }
         self.current_template_name = ctk.StringVar(value="Template 1")
         self.job_text_widgets = {}
+        self.job_headline_widgets = {}
         self.preview_zoom = 1.0
         self.stats_manager = StatsManager(os.path.dirname(current_dir))
         self.cv_service = CVGeneratorService(self.stats_manager)
@@ -330,10 +331,34 @@ class ApplyCraftApp(ctk.CTk):
         self.role_title_entry.bind("<FocusIn>", lambda e: self.role_title_entry.configure(border_color=self.colors["accent"]))
         self.role_title_entry.bind("<FocusOut>", lambda e: self.role_title_entry.configure(border_color=self.colors["border"]))
 
+        ctk.CTkLabel(card, text="Current Location *", font=ctk.CTkFont(size=13, weight="bold"), text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(10, 8))
+        self.current_location_entry = ctk.CTkEntry(card, height=50, fg_color=self.colors["input_bg"],
+                                            text_color=self.colors["text"], border_width=2,
+                                            border_color=self.colors["border"], corner_radius=10,
+                                            placeholder_text="e.g. Stockholm",
+                                            font=ctk.CTkFont(size=13))
+        self.current_location_entry.pack(fill="x", padx=25)
+        self.current_location_entry.insert(0, "Stockholm")
+        self.current_location_entry.bind("<KeyRelease>", lambda e: self.update_live_preview())
+        self.current_location_entry.bind("<FocusIn>", lambda e: self.current_location_entry.configure(border_color=self.colors["accent"]))
+        self.current_location_entry.bind("<FocusOut>", lambda e: self.current_location_entry.configure(border_color=self.colors["border"]))
+
         self.summary_text = self.create_textbox(card, "Professional Summary", SUMMARY_TEXT)
         
         for job_title, default_bullets in JOB_POSITIONS.items():
             job_card = self.create_card(self.cv_panel, job_title)
+            
+            # Optional Headline
+            ctk.CTkLabel(job_card, text="Role Headline (Optional)", font=ctk.CTkFont(size=13, weight="bold"), text_color=self.colors["text"]).pack(anchor="w", padx=30, pady=(10, 0))
+            headline_entry = ctk.CTkEntry(job_card, height=45, fg_color=self.colors["input_bg"],
+                                         text_color=self.colors["text"], border_width=1,
+                                         border_color=self.colors["border"], corner_radius=10,
+                                         placeholder_text="e.g. Developed high-performance analytics dashboards...",
+                                         font=ctk.CTkFont(size=13, slant="italic"))
+            headline_entry.pack(fill="x", padx=30, pady=(5, 10))
+            headline_entry.bind("<KeyRelease>", lambda e: self.update_live_preview())
+            self.job_headline_widgets[job_title] = headline_entry
+
             text_widget = self.create_textbox(job_card, "Role Highlights", "\n".join(default_bullets), height=150)
             self.job_text_widgets[job_title] = text_widget
 
@@ -556,9 +581,16 @@ class ApplyCraftApp(ctk.CTk):
         country = self.cl_country.get().strip().title()
         
         if self.preview_mode.get() == "CV":
-            content = f"MADHAV MANOHAR GOPAL\n\nPROFESSIONAL SUMMARY\n{self.summary_text.get('0.0', 'end').strip()}\n\n"
+            location = self.current_location_entry.get().strip() or "Stockholm"
+            relocation_line = f"EU citizen, no visa required to work in EU. Currently in {location}, willing to relocate."
+            content = f"MADHAV MANOHAR GOPAL\n\nPROFESSIONAL SUMMARY\n{self.summary_text.get('0.0', 'end').strip()} {relocation_line}\n\n"
             for job, widget in self.job_text_widgets.items():
                 content += f"{job.upper()}\n"
+                
+                headline = self.job_headline_widgets[job].get().strip()
+                if headline:
+                    content += f"[{headline}]\n"
+
                 bullets = widget.get("0.0", "end").strip().split("\n")
                 for b in bullets:
                     if b.strip(): content += f"• {b.strip()}\n"
@@ -687,6 +719,7 @@ class ApplyCraftApp(ctk.CTk):
     def _start_gen(self, mode):
         company = self.company_entry.get().strip().title()
         cv_country = self.cv_country_entry.get().strip().title()
+        current_location = self.current_location_entry.get().strip().title()
         if not company:
             # Prompt via dialog
             dialog = ctk.CTkInputDialog(text="Enter Target Company Name:", title="Company Required")
@@ -708,10 +741,15 @@ class ApplyCraftApp(ctk.CTk):
         # Gather Data
         summary = self.summary_text.get("0.0", "end").strip()
         bullets = {}
+        headlines = {}
         for job, widget in self.job_text_widgets.items():
             text = widget.get("0.0", "end").strip()
             if text:
                 bullets[job] = [b.strip() for b in text.split("\n") if b.strip()]
+            
+            headline = self.job_headline_widgets[job].get().strip()
+            if headline:
+                headlines[job] = headline
         
         cl_data = {
             "hiring_manager": self.cl_hiring_manager.get().strip(),
@@ -722,18 +760,18 @@ class ApplyCraftApp(ctk.CTk):
         }
         
         template = self.template_path_entry.get().strip()
-        threading.Thread(target=self._run_generation, args=(mode, template, company, cv_country, summary, bullets, cl_data), daemon=True).start()
+        threading.Thread(target=self._run_generation, args=(mode, template, company, cv_country, summary, bullets, cl_data, headlines, current_location), daemon=True).start()
 
-    def _run_generation(self, mode, template, company, cv_country, summary, bullets, cl_data):
+    def _run_generation(self, mode, template, company, cv_country, summary, bullets, cl_data, headlines=None, current_location=None):
         try:
             role_title = self.role_title_entry.get().strip()
             
             if mode == "cv":
-                success, result = self.cv_service.generate_cv(template, company, cv_country, summary, bullets)
+                success, result = self.cv_service.generate_cv(template, company, cv_country, summary, bullets, headlines=headlines, current_location=current_location)
             elif mode == "cl":
                 success, result = self.cv_service.generate_cl(company, cl_data)
             else:
-                success, result = self.cv_service.generate_both(template, company, cv_country, summary, bullets, cl_data)
+                success, result = self.cv_service.generate_both(template, company, cv_country, summary, bullets, cl_data, headlines=headlines, current_location=current_location)
             
             # Additional update for role title in stats if it was provided
             if success and role_title:

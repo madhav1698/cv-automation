@@ -1,0 +1,88 @@
+2026-03-19 09:46:13,483 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Trinity_College_Dublin\Madhav_Manohar_Gopal_CV_Trinity_College_Dublin_Ireland.docx
+2026-03-19 09:46:13,483 - CvAutomation - INFO - Replaced: 20, Added: 4, Removed: 1 bullet points
+2026-03-19 09:46:13,484 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 09:46:19,744 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Trinity_College_Dublin\Madhav_Manohar_Gopal_CV_Trinity_College_Dublin_Ireland.pdf
+2026-03-19 09:46:19,867 - CvAutomation - INFO - Generated CV for Trinity College Dublin in Ireland
+2026-03-19 09:48:11,417 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Trinity_College_Dublin\Madhav_Manohar_Gopal_Cover_Letter_Trinity_College_Dublin_Ireland.pdf
+2026-03-19 09:48:11,460 - CvAutomation - DEBUG - Removing blank/sparse page 2 from PDF (text len: 20)
+2026-03-19 09:48:11,466 - CvAutomation - INFO - PDF cleaned: 2 -> 1 pages
+2026-03-19 09:48:11,468 - CvAutomation - INFO - Generated Cover Letter for Trinity College Dublin
+2026-03-19 10:03:39,412 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Trinity_College_Dublin\Madhav_Manohar_Gopal_CV_Trinity_College_Dublin_Ireland.docx
+2026-03-19 10:03:39,412 - CvAutomation - INFO - Replaced: 19, Added: 1, Removed: 2 bullet points
+2026-03-19 10:03:39,413 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 10:03:45,251 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Trinity_College_Dublin\Madhav_Manohar_Gopal_CV_Trinity_College_Dublin_Ireland.pdf
+2026-03-19 10:03:45,307 - CvAutomation - INFO - Generated CV for Trinity College Dublin in Ireland
+2026-03-19 10:04:00,450 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Incluso\Madhav_Manohar_Gopal_CV_Incluso_Sweden.docx
+2026-03-19 10:04:00,451 - CvAutomation - INFO - Replaced: 19, Added: 1, Removed: 2 bullet points
+2026-03-19 10:04:00,451 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 10:04:06,174 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Incluso\Madhav_Manohar_Gopal_CV_Incluso_Sweden.pdf
+2026-03-19 10:04:06,266 - CvAutomation - INFO - Generated CV for Incluso in Sweden
+2026-03-19 10:07:37,042 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Incluso\Madhav_Manohar_Gopal_Cover_Letter_Incluso_Sweden.pdf
+2026-03-19 10:07:37,071 - CvAutomation - INFO - Generated Cover Letter for Incluso
+2026-03-19 10:22:50,502 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Elwood_Robert\Madhav_Manohar_Gopal_CV_Elwood_Robert_Ireland.docx
+2026-03-19 10:22:50,502 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-03-19 10:22:50,502 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 10:22:56,505 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Elwood_Robert\Madhav_Manohar_Gopal_CV_Elwood_Robert_Ireland.pdf
+2026-03-19 10:22:56,593 - CvAutomation - INFO - Generated CV for Elwood Robert in Ireland
+2026-03-19 10:40:46,705 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Paysafe\Madhav_Manohar_Gopal_CV_Paysafe_Ireland.docx
+2026-03-19 10:40:46,705 - CvAutomation - INFO - Replaced: 21, Added: 3, Removed: 0 bullet points
+2026-03-19 10:40:46,706 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 10:40:51,116 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Paysafe\Madhav_Manohar_Gopal_CV_Paysafe_Ireland.pdf
+2026-03-19 10:40:51,201 - CvAutomation - INFO - Generated CV for Paysafe in Ireland
+2026-03-19 10:40:55,478 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Paysafe\Madhav_Manohar_Gopal_Cover_Letter_Paysafe_Sweden.pdf
+2026-03-19 10:40:55,515 - CvAutomation - INFO - Generated Cover Letter for Paysafe
+2026-03-19 10:51:11,219 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Barden\Madhav_Manohar_Gopal_CV_Barden_Ireland.docx
+2026-03-19 10:51:11,219 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-03-19 10:51:11,219 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 10:51:16,900 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Barden\Madhav_Manohar_Gopal_CV_Barden_Ireland.pdf
+2026-03-19 10:51:16,966 - CvAutomation - INFO - Generated CV for Barden in Ireland
+2026-03-19 11:43:21,016 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\National_College_Ireland\Madhav_Manohar_Gopal_CV_National_College_Ireland_Ireland.docx
+2026-03-19 11:43:21,017 - CvAutomation - INFO - Replaced: 18, Added: 0, Removed: 3 bullet points
+2026-03-19 11:43:21,017 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 11:43:26,765 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\National_College_Ireland\Madhav_Manohar_Gopal_CV_National_College_Ireland_Ireland.pdf
+2026-03-19 11:43:26,931 - CvAutomation - INFO - Generated CV for National College Ireland in Ireland
+2026-03-19 11:46:42,236 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\National_College_Ireland\Madhav_Manohar_Gopal_CV_National_College_Ireland_Ireland.docx
+2026-03-19 11:46:42,236 - CvAutomation - INFO - Replaced: 18, Added: 0, Removed: 3 bullet points
+2026-03-19 11:46:42,237 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 11:46:49,879 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\National_College_Ireland\Madhav_Manohar_Gopal_CV_National_College_Ireland_Ireland.pdf
+2026-03-19 11:46:50,004 - CvAutomation - INFO - Generated CV for National College Ireland in Ireland
+2026-03-19 11:47:40,997 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\National_College_Ireland\Madhav_Manohar_Gopal_Cover_Letter_National_College_Ireland_Ireland.pdf
+2026-03-19 11:47:41,059 - CvAutomation - INFO - Generated Cover Letter for National College Ireland
+2026-03-19 12:11:19,870 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hays\Madhav_Manohar_Gopal_CV_Hays_Ireland.docx
+2026-03-19 12:11:19,871 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-19 12:11:19,871 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 12:11:24,488 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hays\Madhav_Manohar_Gopal_CV_Hays_Ireland.pdf
+2026-03-19 12:11:24,566 - CvAutomation - INFO - Generated CV for Hays in Ireland
+2026-03-19 12:11:27,876 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hays\Madhav_Manohar_Gopal_Cover_Letter_Hays_Ireland.pdf
+2026-03-19 12:11:27,916 - CvAutomation - INFO - Generated Cover Letter for Hays
+2026-03-19 12:12:46,142 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hays\Madhav_Manohar_Gopal_CV_Hays_Ireland.docx
+2026-03-19 12:12:46,142 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-19 12:12:46,143 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 12:12:50,491 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hays\Madhav_Manohar_Gopal_CV_Hays_Ireland.pdf
+2026-03-19 12:12:50,559 - CvAutomation - INFO - Generated CV for Hays in Ireland
+2026-03-19 12:30:11,925 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Kelly_Science,_Engineering,_Technology_&_Telecom\Madhav_Manohar_Gopal_CV_Kelly_Science,_Engineering,_Technology_&_Telecom_Ireland.docx
+2026-03-19 12:30:11,925 - CvAutomation - INFO - Replaced: 21, Added: 2, Removed: 0 bullet points
+2026-03-19 12:30:11,925 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 12:30:16,435 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Kelly_Science,_Engineering,_Technology_&_Telecom\Madhav_Manohar_Gopal_CV_Kelly_Science,_Engineering,_Technology_&_Telecom_Ireland.pdf
+2026-03-19 12:30:16,526 - CvAutomation - INFO - Generated CV for Kelly Science, Engineering, Technology & Telecom in Ireland
+2026-03-19 12:51:10,500 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Icims\Madhav_Manohar_Gopal_CV_Icims_Ireland.docx
+2026-03-19 12:51:10,500 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-19 12:51:10,500 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 12:51:19,026 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Icims\Madhav_Manohar_Gopal_CV_Icims_Ireland.pdf
+2026-03-19 12:51:19,165 - CvAutomation - INFO - Generated CV for Icims in Ireland
+2026-03-19 13:04:39,714 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Johnson_&_Johnson\Madhav_Manohar_Gopal_CV_Johnson_&_Johnson_Ireland.docx
+2026-03-19 13:04:39,715 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-03-19 13:04:39,716 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 13:04:47,258 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Johnson_&_Johnson\Madhav_Manohar_Gopal_CV_Johnson_&_Johnson_Ireland.pdf
+2026-03-19 13:04:47,383 - CvAutomation - INFO - Generated CV for Johnson & Johnson in Ireland
+2026-03-19 13:04:51,982 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Johnson_&_Johnson\Madhav_Manohar_Gopal_Cover_Letter_Johnson_&_Johnson_Ireland.pdf
+2026-03-19 13:04:52,026 - CvAutomation - INFO - Generated Cover Letter for Johnson & Johnson
+2026-03-19 16:33:30,648 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hse_Limerick\Madhav_Manohar_Gopal_CV_Hse_Limerick_Ireland.docx
+2026-03-19 16:33:30,648 - CvAutomation - INFO - Replaced: 21, Added: 7, Removed: 0 bullet points
+2026-03-19 16:33:30,649 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-19 16:33:37,130 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hse_Limerick\Madhav_Manohar_Gopal_CV_Hse_Limerick_Ireland.pdf
+2026-03-19 16:33:37,287 - CvAutomation - INFO - Generated CV for Hse_Limerick in Ireland
+2026-03-19 16:33:44,664 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hse_Limerick\Madhav_Manohar_Gopal_Cover_Letter_Hse_Limerick_Ireland.pdf
+2026-03-19 16:33:44,718 - CvAutomation - INFO - Generated Cover Letter for Hse_Limerick
+2026-03-19 16:33:57,734 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\19-03-26\Hse_Limerick\Madhav_Manohar_Gopal_Cover_Letter_Hse_Limerick_Ireland.pdf
+2026-03-19 16:33:57,770 - CvAutomation - INFO - Generated Cover Letter for Hse_Limerick

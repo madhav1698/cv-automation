@@ -17,17 +17,19 @@ class CVGeneratorService:
     def __init__(self, stats_manager):
         self.stats_manager = stats_manager
 
-    def generate_cv(self, template_path, company, country, summary, bullets):
+    def generate_cv(self, template_path, company, country, summary, bullets, headlines=None, current_location=None):
         try:
             timestamp = datetime.now().strftime("%d-%m-%y")
             output_dir = os.path.join(self.stats_manager.outputs_dir, timestamp, company.replace(" ", "_"))
             os.makedirs(output_dir, exist_ok=True)
             
-            output_docx = os.path.join(output_dir, f"Madhav_Manohar_Gopal_CV_{country.replace(' ', '_')}.docx")
+            comp_clean = company.replace(" ", "_")
+            cnt_clean = country.replace(" ", "_")
+            output_docx = os.path.join(output_dir, f"Madhav_Manohar_Gopal_CV_{comp_clean}_{cnt_clean}.docx")
             output_pdf = output_docx.replace(".docx", ".pdf")
             
             # 1. Update Word Doc
-            update_cv_bullets(template_path, output_docx, summary, bullets)
+            update_cv_bullets(template_path, output_docx, summary, bullets, custom_headlines=headlines, current_location=current_location)
             
             # 2. Convert to PDF
             convert_to_pdf(output_docx, output_pdf)
@@ -47,7 +49,9 @@ class CVGeneratorService:
             output_dir = os.path.join(self.stats_manager.outputs_dir, timestamp, company.replace(" ", "_"))
             os.makedirs(output_dir, exist_ok=True)
             
-            output_docx = os.path.join(output_dir, "Madhav_Manohar_Gopal_Cover_Letter.docx")
+            comp_clean = company.replace(" ", "_")
+            cnt_clean = cl_data["country"].replace(" ", "_")
+            output_docx = os.path.join(output_dir, f"Madhav_Manohar_Gopal_Cover_Letter_{comp_clean}_{cnt_clean}.docx")
             output_pdf = output_docx.replace(".docx", ".pdf")
             
             generate_cover_letter(
@@ -69,8 +73,8 @@ class CVGeneratorService:
             logger.error(f"Failed to generate Cover Letter: {e}")
             return False, str(e)
 
-    def generate_both(self, template_path, company, cv_country, summary, bullets, cl_data):
-        cv_success, cv_result = self.generate_cv(template_path, company, cv_country, summary, bullets)
+    def generate_both(self, template_path, company, cv_country, summary, bullets, cl_data, headlines=None, current_location=None):
+        cv_success, cv_result = self.generate_cv(template_path, company, cv_country, summary, bullets, headlines=headlines, current_location=current_location)
         cl_success, cl_result = self.generate_cl(company, cl_data)
         
         return cv_success and cl_success, (cv_result, cl_result)

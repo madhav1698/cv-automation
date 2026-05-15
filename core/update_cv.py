@@ -5,6 +5,8 @@ import pythoncom
 import comtypes.client
 import PyPDF2
 import sys
+import re
+import sys
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
@@ -21,7 +23,7 @@ from core.config import SUMMARY_TEXT, JOB_POSITIONS
 
 dummy_bullets = [bullet for bullets in JOB_POSITIONS.values() for bullet in bullets]
 
-def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bullets=None):
+def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bullets=None, custom_headlines=None, current_location=None):
     """Read CV, update summary and bullet points, and save
     
     Args:
@@ -29,6 +31,8 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
         output_file: Path to save updated CV
         custom_summary: Optional custom summary text (uses default if None)
         custom_bullets: Optional dict mapping job titles to bullet lists, or flat list (legacy)
+        custom_headlines: Optional dict mapping job titles to headline strings
+        current_location: Optional current location (defaults to Stockholm)
     """
     doc = Document(input_file)
     
@@ -45,13 +49,13 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
         use_job_aware = False
 
     # First, replace any existing summary text that appears *before*
-    # the fixed EU-citizen line, while keeping that line unchanged and BOLD.
-    eu_marker_full = (
-        "EU citizen, no visa required to work in EU. "
-        "Currently in Stockholm, willing to relocate."
-    )
+    # the fixed EU-citizen line, while keeping that line updated and BOLD.
+    marker_base = "EU citizen, no visa required to work in EU."
+    location_text = f"Currently in {current_location}, willing to relocate." if current_location else "Currently in Stockholm, willing to relocate."
+    eu_marker_full = f"{marker_base} {location_text}"
+
     for paragraph in doc.paragraphs:
-        if eu_marker_full in paragraph.text:
+        if marker_base in paragraph.text:
             # Clear the paragraph and add summary text + bold EU line
             paragraph.clear()
             paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.JUSTIFY
@@ -86,44 +90,29 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
         
         return False
     
-    
     def match_job_by_company(text, job_titles):
         """Match a job by company name (more flexible matching)"""
         text_upper = text.strip().upper()
-        
         for job_title in job_titles:
             # Extract company name (part before – or -)
             job_parts = job_title.split("–") if "–" in job_title else job_title.split("-")
             if len(job_parts) >= 1:
-                # Get company part and clean it
                 company_part = job_parts[0].strip().upper()
-                # Remove commas and extra words for matching
                 company_words = company_part.replace(",", "").split()
                 text_words = text_upper.replace(",", "").split()
-                
-                # Check if key company words are in the text
-                # For "PEERMUSIC" -> match "Peermusic"
-                # For "REPHRAIN, University of Bristol" -> match "REPHRAIN" or "University of Bristol"
-                # For "IBA GROUP" -> match "IBA Group"
-                # For "BRISTOL DIGITAL FUTURES INSTITUTE" -> match "Bristol Digital Futures Institute"
-                
-                # Simple approach: check if first word of company matches
                 if company_words and company_words[0] in text_words:
                     return job_title
-                
-                # Also try matching the full company part
                 if company_part in text_upper:
                     return job_title
-        
         return None
-    
+
     if use_job_aware:
         # Job-aware mode: collect bullets per job, then replace/add/remove as needed
         total_replaced = 0
         total_added = 0
         total_removed = 0
         
-        # Build a map of table elements to their matched jobs
+        # Build a map of table elements/paragraphs to their matched jobs
         table_to_job = {}
         for table in doc.tables:
             if len(table.rows) > 0:
@@ -137,40 +126,114 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
         
         # First pass: collect all bullet paragraphs for each job
         job_to_bullets = {}  # Maps job title -> list of paragraph objects
+        job_to_headline_para = {}
+        job_to_header_element = {} 
         current_job = None
         
+        paragraph_lookup = {para._element: para for para in doc.paragraphs}
+
         for element in doc.element.body:
             # Check if this is a table
             if element.tag.endswith('}tbl'):
                 if element in table_to_job:
                     current_job = table_to_job[element]
-                    if current_job not in job_to_bullets:
-                        job_to_bullets[current_job] = []
+                    job_to_bullets.setdefault(current_job, [])
+                    job_to_header_element[current_job] = element
             
             # Check if this is a paragraph
             elif element.tag.endswith('}p'):
-                # Find the corresponding paragraph object
-                para_obj = None
-                for para in doc.paragraphs:
-                    if para._element is element:
-                        para_obj = para
-                        break
-                
+                para_obj = paragraph_lookup.get(element)
                 if para_obj:
-                    # Check if this paragraph itself is a job header (for templates without tables)
                     para_text = para_obj.text.strip()
                     matched_job = match_job_by_company(para_text, bullets_dict.keys())
                     if matched_job:
                         current_job = matched_job
-                        if current_job not in job_to_bullets:
-                            job_to_bullets[current_job] = []
+                        job_to_bullets.setdefault(current_job, [])
+                        job_to_header_element[current_job] = element
+                        continue
                     
-                    # If we are under a job, and this is a bullet, collect it
-                    if current_job and is_bullet_paragraph(para_obj) and para_obj.text.strip():
-                        job_to_bullets[current_job].append(para_obj)
+                    if current_job:
+                        if is_bullet_paragraph(para_obj):
+                            if para_obj.text.strip():
+                                job_to_bullets[current_job].append(para_obj)
+                        elif para_obj.text.strip() and not job_to_bullets.get(current_job) and current_job not in job_to_headline_para:
+                            # It's a non-bullet paragraph before bullets.
+                            # Skip if it looks like a role title or dates rather than a headline space
+                            text_lower = para_obj.text.strip().lower()
+                            
+                            # Skip short date strings or location strings
+                            if len(text_lower) < 30 and (
+                                "202" in text_lower or 
+                                "may" in text_lower or 
+                                "sep" in text_lower or 
+                                "bristol" in text_lower or 
+                                "london" in text_lower or
+                                "uk" in text_lower
+                            ):
+                                pass
+                            # Skip known role-titles
+                            elif any(role in text_lower for role in ["analyst", "scientist", "developer"]) and len(text_lower) < 40:
+                                pass
+                            else:
+                                job_to_headline_para[current_job] = para_obj
         
-        # Second pass: replace/add/remove bullets for each job
+        # Second pass: replace/add/remove bullets and headlines for each job
+        
+        # Fallback for templates without explicit headers (like Template 1)
+        if len(job_to_bullets) == 0:
+            logger.info("No headers matched. Falling back to sequential job bullet assignment.")
+            all_bullet_paras = []
+            for para in doc.paragraphs:
+                if is_bullet_paragraph(para) and para.text.strip():
+                    all_bullet_paras.append(para)
+            
+            job_to_bullets = {}
+            current_bullet_idx = 0
+            
+            for job_title, original_bullets in JOB_POSITIONS.items():
+                job_to_bullets.setdefault(job_title, [])
+                num_to_take = len(original_bullets)
+                end_idx = min(current_bullet_idx + num_to_take, len(all_bullet_paras))
+                
+                for i in range(current_bullet_idx, end_idx):
+                    job_to_bullets[job_title].append(all_bullet_paras[i])
+                    
+                current_bullet_idx += num_to_take
+
         for job_title, new_bullets in bullets_dict.items():
+            # Handle Headline
+            new_headline = (custom_headlines or {}).get(job_title, "").strip()
+            old_headline_para = job_to_headline_para.get(job_title)
+
+            if new_headline:
+                if old_headline_para:
+                    old_headline_para.clear()
+                    run = old_headline_para.add_run(new_headline)
+                    run.font.name = 'Times New Roman'
+                    run.font.size = Pt(10)
+                    run.italic = True
+                else:
+                    header_element = job_to_header_element.get(job_title)
+                    if header_element is not None:
+                        parent = header_element.getparent()
+                        insert_idx = list(parent).index(header_element) + 1
+                        from docx.oxml import OxmlElement
+                        new_p_element = OxmlElement('w:p')
+                        parent.insert(insert_idx, new_p_element)
+                        new_para = Paragraph(new_p_element, doc)
+                        new_para.alignment = WD_PARAGRAPH_ALIGNMENT.JUSTIFY
+                        fmt = new_para.paragraph_format
+                        fmt.space_before = Pt(2)
+                        fmt.space_after = Pt(4)
+                        fmt.left_indent = Pt(15) 
+                        run = new_para.add_run(new_headline)
+                        run.font.name = 'Times New Roman'
+                        run.font.size = Pt(10)
+                        run.font.italic = True
+            elif old_headline_para:
+                old_headline_para._element.getparent().remove(old_headline_para._element)
+
+            # Handle Bullets
             if job_title not in job_to_bullets:
                 logger.warning(f"Job '{job_title}' not found in document, skipping")
                 continue
@@ -179,7 +242,6 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
             num_old = len(old_bullet_paras)
             num_new = len(new_bullets)
             
-            # Replace existing bullets (up to the minimum of old and new counts)
             for i in range(min(num_old, num_new)):
                 para = old_bullet_paras[i]
                 para.clear()
@@ -188,43 +250,26 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
                 run.font.size = Pt(10)
                 total_replaced += 1
             
-            # If we have more new bullets than old, add new paragraphs
-            if num_new > num_old:
-                # Insert new bullets after the last old bullet
-                last_para = old_bullet_paras[-1] if old_bullet_paras else None
-                if last_para:
-                    # Find the position to insert
-                    last_element = last_para._element
-                    parent = last_element.getparent()
-                    insert_index = list(parent).index(last_element) + 1
-                    
-                    for i in range(num_old, num_new):
-                        # Create a deep copy of the last bullet paragraph element
-                        new_p_element = copy.deepcopy(last_element)
-                        
-                        # Clear the text content from the copied element
-                        for run_elem in new_p_element.findall('.//{http://schemas.openxmlformats.org/wordprocessingml/2006/main}t'):
-                            run_elem.text = ''
-                        
-                        # Insert into document
-                        parent.insert(insert_index, new_p_element)
-                        insert_index += 1
-                        
-                        # Create paragraph object wrapper
-                        new_para = Paragraph(new_p_element, last_para._parent)
-                        
-                        # Clear and add new text
-                        new_para.clear()
-                        run = new_para.add_run(new_bullets[i])
-                        run.font.name = 'Times New Roman'
-                        run.font.size = Pt(10)
-                        total_added += 1
-            
-            # If we have fewer new bullets than old, delete excess paragraphs
+            if num_new > num_old and old_bullet_paras:
+                last_para = old_bullet_paras[-1]
+                last_element = last_para._element
+                parent = last_element.getparent()
+                insert_index = list(parent).index(last_element) + 1
+                for i in range(num_old, num_new):
+                    new_p_element = copy.deepcopy(last_element)
+                    for run_elem in new_p_element.findall('.//{http://schemas.openxmlformats.org/wordprocessingml/2006/main}t'):
+                        run_elem.text = ''
+                    parent.insert(insert_index, new_p_element)
+                    insert_index += 1
+                    new_para = Paragraph(new_p_element, last_para._parent)
+                    new_para.clear()
+                    run = new_para.add_run(new_bullets[i])
+                    run.font.name = 'Times New Roman'
+                    run.font.size = Pt(10)
+                    total_added += 1
             elif num_new < num_old:
                 for i in range(num_new, num_old):
                     para = old_bullet_paras[i]
-                    # Remove the paragraph element from the document
                     para._element.getparent().remove(para._element)
                     total_removed += 1
         
@@ -415,7 +460,7 @@ def remove_blank_pages(pdf_path):
 if __name__ == "__main__":
     import sys
     
-    input_file = "Madhav_Manohar Gopal_CV .docx"
+    input_file = "Madhav_Manohar Gopal_CV.docx"
     
     # Get company name from command line argument or prompt user
     company_name = None

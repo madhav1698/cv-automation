@@ -1,0 +1,14 @@
+2026-03-12 22:06:51,783 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\12-03-26\Omdena\Madhav_Manohar_Gopal_CV_Omdena_Sweden.docx
+2026-03-12 22:06:51,784 - CvAutomation - INFO - Replaced: 21, Added: 1, Removed: 0 bullet points
+2026-03-12 22:06:51,784 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-12 22:07:00,233 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\12-03-26\Omdena\Madhav_Manohar_Gopal_CV_Omdena_Sweden.pdf
+2026-03-12 22:07:00,402 - CvAutomation - INFO - Generated CV for Omdena in Sweden
+2026-03-12 22:07:06,096 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\12-03-26\Omdena\Madhav_Manohar_Gopal_Cover_Letter_Omdena_.pdf
+2026-03-12 22:07:06,139 - CvAutomation - INFO - Generated Cover Letter for Omdena
+2026-03-12 22:24:35,366 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\12-03-26\Apple\Madhav_Manohar_Gopal_CV_Apple_Ireland.docx
+2026-03-12 22:24:35,366 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-03-12 22:24:35,367 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-12 22:24:41,590 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\12-03-26\Apple\Madhav_Manohar_Gopal_CV_Apple_Ireland.pdf
+2026-03-12 22:24:41,755 - CvAutomation - INFO - Generated CV for Apple in Ireland
+2026-03-12 22:24:47,634 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\12-03-26\Apple\Madhav_Manohar_Gopal_Cover_Letter_Apple_Ireland.pdf
+2026-03-12 22:24:47,688 - CvAutomation - INFO - Generated Cover Letter for Apple

@@ -47,6 +47,13 @@ SUMMARY_TEXT = (
 )
 
 JOB_POSITIONS = {
+    "MAYNOOTH UNIVERSITY – Data Analyst": [
+        "Developed and maintained institutional Power BI dashboard tracking research funding, outputs, and impact metrics across the MU Futures Hub",
+        "Designed and implemented data quality assurance framework across multiple integrated internal and external data sources ensuring accuracy and consistency",
+        "Managed data integration from diverse stakeholder sources including academic departments, industry partners, and national research bodies",
+        "Delivered recurring and ad hoc data reports meeting HEA compliance and institutional research strategy requirements",
+        "Liaised with internal and external stakeholders to communicate data findings clearly to non-technical audiences including senior university management"
+    ],
     "PEERMUSIC – Data Analytics Developer": [
         "Delivered production BI dashboards used by operational and finance teams to monitor music rights data, improving visibility into revenue drivers and data completeness.",
         "Took ownership of stakeholder requirements and translated business questions into decision-ready reporting, reducing turnaround time for insights.",

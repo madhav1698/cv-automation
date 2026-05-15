@@ -1,0 +1,174 @@
+2026-02-24 09:53:57,903 - CvAutomation - ERROR - Failed to generate CV: Package not found at 'C:\Users\catch\Desktop\Cv Automation\core\..\templates\Madhav_Manohar Gopal_CV .docx'
+Traceback (most recent call last):
+  File "C:\Users\catch\Desktop\Cv Automation\core\cv_service.py", line 30, in generate_cv
+    update_cv_bullets(template_path, output_docx, summary, bullets)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\Desktop\Cv Automation\core\update_cv.py", line 33, in update_cv_bullets
+    doc = Document(input_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\api.py", line 27, in Document
+    document_part = cast("DocumentPart", Package.open(docx).main_document_part)
+                                         ~~~~~~~~~~~~^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\package.py", line 126, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\pkgreader.py", line 22, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\phys_pkg.py", line 21, in __new__
+    raise PackageNotFoundError("Package not found at '%s'" % pkg_file)
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\Users\catch\Desktop\Cv Automation\core\..\templates\Madhav_Manohar Gopal_CV .docx'
+2026-02-24 09:54:05,132 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_Cover_Letter.pdf
+2026-02-24 09:54:05,166 - CvAutomation - INFO - Generated Cover Letter for Arrive
+2026-02-24 09:55:51,354 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_Cover_Letter.pdf
+2026-02-24 09:55:51,376 - CvAutomation - INFO - Generated Cover Letter for Arrive
+2026-02-24 09:55:53,373 - CvAutomation - ERROR - Failed to generate CV: Package not found at 'C:\Users\catch\Desktop\Cv Automation\core\..\templates\Madhav_Manohar Gopal_CV .docx'
+Traceback (most recent call last):
+  File "C:\Users\catch\Desktop\Cv Automation\core\cv_service.py", line 30, in generate_cv
+    update_cv_bullets(template_path, output_docx, summary, bullets)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\Desktop\Cv Automation\core\update_cv.py", line 33, in update_cv_bullets
+    doc = Document(input_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\api.py", line 27, in Document
+    document_part = cast("DocumentPart", Package.open(docx).main_document_part)
+                                         ~~~~~~~~~~~~^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\package.py", line 126, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\pkgreader.py", line 22, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\phys_pkg.py", line 21, in __new__
+    raise PackageNotFoundError("Package not found at '%s'" % pkg_file)
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\Users\catch\Desktop\Cv Automation\core\..\templates\Madhav_Manohar Gopal_CV .docx'
+2026-02-24 09:59:26,538 - CvAutomation - ERROR - Failed to generate CV: Package not found at 'C:\Users\catch\Desktop\Cv Automation\core\..\templates\Madhav_Manohar Gopal_CV .docx'
+Traceback (most recent call last):
+  File "C:\Users\catch\Desktop\Cv Automation\core\cv_service.py", line 30, in generate_cv
+    update_cv_bullets(template_path, output_docx, summary, bullets)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\Desktop\Cv Automation\core\update_cv.py", line 33, in update_cv_bullets
+    doc = Document(input_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\api.py", line 27, in Document
+    document_part = cast("DocumentPart", Package.open(docx).main_document_part)
+                                         ~~~~~~~~~~~~^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\package.py", line 126, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\pkgreader.py", line 22, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\phys_pkg.py", line 21, in __new__
+    raise PackageNotFoundError("Package not found at '%s'" % pkg_file)
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\Users\catch\Desktop\Cv Automation\core\..\templates\Madhav_Manohar Gopal_CV .docx'
+2026-02-24 09:59:27,387 - CvAutomation - ERROR - Failed to generate CV: Package not found at 'C:\Users\catch\Desktop\Cv Automation\core\..\templates\Madhav_Manohar Gopal_CV .docx'
+Traceback (most recent call last):
+  File "C:\Users\catch\Desktop\Cv Automation\core\cv_service.py", line 30, in generate_cv
+    update_cv_bullets(template_path, output_docx, summary, bullets)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\Desktop\Cv Automation\core\update_cv.py", line 33, in update_cv_bullets
+    doc = Document(input_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\api.py", line 27, in Document
+    document_part = cast("DocumentPart", Package.open(docx).main_document_part)
+                                         ~~~~~~~~~~~~^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\package.py", line 126, in open
+    pkg_reader = PackageReader.from_file(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\pkgreader.py", line 22, in from_file
+    phys_reader = PhysPkgReader(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\phys_pkg.py", line 21, in __new__
+    raise PackageNotFoundError("Package not found at '%s'" % pkg_file)
+docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\Users\catch\Desktop\Cv Automation\core\..\templates\Madhav_Manohar Gopal_CV .docx'
+2026-02-24 10:00:12,704 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.docx
+2026-02-24 10:00:12,705 - CvAutomation - INFO - Replaced: 20, Added: 1, Removed: 1 bullet points
+2026-02-24 10:00:12,705 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 10:00:18,574 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.pdf
+2026-02-24 10:00:18,654 - CvAutomation - INFO - Generated CV for Arrive in Sweden
+2026-02-24 10:02:10,681 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.docx
+2026-02-24 10:02:10,681 - CvAutomation - INFO - Replaced: 19, Added: 1, Removed: 2 bullet points
+2026-02-24 10:02:10,681 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 10:02:15,958 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.pdf
+2026-02-24 10:02:16,012 - CvAutomation - INFO - Generated CV for Arrive in Sweden
+2026-02-24 10:04:52,928 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.docx
+2026-02-24 10:04:52,928 - CvAutomation - INFO - Replaced: 19, Added: 2, Removed: 2 bullet points
+2026-02-24 10:04:52,928 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 10:04:58,313 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.pdf
+2026-02-24 10:04:58,395 - CvAutomation - INFO - Generated CV for Arrive in Sweden
+2026-02-24 10:07:19,914 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.docx
+2026-02-24 10:07:19,914 - CvAutomation - INFO - Replaced: 19, Added: 2, Removed: 2 bullet points
+2026-02-24 10:07:19,914 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 10:07:25,343 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.pdf
+2026-02-24 10:07:25,413 - CvAutomation - INFO - Generated CV for Arrive in Sweden
+2026-02-24 10:15:25,158 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.docx
+2026-02-24 10:15:25,158 - CvAutomation - INFO - Replaced: 19, Added: 2, Removed: 2 bullet points
+2026-02-24 10:15:25,158 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 10:15:31,328 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Sweden.pdf
+2026-02-24 10:15:31,383 - CvAutomation - INFO - Generated CV for Arrive in Sweden
+2026-02-24 11:56:36,043 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Sabeo\Madhav_Manohar_Gopal_CV_Sabeo_Ireland.docx
+2026-02-24 11:56:36,044 - CvAutomation - INFO - Replaced: 18, Added: 0, Removed: 3 bullet points
+2026-02-24 11:56:36,044 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 11:56:42,187 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Sabeo\Madhav_Manohar_Gopal_CV_Sabeo_Ireland.pdf
+2026-02-24 11:56:42,257 - CvAutomation - INFO - Generated CV for Sabeo in Ireland
+2026-02-24 13:24:52,934 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Continia\Madhav_Manohar_Gopal_CV_Continia_Denmark.docx
+2026-02-24 13:24:52,936 - CvAutomation - INFO - Replaced: 19, Added: 1, Removed: 2 bullet points
+2026-02-24 13:24:52,936 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 13:25:01,201 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Continia\Madhav_Manohar_Gopal_CV_Continia_Denmark.pdf
+2026-02-24 13:25:01,357 - CvAutomation - INFO - Generated CV for Continia in Denmark
+2026-02-24 13:25:05,360 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Continia\Madhav_Manohar_Gopal_Cover_Letter_Continia_Denmark.pdf
+2026-02-24 13:25:05,422 - CvAutomation - INFO - Generated Cover Letter for Continia
+2026-02-24 18:32:26,670 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Arrive_Sweden.docx
+2026-02-24 18:32:26,671 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-02-24 18:32:26,671 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 18:32:38,520 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_CV_Arrive_Sweden.pdf
+2026-02-24 18:32:38,633 - CvAutomation - INFO - Generated CV for Arrive in Sweden
+2026-02-24 18:32:44,735 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Arrive\Madhav_Manohar_Gopal_Cover_Letter_Arrive_Sweden.pdf
+2026-02-24 18:32:44,799 - CvAutomation - INFO - Generated Cover Letter for Arrive
+2026-02-24 20:50:14,430 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Mentimeter\Madhav_Manohar_Gopal_CV_Mentimeter_Sweden.docx
+2026-02-24 20:50:14,431 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-02-24 20:50:14,431 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 20:50:19,339 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Mentimeter\Madhav_Manohar_Gopal_CV_Mentimeter_Sweden.pdf
+2026-02-24 20:50:19,459 - CvAutomation - INFO - Generated CV for Mentimeter in Sweden
+2026-02-24 20:52:37,397 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Mentimeter\Madhav_Manohar_Gopal_CV_Mentimeter_Sweden.docx
+2026-02-24 20:52:37,398 - CvAutomation - INFO - Replaced: 17, Added: 0, Removed: 4 bullet points
+2026-02-24 20:52:37,398 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 20:52:43,476 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Mentimeter\Madhav_Manohar_Gopal_CV_Mentimeter_Sweden.pdf
+2026-02-24 20:52:43,583 - CvAutomation - INFO - Generated CV for Mentimeter in Sweden
+2026-02-24 21:01:30,474 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Precis\Madhav_Manohar_Gopal_CV_Precis_Sweden.docx
+2026-02-24 21:01:30,475 - CvAutomation - INFO - Replaced: 18, Added: 0, Removed: 3 bullet points
+2026-02-24 21:01:30,475 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 21:01:37,472 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Precis\Madhav_Manohar_Gopal_CV_Precis_Sweden.pdf
+2026-02-24 21:01:37,601 - CvAutomation - INFO - Generated CV for Precis in Sweden
+2026-02-24 21:01:45,281 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\Precis\Madhav_Manohar_Gopal_Cover_Letter_Precis_Sweden.pdf
+2026-02-24 21:01:45,354 - CvAutomation - INFO - Generated Cover Letter for Precis
+2026-02-24 21:10:58,458 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\If_Insurance\Madhav_Manohar_Gopal_CV_If_Insurance_Finland.docx
+2026-02-24 21:10:58,458 - CvAutomation - INFO - Replaced: 20, Added: 1, Removed: 1 bullet points
+2026-02-24 21:10:58,459 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 21:11:04,589 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\If_Insurance\Madhav_Manohar_Gopal_CV_If_Insurance_Finland.pdf
+2026-02-24 21:11:04,737 - CvAutomation - INFO - Generated CV for If Insurance in Finland
+2026-02-24 21:11:11,072 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\If_Insurance\Madhav_Manohar_Gopal_Cover_Letter_If_Insurance_Finland.pdf
+2026-02-24 21:11:11,125 - CvAutomation - INFO - Generated Cover Letter for If Insurance
+2026-02-24 21:14:42,013 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\If_Insurance\Madhav_Manohar_Gopal_CV_If_Insurance_Finland.docx
+2026-02-24 21:14:42,013 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-02-24 21:14:42,013 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 21:14:42,016 - CvAutomation - ERROR - Failed to generate CV: [Errno 13] Permission denied: 'C:\\Users\\catch\\Desktop\\Cv Automation\\outputs\\24-02-26\\If_Insurance\\Madhav_Manohar_Gopal_CV_If_Insurance_Finland.docx'
+Traceback (most recent call last):
+  File "C:\Users\catch\Desktop\Cv Automation\core\cv_service.py", line 32, in generate_cv
+    update_cv_bullets(template_path, output_docx, summary, bullets)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\Desktop\Cv Automation\core\update_cv.py", line 308, in update_cv_bullets
+    doc.save(output_file)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\document.py", line 204, in save
+    self._part.save(path_or_stream)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\parts\document.py", line 114, in save
+    self.package.save(path_or_stream)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\package.py", line 166, in save
+    PackageWriter.write(pkg_file, self.rels, self.parts)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\pkgwriter.py", line 34, in write
+    phys_writer = PhysPkgWriter(pkg_file)
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\phys_pkg.py", line 109, in __init__
+    self._zipf = ZipFile(pkg_file, "w", compression=ZIP_DEFLATED)
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\zipfile\__init__.py", line 1362, in __init__
+    self.fp = io.open(file, filemode)
+              ~~~~~~~^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\catch\\Desktop\\Cv Automation\\outputs\\24-02-26\\If_Insurance\\Madhav_Manohar_Gopal_CV_If_Insurance_Finland.docx'
+2026-02-24 21:14:48,158 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\If_Insurance\Madhav_Manohar_Gopal_CV_If_Insurance_Finland.docx
+2026-02-24 21:14:48,159 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-02-24 21:14:48,159 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-02-24 21:14:51,735 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\24-02-26\If_Insurance\Madhav_Manohar_Gopal_CV_If_Insurance_Finland.pdf
+2026-02-24 21:14:51,825 - CvAutomation - INFO - Generated CV for If Insurance in Finland

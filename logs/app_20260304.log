@@ -1,0 +1,39 @@
+2026-03-04 14:26:49,202 - CvAutomation - INFO - Normalized application statuses to core categories.
+2026-03-04 16:13:43,205 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Temu\Madhav_Manohar_Gopal_CV_Temu_Ireland.docx
+2026-03-04 16:13:43,205 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-04 16:13:43,206 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-04 16:13:51,996 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Temu\Madhav_Manohar_Gopal_CV_Temu_Ireland.pdf
+2026-03-04 16:13:52,118 - CvAutomation - INFO - Generated CV for Temu in Ireland
+2026-03-04 16:21:11,261 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Bcg\Madhav_Manohar_Gopal_CV_Bcg_Denmark.docx
+2026-03-04 16:21:11,262 - CvAutomation - INFO - Replaced: 17, Added: 0, Removed: 4 bullet points
+2026-03-04 16:21:11,262 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-04 16:21:18,995 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Bcg\Madhav_Manohar_Gopal_CV_Bcg_Denmark.pdf
+2026-03-04 16:21:19,158 - CvAutomation - INFO - Generated CV for Bcg in Denmark
+2026-03-04 16:21:25,061 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Bcg\Madhav_Manohar_Gopal_Cover_Letter_Bcg_Denmark.pdf
+2026-03-04 16:21:25,117 - CvAutomation - INFO - Generated Cover Letter for Bcg
+2026-03-04 16:22:26,904 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Bcg\Madhav_Manohar_Gopal_Cover_Letter_Bcg_Denmark.pdf
+2026-03-04 16:22:26,933 - CvAutomation - INFO - Generated Cover Letter for Bcg
+2026-03-04 16:55:09,905 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Sse\Madhav_Manohar_Gopal_CV_Sse_Ireland.docx
+2026-03-04 16:55:09,905 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-04 16:55:09,906 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-04 16:55:14,239 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Sse\Madhav_Manohar_Gopal_CV_Sse_Ireland.pdf
+2026-03-04 16:55:14,313 - CvAutomation - INFO - Generated CV for Sse in Ireland
+2026-03-04 16:55:19,813 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Sse\Madhav_Manohar_Gopal_Cover_Letter_Sse_Ireland.pdf
+2026-03-04 16:55:19,843 - CvAutomation - INFO - Generated Cover Letter for Sse
+2026-03-04 17:06:59,262 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Assa_Abloy\Madhav_Manohar_Gopal_CV_Assa_Abloy_Sweden.docx
+2026-03-04 17:06:59,262 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-03-04 17:06:59,262 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-04 17:07:05,086 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Assa_Abloy\Madhav_Manohar_Gopal_CV_Assa_Abloy_Sweden.pdf
+2026-03-04 17:07:05,173 - CvAutomation - INFO - Generated CV for Assa Abloy in Sweden
+2026-03-04 17:07:10,799 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Assa_Abloy\Madhav_Manohar_Gopal_Cover_Letter_Assa_Abloy_Sweden.pdf
+2026-03-04 17:07:10,838 - CvAutomation - INFO - Generated Cover Letter for Assa Abloy
+2026-03-04 17:09:09,182 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Assa_Abloy\Madhav_Manohar_Gopal_CV_Assa_Abloy_Sweden.docx
+2026-03-04 17:09:09,182 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-03-04 17:09:09,183 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-04 17:09:14,866 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Assa_Abloy\Madhav_Manohar_Gopal_CV_Assa_Abloy_Sweden.pdf
+2026-03-04 17:09:14,951 - CvAutomation - INFO - Generated CV for Assa Abloy in Sweden
+2026-03-04 17:10:22,964 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Assa_Abloy\Madhav_Manohar_Gopal_CV_Assa_Abloy_Sweden.docx
+2026-03-04 17:10:22,964 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-03-04 17:10:22,964 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-04 17:10:27,416 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\04-03-26\Assa_Abloy\Madhav_Manohar_Gopal_CV_Assa_Abloy_Sweden.pdf
+2026-03-04 17:10:27,481 - CvAutomation - INFO - Generated CV for Assa Abloy in Sweden

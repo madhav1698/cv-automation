@@ -1,0 +1,41 @@
+2026-03-08 10:57:34,389 - CvAutomation - INFO - Updated CV sections. Replaced: 1, Added: 0, Removed: 1
+2026-03-08 10:57:34,389 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 10:57:34,404 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_vvpueb6z\output.docx
+2026-03-08 10:58:31,431 - CvAutomation - WARNING - Job 'REPHRAIN, University of Bristol – Research Data Scientist' not found in document, skipping
+2026-03-08 10:58:31,433 - CvAutomation - INFO - Updated CV sections. Replaced: 10, Added: 0, Removed: 11
+2026-03-08 10:58:31,433 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 10:58:31,442 - CvAutomation - INFO - Updated CV saved to: outputs/test_flexible_bullets.docx
+2026-03-08 10:58:46,853 - CvAutomation - WARNING - Job 'REPHRAIN, University of Bristol – Research Data Scientist' not found in document, skipping
+2026-03-08 10:58:46,855 - CvAutomation - INFO - Updated CV sections. Replaced: 10, Added: 0, Removed: 11
+2026-03-08 10:58:46,855 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 10:58:46,863 - CvAutomation - INFO - Updated CV saved to: outputs/test_job_aware_cv.docx
+2026-03-08 10:59:10,876 - CvAutomation - INFO - Updated CV sections. Replaced: 14, Added: 0, Removed: 7
+2026-03-08 10:59:10,876 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 10:59:10,884 - CvAutomation - INFO - Updated CV saved to: outputs/test_job_aware_cv.docx
+2026-03-08 10:59:18,764 - CvAutomation - INFO - Updated CV sections. Replaced: 1, Added: 0, Removed: 1
+2026-03-08 10:59:18,765 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 10:59:18,778 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_jyw2t27s\output.docx
+2026-03-08 10:59:41,146 - CvAutomation - INFO - Updated CV sections. Replaced: 16, Added: 1, Removed: 5
+2026-03-08 10:59:41,146 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 10:59:41,154 - CvAutomation - INFO - Updated CV saved to: outputs/test_flexible_bullets.docx
+2026-03-08 11:17:06,777 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
+NoneType: None
+2026-03-08 11:17:06,871 - CvAutomation - INFO - Updated CV sections. Replaced: 1, Added: 0, Removed: 1
+2026-03-08 11:17:06,871 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 11:17:06,891 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_708ip5kh\output.docx
+2026-03-08 11:25:18,475 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
+NoneType: None
+2026-03-08 11:25:18,569 - CvAutomation - INFO - Updated CV sections. Replaced: 1, Added: 0, Removed: 1
+2026-03-08 11:25:18,569 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 11:25:18,590 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_h3xi84si\output.docx
+2026-03-08 11:28:03,390 - CvAutomation - INFO - Using strict supported-template renderer for Random
+2026-03-08 11:28:03,453 - CvAutomation - INFO - Updated CV sections. Replaced: 20, Added: 1, Removed: 1
+2026-03-08 11:28:03,454 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 11:28:03,481 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\08-03-26\Random\Madhav_Manohar_Gopal_CV_Random_.docx
+2026-03-08 11:28:07,416 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\08-03-26\Random\Madhav_Manohar_Gopal_CV_Random_.pdf
+2026-03-08 11:28:07,583 - CvAutomation - INFO - Generated CV for Random in 
+2026-03-08 12:43:09,943 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
+NoneType: None
+2026-03-08 12:43:10,070 - CvAutomation - INFO - Updated CV sections. Replaced: 1, Added: 0, Removed: 1
+2026-03-08 12:43:10,070 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-08 12:43:10,094 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_vx_u3dkj\output.docx

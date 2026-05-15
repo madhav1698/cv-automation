@@ -1,0 +1,54 @@
+2026-03-31 10:50:35,136 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Strata\Madhav_Manohar_Gopal_CV_Strata_Ireland.docx
+2026-03-31 10:50:35,136 - CvAutomation - INFO - Replaced: 19, Added: 1, Removed: 2 bullet points
+2026-03-31 10:50:35,137 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-31 10:50:42,398 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Strata\Madhav_Manohar_Gopal_CV_Strata_Ireland.pdf
+2026-03-31 10:50:42,488 - CvAutomation - INFO - Generated CV for Strata in Ireland
+2026-03-31 10:52:18,997 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Strata\Madhav_Manohar_Gopal_CV_Strata_Ireland.docx
+2026-03-31 10:52:18,997 - CvAutomation - INFO - Replaced: 19, Added: 2, Removed: 2 bullet points
+2026-03-31 10:52:18,997 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-31 10:52:22,473 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Strata\Madhav_Manohar_Gopal_CV_Strata_Ireland.pdf
+2026-03-31 10:52:22,555 - CvAutomation - INFO - Generated CV for Strata in Ireland
+2026-03-31 10:55:40,569 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Strata\Madhav_Manohar_Gopal_Cover_Letter_Strata_Ireland.pdf
+2026-03-31 10:55:40,605 - CvAutomation - INFO - Generated Cover Letter for Strata
+2026-03-31 11:08:20,859 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\The_Lego_Group\Madhav_Manohar_Gopal_CV_The_Lego_Group_Denmark.docx
+2026-03-31 11:08:20,859 - CvAutomation - INFO - Replaced: 21, Added: 2, Removed: 0 bullet points
+2026-03-31 11:08:20,859 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-31 11:08:26,643 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\The_Lego_Group\Madhav_Manohar_Gopal_CV_The_Lego_Group_Denmark.pdf
+2026-03-31 11:08:26,727 - CvAutomation - INFO - Generated CV for The Lego Group in Denmark
+2026-03-31 11:08:31,086 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\The_Lego_Group\Madhav_Manohar_Gopal_Cover_Letter_The_Lego_Group_Denmark.pdf
+2026-03-31 11:08:31,124 - CvAutomation - INFO - Generated Cover Letter for The Lego Group
+2026-03-31 11:18:24,007 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\King\Madhav_Manohar_Gopal_CV_King_Sweden.docx
+2026-03-31 11:18:24,007 - CvAutomation - INFO - Replaced: 21, Added: 2, Removed: 0 bullet points
+2026-03-31 11:18:24,007 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-31 11:18:29,895 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\King\Madhav_Manohar_Gopal_CV_King_Sweden.pdf
+2026-03-31 11:18:29,995 - CvAutomation - INFO - Generated CV for King in Sweden
+2026-03-31 11:18:34,325 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\King\Madhav_Manohar_Gopal_Cover_Letter_King_Sweden.pdf
+2026-03-31 11:18:34,357 - CvAutomation - INFO - Generated Cover Letter for King
+2026-03-31 11:29:13,619 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Recruiters\Madhav_Manohar_Gopal_CV_Recruiters_Ireland.docx
+2026-03-31 11:29:13,620 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-03-31 11:29:13,620 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-31 11:29:19,493 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Recruiters\Madhav_Manohar_Gopal_CV_Recruiters_Ireland.pdf
+2026-03-31 11:29:19,571 - CvAutomation - INFO - Generated CV for Recruiters in Ireland
+2026-03-31 11:40:03,113 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Too_Good_To_Go\Madhav_Manohar_Gopal_CV_Too_Good_To_Go_Denmark.docx
+2026-03-31 11:40:03,113 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-03-31 11:40:03,113 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-31 11:40:08,768 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Too_Good_To_Go\Madhav_Manohar_Gopal_CV_Too_Good_To_Go_Denmark.pdf
+2026-03-31 11:40:08,845 - CvAutomation - INFO - Generated CV for Too Good To Go in Denmark
+2026-03-31 11:40:14,501 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\Too_Good_To_Go\Madhav_Manohar_Gopal_Cover_Letter_Too_Good_To_Go_Denmark.pdf
+2026-03-31 11:40:14,539 - CvAutomation - INFO - Generated Cover Letter for Too Good To Go
+2026-03-31 11:57:27,716 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\&_Other_Stories\Madhav_Manohar_Gopal_CV_&_Other_Stories_Sweden.docx
+2026-03-31 11:57:27,716 - CvAutomation - INFO - Replaced: 18, Added: 0, Removed: 3 bullet points
+2026-03-31 11:57:27,716 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-31 11:57:34,375 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\&_Other_Stories\Madhav_Manohar_Gopal_CV_&_Other_Stories_Sweden.pdf
+2026-03-31 11:57:34,458 - CvAutomation - INFO - Generated CV for & Other Stories in Sweden
+2026-03-31 11:58:02,718 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\&_Other_Stories\Madhav_Manohar_Gopal_Cover_Letter_&_Other_Stories_Denmark.pdf
+2026-03-31 11:58:02,747 - CvAutomation - INFO - Generated Cover Letter for & Other Stories
+2026-03-31 11:58:16,233 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\&_Other_Stories\Madhav_Manohar_Gopal_Cover_Letter_&_Other_Stories_Sweden.pdf
+2026-03-31 11:58:16,271 - CvAutomation - INFO - Generated Cover Letter for & Other Stories
+2026-03-31 11:58:24,127 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\&_Other_Stories\Madhav_Manohar_Gopal_CV_&_Other_Stories_Sweden.docx
+2026-03-31 11:58:24,127 - CvAutomation - INFO - Replaced: 18, Added: 0, Removed: 3 bullet points
+2026-03-31 11:58:24,127 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-31 11:58:28,401 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\&_Other_Stories\Madhav_Manohar_Gopal_CV_&_Other_Stories_Sweden.pdf
+2026-03-31 11:58:28,521 - CvAutomation - INFO - Generated CV for & Other Stories in Sweden
+2026-03-31 11:58:32,980 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\31-03-26\&_Other_Stories\Madhav_Manohar_Gopal_Cover_Letter_&_Other_Stories_Sweden.pdf
+2026-03-31 11:58:33,008 - CvAutomation - INFO - Generated Cover Letter for & Other Stories
