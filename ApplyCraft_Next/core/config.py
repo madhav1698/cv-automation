@@ -47,6 +47,13 @@ SUMMARY_TEXT = (
 )
 
 JOB_POSITIONS = {
+    "MAYNOOTH UNIVERSITY – Data Analyst": [
+        "Developed and maintained institutional Power BI dashboard tracking research funding, outputs, and impact metrics across the MU Futures Hub",
+        "Designed and implemented data quality assurance framework across multiple integrated internal and external data sources ensuring accuracy and consistency",
+        "Managed data integration from diverse stakeholder sources including academic departments, industry partners, and national research bodies",
+        "Delivered recurring and ad hoc data reports meeting HEA compliance and institutional research strategy requirements",
+        "Liaised with internal and external stakeholders to communicate data findings clearly to non-technical audiences including senior university management"
+    ],
     "PEERMUSIC – Data Analytics Developer": [
         "Delivered production BI dashboards used by operational and finance teams to monitor music rights data, improving visibility into revenue drivers and data completeness.",
         "Took ownership of stakeholder requirements and translated business questions into decision-ready reporting, reducing turnaround time for insights.",
@@ -86,10 +93,3 @@ def get_resource_path(relative_path):
         base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     return os.path.join(base_path, relative_path)
-
-
-# --- SUPPORTED TEMPLATE REGISTRY (STRICT MODE) ---
-SUPPORTED_CV_TEMPLATES = {
-    "Template 1": get_resource_path(os.path.join("templates", "Madhav_Manohar Gopal_CV.docx")),
-    "Template 2": get_resource_path(os.path.join("templates", "Madhav_Manohar_Gopal_CV_2.docx")),
-}

@@ -1,0 +1,7 @@
+2026-04-23 16:05:26,150 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\23-04-26\Pci_Pharma_Services\Madhav_Manohar_Gopal_CV_Pci_Pharma_Services_Ireland.docx
+2026-04-23 16:05:26,151 - CvAutomation - INFO - Replaced: 20, Added: 1, Removed: 1 bullet points
+2026-04-23 16:05:26,151 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-04-23 16:05:32,631 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-04-26\Pci_Pharma_Services\Madhav_Manohar_Gopal_CV_Pci_Pharma_Services_Ireland.pdf
+2026-04-23 16:05:32,726 - CvAutomation - INFO - Generated CV for Pci Pharma Services in Ireland
+2026-04-23 16:06:06,075 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-04-26\Pci_Pharma_Services\Madhav_Manohar_Gopal_Cover_Letter_Pci_Pharma_Services_Ireland.pdf
+2026-04-23 16:06:06,125 - CvAutomation - INFO - Generated Cover Letter for Pci Pharma Services

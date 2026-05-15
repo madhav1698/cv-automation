@@ -11,67 +11,43 @@ class TemplateRenderer:
 
     def render(self, data: dict, output_path: str):
         """
-        Renders the tailored CV using learned anchors.
-        Data: {"experience": [{"anchor_text": "Peermusic", "bullets": [...]}, ...]}
+        Renders the tailored CV.
+        Data structure: {"summary": str, "experience": [{"company": str, "role": str, "date": str, "bullets": [str]}]}
         """
-        exp_data = data.get("experience", [])
+        # 1. Update Profile Summary (Not implemented yet - requires finding summary index)
         
-        # 1. Update each Job's Bullets
-        for entry in exp_data:
-            self._update_job_bullets(entry)
-            
+        # 2. Update Experience Section
+        self._inject_experience(data.get("experience", []))
+        
         self.doc.save(output_path)
 
-    def _update_job_bullets(self, entry):
-        anchor_text = entry.get("anchor_text")
-        new_bullets = entry.get("bullets", [])
+    def _inject_experience(self, experiences):
+        # This is where we use the "Learned Pattern"
+        # For simplicity in V1: 
+        # - Find the Experience Section start
+        # - Remove all old paragraphs in that section
+        # - Insert new ones following the pattern
         
-        if not anchor_text: return
+        # Note: Removing paragraphs in python-docx is tricky. 
+        # A more robust way is to find the section and replace text or replicate paragraphs.
         
-        # FIND THE ANCHOR in the current document
-        # (This is why it's un-breakable: we search for the text)
-        anchor_para_idx = self._find_para_by_text(anchor_text)
-        if anchor_para_idx == -1: return
+        start_idx = self.config.experience_section["start"]
+        end_idx = self.config.experience_section["end"]
         
-        # Find the "Bullet Zone" relative to anchor
-        # For simplicity in V1: we look for existing bullets below the anchor
-        # and replace them, or append if none found.
+        # We'll actually work with the document elements directly
+        # For this prototype, we'll just append to the end of the section for now
+        # to demonstrate the pattern usage.
         
-        # Let's find the first bullet paragraph after the anchor
-        bullet_idx = -1
-        for i in range(anchor_para_idx + 1, min(anchor_para_idx + 10, len(self.doc.paragraphs))):
-            p = self.doc.paragraphs[i]
-            if self._is_bullet(p):
-                bullet_idx = i
-                break
-        
-        if bullet_idx != -1:
-            # We found existing bullets!
-            # Replace the first one and delete the rest
-            first_bullet_para = self.doc.paragraphs[bullet_idx]
-            first_bullet_para.text = new_bullets[0] if new_bullets else ""
+        for exp in experiences:
+            # Create a new block based on the learned style
+            # (In a full version, we would clone the actual paragraphs to keep formatting perfect)
+            p_comp = self.doc.add_paragraph(exp["company"])
+            p_comp.style = self.doc.paragraphs[start_idx + 1].style # Use learned style
             
-            # (In a more advanced version, we'd delete the old bullets and insert the new list properly)
-            # For now, let's just update the text of existing ones
-            for j, b_text in enumerate(new_bullets[1:]):
-                # Simple append for demo
-                new_p = self._insert_paragraph_after(self.doc.paragraphs[bullet_idx + j], b_text)
-                new_p.style = first_bullet_para.style
-
-    def _find_para_by_text(self, text):
-        for i, p in enumerate(self.doc.paragraphs):
-            if text in p.text:
-                return i
-        return -1
-
-    def _is_bullet(self, para):
-        style_lower = para.style.name.lower()
-        if "list" in style_lower or "bullet" in style_lower: return True
-        return para.text.strip().startswith(('•', '-', '*', '▪'))
-
-    def _insert_paragraph_after(self, para, text):
-        """Helper to insert a paragraph after another one in python-docx"""
-        new_p = self.doc.add_paragraph(text)
-        p = para._element
-        p.addnext(new_p._element)
-        return new_p
+            p_role = self.doc.add_paragraph(exp["role"])
+            # p_role.style = ...
+            
+            for bullet in exp["bullets"]:
+                p_b = self.doc.add_paragraph(bullet, style='List Bullet')
+                # Apply learned bullet signature
+                p_b.paragraph_format.left_indent = self.config.bullet_style.indent_left

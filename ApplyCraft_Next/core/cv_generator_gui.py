@@ -2,6 +2,9 @@ import os
 import threading
 import sys
 from datetime import datetime
+import subprocess
+import time
+import re
 
 # Set up paths for internal imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -11,12 +14,10 @@ if project_root not in sys.path:
 
 import customtkinter as ctk
 from helpers.logger import logger
-from core.config import DESIGN_TOKENS, DEFAULT_CL_BODY, SUMMARY_TEXT, SUPPORTED_CV_TEMPLATES
+from core.config import DESIGN_TOKENS, JOB_POSITIONS, DEFAULT_CL_BODY, SUMMARY_TEXT
 from core.cv_service import CVGeneratorService
 from core.stats_manager import StatsManager
 from core.application_audit import ApplicationAuditPanel
-from core.experience_profile import auto_sort_experience_lines, load_profile, save_profile
-from core.update_cv import get_template_capacity
 
 # --- ANIMATION UTILITY ---
 
@@ -37,14 +38,13 @@ class ApplyCraftApp(ctk.CTk):
         self.configure(fg_color=self.colors["bg"])
 
         # State Variables
-        self.templates = dict(SUPPORTED_CV_TEMPLATES)
+        self.templates = {
+            "Template 1": os.path.join(current_dir, "..", "templates", "Madhav_Manohar Gopal_CV.docx"),
+            "Template 2": os.path.join(current_dir, "..", "templates", "Madhav_Manohar_Gopal_CV_2.docx")
+        }
         self.current_template_name = ctk.StringVar(value="Template 1")
-        self.profile_data = load_profile()
-        self.profile_data.setdefault("candidate", {})
         self.job_text_widgets = {}
-        self.job_meta = {}
-        self.job_editor_widgets = {}
-        self.candidate_widgets = {}
+        self.job_headline_widgets = {}
         self.preview_zoom = 1.0
         self.stats_manager = StatsManager(os.path.dirname(current_dir))
         self.cv_service = CVGeneratorService(self.stats_manager)
@@ -227,13 +227,16 @@ class ApplyCraftApp(ctk.CTk):
         
         # Entrance Animation State
         self.panels = [self.cv_panel, self.cl_panel, self.import_panel, self.settings_panel, self.audit_panel]
+        for p in self.panels:
+            # We skip grid_propagate manually as some CTk widgets handle it internally
+            pass
             
         self.setup_cv_panel()
         self.setup_cl_panel()
         self.setup_import_panel()
         self.setup_settings_panel()
         
-        self.show_cv_panel()
+        self.show_cv_panel() # Default
         
         # Keyboard Shortcuts
         self.bind("<Control-g>", lambda e: self.generate_both())
@@ -270,7 +273,7 @@ class ApplyCraftApp(ctk.CTk):
         # Template selector with better dark mode support
         ctk.CTkLabel(card, text="Active Template", font=ctk.CTkFont(size=13, weight="bold"), 
                     text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(10, 8))
-        self.cv_template_selector = ctk.CTkSegmentedButton(card, values=list(self.templates.keys()),
+        self.cv_template_selector = ctk.CTkSegmentedButton(card, values=["Template 1", "Template 2"],
                                                        variable=self.current_template_name,
                                                        command=self.update_template_path,
                                                        height=45,
@@ -328,273 +331,36 @@ class ApplyCraftApp(ctk.CTk):
         self.role_title_entry.bind("<FocusIn>", lambda e: self.role_title_entry.configure(border_color=self.colors["accent"]))
         self.role_title_entry.bind("<FocusOut>", lambda e: self.role_title_entry.configure(border_color=self.colors["border"]))
 
-        summary_default = self.profile_data.get("summary", SUMMARY_TEXT)
-        self.summary_text = self.create_textbox(card, "Professional Summary", summary_default)
-        self.summary_text.bind("<KeyRelease>", lambda e: self._on_summary_change())
+        ctk.CTkLabel(card, text="Current Location *", font=ctk.CTkFont(size=13, weight="bold"), text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(10, 8))
+        self.current_location_entry = ctk.CTkEntry(card, height=50, fg_color=self.colors["input_bg"],
+                                            text_color=self.colors["text"], border_width=2,
+                                            border_color=self.colors["border"], corner_radius=10,
+                                            placeholder_text="e.g. Stockholm",
+                                            font=ctk.CTkFont(size=13))
+        self.current_location_entry.pack(fill="x", padx=25)
+        self.current_location_entry.insert(0, "Stockholm")
+        self.current_location_entry.bind("<KeyRelease>", lambda e: self.update_live_preview())
+        self.current_location_entry.bind("<FocusIn>", lambda e: self.current_location_entry.configure(border_color=self.colors["accent"]))
+        self.current_location_entry.bind("<FocusOut>", lambda e: self.current_location_entry.configure(border_color=self.colors["border"]))
 
-        profile_card = self.create_card(self.cv_panel, "EXPERIENCE PROFILE")
-        ctk.CTkLabel(
-            profile_card,
-            text="Store unlimited experiences. Use Include in CV + ordering controls to choose what fits the active template.",
-            font=ctk.CTkFont(size=12),
-            text_color=self.colors["text_muted"],
-        ).pack(anchor="w", padx=25, pady=(0, 10))
-        controls_row = ctk.CTkFrame(profile_card, fg_color="transparent")
-        controls_row.pack(fill="x", padx=25, pady=(0, 14))
-        add_btn = ctk.CTkButton(
-            controls_row,
-            text="+ Add Experience",
-            width=140,
-            height=36,
-            fg_color=self.colors["accent"],
-            command=self._add_experience,
-        )
-        add_btn.pack(side="left")
-        self.capacity_label = ctk.CTkLabel(
-            controls_row,
-            text="",
-            font=ctk.CTkFont(size=12),
-            text_color=self.colors["text_muted"],
-        )
-        self.capacity_label.pack(side="right")
-
-        self.experience_cards_host = ctk.CTkFrame(self.cv_panel, fg_color="transparent")
-        self.experience_cards_host.pack(fill="x", padx=0, pady=0)
-        self.render_experience_cards()
-
-    def _on_summary_change(self):
-        self.profile_data["summary"] = self.summary_text.get("0.0", "end").strip()
-        save_profile(self.profile_data)
-        self.update_live_preview()
-
-    def _new_experience_template(self):
-        index = len(self.profile_data.get("experiences", [])) + 1
-        existing = {exp.get("anchor_key") for exp in self.profile_data.get("experiences", [])}
-        anchor = f"exp_custom_{index}"
-        while anchor in existing:
-            index += 1
-            anchor = f"exp_custom_{index}"
-        return {
-            "anchor_key": anchor,
-            "legacy_key": "",
-            "company": "",
-            "title": "",
-            "date_range": "",
-            "location": "",
-            "headline": "",
-            "aliases": [],
-            "bullets": [],
-            "include_in_cv": True,
-        }
-
-    def _collect_experiences_from_ui(self):
-        experiences = []
-        for exp in self.profile_data.get("experiences", []):
-            anchor = exp.get("anchor_key")
-            bullets_text = self.job_text_widgets.get(anchor).get("0.0", "end").strip() if anchor in self.job_text_widgets else ""
-            bullets = [line.strip() for line in bullets_text.split("\n") if line.strip()]
+        self.summary_text = self.create_textbox(card, "Professional Summary", SUMMARY_TEXT)
+        
+        for job_title, default_bullets in JOB_POSITIONS.items():
+            job_card = self.create_card(self.cv_panel, job_title)
             
-            editor = self.job_editor_widgets.get(anchor, {})
-            headline = editor.get("headline").get().strip() if "headline" in editor else ""
-            company = editor.get("company").get().strip() if "company" in editor else str(exp.get("company", "")).strip()
-            title = editor.get("title").get().strip() if "title" in editor else str(exp.get("title", "")).strip()
-            date_range = editor.get("date_range").get().strip() if "date_range" in editor else str(exp.get("date_range", "")).strip()
-            location = editor.get("location").get().strip() if "location" in editor else str(exp.get("location", "")).strip()
-            aliases_text = editor.get("aliases").get().strip() if "aliases" in editor else ""
-            include_in_cv = editor.get("include_var").get() if "include_var" in editor else bool(exp.get("include_in_cv", True))
-            aliases = [item.strip() for item in aliases_text.split(",") if item.strip()]
-
-            updated = dict(exp)
-            updated["company"] = company
-            updated["title"] = title
-            updated["date_range"] = date_range
-            updated["location"] = location
-            updated["bullets"] = bullets
-            updated["headline"] = headline
-            updated["aliases"] = aliases
-            updated["include_in_cv"] = bool(include_in_cv)
-            experiences.append(updated)
-        return experiences
-
-    def _collect_candidate_from_ui(self):
-        current = dict(self.profile_data.get("candidate", {}))
-        if not self.candidate_widgets:
-            return current
-        current["name"] = self.candidate_widgets["name"].get().strip()
-        current["email"] = self.candidate_widgets["email"].get().strip()
-        current["linkedin"] = self.candidate_widgets["linkedin"].get().strip()
-        current["location"] = self.candidate_widgets["location"].get().strip()
-        current["relocation_visa_line"] = self.candidate_widgets["relocation_visa_line"].get().strip()
-        current["show_relocation_visa_line"] = bool(self.candidate_widgets["show_relocation_var"].get())
-        return current
-
-    def _persist_profile_from_ui(self):
-        self.profile_data["experiences"] = self._collect_experiences_from_ui()
-        self.profile_data["summary"] = self.summary_text.get("0.0", "end").strip()
-        self.profile_data["candidate"] = self._collect_candidate_from_ui()
-        save_profile(self.profile_data)
-
-    def _on_experience_content_change(self):
-        self._persist_profile_from_ui()
-        self._update_template_capacity_label()
-        self.update_live_preview()
-
-    def _add_experience(self):
-        self.profile_data.setdefault("experiences", []).append(self._new_experience_template())
-        save_profile(self.profile_data)
-        self.render_experience_cards()
-        self.update_live_preview()
-
-    def _move_experience(self, anchor_key, direction):
-        experiences = self.profile_data.get("experiences", [])
-        idx = next((i for i, exp in enumerate(experiences) if exp.get("anchor_key") == anchor_key), None)
-        if idx is None:
-            return
-        swap_idx = idx + direction
-        if swap_idx < 0 or swap_idx >= len(experiences):
-            return
-        experiences[idx], experiences[swap_idx] = experiences[swap_idx], experiences[idx]
-        save_profile(self.profile_data)
-        self.render_experience_cards()
-        self.update_live_preview()
-
-    def _remove_experience(self, anchor_key):
-        experiences = self.profile_data.get("experiences", [])
-        if len(experiences) <= 1:
-            self.set_status("At least one experience is required", "text_muted")
-            return
-        self.profile_data["experiences"] = [exp for exp in experiences if exp.get("anchor_key") != anchor_key]
-        save_profile(self.profile_data)
-        self.render_experience_cards()
-        self.update_live_preview()
-
-    def _display_heading(self, exp):
-        company = exp.get("company", "").strip()
-        title = exp.get("title", "").strip()
-        date_range = exp.get("date_range", "").strip()
-        if company and title:
-            heading = f"{company} | {title}"
-        else:
-            heading = company or title or "New Experience"
-        if date_range:
-            heading = f"{heading} ({date_range})"
-        return heading
-
-    def render_experience_cards(self):
-        for child in self.experience_cards_host.winfo_children():
-            child.destroy()
-
-        self.job_text_widgets = {}
-        self.job_meta = {}
-        self.job_editor_widgets = {}
-
-        experiences = self.profile_data.get("experiences", [])
-        if not experiences:
-            experiences = [self._new_experience_template()]
-            self.profile_data["experiences"] = experiences
-            save_profile(self.profile_data)
-
-        self._update_template_capacity_label()
-
-        for idx, exp in enumerate(experiences, start=1):
-            anchor = exp.get("anchor_key")
-            self.job_meta[anchor] = dict(exp)
-
-            card = self.create_card(self.experience_cards_host, f"Experience {idx}: {self._display_heading(exp)}")
-
-            top_controls = ctk.CTkFrame(card, fg_color="transparent")
-            top_controls.pack(fill="x", padx=28, pady=(0, 6))
-            include_var = ctk.BooleanVar(value=bool(exp.get("include_in_cv", True)))
-            include_switch = ctk.CTkSwitch(
-                top_controls,
-                text="Include in this CV",
-                variable=include_var,
-                command=self._on_experience_content_change,
-                text_color=self.colors["text"],
-            )
-            include_switch.pack(side="left")
-            nav_controls = ctk.CTkFrame(top_controls, fg_color="transparent")
-            nav_controls.pack(side="right")
-            ctk.CTkButton(
-                nav_controls,
-                text="Up",
-                width=54,
-                height=30,
-                fg_color=self.colors["input_bg"],
-                text_color=self.colors["text"],
-                border_width=1,
-                border_color=self.colors["border"],
-                command=lambda key=anchor: self._move_experience(key, -1),
-            ).pack(side="left", padx=(0, 6))
-            ctk.CTkButton(
-                nav_controls,
-                text="Down",
-                width=64,
-                height=30,
-                fg_color=self.colors["input_bg"],
-                text_color=self.colors["text"],
-                border_width=1,
-                border_color=self.colors["border"],
-                command=lambda key=anchor: self._move_experience(key, 1),
-            ).pack(side="left", padx=(0, 6))
-            ctk.CTkButton(
-                nav_controls,
-                text="Remove",
-                width=74,
-                height=30,
-                fg_color="transparent",
-                text_color=self.colors["text_muted"],
-                border_width=1,
-                border_color=self.colors["border"],
-                command=lambda key=anchor: self._remove_experience(key),
-            ).pack(side="left")
-
-            field_row_1 = ctk.CTkFrame(card, fg_color="transparent")
-            field_row_1.pack(fill="x", padx=30, pady=(2, 0))
-            company_frame = ctk.CTkFrame(field_row_1, fg_color="transparent")
-            company_frame.pack(side="left", fill="x", expand=True, padx=(0, 8))
-            title_frame = ctk.CTkFrame(field_row_1, fg_color="transparent")
-            title_frame.pack(side="left", fill="x", expand=True)
-            company_entry = self.create_input(company_frame, "Company", exp.get("company", ""), placeholder="e.g. Company name")
-            title_entry = self.create_input(title_frame, "Job Title", exp.get("title", ""), placeholder="e.g. Data Analyst")
-
-            field_row_2 = ctk.CTkFrame(card, fg_color="transparent")
-            field_row_2.pack(fill="x", padx=30, pady=(0, 0))
-            date_frame = ctk.CTkFrame(field_row_2, fg_color="transparent")
-            date_frame.pack(side="left", fill="x", expand=True, padx=(0, 8))
-            location_frame = ctk.CTkFrame(field_row_2, fg_color="transparent")
-            location_frame.pack(side="left", fill="x", expand=True)
-            date_entry = self.create_input(date_frame, "Date Range", exp.get("date_range", ""), placeholder="e.g. Apr 2025 - Oct 2025")
-            location_entry = self.create_input(location_frame, "Location", exp.get("location", ""), placeholder="e.g. London, UK")
-
-            aliases_text = ", ".join(exp.get("aliases", []))
-            aliases_entry = self.create_input(card, "Aliases (comma separated)", aliases_text, placeholder="e.g. Company short name, previous name")
-            for entry_widget in [company_entry, title_entry, date_entry, location_entry, aliases_entry]:
-                entry_widget.bind("<KeyRelease>", lambda e: self._on_experience_content_change())
-
-            ctk.CTkLabel(card, text="Role Headline (Optional)", font=ctk.CTkFont(size=13, weight="bold"), text_color=self.colors["text"]).pack(anchor="w", padx=30, pady=(10, 0))
-            headline_entry = ctk.CTkEntry(card, height=45, fg_color=self.colors["input_bg"],
+            # Optional Headline
+            ctk.CTkLabel(job_card, text="Role Headline (Optional)", font=ctk.CTkFont(size=13, weight="bold"), text_color=self.colors["text"]).pack(anchor="w", padx=30, pady=(10, 0))
+            headline_entry = ctk.CTkEntry(job_card, height=45, fg_color=self.colors["input_bg"],
                                          text_color=self.colors["text"], border_width=1,
                                          border_color=self.colors["border"], corner_radius=10,
-                                         placeholder_text="e.g. Led analytics modernization initiatives...",
+                                         placeholder_text="e.g. Developed high-performance analytics dashboards...",
                                          font=ctk.CTkFont(size=13, slant="italic"))
             headline_entry.pack(fill="x", padx=30, pady=(5, 10))
-            headline_entry.insert(0, exp.get("headline", ""))
-            headline_entry.bind("<KeyRelease>", lambda e: self._on_experience_content_change())
+            headline_entry.bind("<KeyRelease>", lambda e: self.update_live_preview())
+            self.job_headline_widgets[job_title] = headline_entry
 
-            bullets_text = self.create_textbox(card, "Role Highlights", "\n".join(exp.get("bullets", [])), height=150)
-            bullets_text.bind("<KeyRelease>", lambda e: self._on_experience_content_change())
-
-            self.job_text_widgets[anchor] = bullets_text
-            self.job_editor_widgets[anchor] = {
-                "include_var": include_var,
-                "company": company_entry,
-                "title": title_entry,
-                "date_range": date_entry,
-                "location": location_entry,
-                "aliases": aliases_entry,
-                "headline": headline_entry,
-            }
+            text_widget = self.create_textbox(job_card, "Role Highlights", "\n".join(default_bullets), height=150)
+            self.job_text_widgets[job_title] = text_widget
 
     def setup_cl_panel(self):
         card = self.create_card(self.cl_panel, "RECIPIENT & CONTEXT")
@@ -627,28 +393,6 @@ class ApplyCraftApp(ctk.CTk):
                             fg_color=self.colors["accent"], height=45, command=self.auto_sort)
         btn.pack(fill="x", padx=25, pady=25)
 
-        unmatched_card = self.create_card(self.import_panel, "UNMATCHED LINES")
-        ctk.CTkLabel(
-            unmatched_card,
-            text="Lines that did not match any company/title aliases appear here.",
-            font=ctk.CTkFont(size=12),
-            text_color=self.colors["text_muted"],
-        ).pack(anchor="w", padx=25, pady=(0, 10))
-        self.unmatched_text = ctk.CTkTextbox(
-            unmatched_card,
-            height=180,
-            fg_color=self.colors["bg"],
-            text_color=self.colors["text"],
-            border_width=1,
-            border_color=self.colors["border"],
-            corner_radius=12,
-            font=ctk.CTkFont(family="Inter", size=14),
-            wrap="word",
-            border_spacing=10,
-        )
-        self.unmatched_text.pack(fill="x", padx=30, pady=(0, 20))
-        self.unmatched_text.configure(state="disabled")
-
 
     def setup_preview_panel(self):
         # Preview Selector
@@ -679,7 +423,7 @@ class ApplyCraftApp(ctk.CTk):
         card = self.create_card(self.settings_panel, "FILE CONFIGURATION")
         
         ctk.CTkLabel(card, text="Select Active Template", font=ctk.CTkFont(size=13, weight="normal"), text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(10, 0))
-        self.template_selector = ctk.CTkSegmentedButton(card, values=list(self.templates.keys()),
+        self.template_selector = ctk.CTkSegmentedButton(card, values=["Template 1", "Template 2"],
                                                        variable=self.current_template_name,
                                                        command=self.update_template_path,
                                                        height=40,
@@ -687,91 +431,14 @@ class ApplyCraftApp(ctk.CTk):
                                                        selected_color=self.colors["accent"],
                                                        selected_hover_color=self.colors["accent"])
         self.template_selector.pack(fill="x", padx=25, pady=(8, 15))
-        self.template_path_value = ctk.CTkLabel(
-            card,
-            text=self.templates.get(self.current_template_name.get(), ""),
-            font=ctk.CTkFont(size=12),
-            text_color=self.colors["text_muted"],
-            anchor="w",
-            justify="left",
-        )
-        self.template_path_value.pack(fill="x", padx=25, pady=(0, 15))
-
-        candidate = dict(self.profile_data.get("candidate", {}))
-        candidate_card = self.create_card(self.settings_panel, "CANDIDATE PROFILE")
-        self.candidate_widgets["name"] = self.create_input(
-            candidate_card,
-            "Candidate Name",
-            candidate.get("name", ""),
-            placeholder="e.g. Jane Doe",
-        )
-        self.candidate_widgets["email"] = self.create_input(
-            candidate_card,
-            "Email",
-            candidate.get("email", ""),
-            placeholder="e.g. jane@email.com",
-        )
-        self.candidate_widgets["linkedin"] = self.create_input(
-            candidate_card,
-            "LinkedIn",
-            candidate.get("linkedin", ""),
-            placeholder="e.g. linkedin.com/in/jane",
-        )
-        self.candidate_widgets["location"] = self.create_input(
-            candidate_card,
-            "Location",
-            candidate.get("location", ""),
-            placeholder="e.g. Berlin, Germany",
-        )
-        self.candidate_widgets["relocation_visa_line"] = self.create_input(
-            candidate_card,
-            "Relocation/Visa Line",
-            candidate.get("relocation_visa_line", ""),
-            placeholder="Optional summary suffix",
-        )
-        relocation_var = ctk.BooleanVar(value=bool(candidate.get("show_relocation_visa_line", False)))
-        relocation_toggle = ctk.CTkSwitch(
-            candidate_card,
-            text="Show relocation/visa line in summary",
-            variable=relocation_var,
-            command=lambda: self._on_settings_change(),
-            text_color=self.colors["text"],
-        )
-        relocation_toggle.pack(anchor="w", padx=30, pady=(0, 20))
-        self.candidate_widgets["show_relocation_var"] = relocation_var
-
-        for key in ("name", "email", "linkedin", "location", "relocation_visa_line"):
-            self.candidate_widgets[key].bind("<KeyRelease>", lambda e: self._on_settings_change())
+        
+        self.template_path_entry = self.create_input(card, "CV Template Path", self.templates["Template 1"])
 
     def update_template_path(self, selected_name):
         path = self.templates.get(selected_name, "")
-        if hasattr(self, "template_path_value"):
-            self.template_path_value.configure(text=path)
-        self._update_template_capacity_label()
+        self.template_path_entry.delete(0, "end")
+        self.template_path_entry.insert(0, path)
         self.set_status(f"Switched to {selected_name}", "accent")
-        self.update_live_preview()
-
-    def _on_settings_change(self):
-        self._persist_profile_from_ui()
-        self.update_live_preview()
-
-    def _template_capacity(self, template_path):
-        if not template_path:
-            return 0
-        try:
-            return get_template_capacity(template_path)
-        except Exception as exc:
-            logger.warning(f"Could not read template capacity: {exc}")
-            return 0
-
-    def _update_template_capacity_label(self):
-        if not hasattr(self, "capacity_label"):
-            return
-        template = self.templates.get(self.current_template_name.get(), "")
-        capacity = self._template_capacity(template)
-        total = len(self.profile_data.get("experiences", []))
-        included = sum(1 for exp in self.profile_data.get("experiences", []) if bool(exp.get("include_in_cv", True)))
-        self.capacity_label.configure(text=f"Template slots: {capacity} | Included: {included} / Stored: {total}")
 
     # UI Helpers
     def create_card(self, parent, label):
@@ -817,32 +484,12 @@ class ApplyCraftApp(ctk.CTk):
         textbox.bind("<FocusOut>", lambda e: textbox.configure(border_color=self.colors["border"], border_width=1))
         return textbox
 
-    # --- ONBOARDING PANEL (V2 INTELLIGENCE) ---
-    def setup_onboarding_panel(self):
-        # Onboarding is intentionally disabled in strict 2-template mode.
-        return
-
-    def _load_template_onboarding(self):
-        return
-
-    def _run_onboarding_analysis(self, path):
-        return
-
-    def _render_onboarding_results(self):
-        return
-
-    def _create_onboarding_block_card(self, parent, num, block):
-        return {}
-
-    def _finalize_onboarding(self):
-        return
-
-    # --- PANEL SHIFTING ---
+    # Navigation Logic
     def show_panel(self, panel_to_show, btn_to_active, title):
-        for p in self.panels:
+        for p in [self.cv_panel, self.cl_panel, self.import_panel, self.settings_panel, self.audit_panel]:
             p.grid_forget()
         for b in [self.cv_btn, self.cl_btn, self.import_btn, self.settings_btn, self.audit_btn]:
-            b.configure(fg_color="transparent", text_color=self.colors["text_muted"])
+            b.configure(fg_color="transparent", text_color=self.colors["text_muted"], border_width=0)
         
         # Default behavior: Show preview and action bar
         self.preview_column.grid(row=0, column=1, sticky="nsew")
@@ -863,8 +510,13 @@ class ApplyCraftApp(ctk.CTk):
 
         panel_to_show.grid(row=1, column=0, sticky="nsew")
         
+        # Smooth Sidebar Transition (Immediate highlight, but we could fade colors)
         btn_to_active.configure(fg_color=self.colors["accent_soft"], 
-                                text_color=self.colors["accent"])
+                                text_color=self.colors["accent"], 
+                                border_width=0)
+        
+        # Entrance Animation
+        self.after(10, lambda: self.animate_panel_entrance(panel_to_show))
         
         self.title_label.configure(text=title)
 
@@ -917,45 +569,31 @@ class ApplyCraftApp(ctk.CTk):
         self.preview_text.configure(font=ctk.CTkFont(family="Times New Roman", size=new_size))
 
     def update_live_preview(self):
+        # Microfeedback status change with pulsing dot
         self.set_status("Updating preview", "accent")
         self._animate_status_pulse(0)
-
+        
         self.preview_text.configure(state="normal")
         self.preview_text.delete("0.0", "end")
-
+        
         company = self.company_entry.get().strip().title() or "[Company Name]"
         city = self.cl_city.get().strip().title()
         country = self.cl_country.get().strip().title()
-        candidate = self._collect_candidate_from_ui()
-        candidate_name = candidate.get("name", "").strip() or "Your Name"
-
+        
         if self.preview_mode.get() == "CV":
-            summary_text = self.summary_text.get("0.0", "end").strip()
-            if bool(candidate.get("show_relocation_visa_line", False)) and candidate.get("relocation_visa_line", "").strip():
-                summary_text = f"{summary_text} {candidate.get('relocation_visa_line').strip()}"
-            content = f"{candidate_name.upper()}\n\nPROFESSIONAL SUMMARY\n{summary_text}\n\n"
-            for exp in self._collect_experiences_from_ui():
-                if not bool(exp.get("include_in_cv", True)):
-                    continue
-                anchor = exp.get("anchor_key")
-                widget = self.job_text_widgets.get(anchor)
-                if not widget:
-                    continue
-                title_line = " | ".join(part for part in [exp.get("company", "").strip(), exp.get("title", "").strip()] if part)
-                meta_line = " | ".join(part for part in [exp.get("date_range", "").strip(), exp.get("location", "").strip()] if part)
-                heading = title_line or self._display_heading(exp)
-                content += f"{heading.upper()}\n"
-                if meta_line:
-                    content += f"{meta_line}\n"
+            location = self.current_location_entry.get().strip() or "Stockholm"
+            relocation_line = f"EU citizen, no visa required to work in EU. Currently in {location}, willing to relocate."
+            content = f"MADHAV MANOHAR GOPAL\n\nPROFESSIONAL SUMMARY\n{self.summary_text.get('0.0', 'end').strip()} {relocation_line}\n\n"
+            for job, widget in self.job_text_widgets.items():
+                content += f"{job.upper()}\n"
                 
-                headline = exp.get("headline", "").strip()
+                headline = self.job_headline_widgets[job].get().strip()
                 if headline:
-                    content += f"[{headline}]\n" # Simulating italics with brackets in plain text preview
+                    content += f"[{headline}]\n"
 
                 bullets = widget.get("0.0", "end").strip().split("\n")
-                for bullet in bullets:
-                    if bullet.strip():
-                        content += f"- {bullet.strip()}\n"
+                for b in bullets:
+                    if b.strip(): content += f"• {b.strip()}\n"
                 content += "\n"
         else:
             body = self.cl_body_text.get("0.0", "end").strip().replace("[Company Name]", company)
@@ -967,47 +605,96 @@ class ApplyCraftApp(ctk.CTk):
                 f"Dear {self.cl_hiring_manager.get()},\n\n"
                 f"{body}\n\n"
                 "Sincerely,\n"
-                f"{candidate_name}"
+                "Madhav Manohar Gopal"
             )
-
+            
         self.preview_text.insert("end", content)
-
-        line_count = int(self.preview_text.index("end-1c").split(".")[0])
+        
+        # Simple Page calculation (approximate by character count/lines)
+        line_count = int(self.preview_text.index('end-1c').split('.')[0])
         pages = max(1, (line_count // 55) + 1)
         self.page_indicator.configure(text=f"Page 1 / {pages}" if line_count < 55 else f"Pages: ~{pages}")
         if line_count > 55:
-            self.page_indicator.configure(text_color="orange")
+            self.page_indicator.configure(text_color="orange") # Warning!
         else:
             self.page_indicator.configure(text_color=self.colors["text_muted"])
 
         self.preview_text.configure(state="disabled")
-        self.after(500, lambda: self.set_status("Ready", "success"))
+        self.after(500, lambda: self.set_status("Ready", "success")) # Revert status after short delay
 
     def auto_sort(self):
         raw_text = self.import_text.get("0.0", "end").strip()
-        if not raw_text:
-            return
+        if not raw_text: return
+        
+        lines = raw_text.split("\n")
+        current_job = None
+        job_bullets = {}
+        
+        # Regex for common date patterns (e.g., "Jan 2024 – May 2025", "May 2025 – Present", "2022 - 2023")
+        # Matches months + year, or year-year ranges, or just "Month Year"
+        date_pattern = re.compile(
+            r"(?i)\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)\b.*\d{2,4}"
+            r"|\b\d{4}\s?[\-–]\s?(Present|\d{4}|\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b)"
+            r"|^Present$|^\d{4}$"
+        )
 
-        experiences = self._collect_experiences_from_ui()
-        sorted_bullets, unmatched_lines = auto_sort_experience_lines(raw_text, experiences)
+        def normalize_for_match(s):
+            # Remove all whitespace and common punctuation for a "fuzzy" match
+            return re.sub(r'[\s,.\-\|–]', '', s).upper()
 
-        for anchor, widget in self.job_text_widgets.items():
-            widget.delete("0.0", "end")
-            if anchor in sorted_bullets:
-                widget.insert("0.0", "\n".join(sorted_bullets[anchor]))
+        for line in lines:
+            line = line.strip()
+            if not line: continue
+            
+            # 1. Check for Job Title match
+            matched_job = None
+            norm_line = normalize_for_match(line)
+            
+            for title in JOB_POSITIONS.keys():
+                # Extract the company/main identifier (part before the delimiter)
+                company_part = re.split(r'[–\-\|]', title)[0].strip()
+                norm_company = normalize_for_match(company_part)
+                
+                # Use fuzzy normalized match
+                if norm_company and norm_company in norm_line and len(line) < 120:
+                    matched_job = title
+                    break
+            
+            if matched_job:
+                current_job = matched_job
+                job_bullets[current_job] = []
+                continue
+            
+            # 2. If we are within a job block, process bullets
+            if current_job:
+                # SKIP if it looks like a date range or metadata line
+                if date_pattern.search(line) and len(line) < 50:
+                    continue
+                
+                # CLEAN bullet characters from the start of the line
+                bullet_chars = ['•', '-', '*', '▪', '▫', '○', '●', '→', '►']
+                clean_line = line
+                for char in bullet_chars:
+                    if clean_line.startswith(char):
+                        # Some people paste " - Bullet", we want to remove the "-" and keep the rest
+                        clean_line = clean_line[1:].strip()
+                
+                # Further check: if line is just a city/country, it might be metadata too
+                # Usually these are very short lines right after dates
+                if len(clean_line) < 30 and any(x in line for x in [", ", "  "]):
+                    # Heuristic: might be "Bristol, UK" or similar
+                    # But we'll be careful not to skip actual short bullets
+                    pass
 
-        if self.unmatched_text is not None:
-            self.unmatched_text.configure(state="normal")
-            self.unmatched_text.delete("0.0", "end")
-            if unmatched_lines:
-                self.unmatched_text.insert("0.0", "\n".join(unmatched_lines))
-            self.unmatched_text.configure(state="disabled")
-
-        self._persist_profile_from_ui()
-        if unmatched_lines:
-            self.set_status(f"Bullets sorted. {len(unmatched_lines)} unmatched line(s).", "success")
-        else:
-            self.set_status("Bullets Sorted", "success")
+                if clean_line:
+                    job_bullets[current_job].append(clean_line)
+        
+        for job, bullets in job_bullets.items():
+            if job in self.job_text_widgets:
+                self.job_text_widgets[job].delete("0.0", "end")
+                self.job_text_widgets[job].insert("0.0", "\n".join(bullets))
+        
+        self.set_status("Bullets Sorted (Filtered Dates)", "success")
         self.show_cv_panel()
 
     def _animate_status_pulse(self, step):
@@ -1032,6 +719,7 @@ class ApplyCraftApp(ctk.CTk):
     def _start_gen(self, mode):
         company = self.company_entry.get().strip().title()
         cv_country = self.cv_country_entry.get().strip().title()
+        current_location = self.current_location_entry.get().strip().title()
         if not company:
             # Prompt via dialog
             dialog = ctk.CTkInputDialog(text="Enter Target Company Name:", title="Company Required")
@@ -1052,13 +740,17 @@ class ApplyCraftApp(ctk.CTk):
         
         # Gather Data
         summary = self.summary_text.get("0.0", "end").strip()
-        self._persist_profile_from_ui()
-        all_experiences = self._collect_experiences_from_ui()
-        selected_experiences = [exp for exp in all_experiences if bool(exp.get("include_in_cv", True))]
-        if not selected_experiences and all_experiences:
-            selected_experiences = [all_experiences[0]]
-        candidate_profile = self._collect_candidate_from_ui()
-
+        bullets = {}
+        headlines = {}
+        for job, widget in self.job_text_widgets.items():
+            text = widget.get("0.0", "end").strip()
+            if text:
+                bullets[job] = [b.strip() for b in text.split("\n") if b.strip()]
+            
+            headline = self.job_headline_widgets[job].get().strip()
+            if headline:
+                headlines[job] = headline
+        
         cl_data = {
             "hiring_manager": self.cl_hiring_manager.get().strip(),
             "city": self.cl_city.get().strip().title(),
@@ -1067,59 +759,19 @@ class ApplyCraftApp(ctk.CTk):
             "body": self.cl_body_text.get("0.0", "end").strip().replace("[Company Name]", company)
         }
         
-        selected_template = self.current_template_name.get()
-        template = self.templates.get(selected_template, "")
-        if not template:
-            self.set_status("Invalid template selection", "text_muted")
-            for btn in [self.gen_both_btn, self.gen_cv_btn, self.gen_cl_btn]:
-                btn.configure(state="normal")
-            return
-        capacity = self._template_capacity(template)
-        if capacity > 0 and len(selected_experiences) > capacity:
-            self.set_status(
-                f"Template has {capacity} base slots; extra experiences will be appended.",
-                "text_muted",
-            )
+        template = self.template_path_entry.get().strip()
+        threading.Thread(target=self._run_generation, args=(mode, template, company, cv_country, summary, bullets, cl_data, headlines, current_location), daemon=True).start()
 
-        bullets = {}
-        for idx, exp in enumerate(selected_experiences):
-            key = exp.get("anchor_key") or f"exp_{idx + 1}"
-            exp_bullets = exp.get("bullets", [])
-            if exp_bullets:
-                bullets[key] = exp_bullets
-        threading.Thread(
-            target=self._run_generation,
-            args=(mode, template, company, cv_country, summary, bullets, cl_data, selected_experiences, candidate_profile),
-            daemon=True,
-        ).start()
-
-    def _run_generation(self, mode, template, company, cv_country, summary, bullets, cl_data, experiences, candidate_profile):
+    def _run_generation(self, mode, template, company, cv_country, summary, bullets, cl_data, headlines=None, current_location=None):
         try:
             role_title = self.role_title_entry.get().strip()
             
             if mode == "cv":
-                success, result = self.cv_service.generate_cv(
-                    template,
-                    company,
-                    cv_country,
-                    summary,
-                    bullets,
-                    experiences=experiences,
-                    candidate_profile=candidate_profile,
-                )
+                success, result = self.cv_service.generate_cv(template, company, cv_country, summary, bullets, headlines=headlines, current_location=current_location)
             elif mode == "cl":
-                success, result = self.cv_service.generate_cl(company, cl_data, candidate_profile=candidate_profile)
+                success, result = self.cv_service.generate_cl(company, cl_data)
             else:
-                success, result = self.cv_service.generate_both(
-                    template,
-                    company,
-                    cv_country,
-                    summary,
-                    bullets,
-                    cl_data,
-                    experiences=experiences,
-                    candidate_profile=candidate_profile,
-                )
+                success, result = self.cv_service.generate_both(template, company, cv_country, summary, bullets, cl_data, headlines=headlines, current_location=current_location)
             
             # Additional update for role title in stats if it was provided
             if success and role_title:
@@ -1147,4 +799,3 @@ class ApplyCraftApp(ctk.CTk):
 if __name__ == "__main__":
     app = ApplyCraftApp()
     app.mainloop()
-

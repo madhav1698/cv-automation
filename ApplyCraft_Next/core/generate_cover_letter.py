@@ -13,8 +13,7 @@ if project_root not in sys.path:
 
 from helpers.logger import logger
 
-
-def generate_cover_letter(output_path, company_name, city, country, date_str, body_text, hiring_manager="Hiring Manager", candidate_name=""):
+def generate_cover_letter(output_path, company_name, city, country, date_str, body_text, hiring_manager="Hiring Manager", candidate_name="Madhav Manohar Gopal"):
     """
     Generates a cover letter docx file with premium formatting.
     """
@@ -64,7 +63,7 @@ def generate_cover_letter(output_path, company_name, city, country, date_str, bo
             rFonts.set(qn('w:hAnsi'), 'Times New Roman')
         return p
 
-    # Add Header
+    # Add Header (Always 'Hiring Manager' for the title)
     add_line("Hiring Manager")
     add_line(company_name)
     add_line(f"{city}, {country}")
@@ -84,7 +83,7 @@ def generate_cover_letter(output_path, company_name, city, country, date_str, bo
     
     # Add Closing
     add_line("Sincerely,")
-    add_line(candidate_name or "Your Name")
+    add_line(candidate_name)
     
     # Save
     doc.save(output_path)

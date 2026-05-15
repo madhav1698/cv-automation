@@ -28,37 +28,49 @@ class AuditSankey:
         # ── Count statuses ──────────────────────────────────────────────────────
         counts = {
             "In Process": 0, "Followed Up": 0,
-            "Rejected": 0, "Unknown": 0
+            "Rejected (Initial)": 0, "Rejected (Post-Interview)": 0, "Rejected (Post-Task)": 0,
+            "Rejected": 0, "Offer": 0, "Accepted": 0, "Unknown": 0
         }
         for app in stats.values():
             s = app.get("status", "Unknown")
-            # Minimal mapping just in case un-normalized data leaks
-            if s == "Applied": s = "In Process"
-            
             if s in counts:
                 counts[s] += 1
             elif "rejected" in s.lower():
-                counts["Rejected"] += 1
-            elif any(v in s for v in ["Interview", "Task", "Offer", "Applied"]):
+                if "interview" in s.lower(): counts["Rejected (Post-Interview)"] += 1
+                elif "task" in s.lower(): counts["Rejected (Post-Task)"] += 1
+                else: counts["Rejected (Initial)"] += 1
+            elif "offer" in s.lower(): counts["Offer"] += 1
+            elif "accepted" in s.lower(): counts["Accepted"] += 1
+            elif any(v in s for v in ["Interview", "Task", "Applied"]):
                 counts["In Process"] += 1
             else:
                 counts["Unknown"] += 1
 
         # ── Cumulative funnel (Success Path) ─────────────────────────────────────
-        # Applied (Total) -> In Process -> Outcome (Followed Up + Rejected)
-        s_outcome = counts["Followed Up"] + counts["Rejected"]
-        s_in_process = s_outcome + counts["In Process"]
+        # Stage 1: Applied (Total)
         s_total = total
-
+        
+        # Stage 2: In Process (Proceeded past initial screening)
+        # Dropout from Stage 1: Rejected (Initial) + Unknown/No Reply
+        s_rej_initial = counts["Rejected (Initial)"] + counts["Rejected"]
+        s_unk = counts["Unknown"]
+        
+        # Stage 3: Success (Offer or Accepted)
+        # Dropout from Stage 2: Rejected (Post-Interview/Post-Task)
+        s_success = counts["Offer"] + counts["Accepted"]
+        s_rej_post = counts["Rejected (Post-Interview)"] + counts["Rejected (Post-Task)"]
+        
+        s_in_process = s_success + s_rej_post
+        
         stages = [
-            ("JOBS APPLIED", s_total, "#6366F1", 0),
-            ("IN PROCESS",   s_in_process, "#8B5CF6", 0),
-            ("OUTCOME",      s_outcome, "#10B981", counts["Rejected"]),
+            ("APPLIED",    s_total,      "#6366F1", s_rej_initial + s_unk),
+            ("IN PROCESS", s_in_process, "#8B5CF6", s_rej_post),
+            ("SUCCESS",    s_success,    "#10B981", 0),
         ]
 
-        # Total rejections for legend
-        rej_total = counts["Rejected"]
-        unk_count = counts["Unknown"]
+        # Total rejections and unks for legend
+        rej_total = s_rej_initial + s_rej_post
+        unk_count = s_unk
 
         # ── Layout ───────────────────────────────────────────────────────────────
         node_w = 14

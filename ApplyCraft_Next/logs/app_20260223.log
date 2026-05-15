@@ -29,33 +29,3 @@ TypeError: unsupported operand type(s) for +: 'dict' and 'str'
 2026-02-23 16:10:10,201 - CvAutomation - INFO - Generated Cover Letter for Ryanair
 2026-02-23 16:13:57,071 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\23-02-26\Ryanair\Madhav_Manohar_Gopal_Cover_Letter.pdf
 2026-02-23 16:13:57,092 - CvAutomation - INFO - Generated Cover Letter for Ryanair
-2026-02-23 18:22:02,988 - CvAutomation - INFO - Using Legacy Fallback for Trial
-2026-02-23 18:22:02,988 - CvAutomation - ERROR - Failed to generate CV: Package not found at 'C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\core\..\templates\Madhav_Manohar Gopal_CV .docx'
-Traceback (most recent call last):
-  File "C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\core\cv_service.py", line 65, in generate_cv
-    update_cv_bullets(template_path, output_docx, summary, bullets)
-    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\core\update_cv.py", line 33, in update_cv_bullets
-    doc = Document(input_file)
-  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\api.py", line 27, in Document
-    document_part = cast("DocumentPart", Package.open(docx).main_document_part)
-                                         ~~~~~~~~~~~~^^^^^^
-  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\package.py", line 126, in open
-    pkg_reader = PackageReader.from_file(pkg_file)
-  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\pkgreader.py", line 22, in from_file
-    phys_reader = PhysPkgReader(pkg_file)
-  File "C:\Users\catch\AppData\Local\Programs\Python\Python313\Lib\site-packages\docx\opc\phys_pkg.py", line 21, in __new__
-    raise PackageNotFoundError("Package not found at '%s'" % pkg_file)
-docx.opc.exceptions.PackageNotFoundError: Package not found at 'C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\core\..\templates\Madhav_Manohar Gopal_CV .docx'
-2026-02-23 18:26:39,019 - CvAutomation - INFO - Using Legacy Fallback for Tria
-2026-02-23 18:26:39,056 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\23-02-26\Tria\Madhav_Manohar_Gopal_CV_Ireland.docx
-2026-02-23 18:26:39,057 - CvAutomation - INFO - Replaced: 20, Added: 2, Removed: 1 bullet points
-2026-02-23 18:26:39,057 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-02-23 18:26:49,714 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\23-02-26\Tria\Madhav_Manohar_Gopal_CV_Ireland.pdf
-2026-02-23 18:26:49,857 - CvAutomation - INFO - Generated CV for Tria in Ireland
-2026-02-23 18:28:20,742 - CvAutomation - INFO - Using Legacy Fallback for Tria
-2026-02-23 18:28:20,784 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\23-02-26\Tria\Madhav_Manohar_Gopal_CV_Ireland.docx
-2026-02-23 18:28:20,784 - CvAutomation - INFO - Replaced: 20, Added: 2, Removed: 1 bullet points
-2026-02-23 18:28:20,784 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-02-23 18:28:27,577 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\23-02-26\Tria\Madhav_Manohar_Gopal_CV_Ireland.pdf
-2026-02-23 18:28:27,673 - CvAutomation - INFO - Generated CV for Tria in Ireland

@@ -10,6 +10,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:41:01"
     },
     "4-2-26_Imperial": {
@@ -23,6 +24,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:41:08"
     },
     "5-2-26_Pagen": {
@@ -36,6 +38,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 08:59:10"
     },
     "9-2-26_Uppsala_University": {
@@ -49,6 +52,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-09 11:59:06"
     },
     "15-2-26_Bavarian_Nordic": {
@@ -58,11 +62,12 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:34:44"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "18-2-26_Tus": {
         "date": "18-02-26",
@@ -75,6 +80,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 11:56:23"
     },
     "11-2-26_Better_Collective": {
@@ -88,6 +94,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:36:52"
     },
     "18-2-26_Uber": {
@@ -97,11 +104,12 @@
         "country": "Netherlands",
         "country_manual": false,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-23 14:18:44"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "7-2-26_Unity": {
         "date": "07-02-26",
@@ -114,6 +122,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:28:27"
     },
     "18-2-26_Frostlogic_Careers": {
@@ -127,6 +136,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 17:10:32"
     },
     "10-2-26_Deploja": {
@@ -140,6 +150,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:34:46"
     },
     "19-2-26_Zetterholm__Partners_Ab": {
@@ -153,6 +164,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": false,
+        "notes": "",
         "last_updated": "2026-02-19 11:11:33"
     },
     "11-2-26_Senovo_It": {
@@ -166,6 +178,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:37:05"
     },
     "14-2-26_Star_Stable_Entertainment": {
@@ -179,6 +192,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 17:59:45"
     },
     "10-2-26_Mitigram": {
@@ -192,6 +206,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:02:46"
     },
     "11-2-26_Su_Gis": {
@@ -205,6 +220,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:45:46"
     },
     "6-2-26_eiti": {
@@ -218,6 +234,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:28:23"
     },
     "10-2-26_Solita": {
@@ -227,11 +244,12 @@
         "country": "Finland",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:31:23"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "4-2-26_Eigen": {
         "date": "04-02-26",
@@ -244,6 +262,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:32:22"
     },
     "5-2-26_Xebia": {
@@ -253,11 +272,12 @@
         "country": "Netherlands",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-19 09:51:59"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "17-2-26_Sandvik": {
         "date": "17-2-26",
@@ -270,6 +290,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-17 09:40:08"
     },
     "5-2-26_wpp": {
@@ -283,6 +304,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:33:06"
     },
     "16-2-26_Powermatch": {
@@ -296,6 +318,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 09:56:43"
     },
     "5-2-26_abacus": {
@@ -305,11 +328,12 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:36:06"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "6-2-26_bestseller": {
         "date": "06-02-26",
@@ -322,6 +346,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:20:09"
     },
     "16-2-26_Publicis_Groupe": {
@@ -335,6 +360,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 17:41:02"
     },
     "18-2-26_Newcastle_University": {
@@ -348,6 +374,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:21:09"
     },
     "12-2-26_Antire": {
@@ -361,6 +388,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:55:12"
     },
     "7-2-26_Qliro": {
@@ -374,6 +402,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:28:20"
     },
     "11-2-26_Vellox": {
@@ -387,6 +416,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:55:31"
     },
     "7-2-26_Novo_Nordisk": {
@@ -400,6 +430,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:28:26"
     },
     "18-2-26_EpiqEnergy": {
@@ -413,6 +444,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 10:09:10"
     },
     "7-2-26_Nato": {
@@ -426,6 +458,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:02:33"
     },
     "17-2-26_Exclusive_Networks": {
@@ -439,6 +472,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-17 14:24:31"
     },
     "19-2-26_Boozt": {
@@ -452,6 +486,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 11:44:30"
     },
     "13-2-26_Planet_Pharma": {
@@ -465,6 +500,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:45:04"
     },
     "6-2-26_Husqvarna_Group": {
@@ -478,6 +514,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:21:40"
     },
     "12-2-26_Konecranes": {
@@ -491,6 +528,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:01:24"
     },
     "16-2-26_Wpp_Media": {
@@ -504,6 +542,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 17:29:31"
     },
     "13-2-26_Nordplay_Group": {
@@ -513,11 +552,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 18:01:51"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "17-2-26_Haybury": {
         "date": "17-2-26",
@@ -530,6 +570,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-17 22:16:00"
     },
     "17-2-26_Amazon": {
@@ -539,11 +580,12 @@
         "country": "Spain",
         "country_manual": false,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-23 10:11:08"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "4-2-26_UHG": {
         "date": "04-02-26",
@@ -552,11 +594,12 @@
         "country": "Ireland",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:33:52"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "4-2-26_DreamData": {
         "date": "04-02-26",
@@ -565,11 +608,12 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:34:01"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "9-2-26_Leovegas_Group": {
         "date": "9-2-26",
@@ -578,11 +622,12 @@
         "country": "Sweden",
         "country_manual": false,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:33:14"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "10-2-26_Solvex_Solutions": {
         "date": "10-02-26",
@@ -595,6 +640,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:53:45"
     },
     "15-2-26_Stellar_Capacity": {
@@ -608,6 +654,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:43:12"
     },
     "11-2-26_Xeneta": {
@@ -621,6 +668,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 12:59:19"
     },
     "5-2-26_Nokia": {
@@ -630,11 +678,12 @@
         "country": "Finland",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:32:55"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "4-2-26_Nordregio": {
         "date": "04-02-26",
@@ -647,6 +696,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:47:48"
     },
     "5-2-26_Kognity": {
@@ -656,11 +706,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:32:34"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "9-2-26_Flatpay": {
         "date": "09-02-26",
@@ -673,6 +724,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:32:07"
     },
     "10-2-26_Dnv": {
@@ -682,11 +734,12 @@
         "country": "Norway",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-23 13:55:51"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "18-02-26_Handelsbanken": {
         "date": "22-01-26",
@@ -699,6 +752,7 @@
         "status_manual": false,
         "manual": true,
         "cv_found": false,
+        "notes": "",
         "last_updated": "2026-02-18 17:06:21"
     },
     "16-2-26_Netcompany": {
@@ -712,6 +766,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 21:24:07"
     },
     "15-2-26_Costa_Coffee": {
@@ -721,11 +776,12 @@
         "country": "UK",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:59:29"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "14-2-26_Royal_College_Of_Surgeons_In_Ireland": {
         "date": "14-2-26",
@@ -738,6 +794,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-14 15:20:18"
     },
     "19-2-26_Flatpay": {
@@ -751,6 +808,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 09:57:10"
     },
     "9-2-26_Geoguessr": {
@@ -760,11 +818,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:31:44"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "7-2-26_Digifarm": {
         "date": "07-02-26",
@@ -777,6 +836,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:02:38"
     },
     "11-2-26_Hays": {
@@ -790,6 +850,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:34:13"
     },
     "9-2-26_Esem": {
@@ -803,6 +864,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:30:56"
     },
     "6-2-26_smadex": {
@@ -816,6 +878,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:18:03"
     },
     "13-2-26_Deutsche_Bank": {
@@ -829,6 +892,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:01:14"
     },
     "16-2-26_Webbeds": {
@@ -842,6 +906,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 10:37:26"
     },
     "10-2-26_Raysearch_Laboratories": {
@@ -855,6 +920,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:01:57"
     },
     "6-2-26_connexus": {
@@ -864,11 +930,12 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:33:36"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "6-2-26_volvo": {
         "date": "06-02-26",
@@ -881,6 +948,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:19:32"
     },
     "16-2-26_Danish_Refugee_Council": {
@@ -894,6 +962,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 17:06:37"
     },
     "5-2-26_city": {
@@ -903,11 +972,12 @@
         "country": "Ireland",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-19 09:56:32"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "4-2-26_Sams\u00f8e_Sams\u00f8e": {
         "date": "04-02-26",
@@ -920,6 +990,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:32:36"
     },
     "18-2-26_Citizenm": {
@@ -933,6 +1004,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 10:44:34"
     },
     "4-2-26_Supercell": {
@@ -942,11 +1014,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:33:58"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "18-2-26_Tasman_Analytics": {
         "date": "18-2-26",
@@ -955,11 +1028,12 @@
         "country": "Netherlands",
         "country_manual": false,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 18:04:09"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "16-2-26_Enode": {
         "date": "16-2-26",
@@ -972,6 +1046,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 11:01:53"
     },
     "12-2-26_Mailerlite": {
@@ -985,6 +1060,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-12 15:01:35"
     },
     "16-2-26_Voltrac": {
@@ -998,6 +1074,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 09:45:04"
     },
     "13-2-26_Deutsche_B\u00f6rse_Group": {
@@ -1011,6 +1088,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:00:48"
     },
     "9-2-26_Universum": {
@@ -1024,6 +1102,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:06:38"
     },
     "11-2-26_Kongsberg_Maritime": {
@@ -1037,6 +1116,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:39:23"
     },
     "6-2-26_avaron": {
@@ -1046,11 +1126,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:31:54"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "19-2-26_Playground_Group": {
         "date": "19-2-26",
@@ -1059,11 +1140,12 @@
         "country": "Sweden",
         "country_manual": false,
         "role_title": "Data Platform Engineer",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-23 09:01:21"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "10-2-26_Kognity": {
         "date": "10-02-26",
@@ -1072,11 +1154,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:35:58"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "4-2-26_Magasin_du_Nord": {
         "date": "04-02-26",
@@ -1089,6 +1172,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:41:03"
     },
     "16-2-26_Einride": {
@@ -1102,6 +1186,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 11:45:33"
     },
     "10-2-26_Wolt": {
@@ -1115,6 +1200,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:38:32"
     },
     "17-2-26_Uwe": {
@@ -1128,6 +1214,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-17 21:01:20"
     },
     "5-2-26_WeTravel": {
@@ -1137,11 +1224,12 @@
         "country": "Netherlands",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:32:28"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "4-2-26_Hays": {
         "date": "04-02-26",
@@ -1154,6 +1242,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:41:06"
     },
     "10-2-26_Zalando": {
@@ -1163,11 +1252,12 @@
         "country": "Finland",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:37:45"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "13-2-26_Foodora_Ab": {
         "date": "13-02-26",
@@ -1180,6 +1270,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:00:57"
     },
     "13-2-26_Swedbank": {
@@ -1193,6 +1284,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:01:29"
     },
     "13-2-26_Coop": {
@@ -1206,6 +1298,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:43:37"
     },
     "3-2-26_StormGeo": {
@@ -1219,6 +1312,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:46:57"
     },
     "9-2-26_Verisure": {
@@ -1232,6 +1326,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:18:10"
     },
     "15-2-26_Karolinska_Institute": {
@@ -1245,6 +1340,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 17:59:38"
     },
     "12-2-26_Enode": {
@@ -1254,11 +1350,12 @@
         "country": "Norway",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:28:36"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "19-2-26_Telenor": {
         "date": "19-2-26",
@@ -1271,6 +1368,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 11:44:30"
     },
     "13-2-26_Deploja": {
@@ -1284,6 +1382,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:39:59"
     },
     "12-2-26_Kustom": {
@@ -1297,6 +1396,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:40:06"
     },
     "10-2-26_Academic_Work": {
@@ -1306,11 +1406,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:31:36"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "12-2-26_Abbott": {
         "date": "12-02-26",
@@ -1323,6 +1424,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:37:20"
     },
     "13-2-26_Aktia_Bank_Plc": {
@@ -1336,6 +1438,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:01:08"
     },
     "6-2-26_atrium": {
@@ -1349,6 +1452,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:23:52"
     },
     "12-2-26_Postnord": {
@@ -1362,6 +1466,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:28:19"
     },
     "4-2-26_SoTalent": {
@@ -1371,11 +1476,12 @@
         "country": "Netherlands",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:32:41"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "16-2-26_Agni": {
         "date": "16-2-26",
@@ -1388,6 +1494,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 21:02:48"
     },
     "9-2-26_Quinyx": {
@@ -1401,6 +1508,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:20:14"
     },
     "5-2-26_reach_subsea": {
@@ -1414,6 +1522,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:57:49"
     },
     "13-2-26_Sensor_F\u00f6rs\u00e4kring_Norden_Ab": {
@@ -1427,6 +1536,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:01:02"
     },
     "10-2-26_Hm": {
@@ -1440,6 +1550,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:34:20"
     },
     "08-02-26_Vattenfall": {
@@ -1453,6 +1564,7 @@
         "status_manual": false,
         "manual": true,
         "cv_found": false,
+        "notes": "",
         "last_updated": "2026-02-18 17:07:35"
     },
     "17-2-26_Tetra_Pak": {
@@ -1466,6 +1578,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-17 09:23:52"
     },
     "6-2-26_smartly": {
@@ -1475,11 +1588,12 @@
         "country": "Finland",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:04:43"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "6-2-26_incluso": {
         "date": "06-02-26",
@@ -1488,11 +1602,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:33:21"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "17-2-26_Fever": {
         "date": "17-2-26",
@@ -1505,6 +1620,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-17 21:58:08"
     },
     "27-01-26_Maynooth_University": {
@@ -1518,6 +1634,7 @@
         "status_manual": false,
         "manual": true,
         "cv_found": false,
+        "notes": "",
         "last_updated": "2026-02-18 14:15:41"
     },
     "16-2-26_Nexer_Tech_Talent": {
@@ -1531,6 +1648,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 21:47:45"
     },
     "11-2-26_Sticky_Solar_Power": {
@@ -1544,6 +1662,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:01:38"
     },
     "5-2-26_Salling_Group": {
@@ -1553,11 +1672,12 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:31:59"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "18-2-26_Migx_Ag": {
         "date": "18-2-26",
@@ -1570,6 +1690,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 14:07:41"
     },
     "18-2-26_Blenda_Labs": {
@@ -1583,6 +1704,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:41:58"
     },
     "10-2-26_Frostlogic": {
@@ -1596,6 +1718,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:39:18"
     },
     "10-2-26_Mindway_Ai": {
@@ -1605,11 +1728,12 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:31:30"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "18-2-26_Nordea": {
         "date": "18-2-26",
@@ -1622,6 +1746,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:03:17"
     },
     "6-2-26_Hm": {
@@ -1631,11 +1756,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:33:14"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "19-2-26_Embark_Studios": {
         "date": "19-2-26",
@@ -1648,6 +1774,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 11:44:55"
     },
     "17-2-26_Magma_Math": {
@@ -1657,11 +1784,12 @@
         "country": "Sweden",
         "country_manual": false,
         "role_title": "AI Engineer",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-19 16:18:26"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "6-2-26_elvium": {
         "date": "06-02-26",
@@ -1670,11 +1798,12 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 17:03:54"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "13-2-26_Wiklunds": {
         "date": "13-02-26",
@@ -1687,6 +1816,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:01:19"
     },
     "10-2-26_Northmill": {
@@ -1700,6 +1830,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:38:02"
     },
     "4-2-26_SAMY": {
@@ -1713,6 +1844,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:47:20"
     },
     "7-2-26_Sievo": {
@@ -1726,6 +1858,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 18:02:28"
     },
     "5-2-26_orange": {
@@ -1739,6 +1872,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 09:53:47"
     },
     "10-2-26_Spotify": {
@@ -1752,6 +1886,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 15:31:17"
     },
     "11-02-26_ICIMS": {
@@ -1765,6 +1900,7 @@
         "status_manual": false,
         "manual": true,
         "cv_found": false,
+        "notes": "",
         "last_updated": "2026-02-18 14:52:28"
     },
     "10-2-26_Eir_Business_Talent": {
@@ -1778,6 +1914,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:14:12"
     },
     "4-2-26_UppsalaUniversity": {
@@ -1791,6 +1928,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 17:54:04"
     },
     "6-2-26_magnit": {
@@ -1804,6 +1942,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:24:32"
     },
     "17-2-26_Bending_Spoons": {
@@ -1813,11 +1952,12 @@
         "country": "Spain",
         "country_manual": false,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-20 17:29:13"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "17-2-26_Trustpilot": {
         "date": "17-2-26",
@@ -1830,6 +1970,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-17 16:29:47"
     },
     "19-2-26_Munters": {
@@ -1843,6 +1984,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 10:58:26"
     },
     "11-2-26_Applegreen": {
@@ -1856,6 +1998,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:52:58"
     },
     "12-2-26_Dustin": {
@@ -1869,6 +2012,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 16:54:31"
     },
     "17-2-26_Tobii_Dynavox": {
@@ -1882,6 +2026,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-17 12:58:18"
     },
     "16-2-26_Freenow": {
@@ -1895,6 +2040,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-16 22:00:28"
     },
     "8-2-26_Sobi": {
@@ -1904,11 +2050,12 @@
         "country": "Sweden",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 16:48:14"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "18-2-26_Norwegian": {
         "date": "18-2-26",
@@ -1921,6 +2068,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 09:27:50"
     },
     "16-2-26_Sd_Worx": {
@@ -1930,11 +2078,12 @@
         "country": "Spain",
         "country_manual": false,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-19 09:56:54"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "18-2-26_Ceartas": {
         "date": "18-2-26",
@@ -1947,6 +2096,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-18 13:49:28"
     },
     "5-2-26_Proofpoint": {
@@ -1956,11 +2106,12 @@
         "country": "Ireland",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 15:33:00"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "7-2-26_Cm_Biomass": {
         "date": "07-02-26",
@@ -1969,11 +2120,12 @@
         "country": "Denmark",
         "country_manual": true,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 18:02:10"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "6-2-26_incluso_PBI": {
         "date": "06-02-26",
@@ -1986,6 +2138,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:24:35"
     },
     "16-2-26_BookingCom": {
@@ -1995,11 +2148,12 @@
         "country": "Netherlands",
         "country_manual": false,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-18 18:08:49"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "17-2-26_Opus": {
         "date": "17-2-26",
@@ -2008,11 +2162,12 @@
         "country": "Spain",
         "country_manual": false,
         "role_title": "",
-        "status": "Rejected",
+        "status": "Rejected (Initial)",
         "status_manual": true,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-20 16:43:12"
+        "notes": "",
+        "last_updated": "2026-05-15 19:39:37"
     },
     "5-2-26_tataa": {
         "date": "05-02-26",
@@ -2025,6 +2180,7 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 09:51:18"
     },
     "19-2-26_Veritaz": {
@@ -2038,6 +2194,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 12:23:24"
     },
     "19-2-26_M\u00f6lnlycke": {
@@ -2051,6 +2208,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 12:54:14"
     },
     "19-2-26_Cambridge_University": {
@@ -2064,6 +2222,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 14:15:55"
     },
     "19-2-26_Universidad_Europea": {
@@ -2077,6 +2236,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 16:18:03"
     },
     "19-2-26_Academic_Work": {
@@ -2090,6 +2250,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 17:38:21"
     },
     "19-2-26_Linkedin": {
@@ -2103,6 +2264,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 17:43:50"
     },
     "19-2-26_Siemens": {
@@ -2116,6 +2278,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 22:16:42"
     },
     "19-2-26_Technological_University_Of_Shannon": {
@@ -2129,6 +2292,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 22:16:42"
     },
     "19-2-26_Enersense_International_Oyj": {
@@ -2142,6 +2306,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-19 22:16:42"
     },
     "20-2-26_Veritaz": {
@@ -2155,6 +2320,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 16:58:49"
     },
     "20-2-26_Lovable": {
@@ -2168,6 +2334,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:13:56"
     },
     "20-2-26_Boliden": {
@@ -2181,6 +2348,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 10:13:56"
     },
     "20-2-26_Conversionista": {
@@ -2194,6 +2362,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 14:29:14"
     },
     "20-2-26_Utmost_Group_Limited": {
@@ -2207,6 +2376,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 14:53:13"
     },
     "20-2-26_Jazz_Pharmaceuticals": {
@@ -2220,6 +2390,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 15:38:16"
     },
     "20-2-26_Tcs": {
@@ -2233,6 +2404,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 15:38:16"
     },
     "20-2-26_Omnitel": {
@@ -2246,6 +2418,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 15:57:42"
     },
     "20-2-26_Sas": {
@@ -2259,6 +2432,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 16:26:49"
     },
     "20-2-26_Coeo": {
@@ -2272,6 +2446,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 17:26:48"
     },
     "20-2-26_Seb": {
@@ -2285,6 +2460,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-20 17:28:57"
     },
     "21-2-26_Designer_Group": {
@@ -2298,6 +2474,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-22 21:26:51"
     },
     "22-2-26_Scania_Group": {
@@ -2311,6 +2488,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:01:10"
     },
     "22-2-26_Lundbeck": {
@@ -2324,6 +2502,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:01:10"
     },
     "22-2-26_Netcompany": {
@@ -2337,6 +2516,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:01:10"
     },
     "22-2-26_Workhuman": {
@@ -2350,6 +2530,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:01:10"
     },
     "22-2-26_Arrive": {
@@ -2363,6 +2544,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 09:01:10"
     },
     "23-2-26_Tui": {
@@ -2376,6 +2558,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 11:42:50"
     },
     "23-2-26_Fruition_Group": {
@@ -2389,6 +2572,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 11:42:50"
     },
     "23-2-26_Edreams_Odigeo": {
@@ -2402,6 +2586,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 11:42:50"
     },
     "23-2-26_Glovo": {
@@ -2415,6 +2600,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 11:42:50"
     },
     "23-2-26_Sabia_Personal": {
@@ -2428,6 +2614,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 11:42:50"
     },
     "23-2-26_Vidaxl": {
@@ -2441,6 +2628,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 13:55:40"
     },
     "23-2-26_Brainrocket": {
@@ -2454,6 +2642,7 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 15:10:15"
     },
     "23-02-26_Ryanair": {
@@ -2467,25 +2656,97 @@
         "status_manual": true,
         "manual": false,
         "cv_found": true,
+        "notes": "",
         "last_updated": "2026-02-23 16:22:19"
     },
-    "23-02-26_Trial": {
-        "date": "23-02-26",
-        "company": "Trial",
-        "folder_name": "Trial",
-        "country": "Unknown",
+    "02-03-26_Autocom_Diagnostic_Partner_Ab": {
+        "date": "02-03-26",
+        "company": "Autocom Diagnostic Partner Ab",
+        "folder_name": "Autocom_Diagnostic_Partner_Ab",
+        "country": "Sweden",
         "country_manual": false,
         "role_title": "",
         "status": "Unknown",
         "status_manual": false,
         "manual": false,
-        "cv_found": false,
-        "last_updated": "2026-02-23 18:22:02"
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
     },
-    "23-02-26_Tria": {
-        "date": "23-02-26",
-        "company": "Tria",
-        "folder_name": "Tria",
+    "02-03-26_Ioi": {
+        "date": "02-03-26",
+        "company": "Ioi",
+        "folder_name": "Ioi",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-03-26_Jeppesen_Foreflight": {
+        "date": "02-03-26",
+        "company": "Jeppesen Foreflight",
+        "folder_name": "Jeppesen_Foreflight",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-03-26_Kognity": {
+        "date": "02-03-26",
+        "company": "Kognity",
+        "folder_name": "Kognity",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-03-26_Opera": {
+        "date": "02-03-26",
+        "company": "Opera",
+        "folder_name": "Opera",
+        "country": "Norway",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-03-26_Paradox": {
+        "date": "02-03-26",
+        "company": "Paradox",
+        "folder_name": "Paradox",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-03-26_Realtime_Recruitment": {
+        "date": "02-03-26",
+        "company": "Realtime Recruitment",
+        "folder_name": "Realtime_Recruitment",
         "country": "Ireland",
         "country_manual": false,
         "role_title": "",
@@ -2493,12 +2754,699 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-02-23 18:30:45"
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
     },
-    "08-03-26_Random": {
-        "date": "08-03-26",
-        "company": "Random",
-        "folder_name": "Random",
+    "02-03-26_Singa": {
+        "date": "02-03-26",
+        "company": "Singa",
+        "folder_name": "Singa",
+        "country": "Finland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-03-26_Swedbank": {
+        "date": "02-03-26",
+        "company": "Swedbank",
+        "folder_name": "Swedbank",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-03-26_Sweetspot": {
+        "date": "02-03-26",
+        "company": "Sweetspot",
+        "folder_name": "Sweetspot",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-04-26_Anyfin": {
+        "date": "02-04-26",
+        "company": "Anyfin",
+        "folder_name": "Anyfin",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-04-26_Fruition_Group": {
+        "date": "02-04-26",
+        "company": "Fruition Group",
+        "folder_name": "Fruition_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-04-26_Sterling_Engineering_Ltd_-_Ireland_&_Europe": {
+        "date": "02-04-26",
+        "company": "Sterling Engineering Ltd - Ireland & Europe",
+        "folder_name": "Sterling_Engineering_Ltd_-_Ireland_&_Europe",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-04-26_Wedo": {
+        "date": "02-04-26",
+        "company": "Wedo",
+        "folder_name": "Wedo",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-05-26_Holafly": {
+        "date": "02-05-26",
+        "company": "Holafly",
+        "folder_name": "Holafly",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "02-05-26_Lidl": {
+        "date": "02-05-26",
+        "company": "Lidl",
+        "folder_name": "Lidl",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:35:59"
+    },
+    "03-03-26_Equalit": {
+        "date": "03-03-26",
+        "company": "Equalit",
+        "folder_name": "Equalit",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Ezo_Ev_Charging": {
+        "date": "03-03-26",
+        "company": "Ezo Ev Charging",
+        "folder_name": "Ezo_Ev_Charging",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Grid_Dynamics": {
+        "date": "03-03-26",
+        "company": "Grid Dynamics",
+        "folder_name": "Grid_Dynamics",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Korn_Ferry": {
+        "date": "03-03-26",
+        "company": "Korn Ferry",
+        "folder_name": "Korn_Ferry",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Perk": {
+        "date": "03-03-26",
+        "company": "Perk",
+        "folder_name": "Perk",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Prima": {
+        "date": "03-03-26",
+        "company": "Prima",
+        "folder_name": "Prima",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Ryanair": {
+        "date": "03-03-26",
+        "company": "Ryanair",
+        "folder_name": "Ryanair",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Sse": {
+        "date": "03-03-26",
+        "company": "Sse",
+        "folder_name": "Sse",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Strive_Search": {
+        "date": "03-03-26",
+        "company": "Strive Search",
+        "folder_name": "Strive_Search",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_The_Coca-Cola_Company": {
+        "date": "03-03-26",
+        "company": "The Coca-Cola Company",
+        "folder_name": "The_Coca-Cola_Company",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_The_Lego_Group": {
+        "date": "03-03-26",
+        "company": "The Lego Group",
+        "folder_name": "The_Lego_Group",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-03-26_Visa": {
+        "date": "03-03-26",
+        "company": "Visa",
+        "folder_name": "Visa",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-04-26_Redeploy": {
+        "date": "03-04-26",
+        "company": "Redeploy",
+        "folder_name": "Redeploy",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-05-26_Ai_Jobs": {
+        "date": "03-05-26",
+        "company": "Ai Jobs",
+        "folder_name": "Ai_Jobs",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-05-26_Bairesdev": {
+        "date": "03-05-26",
+        "company": "Bairesdev",
+        "folder_name": "Bairesdev",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-05-26_Berkley_Group": {
+        "date": "03-05-26",
+        "company": "Berkley Group",
+        "folder_name": "Berkley_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-05-26_Ergo_It_Recruitment_Services": {
+        "date": "03-05-26",
+        "company": "Ergo It Recruitment Services",
+        "folder_name": "Ergo_It_Recruitment_Services",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-05-26_Google": {
+        "date": "03-05-26",
+        "company": "Google",
+        "folder_name": "Google",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-05-26_Sourced": {
+        "date": "03-05-26",
+        "company": "Sourced",
+        "folder_name": "Sourced",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-05-26_Sse": {
+        "date": "03-05-26",
+        "company": "Sse",
+        "folder_name": "Sse",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "03-05-26_The_Citco_Group_Limited": {
+        "date": "03-05-26",
+        "company": "The Citco Group Limited",
+        "folder_name": "The_Citco_Group_Limited",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-03-26_Assa_Abloy": {
+        "date": "04-03-26",
+        "company": "Assa Abloy",
+        "folder_name": "Assa_Abloy",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-03-26_Bcg": {
+        "date": "04-03-26",
+        "company": "Bcg",
+        "folder_name": "Bcg",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-03-26_Sse": {
+        "date": "04-03-26",
+        "company": "Sse",
+        "folder_name": "Sse",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-03-26_Temu": {
+        "date": "04-03-26",
+        "company": "Temu",
+        "folder_name": "Temu",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Central_Bank_Of_Ireland": {
+        "date": "04-04-26",
+        "company": "Central Bank Of Ireland",
+        "folder_name": "Central_Bank_Of_Ireland",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Darwin_Hawkins": {
+        "date": "04-04-26",
+        "company": "Darwin Hawkins",
+        "folder_name": "Darwin_Hawkins",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Devies_Digital_Core": {
+        "date": "04-04-26",
+        "company": "Devies Digital Core",
+        "folder_name": "Devies_Digital_Core",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Fruition_Group": {
+        "date": "04-04-26",
+        "company": "Fruition Group",
+        "folder_name": "Fruition_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Hitachi_Energy": {
+        "date": "04-04-26",
+        "company": "Hitachi Energy",
+        "folder_name": "Hitachi_Energy",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Irish_College_Of_Gps": {
+        "date": "04-04-26",
+        "company": "Irish College Of Gps",
+        "folder_name": "Irish_College_Of_Gps",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Kpmg": {
+        "date": "04-04-26",
+        "company": "Kpmg",
+        "folder_name": "Kpmg",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Novo_Nordisk": {
+        "date": "04-04-26",
+        "company": "Novo Nordisk",
+        "folder_name": "Novo_Nordisk",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "04-04-26_Trulioo": {
+        "date": "04-04-26",
+        "company": "Trulioo",
+        "folder_name": "Trulioo",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "05-03-26_Eurofragance_Slu": {
+        "date": "05-03-26",
+        "company": "Eurofragance Slu",
+        "folder_name": "Eurofragance_Slu",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "05-03-26_Glovo": {
+        "date": "05-03-26",
+        "company": "Glovo",
+        "folder_name": "Glovo",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "05-03-26_Methodius_It_Recruitment": {
+        "date": "05-03-26",
+        "company": "Methodius It Recruitment",
+        "folder_name": "Methodius_It_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "05-03-26_Standab": {
+        "date": "05-03-26",
+        "company": "Standab",
+        "folder_name": "Standab",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "05-03-26_Wolt": {
+        "date": "05-03-26",
+        "company": "Wolt",
+        "folder_name": "Wolt",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "05-05-26_Agoda": {
+        "date": "05-05-26",
+        "company": "Agoda",
+        "folder_name": "Agoda",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "05-05-26_Codebasics": {
+        "date": "05-05-26",
+        "company": "Codebasics",
+        "folder_name": "Codebasics",
         "country": "Unknown",
         "country_manual": false,
         "role_title": "",
@@ -2506,12 +3454,1371 @@
         "status_manual": false,
         "manual": false,
         "cv_found": true,
-        "last_updated": "2026-03-08 12:44:28"
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
     },
-    "09-03-26_Random": {
+    "05-05-26_Echelon_Data_Centres": {
+        "date": "05-05-26",
+        "company": "Echelon Data Centres",
+        "folder_name": "Echelon_Data_Centres",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "05-05-26_Rws_Group": {
+        "date": "05-05-26",
+        "company": "Rws Group",
+        "folder_name": "Rws_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "06-03-26_Amendo": {
+        "date": "06-03-26",
+        "company": "Amendo",
+        "folder_name": "Amendo",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "06-03-26_Boliden": {
+        "date": "06-03-26",
+        "company": "Boliden",
+        "folder_name": "Boliden",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "06-03-26_Musgrave": {
+        "date": "06-03-26",
+        "company": "Musgrave",
+        "folder_name": "Musgrave",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "06-05-26_Albany_Beck": {
+        "date": "06-05-26",
+        "company": "Albany Beck",
+        "folder_name": "Albany_Beck",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "06-05-26_Cognizant": {
+        "date": "06-05-26",
+        "company": "Cognizant",
+        "folder_name": "Cognizant",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "06-05-26_Morgan_Mckinley": {
+        "date": "06-05-26",
+        "company": "Morgan Mckinley",
+        "folder_name": "Morgan_Mckinley",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "06-05-26_Sigmar_Recruitment": {
+        "date": "06-05-26",
+        "company": "Sigmar Recruitment",
+        "folder_name": "Sigmar_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "06-05-26_The_Recruitment_Company": {
+        "date": "06-05-26",
+        "company": "The Recruitment Company",
+        "folder_name": "The_Recruitment_Company",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "07-04-26_Avy": {
+        "date": "07-04-26",
+        "company": "Avy",
+        "folder_name": "Avy",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "07-04-26_Dnv": {
+        "date": "07-04-26",
+        "company": "Dnv",
+        "folder_name": "Dnv",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "07-04-26_Lely": {
+        "date": "07-04-26",
+        "company": "Lely",
+        "folder_name": "Lely",
+        "country": "Netherlands",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "07-04-26_Marsh": {
+        "date": "07-04-26",
+        "company": "Marsh",
+        "folder_name": "Marsh",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "07-05-26_Amcs_Group": {
+        "date": "07-05-26",
+        "company": "Amcs Group",
+        "folder_name": "Amcs_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "07-05-26_Arachas_Corporate_Brokers_Ltd": {
+        "date": "07-05-26",
+        "company": "Arachas Corporate Brokers Ltd",
+        "folder_name": "Arachas_Corporate_Brokers_Ltd",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "07-05-26_Stalis": {
+        "date": "07-05-26",
+        "company": "Stalis",
+        "folder_name": "Stalis",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "07-05-26_Tcs": {
+        "date": "07-05-26",
+        "company": "Tcs",
+        "folder_name": "Tcs",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:00"
+    },
+    "08-03-26_Alva": {
+        "date": "08-03-26",
+        "company": "Alva",
+        "folder_name": "Alva",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-03-26_Musgrave": {
+        "date": "08-03-26",
+        "company": "Musgrave",
+        "folder_name": "Musgrave",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-04-26_Coalesce_Management_Consulting": {
+        "date": "08-04-26",
+        "company": "Coalesce Management Consulting",
+        "folder_name": "Coalesce_Management_Consulting",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-04-26_Fruition_Group": {
+        "date": "08-04-26",
+        "company": "Fruition Group",
+        "folder_name": "Fruition_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-04-26_Holafly": {
+        "date": "08-04-26",
+        "company": "Holafly",
+        "folder_name": "Holafly",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-04-26_Nucleo": {
+        "date": "08-04-26",
+        "company": "Nucleo",
+        "folder_name": "Nucleo",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-05-26_Cognizant": {
+        "date": "08-05-26",
+        "company": "Cognizant",
+        "folder_name": "Cognizant",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-05-26_Crc_Central_Remedial_Clinic": {
+        "date": "08-05-26",
+        "company": "Crc Central Remedial Clinic",
+        "folder_name": "Crc_Central_Remedial_Clinic",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-05-26_Deutsche_B\u00f6rse_Group": {
+        "date": "08-05-26",
+        "company": "Deutsche B\u00f6rse Group",
+        "folder_name": "Deutsche_B\u00f6rse_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-05-26_Dublin_City_University": {
+        "date": "08-05-26",
+        "company": "Dublin City University",
+        "folder_name": "Dublin_City_University",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "08-05-26_Linear_Search": {
+        "date": "08-05-26",
+        "company": "Linear Search",
+        "folder_name": "Linear_Search",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "09-03-26_Abb_Robotics": {
         "date": "09-03-26",
-        "company": "Random",
-        "folder_name": "Random",
+        "company": "Abb Robotics",
+        "folder_name": "Abb_Robotics",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "09-03-26_Leovegas_Group": {
+        "date": "09-03-26",
+        "company": "Leovegas Group",
+        "folder_name": "Leovegas_Group",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "09-03-26_Musgrave": {
+        "date": "09-03-26",
+        "company": "Musgrave",
+        "folder_name": "Musgrave",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "09-03-26_Musgrave_Ds": {
+        "date": "09-03-26",
+        "company": "Musgrave Ds",
+        "folder_name": "Musgrave_Ds",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-03-26_Alfa_Laval": {
+        "date": "10-03-26",
+        "company": "Alfa Laval",
+        "folder_name": "Alfa_Laval",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-03-26_Flutter": {
+        "date": "10-03-26",
+        "company": "Flutter",
+        "folder_name": "Flutter",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-03-26_Glovo": {
+        "date": "10-03-26",
+        "company": "Glovo",
+        "folder_name": "Glovo",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-03-26_Mcs": {
+        "date": "10-03-26",
+        "company": "Mcs",
+        "folder_name": "Mcs",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-03-26_Morgan_Mckinley": {
+        "date": "10-03-26",
+        "company": "Morgan Mckinley",
+        "folder_name": "Morgan_Mckinley",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-03-26_Next_Ventures": {
+        "date": "10-03-26",
+        "company": "Next Ventures",
+        "folder_name": "Next_Ventures",
+        "country": "Finland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-03-26_Traffic_Lab": {
+        "date": "10-03-26",
+        "company": "Traffic Lab",
+        "folder_name": "Traffic_Lab",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-05-26_Arup": {
+        "date": "10-05-26",
+        "company": "Arup",
+        "folder_name": "Arup",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-05-26_Citi": {
+        "date": "10-05-26",
+        "company": "Citi",
+        "folder_name": "Citi",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "10-05-26_Fineos": {
+        "date": "10-05-26",
+        "company": "Fineos",
+        "folder_name": "Fineos",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "11-03-26_Flutter": {
+        "date": "11-03-26",
+        "company": "Flutter",
+        "folder_name": "Flutter",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "11-03-26_Icon_Plc": {
+        "date": "11-03-26",
+        "company": "Icon Plc",
+        "folder_name": "Icon_Plc",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "11-03-26_Musgrave": {
+        "date": "11-03-26",
+        "company": "Musgrave",
+        "folder_name": "Musgrave",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "11-03-26_Semco_Maritime": {
+        "date": "11-03-26",
+        "company": "Semco Maritime",
+        "folder_name": "Semco_Maritime",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "11-03-26_Swansea_University": {
+        "date": "11-03-26",
+        "company": "Swansea University",
+        "folder_name": "Swansea_University",
+        "country": "UK",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "12-03-26_Apple": {
+        "date": "12-03-26",
+        "company": "Apple",
+        "folder_name": "Apple",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "12-03-26_Omdena": {
+        "date": "12-03-26",
+        "company": "Omdena",
+        "folder_name": "Omdena",
+        "country": "Unknown",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "12-04-26_F5": {
+        "date": "12-04-26",
+        "company": "F5",
+        "folder_name": "F5",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "12-04-26_Sse": {
+        "date": "12-04-26",
+        "company": "Sse",
+        "folder_name": "Sse",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "12-05-26_Capita": {
+        "date": "12-05-26",
+        "company": "Capita",
+        "folder_name": "Capita",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "13-04-26_Maynooth_University": {
+        "date": "13-04-26",
+        "company": "Maynooth University",
+        "folder_name": "Maynooth_University",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "13-04-26_University_College_Dublin": {
+        "date": "13-04-26",
+        "company": "University College Dublin",
+        "folder_name": "University_College_Dublin",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "14-04-26_Ready_Or_Not": {
+        "date": "14-04-26",
+        "company": "Ready Or Not",
+        "folder_name": "Ready_Or_Not",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-03-26_Atos_Medical": {
+        "date": "15-03-26",
+        "company": "Atos Medical",
+        "folder_name": "Atos_Medical",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-03-26_Auctionet": {
+        "date": "15-03-26",
+        "company": "Auctionet",
+        "folder_name": "Auctionet",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-03-26_King": {
+        "date": "15-03-26",
+        "company": "King",
+        "folder_name": "King",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-03-26_Matas_Group": {
+        "date": "15-03-26",
+        "company": "Matas Group",
+        "folder_name": "Matas_Group",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-03-26_Maynooth_University": {
+        "date": "15-03-26",
+        "company": "Maynooth University",
+        "folder_name": "Maynooth_University",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-03-26_Ryanair": {
+        "date": "15-03-26",
+        "company": "Ryanair",
+        "folder_name": "Ryanair",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-04-26_Atrium_(Emea)": {
+        "date": "15-04-26",
+        "company": "Atrium (Emea)",
+        "folder_name": "Atrium_(Emea)",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-04-26_Eagle_Alpha": {
+        "date": "15-04-26",
+        "company": "Eagle Alpha",
+        "folder_name": "Eagle_Alpha",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-04-26_Kinetiqiq": {
+        "date": "15-04-26",
+        "company": "Kinetiqiq",
+        "folder_name": "Kinetiqiq",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-04-26_National_College_Of_Ireland": {
+        "date": "15-04-26",
+        "company": "National College Of Ireland",
+        "folder_name": "National_College_Of_Ireland",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "15-05-26_National_Treasury_Management_Agency": {
+        "date": "15-05-26",
+        "company": "National Treasury Management Agency",
+        "folder_name": "National_Treasury_Management_Agency",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:01"
+    },
+    "16-03-26_Alone": {
+        "date": "16-03-26",
+        "company": "Alone",
+        "folder_name": "Alone",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "16-03-26_Musgrave": {
+        "date": "16-03-26",
+        "company": "Musgrave",
+        "folder_name": "Musgrave",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "16-04-26_Affirma": {
+        "date": "16-04-26",
+        "company": "Affirma",
+        "folder_name": "Affirma",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "16-04-26_Darwin_Hawkins": {
+        "date": "16-04-26",
+        "company": "Darwin Hawkins",
+        "folder_name": "Darwin_Hawkins",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "16-04-26_Pivotal_Recruitment_Limited": {
+        "date": "16-04-26",
+        "company": "Pivotal Recruitment Limited",
+        "folder_name": "Pivotal_Recruitment_Limited",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "16-04-26_Sigmar_Recruitment": {
+        "date": "16-04-26",
+        "company": "Sigmar Recruitment",
+        "folder_name": "Sigmar_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "16-04-26_Uhg": {
+        "date": "16-04-26",
+        "company": "Uhg",
+        "folder_name": "Uhg",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "18-03-26_Hibernian_Recruitment": {
+        "date": "18-03-26",
+        "company": "Hibernian Recruitment",
+        "folder_name": "Hibernian_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "18-03-26_Hse": {
+        "date": "18-03-26",
+        "company": "Hse",
+        "folder_name": "Hse",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "18-03-26_Intercom": {
+        "date": "18-03-26",
+        "company": "Intercom",
+        "folder_name": "Intercom",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "18-03-26_Lex_Consultancy_Recruitment": {
+        "date": "18-03-26",
+        "company": "Lex Consultancy Recruitment",
+        "folder_name": "Lex_Consultancy_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "18-03-26_Trackunit": {
+        "date": "18-03-26",
+        "company": "Trackunit",
+        "folder_name": "Trackunit",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "18-03-26_University_Of_Galway": {
+        "date": "18-03-26",
+        "company": "University Of Galway",
+        "folder_name": "University_Of_Galway",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Barden": {
+        "date": "19-03-26",
+        "company": "Barden",
+        "folder_name": "Barden",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Elwood_Robert": {
+        "date": "19-03-26",
+        "company": "Elwood Robert",
+        "folder_name": "Elwood_Robert",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Hays": {
+        "date": "19-03-26",
+        "company": "Hays",
+        "folder_name": "Hays",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Hse_Limerick": {
+        "date": "19-03-26",
+        "company": "Hse Limerick",
+        "folder_name": "Hse_Limerick",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Icims": {
+        "date": "19-03-26",
+        "company": "Icims",
+        "folder_name": "Icims",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Incluso": {
+        "date": "19-03-26",
+        "company": "Incluso",
+        "folder_name": "Incluso",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Johnson_&_Johnson": {
+        "date": "19-03-26",
+        "company": "Johnson & Johnson",
+        "folder_name": "Johnson_&_Johnson",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Kelly_Science,_Engineering,_Technology_&_Telecom": {
+        "date": "19-03-26",
+        "company": "Kelly Science, Engineering, Technology & Telecom",
+        "folder_name": "Kelly_Science,_Engineering,_Technology_&_Telecom",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_National_College_Ireland": {
+        "date": "19-03-26",
+        "company": "National College Ireland",
+        "folder_name": "National_College_Ireland",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Paysafe": {
+        "date": "19-03-26",
+        "company": "Paysafe",
+        "folder_name": "Paysafe",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-03-26_Trinity_College_Dublin": {
+        "date": "19-03-26",
+        "company": "Trinity College Dublin",
+        "folder_name": "Trinity_College_Dublin",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-04-26_Aecom": {
+        "date": "19-04-26",
+        "company": "Aecom",
+        "folder_name": "Aecom",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-04-26_Ayvens": {
+        "date": "19-04-26",
+        "company": "Ayvens",
+        "folder_name": "Ayvens",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-04-26_Hse": {
+        "date": "19-04-26",
+        "company": "Hse",
+        "folder_name": "Hse",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-04-26_Lex_Consultancy_Recruitment": {
+        "date": "19-04-26",
+        "company": "Lex Consultancy Recruitment",
+        "folder_name": "Lex_Consultancy_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-04-26_Transport_Infrastructure_Ireland": {
+        "date": "19-04-26",
+        "company": "Transport Infrastructure Ireland",
+        "folder_name": "Transport_Infrastructure_Ireland",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "19-04-26_Ziff_Davis": {
+        "date": "19-04-26",
+        "company": "Ziff Davis",
+        "folder_name": "Ziff_Davis",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "2-5-26_test_company": {
+        "date": "2-5-26",
+        "company": "test company",
+        "folder_name": "test_company",
         "country": "Unknown",
         "country_manual": false,
         "role_title": "",
@@ -2519,6 +4826,1295 @@
         "status_manual": false,
         "manual": false,
         "cv_found": false,
-        "last_updated": "2026-03-09 13:07:22"
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "20-04-26_Recruiters": {
+        "date": "20-04-26",
+        "company": "Recruiters",
+        "folder_name": "Recruiters",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "21-04-26_Fruition_Group": {
+        "date": "21-04-26",
+        "company": "Fruition Group",
+        "folder_name": "Fruition_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "21-04-26_Google": {
+        "date": "21-04-26",
+        "company": "Google",
+        "folder_name": "Google",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "21-04-26_Mastercard": {
+        "date": "21-04-26",
+        "company": "Mastercard",
+        "folder_name": "Mastercard",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "21-04-26_Pwc": {
+        "date": "21-04-26",
+        "company": "Pwc",
+        "folder_name": "Pwc",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "21-04-26_Sabeo": {
+        "date": "21-04-26",
+        "company": "Sabeo",
+        "folder_name": "Sabeo",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "21-04-26_Unijobs": {
+        "date": "21-04-26",
+        "company": "Unijobs",
+        "folder_name": "Unijobs",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "22-03-26_Msr-Fsr": {
+        "date": "22-03-26",
+        "company": "Msr-Fsr",
+        "folder_name": "Msr-Fsr",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "22-04-26_Uhg": {
+        "date": "22-04-26",
+        "company": "Uhg",
+        "folder_name": "Uhg",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-03-26_Amazon": {
+        "date": "23-03-26",
+        "company": "Amazon",
+        "folder_name": "Amazon",
+        "country": "Spain",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-03-26_Amcs_Group": {
+        "date": "23-03-26",
+        "company": "Amcs Group",
+        "folder_name": "Amcs_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-03-26_Io_Associates": {
+        "date": "23-03-26",
+        "company": "Io Associates",
+        "folder_name": "Io_Associates",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-03-26_Maersk": {
+        "date": "23-03-26",
+        "company": "Maersk",
+        "folder_name": "Maersk",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-03-26_Na": {
+        "date": "23-03-26",
+        "company": "Na",
+        "folder_name": "Na",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-03-26_Rcsi_Ra": {
+        "date": "23-03-26",
+        "company": "Rcsi Ra",
+        "folder_name": "Rcsi_Ra",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-03-26_Scandic_Hotels": {
+        "date": "23-03-26",
+        "company": "Scandic Hotels",
+        "folder_name": "Scandic_Hotels",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-03-26_Undp": {
+        "date": "23-03-26",
+        "company": "Undp",
+        "folder_name": "Undp",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:02"
+    },
+    "23-04-26_Pci_Pharma_Services": {
+        "date": "23-04-26",
+        "company": "Pci Pharma Services",
+        "folder_name": "Pci_Pharma_Services",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "24-02-26_Arrive": {
+        "date": "24-02-26",
+        "company": "Arrive",
+        "folder_name": "Arrive",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "24-02-26_Continia": {
+        "date": "24-02-26",
+        "company": "Continia",
+        "folder_name": "Continia",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "24-02-26_If_Insurance": {
+        "date": "24-02-26",
+        "company": "If Insurance",
+        "folder_name": "If_Insurance",
+        "country": "Finland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "24-02-26_Mentimeter": {
+        "date": "24-02-26",
+        "company": "Mentimeter",
+        "folder_name": "Mentimeter",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "24-02-26_Precis": {
+        "date": "24-02-26",
+        "company": "Precis",
+        "folder_name": "Precis",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "24-02-26_Sabeo": {
+        "date": "24-02-26",
+        "company": "Sabeo",
+        "folder_name": "Sabeo",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Accenture_Nordics": {
+        "date": "25-02-26",
+        "company": "Accenture Nordics",
+        "folder_name": "Accenture_Nordics",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Arlo": {
+        "date": "25-02-26",
+        "company": "Arlo",
+        "folder_name": "Arlo",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Business_Post": {
+        "date": "25-02-26",
+        "company": "Business Post",
+        "folder_name": "Business_Post",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Enertek_Group": {
+        "date": "25-02-26",
+        "company": "Enertek Group",
+        "folder_name": "Enertek_Group",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Equifax": {
+        "date": "25-02-26",
+        "company": "Equifax",
+        "folder_name": "Equifax",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Everllence": {
+        "date": "25-02-26",
+        "company": "Everllence",
+        "folder_name": "Everllence",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Famly": {
+        "date": "25-02-26",
+        "company": "Famly",
+        "folder_name": "Famly",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Hms_Industrial_Networks": {
+        "date": "25-02-26",
+        "company": "Hms Industrial Networks",
+        "folder_name": "Hms_Industrial_Networks",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Pandora": {
+        "date": "25-02-26",
+        "company": "Pandora",
+        "folder_name": "Pandora",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Publicis_Groupe": {
+        "date": "25-02-26",
+        "company": "Publicis Groupe",
+        "folder_name": "Publicis_Groupe",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-02-26_Tenth_Revolution_Group": {
+        "date": "25-02-26",
+        "company": "Tenth Revolution Group",
+        "folder_name": "Tenth_Revolution_Group",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Aib": {
+        "date": "25-03-26",
+        "company": "Aib",
+        "folder_name": "Aib",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Berkley_Group": {
+        "date": "25-03-26",
+        "company": "Berkley Group",
+        "folder_name": "Berkley_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Brightwater_Recruitment": {
+        "date": "25-03-26",
+        "company": "Brightwater Recruitment",
+        "folder_name": "Brightwater_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Flutter_Uk_&_Ireland": {
+        "date": "25-03-26",
+        "company": "Flutter Uk & Ireland",
+        "folder_name": "Flutter_Uk_&_Ireland",
+        "country": "UK",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Fruition_Group_Ireland": {
+        "date": "25-03-26",
+        "company": "Fruition Group Ireland",
+        "folder_name": "Fruition_Group_Ireland",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Google": {
+        "date": "25-03-26",
+        "company": "Google",
+        "folder_name": "Google",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Health_Products_Regulatory_Authority_(Hpra)": {
+        "date": "25-03-26",
+        "company": "Health Products Regulatory Authority (Hpra)",
+        "folder_name": "Health_Products_Regulatory_Authority_(Hpra)",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Kennedy_&_Partners_Recruitment": {
+        "date": "25-03-26",
+        "company": "Kennedy & Partners Recruitment",
+        "folder_name": "Kennedy_&_Partners_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Oliver_James": {
+        "date": "25-03-26",
+        "company": "Oliver James",
+        "folder_name": "Oliver_James",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Optum": {
+        "date": "25-03-26",
+        "company": "Optum",
+        "folder_name": "Optum",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Pivotal_Recruitment": {
+        "date": "25-03-26",
+        "company": "Pivotal Recruitment",
+        "folder_name": "Pivotal_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Qasa": {
+        "date": "25-03-26",
+        "company": "Qasa",
+        "folder_name": "Qasa",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-03-26_Xeneta": {
+        "date": "25-03-26",
+        "company": "Xeneta",
+        "folder_name": "Xeneta",
+        "country": "Norway",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-04-26_Fruituion_Group": {
+        "date": "25-04-26",
+        "company": "Fruituion Group",
+        "folder_name": "Fruituion_Group",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-04-26_Sodexo": {
+        "date": "25-04-26",
+        "company": "Sodexo",
+        "folder_name": "Sodexo",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "25-04-26_The_Panel": {
+        "date": "25-04-26",
+        "company": "The Panel",
+        "folder_name": "The_Panel",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-02-26_Ardmac": {
+        "date": "26-02-26",
+        "company": "Ardmac",
+        "folder_name": "Ardmac",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-02-26_Hibernian_Recruitment": {
+        "date": "26-02-26",
+        "company": "Hibernian Recruitment",
+        "folder_name": "Hibernian_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-02-26_Konecranes": {
+        "date": "26-02-26",
+        "company": "Konecranes",
+        "folder_name": "Konecranes",
+        "country": "Unknown",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": false,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-02-26_Pobal": {
+        "date": "26-02-26",
+        "company": "Pobal",
+        "folder_name": "Pobal",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-02-26_Qred": {
+        "date": "26-02-26",
+        "company": "Qred",
+        "folder_name": "Qred",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-02-26_Santander": {
+        "date": "26-02-26",
+        "company": "Santander",
+        "folder_name": "Santander",
+        "country": "Norway",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-02-26_Strata": {
+        "date": "26-02-26",
+        "company": "Strata",
+        "folder_name": "Strata",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-02-26_The_Recruitment_Company": {
+        "date": "26-02-26",
+        "company": "The Recruitment Company",
+        "folder_name": "The_Recruitment_Company",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_Citi": {
+        "date": "26-03-26",
+        "company": "Citi",
+        "folder_name": "Citi",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_Develop": {
+        "date": "26-03-26",
+        "company": "Develop",
+        "folder_name": "Develop",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_Finnair": {
+        "date": "26-03-26",
+        "company": "Finnair",
+        "folder_name": "Finnair",
+        "country": "Finland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_Forvis_Mazars": {
+        "date": "26-03-26",
+        "company": "Forvis Mazars",
+        "folder_name": "Forvis_Mazars",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_Fulcrum_Digital_Inc": {
+        "date": "26-03-26",
+        "company": "Fulcrum Digital Inc",
+        "folder_name": "Fulcrum_Digital_Inc",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_Hireforce": {
+        "date": "26-03-26",
+        "company": "Hireforce",
+        "folder_name": "Hireforce",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_Kayak": {
+        "date": "26-03-26",
+        "company": "Kayak",
+        "folder_name": "Kayak",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_Real_Time_Recruitment": {
+        "date": "26-03-26",
+        "company": "Real Time Recruitment",
+        "folder_name": "Real_Time_Recruitment",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "26-03-26_The_Citco_Group_Limited": {
+        "date": "26-03-26",
+        "company": "The Citco Group Limited",
+        "folder_name": "The_Citco_Group_Limited",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "27-04-26_An_Post": {
+        "date": "27-04-26",
+        "company": "An Post",
+        "folder_name": "An_Post",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "27-04-26_Exyte": {
+        "date": "27-04-26",
+        "company": "Exyte",
+        "folder_name": "Exyte",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "28-02-26_Dsv": {
+        "date": "28-02-26",
+        "company": "Dsv",
+        "folder_name": "Dsv",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "28-02-26_Evac_Group": {
+        "date": "28-02-26",
+        "company": "Evac Group",
+        "folder_name": "Evac_Group",
+        "country": "Finland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "28-02-26_Karo_Healthcare": {
+        "date": "28-02-26",
+        "company": "Karo Healthcare",
+        "folder_name": "Karo_Healthcare",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "28-02-26_Metso": {
+        "date": "28-02-26",
+        "company": "Metso",
+        "folder_name": "Metso",
+        "country": "Finland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "28-02-26_Netlight": {
+        "date": "28-02-26",
+        "company": "Netlight",
+        "folder_name": "Netlight",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "28-02-26_Tenth_Revolution_Group": {
+        "date": "28-02-26",
+        "company": "Tenth Revolution Group",
+        "folder_name": "Tenth_Revolution_Group",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:03"
+    },
+    "28-02-26_Vestas": {
+        "date": "28-02-26",
+        "company": "Vestas",
+        "folder_name": "Vestas",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "28-03-26_Laerdal": {
+        "date": "28-03-26",
+        "company": "Laerdal",
+        "folder_name": "Laerdal",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "28-03-26_Royal_London": {
+        "date": "28-03-26",
+        "company": "Royal London",
+        "folder_name": "Royal_London",
+        "country": "UK",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "28-04-26_Airapps": {
+        "date": "28-04-26",
+        "company": "Airapps",
+        "folder_name": "Airapps",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "28-04-26_Dcu": {
+        "date": "28-04-26",
+        "company": "Dcu",
+        "folder_name": "Dcu",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "28-04-26_Manpower": {
+        "date": "28-04-26",
+        "company": "Manpower",
+        "folder_name": "Manpower",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "28-04-26_Pavilion_Recruitment_Solutions": {
+        "date": "28-04-26",
+        "company": "Pavilion Recruitment Solutions",
+        "folder_name": "Pavilion_Recruitment_Solutions",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "30-04-26_Arts_Council": {
+        "date": "30-04-26",
+        "company": "Arts Council",
+        "folder_name": "Arts_Council",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "30-04-26_Darwin_Hawkins": {
+        "date": "30-04-26",
+        "company": "Darwin Hawkins",
+        "folder_name": "Darwin_Hawkins",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "30-04-26_Johnson_&_Johnson": {
+        "date": "30-04-26",
+        "company": "Johnson & Johnson",
+        "folder_name": "Johnson_&_Johnson",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "31-03-26_&_Other_Stories": {
+        "date": "31-03-26",
+        "company": "& Other Stories",
+        "folder_name": "&_Other_Stories",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "31-03-26_King": {
+        "date": "31-03-26",
+        "company": "King",
+        "folder_name": "King",
+        "country": "Sweden",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "31-03-26_Recruiters": {
+        "date": "31-03-26",
+        "company": "Recruiters",
+        "folder_name": "Recruiters",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "31-03-26_Strata": {
+        "date": "31-03-26",
+        "company": "Strata",
+        "folder_name": "Strata",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "31-03-26_The_Lego_Group": {
+        "date": "31-03-26",
+        "company": "The Lego Group",
+        "folder_name": "The_Lego_Group",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
+    },
+    "31-03-26_Too_Good_To_Go": {
+        "date": "31-03-26",
+        "company": "Too Good To Go",
+        "folder_name": "Too_Good_To_Go",
+        "country": "Denmark",
+        "country_manual": false,
+        "role_title": "",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-15 19:36:04"
     }
 }

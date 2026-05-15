@@ -8,14 +8,14 @@ class AuditDialogs:
     def open_add_record_dialog(parent, stats_manager, colors, refresh_callback, calendar_available):
         dialog = ctk.CTkToplevel(parent)
         dialog.title("Add New Application Record")
-        dialog.geometry("480x780")
+        dialog.geometry("480x740")
         dialog.transient(parent)
         dialog.grab_set()
         
         # Center the dialog
         dialog.update_idletasks()
         x = parent.winfo_x() + (parent.winfo_width() // 2) - (480 // 2)
-        y = parent.winfo_y() + (parent.winfo_height() // 2) - (780 // 2)
+        y = parent.winfo_y() + (parent.winfo_height() // 2) - (740 // 2)
         dialog.geometry(f"+{x}+{y}")
         
         main_frame = ctk.CTkFrame(dialog, fg_color="transparent")
@@ -81,7 +81,8 @@ class AuditDialogs:
         ctk.CTkLabel(form_container, text="Current Status", font=ctk.CTkFont(size=12, weight="bold"),
                     text_color=colors["text_muted"]).pack(anchor="w", pady=(8, 2))
         status_var = ctk.StringVar(value="In Process")
-        status_menu = ctk.CTkOptionMenu(form_container, values=["In Process", "Followed Up", "Rejected", "Unknown"],
+        status_options = ["In Process", "Followed Up", "Rejected (Initial)", "Rejected (Post-Interview)", "Rejected (Post-Task)", "Offer", "Accepted", "Unknown"]
+        status_menu = ctk.CTkOptionMenu(form_container, values=status_options,
                                        variable=status_var, height=40,
                                        fg_color=colors["input_bg"], text_color=colors["text"],
                                        button_color=colors["accent"])
@@ -111,10 +112,11 @@ class AuditDialogs:
             notes = notes_text.get("1.0", "end-1c").strip()
             
             stats_manager.add_application(date_str, company, country, status, manual=True, role_title=role_title)
-            # Save notes
+            # Find the app_id (built from date and company)
             app_id = stats_manager._build_app_id(date_str, company)
             if notes:
                 stats_manager.update_field(app_id, "notes", notes)
+            
             dialog.destroy()
             refresh_callback()
             
@@ -129,6 +131,7 @@ class AuditDialogs:
                      fg_color=colors["accent"], height=45, corner_radius=10,
                      font=ctk.CTkFont(size=14, weight="bold")).pack(side="left", fill="x", expand=True)
 
+
     @staticmethod
     def open_edit_dialog(parent, app_id, stats_manager, colors, refresh_callback, calendar_available, available_countries, tree):
         values = tree.item(app_id)['values']
@@ -138,15 +141,19 @@ class AuditDialogs:
         current_country = values[4]
         current_status = values[5]
         
+        # Get notes from stats manager directly as it's not in the tree yet
+        full_data = stats_manager.get_stats().get(app_id, {})
+        current_notes = full_data.get("notes", "")
+        
         dialog = ctk.CTkToplevel(parent)
         dialog.title("Edit Application Details")
-        dialog.geometry("480x750")
+        dialog.geometry("480x720")
         dialog.transient(parent)
         dialog.grab_set()
         
         dialog.update_idletasks()
         x = parent.winfo_x() + (parent.winfo_width() // 2) - (480 // 2)
-        y = parent.winfo_y() + (parent.winfo_height() // 2) - (750 // 2)
+        y = parent.winfo_y() + (parent.winfo_height() // 2) - (720 // 2)
         dialog.geometry(f"+{x}+{y}")
         
         main_frame = ctk.CTkFrame(dialog, fg_color="transparent")
@@ -226,15 +233,16 @@ class AuditDialogs:
         ctk.CTkLabel(form_container, text="Status", font=ctk.CTkFont(size=12, weight="bold"),
                     text_color=colors["text_muted"]).pack(anchor="w", pady=(8, 2))
         status_var = ctk.StringVar(value=current_status)
-        status_menu = ctk.CTkOptionMenu(form_container, values=["In Process", "Followed Up", "Rejected", "Unknown"],
+        status_options = ["In Process", "Followed Up", "Rejected (Initial)", "Rejected (Post-Interview)", "Rejected (Post-Task)", "Offer", "Accepted", "Unknown"]
+        if current_status not in status_options:
+            status_options.append(current_status)
+        status_menu = ctk.CTkOptionMenu(form_container, values=status_options,
                          variable=status_var, height=40,
                          fg_color=colors["input_bg"], text_color=colors["text"],
                          button_color=colors["accent"])
         status_menu.pack(fill="x", pady=(0, 15))
 
         # Notes
-        full_data = stats_manager.get_stats().get(app_id, {})
-        current_notes = full_data.get("notes", "")
         ctk.CTkLabel(form_container, text="Notes", font=ctk.CTkFont(size=12, weight="bold"),
                     text_color=colors["text_muted"]).pack(anchor="w", pady=(8, 2))
         notes_text = ctk.CTkTextbox(form_container, height=80, fg_color=colors["input_bg"], border_color=colors["border"], border_width=1)
@@ -272,7 +280,7 @@ class AuditDialogs:
             if new_status != current_status:
                 stats_manager.update_field(effective_app_id, "status", new_status)
                 updated = True
-
+            
             new_notes = notes_text.get("1.0", "end-1c").strip()
             if new_notes != current_notes:
                 stats_manager.update_field(effective_app_id, "notes", new_notes)
@@ -292,3 +300,4 @@ class AuditDialogs:
         ctk.CTkButton(btn_frame, text="Update Record", command=save,
                      fg_color=colors["accent"], height=45, corner_radius=10,
                      font=ctk.CTkFont(size=14, weight="bold")).pack(side="left", fill="x", expand=True)
+

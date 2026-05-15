@@ -1,153 +1,62 @@
-2026-03-09 11:31:31,035 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 11:31:31,112 - CvAutomation - INFO - Updated CV sections. Replaced: 1, Added: 0, Removed: 1
-2026-03-09 11:31:31,112 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 11:31:31,126 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_s6c_e_zi\output.docx
-2026-03-09 11:34:14,287 - CvAutomation - INFO - Updated CV sections. Replaced: 4, Added: 0, Removed: 14
-2026-03-09 11:34:14,287 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 11:34:14,288 - CvAutomation - DEBUG - Removing trailing section break...
-2026-03-09 11:34:14,293 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\ac_test_t2.docx
-2026-03-09 12:01:11,668 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 12:03:54,787 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 12:03:54,867 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0
-2026-03-09 12:03:54,868 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:03:54,881 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test__8d78pe2\output.docx
-2026-03-09 12:04:18,700 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 12:04:18,776 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0
-2026-03-09 12:04:18,776 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:04:18,795 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_g_ovnc0k\output.docx
-2026-03-09 12:04:46,322 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 2, Removed empty slots: 2
-2026-03-09 12:04:46,323 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:04:46,334 - CvAutomation - INFO - Updated CV saved to: outputs/smoke\Template_1_smoke.docx
-2026-03-09 12:04:46,361 - CvAutomation - INFO - Updated CV sections for template_2. Capacity: 5, Used: 2, Removed empty slots: 3
-2026-03-09 12:04:46,362 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:04:46,365 - CvAutomation - DEBUG - Removing trailing section break...
-2026-03-09 12:04:46,370 - CvAutomation - INFO - Updated CV saved to: outputs/smoke\Template_2_smoke.docx
-2026-03-09 12:09:51,263 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 12:09:51,513 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0
-2026-03-09 12:09:51,514 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:09:51,527 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_m487ynuh\output.docx
-2026-03-09 12:16:27,868 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 12:16:27,891 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0
-2026-03-09 12:16:27,891 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:16:27,905 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 12:16:34,284 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 12:16:34,373 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 12:17:06,559 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 12:17:06,576 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0
-2026-03-09 12:17:06,576 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:17:06,585 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 12:17:12,360 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 12:17:12,423 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 12:33:09,406 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 12:33:09,406 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:33:09,419 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_c11jxeff\output.docx
-2026-03-09 12:33:09,497 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 12:33:09,497 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:33:09,513 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_u461ilkw\output.docx
-2026-03-09 12:33:09,731 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 12:34:07,973 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 12:34:07,974 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:34:07,988 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\ac_overflow_preview.docx
-2026-03-09 12:34:54,289 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 12:34:54,289 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:34:54,299 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\ac_overflow_preview.docx
-2026-03-09 12:35:00,598 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 12:35:00,931 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 12:35:00,931 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:35:00,949 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_6i619her\output.docx
-2026-03-09 12:35:01,046 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 12:35:01,046 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:35:01,070 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_a1xikq8f\output.docx
-2026-03-09 12:56:53,663 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 12:56:53,697 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 12:56:53,698 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:56:53,713 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 12:57:02,106 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 12:57:02,195 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 12:57:45,440 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 12:57:45,477 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 12:57:45,478 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:57:45,490 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 12:57:49,483 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 12:57:49,589 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 12:58:15,556 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 12:58:15,588 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 12:58:15,588 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 12:58:15,601 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 12:58:20,527 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 12:58:20,642 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 13:00:57,192 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 13:00:57,192 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:00:57,213 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_9p9grct2\output.docx
-2026-03-09 13:00:57,332 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 13:00:57,332 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:00:57,354 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_uva1qgs1\output.docx
-2026-03-09 13:00:57,651 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 13:01:14,458 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 1, Removed empty slots: 3, Appended overflow: 0
-2026-03-09 13:01:14,458 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:01:14,467 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\ac_headline_check.docx
-2026-03-09 13:01:53,657 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 13:01:53,697 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 13:01:53,698 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:01:53,709 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 13:01:59,506 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 13:01:59,583 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 13:03:09,697 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 13:03:09,698 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:03:09,719 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_qxcxps5_\output.docx
-2026-03-09 13:03:09,839 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 13:03:09,839 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:03:09,861 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_1jy67zja\output.docx
-2026-03-09 13:03:10,169 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 13:04:01,161 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 13:04:01,199 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 13:04:01,200 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:04:01,214 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 13:04:07,824 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 13:04:07,914 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 13:05:19,443 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 13:05:19,443 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:05:19,459 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_wku5s_f5\output.docx
-2026-03-09 13:05:19,559 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 13:05:19,559 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:05:19,576 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_759x72ng\output.docx
-2026-03-09 13:05:19,834 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
-2026-03-09 13:05:49,094 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 13:05:49,135 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 13:05:49,135 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:05:49,149 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 13:05:55,046 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 13:05:55,126 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 13:06:27,646 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 13:06:27,680 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 13:06:27,681 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:06:27,692 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 13:06:34,912 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 13:06:35,027 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 13:07:14,607 - CvAutomation - INFO - Using strict supported-template renderer for Random
-2026-03-09 13:07:14,646 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 13:07:14,646 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 13:07:14,659 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.docx
-2026-03-09 13:07:22,020 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\ApplyCraft_Next\outputs\09-03-26\Random\CV_Random_.pdf
-2026-03-09 13:07:22,151 - CvAutomation - INFO - Generated CV for Random in 
-2026-03-09 18:42:51,564 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 4, Used: 4, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 18:42:51,565 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 18:42:51,577 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\ac_bdfi_headline_bug.docx
-2026-03-09 18:43:37,353 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 1
-2026-03-09 18:43:37,354 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 18:43:37,370 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test_sf6iwuio\output.docx
-2026-03-09 18:43:37,465 - CvAutomation - INFO - Updated CV sections for template_1. Capacity: 1, Used: 1, Removed empty slots: 0, Appended overflow: 0
-2026-03-09 18:43:37,465 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
-2026-03-09 18:43:37,481 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\AppData\Local\Temp\applycraft_update_cv_test__ndayv7f\output.docx
-2026-03-09 18:43:37,755 - CvAutomation - ERROR - Unsupported template: only Template 1 and Template 2 are allowed
-NoneType: None
+2026-03-09 10:56:20,138 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Traffic_Lab\Madhav_Manohar_Gopal_CV_Traffic_Lab_Denmark.docx
+2026-03-09 10:56:20,139 - CvAutomation - INFO - Replaced: 20, Added: 1, Removed: 1 bullet points
+2026-03-09 10:56:20,139 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 10:56:28,077 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Traffic_Lab\Madhav_Manohar_Gopal_CV_Traffic_Lab_Denmark.pdf
+2026-03-09 10:56:28,196 - CvAutomation - INFO - Generated CV for Traffic Lab in Denmark
+2026-03-09 10:58:04,105 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Traffic_Lab\Madhav_Manohar_Gopal_CV_Traffic_Lab_Denmark.docx
+2026-03-09 10:58:04,105 - CvAutomation - INFO - Replaced: 20, Added: 1, Removed: 1 bullet points
+2026-03-09 10:58:04,106 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 10:58:12,891 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Traffic_Lab\Madhav_Manohar_Gopal_CV_Traffic_Lab_Denmark.pdf
+2026-03-09 10:58:13,044 - CvAutomation - INFO - Generated CV for Traffic Lab in Denmark
+2026-03-09 10:58:19,897 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Traffic_Lab\Madhav_Manohar_Gopal_Cover_Letter_Traffic_Lab_Denmark.pdf
+2026-03-09 10:58:19,955 - CvAutomation - INFO - Generated Cover Letter for Traffic Lab
+2026-03-09 11:02:22,686 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Traffic_Lab\Madhav_Manohar_Gopal_CV_Traffic_Lab_Denmark.docx
+2026-03-09 11:02:22,687 - CvAutomation - INFO - Replaced: 20, Added: 1, Removed: 1 bullet points
+2026-03-09 11:02:22,687 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 11:02:30,221 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Traffic_Lab\Madhav_Manohar_Gopal_CV_Traffic_Lab_Denmark.pdf
+2026-03-09 11:02:30,369 - CvAutomation - INFO - Generated CV for Traffic Lab in Denmark
+2026-03-09 17:41:18,200 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Abb_Robotics\Madhav_Manohar_Gopal_CV_Abb_Robotics_Sweden.docx
+2026-03-09 17:41:18,201 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-09 17:41:18,201 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 17:41:25,225 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Abb_Robotics\Madhav_Manohar_Gopal_CV_Abb_Robotics_Sweden.pdf
+2026-03-09 17:41:25,324 - CvAutomation - INFO - Generated CV for Abb Robotics in Sweden
+2026-03-09 17:43:22,203 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Abb_Robotics\Madhav_Manohar_Gopal_CV_Abb_Robotics_Sweden.docx
+2026-03-09 17:43:22,203 - CvAutomation - INFO - Replaced: 19, Added: 0, Removed: 2 bullet points
+2026-03-09 17:43:22,203 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 17:43:27,998 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Abb_Robotics\Madhav_Manohar_Gopal_CV_Abb_Robotics_Sweden.pdf
+2026-03-09 17:43:28,060 - CvAutomation - INFO - Generated CV for Abb Robotics in Sweden
+2026-03-09 17:44:34,383 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Abb_Robotics\Madhav_Manohar_Gopal_Cover_Letter_Abb_Robotics_Sweden.pdf
+2026-03-09 17:44:34,408 - CvAutomation - INFO - Generated Cover Letter for Abb Robotics
+2026-03-09 18:01:23,514 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Musgrave\Madhav_Manohar_Gopal_CV_Musgrave_Ireland.docx
+2026-03-09 18:01:23,514 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-03-09 18:01:23,514 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 18:01:29,428 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Musgrave\Madhav_Manohar_Gopal_CV_Musgrave_Ireland.pdf
+2026-03-09 18:01:29,533 - CvAutomation - INFO - Generated CV for Musgrave in Ireland
+2026-03-09 18:01:32,904 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Musgrave\Madhav_Manohar_Gopal_Cover_Letter_Musgrave_Ireland.pdf
+2026-03-09 18:01:32,932 - CvAutomation - INFO - Generated Cover Letter for Musgrave
+2026-03-09 18:05:44,657 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Musgrave\Madhav_Manohar_Gopal_Cover_Letter_Musgrave_Ireland.pdf
+2026-03-09 18:05:44,679 - CvAutomation - INFO - Generated Cover Letter for Musgrave
+2026-03-09 18:16:53,777 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Musgrave_Ds\Madhav_Manohar_Gopal_CV_Musgrave_Ds_Ireland.docx
+2026-03-09 18:16:53,778 - CvAutomation - INFO - Replaced: 21, Added: 1, Removed: 0 bullet points
+2026-03-09 18:16:53,778 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 18:16:59,932 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Musgrave_Ds\Madhav_Manohar_Gopal_CV_Musgrave_Ds_Ireland.pdf
+2026-03-09 18:17:00,096 - CvAutomation - INFO - Generated CV for Musgrave_Ds in Ireland
+2026-03-09 18:17:19,529 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Musgrave_Ds\Madhav_Manohar_Gopal_CV_Musgrave_Ds_Ireland.docx
+2026-03-09 18:17:19,529 - CvAutomation - INFO - Replaced: 21, Added: 1, Removed: 0 bullet points
+2026-03-09 18:17:19,529 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 18:17:22,311 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Musgrave_Ds\Madhav_Manohar_Gopal_CV_Musgrave_Ds_Ireland.pdf
+2026-03-09 18:17:22,414 - CvAutomation - INFO - Generated CV for Musgrave_Ds in Ireland
+2026-03-09 18:36:44,005 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Leovegas\Madhav_Manohar_Gopal_CV_Leovegas_Sweden.docx
+2026-03-09 18:36:44,006 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-09 18:36:44,006 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 18:36:50,049 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Leovegas\Madhav_Manohar_Gopal_CV_Leovegas_Sweden.pdf
+2026-03-09 18:36:50,171 - CvAutomation - INFO - Generated CV for Leovegas in Sweden
+2026-03-09 18:36:56,053 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Leovegas\Madhav_Manohar_Gopal_Cover_Letter_Leovegas_Sweden.pdf
+2026-03-09 18:36:56,089 - CvAutomation - INFO - Generated Cover Letter for Leovegas
+2026-03-09 18:37:09,428 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Leovegas_Group\Madhav_Manohar_Gopal_Cover_Letter_Leovegas_Group_Sweden.pdf
+2026-03-09 18:37:09,470 - CvAutomation - INFO - Generated Cover Letter for Leovegas Group
+2026-03-09 18:37:17,840 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Leovegas_Group\Madhav_Manohar_Gopal_CV_Leovegas_Group_Sweden.docx
+2026-03-09 18:37:17,840 - CvAutomation - INFO - Replaced: 21, Added: 0, Removed: 0 bullet points
+2026-03-09 18:37:17,841 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-09 18:37:24,187 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\09-03-26\Leovegas_Group\Madhav_Manohar_Gopal_CV_Leovegas_Group_Sweden.pdf
+2026-03-09 18:37:24,371 - CvAutomation - INFO - Generated CV for Leovegas Group in Sweden

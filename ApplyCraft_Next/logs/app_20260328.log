@@ -1,0 +1,14 @@
+2026-03-28 22:13:29,245 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\28-03-26\Laerdal\Madhav_Manohar_Gopal_CV_Laerdal_Denmark.docx
+2026-03-28 22:13:29,246 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-03-28 22:13:29,246 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-28 22:13:38,197 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\28-03-26\Laerdal\Madhav_Manohar_Gopal_CV_Laerdal_Denmark.pdf
+2026-03-28 22:13:38,301 - CvAutomation - INFO - Generated CV for Laerdal in Denmark
+2026-03-28 22:13:41,280 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\28-03-26\Laerdal\Madhav_Manohar_Gopal_Cover_Letter_Laerdal_Denmark.pdf
+2026-03-28 22:13:41,324 - CvAutomation - INFO - Generated Cover Letter for Laerdal
+2026-03-28 22:48:04,758 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\28-03-26\Royal_London\Madhav_Manohar_Gopal_CV_Royal_London_Ireland.docx
+2026-03-28 22:48:04,759 - CvAutomation - INFO - Replaced: 20, Added: 0, Removed: 1 bullet points
+2026-03-28 22:48:04,759 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-03-28 22:48:12,024 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\28-03-26\Royal_London\Madhav_Manohar_Gopal_CV_Royal_London_Ireland.pdf
+2026-03-28 22:48:12,146 - CvAutomation - INFO - Generated CV for Royal London in Ireland
+2026-03-28 22:48:15,311 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\28-03-26\Royal_London\Madhav_Manohar_Gopal_Cover_Letter_Royal_London_Ireland.pdf
+2026-03-28 22:48:15,343 - CvAutomation - INFO - Generated Cover Letter for Royal London

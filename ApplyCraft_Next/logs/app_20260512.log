@@ -1,0 +1,7 @@
+2026-05-12 18:55:10,887 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\12-05-26\Capita\Madhav_Manohar_Gopal_CV_Capita_Ireland.docx
+2026-05-12 18:55:10,888 - CvAutomation - INFO - Replaced: 25, Added: 0, Removed: 1 bullet points
+2026-05-12 18:55:10,888 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-05-12 18:55:19,116 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\12-05-26\Capita\Madhav_Manohar_Gopal_CV_Capita_Ireland.pdf
+2026-05-12 18:55:19,233 - CvAutomation - INFO - Generated CV for Capita in Ireland
+2026-05-12 18:57:39,273 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\12-05-26\Capita\Madhav_Manohar_Gopal_Cover_Letter_Capita_Ireland.pdf
+2026-05-12 18:57:39,310 - CvAutomation - INFO - Generated Cover Letter for Capita

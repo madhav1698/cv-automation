@@ -48,12 +48,6 @@ class TemplateLearner:
             if not bullet_sig.style_name:
                 bullet_sig.style_name = self.analysis.paragraphs[first_block.bullet_start_idx].style_name
 
-        # 5. Populate Anchors
-        for block in self.analysis.inferred_experience_blocks:
-            anchor_idx = block.company_idx or block.role_idx
-            if anchor_idx is not None:
-                block.anchor_text = self.analysis.paragraphs[anchor_idx].text
-
         return TemplateConfig(
             template_hash=template_hash,
             experience_section={"start": exp_sec.start_index, "end": exp_sec.end_index},

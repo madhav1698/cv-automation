@@ -1,0 +1,16 @@
+2026-04-27 21:00:26,905 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\27-04-26\An_Post\Madhav_Manohar_Gopal_CV_An_Post_Ireland.docx
+2026-04-27 21:00:26,905 - CvAutomation - INFO - Replaced: 21, Added: 4, Removed: 0 bullet points
+2026-04-27 21:00:26,906 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-04-27 21:00:36,538 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\27-04-26\An_Post\Madhav_Manohar_Gopal_CV_An_Post_Ireland.pdf
+2026-04-27 21:00:36,696 - CvAutomation - INFO - Generated CV for An Post in Ireland
+2026-04-27 21:00:43,381 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\27-04-26\An_Post\Madhav_Manohar_Gopal_Cover_Letter_An_Post_Ireland.pdf
+2026-04-27 21:00:43,436 - CvAutomation - INFO - Generated Cover Letter for An Post
+2026-04-27 21:12:53,353 - CvAutomation - INFO - Updated CV saved to: C:\Users\catch\Desktop\Cv Automation\outputs\27-04-26\Exyte\Madhav_Manohar_Gopal_CV_Exyte_Ireland.docx
+2026-04-27 21:12:53,355 - CvAutomation - INFO - Replaced: 21, Added: 1, Removed: 0 bullet points
+2026-04-27 21:12:53,355 - CvAutomation - DEBUG - Cleaning up trailing empty paragraphs...
+2026-04-27 21:13:01,675 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\27-04-26\Exyte\Madhav_Manohar_Gopal_CV_Exyte_Ireland.pdf
+2026-04-27 21:13:01,808 - CvAutomation - INFO - Generated CV for Exyte in Ireland
+2026-04-27 21:13:08,634 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\27-04-26\Exyte\Madhav_Manohar_Gopal_Cover_Letter_Exyte_Ireland.pdf
+2026-04-27 21:13:08,686 - CvAutomation - INFO - Generated Cover Letter for Exyte
+2026-04-27 21:13:33,246 - CvAutomation - INFO - PDF created: C:\Users\catch\Desktop\Cv Automation\outputs\27-04-26\Exyte\Madhav_Manohar_Gopal_Cover_Letter_Exyte_Ireland.pdf
+2026-04-27 21:13:33,282 - CvAutomation - INFO - Generated Cover Letter for Exyte

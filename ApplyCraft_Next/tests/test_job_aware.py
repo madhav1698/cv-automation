@@ -1,7 +1,7 @@
 """
 Test script to verify job-aware bullet replacement
 """
-from core.update_cv import update_cv_bullets
+from update_cv import update_cv_bullets
 
 # Test data with bullets grouped by job
 test_bullets = {

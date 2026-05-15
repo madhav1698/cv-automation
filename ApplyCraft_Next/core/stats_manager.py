@@ -74,6 +74,7 @@ class StatsManager:
                         status_manual INTEGER DEFAULT 0,
                         manual INTEGER DEFAULT 0,
                         cv_found INTEGER DEFAULT 0,
+                        notes TEXT DEFAULT '',
                         last_updated TEXT NOT NULL
                     )
                     """
@@ -88,6 +89,14 @@ class StatsManager:
                 self.conn.execute("CREATE INDEX IF NOT EXISTS idx_app_date ON applications(date)")
                 self.conn.execute("CREATE INDEX IF NOT EXISTS idx_app_status ON applications(status)")
                 self.conn.execute("CREATE INDEX IF NOT EXISTS idx_app_country ON applications(country)")
+                
+                # Migration for notes column
+                try:
+                    self.conn.execute("SELECT notes FROM applications LIMIT 1")
+                except:
+                    try:
+                        self.conn.execute("ALTER TABLE applications ADD COLUMN notes TEXT DEFAULT ''")
+                    except: pass
 
     def _load_deleted_ids_from_legacy_json(self):
         if os.path.exists(self.deleted_file):
@@ -183,6 +192,7 @@ class StatsManager:
             "status_manual": bool(row["status_manual"]),
             "manual": bool(row["manual"]),
             "cv_found": bool(row["cv_found"]),
+            "notes": row["notes"] if "notes" in row.keys() else "",
             "last_updated": row["last_updated"]
         }
 
@@ -211,6 +221,7 @@ class StatsManager:
             1 if data.get("status_manual", False) else 0,
             1 if data.get("manual", False) else 0,
             1 if data.get("cv_found", False) else 0,
+            data.get("notes", ""),
             data.get("last_updated", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         )
 
@@ -221,8 +232,8 @@ class StatsManager:
                         """
                         INSERT INTO applications (
                             app_id, date, company, folder_name, country, country_manual,
-                            role_title, status, status_manual, manual, cv_found, last_updated
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            role_title, status, status_manual, manual, cv_found, notes, last_updated
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         ON CONFLICT(app_id) DO UPDATE SET
                             date=excluded.date,
                             company=excluded.company,
@@ -234,6 +245,7 @@ class StatsManager:
                             status_manual=excluded.status_manual,
                             manual=excluded.manual,
                             cv_found=excluded.cv_found,
+                            notes=excluded.notes,
                             last_updated=excluded.last_updated
                         """,
                         values
@@ -244,8 +256,8 @@ class StatsManager:
                     """
                     INSERT INTO applications (
                         app_id, date, company, folder_name, country, country_manual,
-                        role_title, status, status_manual, manual, cv_found, last_updated
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        role_title, status, status_manual, manual, cv_found, notes, last_updated
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     ON CONFLICT(app_id) DO UPDATE SET
                         date=excluded.date,
                         company=excluded.company,
@@ -257,6 +269,7 @@ class StatsManager:
                         status_manual=excluded.status_manual,
                         manual=excluded.manual,
                         cv_found=excluded.cv_found,
+                        notes=excluded.notes,
                         last_updated=excluded.last_updated
                     """,
                     values
@@ -328,25 +341,6 @@ class StatsManager:
 
     def _build_folder_name(self, company):
         return (company or "").replace(" ", "_")
-
-    def _extract_country_from_cv_filename(self, filename):
-        if not filename or not filename.lower().endswith(".pdf"):
-            return "Unknown"
-        if "cv" not in filename.lower():
-            return "Unknown"
-
-        stem = filename[:-4]
-        suffix = stem
-        if stem.startswith("Madhav_Manohar_Gopal_CV_"):
-            suffix = stem.replace("Madhav_Manohar_Gopal_CV_", "", 1)
-        elif stem.startswith("CV_"):
-            suffix = stem[3:]
-
-        normalized = suffix.replace("_", " ").lower()
-        for country_name, keywords in COUNTRY_MAP.items():
-            if any(keyword.lower() in normalized for keyword in keywords):
-                return country_name
-        return "Unknown"
 
     def rename_application(self, app_id, new_date, new_company):
         """Rename the application identity (app_id) when date/company are edited."""
@@ -444,7 +438,16 @@ class StatsManager:
                             found_country = "Unknown"
                             for filename in files:
                                 if "CV" in filename and filename.endswith(".pdf"):
-                                    found_country = self._extract_country_from_cv_filename(filename)
+                                    suffix = (
+                                        filename.replace("Madhav_Manohar_Gopal_CV_", "")
+                                        .replace(".pdf", "")
+                                        .replace("_", " ")
+                                        .lower()
+                                    )
+                                    for country_name, keywords in COUNTRY_MAP.items():
+                                        if any(kw.lower() in suffix for kw in keywords):
+                                            found_country = country_name
+                                            break
                                     if found_country != "Unknown":
                                         break
 
@@ -505,7 +508,16 @@ class StatsManager:
                     for filename in files:
                         if "CV" in filename and filename.endswith(".pdf"):
                             cv_found = True
-                            country = self._extract_country_from_cv_filename(filename)
+                            suffix = (
+                                filename.replace("Madhav_Manohar_Gopal_CV_", "")
+                                .replace(".pdf", "")
+                                .replace("_", " ")
+                                .lower()
+                            )
+                            for country_name, keywords in COUNTRY_MAP.items():
+                                if any(kw.lower() in suffix for kw in keywords):
+                                    country = country_name
+                                    break
                             break
                 except Exception as e:
                     logger.warning(f"Error processing files in {company_path}: {e}")
@@ -528,6 +540,7 @@ class StatsManager:
                     "status_manual": False,
                     "manual": False,
                     "cv_found": cv_found,
+                    "notes": "", # Added 'notes' field
                     "last_updated": creation_timestamp
                 }
                 updated = True
@@ -587,25 +600,46 @@ class StatsManager:
         
         # Mappings for consolidation
         in_process_variants = [
-            "Jobs Applied", "Initial Interview", "Task", 
-            "Subsequent Interview Round", "Offer", "Accepted",
+            "Initial Interview", "Task", 
+            "Subsequent Interview Round",
             "Interviewing", "Currently Interviewing"
+        ]
+        
+        # Granular statuses that should BE PRESERVED
+        preserved_statuses = [
+            "Rejected (Initial)", "Rejected (Post-Interview)", "Rejected (Post-Task)",
+            "Offer", "Accepted", "In Process", "Followed Up", "Unknown"
         ]
         
         for app_id, data in self.stats.items():
             current_status = data.get('status', 'Unknown')
             new_status = current_status
             
-            # 1. Normalize "In Process"
+            # 0. If it's already a preserved status, don't touch it
+            if current_status in preserved_statuses:
+                continue
+
+            # 1. Normalize specifically recognized variants
             if any(variant.lower() in current_status.lower() for variant in in_process_variants) and "rejected" not in current_status.lower():
                 new_status = "In Process"
             
-            # 2. Normalize "Rejected"
+            # 2. Normalize "Rejected" variants if not already granular
             elif "rejected" in current_status.lower():
-                new_status = "Rejected"
-                
-            # 3. Handle specific typos if needed
+                if "interview" in current_status.lower():
+                    new_status = "Rejected (Post-Interview)"
+                elif "task" in current_status.lower():
+                    new_status = "Rejected (Post-Task)"
+                else:
+                    new_status = "Rejected (Initial)"
             
+            # 3. Success cases
+            elif "offer" in current_status.lower():
+                new_status = "Offer"
+            elif "accepted" in current_status.lower() or "hired" in current_status.lower():
+                new_status = "Accepted"
+            elif "applied" in current_status.lower():
+                new_status = "In Process"
+                
             if new_status != current_status:
                 data['status'] = new_status
                 data['status_manual'] = True # Mark as manual so it sticks

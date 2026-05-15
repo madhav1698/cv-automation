@@ -21,6 +21,7 @@ from core.stats_manager import StatsManager
 from core.audit_dialogs import AuditDialogs
 from core.audit_graph import AuditGraph
 from core.audit_intel import AuditIntel
+from core.audit_sankey import AuditSankey
 
 try:
     from tkcalendar import DateEntry
@@ -76,8 +77,8 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         header_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
         header_frame.grid(row=0, column=0, sticky="ew", pady=(10, 30))
         
-        self.title_label = ctk.CTkLabel(header_frame, text="Application Command Center", 
-                                        font=ctk.CTkFont(family="Inter", size=34, weight="bold"),
+        self.title_label = ctk.CTkLabel(header_frame, text="", 
+                                        font=ctk.CTkFont(family="Inter", size=32, weight="bold"),
                                         text_color=self.colors["text"])
         self.title_label.pack(side="left")
 
@@ -127,7 +128,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         # Shortcuts Legend (Tactical Help)
         self.shortcuts_frame = ctk.CTkFrame(card, fg_color="transparent")
         self.shortcuts_frame.pack(fill="x", padx=30, pady=(0, 8))
-        shortcut_text = "⌨️  GLOBAL COMMANDS: [F] FOLLOWED UP  •  [I] IN PROCESS  •  [R] REJECTED  •  [U] UNKNOWN"
+        shortcut_text = "⌨️  GLOBAL COMMANDS: [P] IN PROCESS  •  [F] FOLLOWED UP  •  [R] REJECTED  •  [O] OFFER  •  [U] UNKNOWN"
         ctk.CTkLabel(self.shortcuts_frame, text=shortcut_text, 
                      font=ctk.CTkFont(family="Inter", size=13, weight="bold"), 
                      text_color=self.colors["accent"]).pack(side="left")
@@ -187,7 +188,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                      text_color=self.colors["text_muted"]).pack(anchor="w", pady=(0, 5))
         
         self.status_menu = ctk.CTkOptionMenu(status_dropdown_container,
-                         values=["All", "In Process", "Followed Up", "Rejected", "Unknown"],
+                         values=["All", "In Process", "Followed Up", "Rejected (Initial)", "Rejected (Post-Interview)", "Rejected (Post-Task)", "Offer", "Accepted", "Unknown"],
                          variable=self.status_filter,
                          command=lambda v: self.refresh_data(),
                          width=130, height=38,
@@ -257,7 +258,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                      font=ctk.CTkFont(size=12, weight="bold")).pack(side="left", padx=(10, 0))
 
     def setup_table(self, parent):
-        # Table Container
+        # Give the table a fixed, large height now that the whole page scrolls
         table_frame = ctk.CTkFrame(parent, fg_color=self.colors["card"], corner_radius=12, 
                                    border_width=1, border_color=self.colors["border"],
                                    height=600)  # Large, usable height
@@ -314,9 +315,9 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                                 style="Custom.Treeview",
                                 yscrollcommand=scrollbar.set,
                                 selectmode="browse")
-        
+
         scrollbar.configure(command=self.tree.yview)
-        
+
         # Define columns with precise alignment
         self.tree.heading("id", text="#", anchor="center")
         self.tree.heading("date", text="Date", anchor="w")
@@ -326,29 +327,31 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.tree.heading("status", text="Status", anchor="w")
         self.tree.heading("age", text="Age", anchor="w")
         self.tree.heading("notes", text="Notes", anchor="w")
-        
+
         self.tree.column("id", width=50, anchor="center", minwidth=40)
         self.tree.column("date", width=110, anchor="w", minwidth=110)
-        self.tree.column("company", width=250, anchor="w", minwidth=180)
-        self.tree.column("role_title", width=200, anchor="w", minwidth=140)
-        self.tree.column("country", width=130, anchor="w", minwidth=100)
-        self.tree.column("status", width=180, anchor="w", minwidth=120)
-        self.tree.column("age", width=110, anchor="w", minwidth=90)
-        self.tree.column("notes", width=220, anchor="w", minwidth=150)
-        
+        self.tree.column("company", width=300, anchor="w", minwidth=200)
+        self.tree.column("role_title", width=220, anchor="w", minwidth=140)
+        self.tree.column("country", width=160, anchor="w", minwidth=120)
+        self.tree.column("status", width=160, anchor="w", minwidth=120)
+        self.tree.column("age", width=130, anchor="w", minwidth=100)
+        self.tree.column("notes", width=250, anchor="w", minwidth=150)
+
         self.tree.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
-        
+
         # Context menu for status update
         self.tree.bind("<Double-Button-1>", self.on_row_double_click)
         self.tree.bind("<Button-3>", self.show_context_menu) # Right click Windows
-        
+
         # Keyboard Shortcuts for Rapid Entry (Bound to Tree for focus)
-        self.tree.bind("<r>", lambda e: self.update_status_hotkey("Rejected"))
-        self.tree.bind("<R>", lambda e: self.update_status_hotkey("Rejected"))
+        self.tree.bind("<p>", lambda e: self.update_status_hotkey("In Process"))
+        self.tree.bind("<P>", lambda e: self.update_status_hotkey("In Process"))
         self.tree.bind("<f>", lambda e: self.update_status_hotkey("Followed Up"))
         self.tree.bind("<F>", lambda e: self.update_status_hotkey("Followed Up"))
-        self.tree.bind("<i>", lambda e: self.update_status_hotkey("In Process"))
-        self.tree.bind("<I>", lambda e: self.update_status_hotkey("In Process"))
+        self.tree.bind("<r>", lambda e: self.update_status_hotkey("Rejected (Initial)"))
+        self.tree.bind("<R>", lambda e: self.update_status_hotkey("Rejected (Initial)"))
+        self.tree.bind("<o>", lambda e: self.update_status_hotkey("Offer"))
+        self.tree.bind("<O>", lambda e: self.update_status_hotkey("Offer"))
         self.tree.bind("<u>", lambda e: self.update_status_hotkey("Unknown"))
         self.tree.bind("<U>", lambda e: self.update_status_hotkey("Unknown"))
 
@@ -401,12 +404,20 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         # Brighter status colors for better contrast
         if mode == "Dark":
             self.tree.tag_configure("in_process", foreground="#93C5FD")
-            self.tree.tag_configure("rejected", foreground="#FCA5A5")
+            self.tree.tag_configure("rejected_initial", foreground="#FCA5A5")
+            self.tree.tag_configure("rejected_post-interview", foreground="#F87171")
+            self.tree.tag_configure("rejected_post-task", foreground="#EF4444")
+            self.tree.tag_configure("offer", foreground="#A7F3D0")
+            self.tree.tag_configure("accepted", foreground="#10B981")
             self.tree.tag_configure("followed_up", foreground="#6EE7B7")
             self.tree.tag_configure("unknown", foreground="#94A3B8")
         else:
             self.tree.tag_configure("in_process", foreground="#3B82F6")
-            self.tree.tag_configure("rejected", foreground="#EF4444")
+            self.tree.tag_configure("rejected_initial", foreground="#EF4444")
+            self.tree.tag_configure("rejected_post-interview", foreground="#DC2626")
+            self.tree.tag_configure("rejected_post-task", foreground="#B91C1C")
+            self.tree.tag_configure("offer", foreground="#059669")
+            self.tree.tag_configure("accepted", foreground="#047857")
             self.tree.tag_configure("followed_up", foreground="#10B981")
             self.tree.tag_configure("unknown", foreground="#64748B")
         
@@ -433,7 +444,9 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             
             menu.add_command(label="🔵 Mark In Process", command=lambda: self.update_status_hotkey("In Process"))
             menu.add_command(label="🟢 Mark Followed Up", command=lambda: self.update_status_hotkey("Followed Up"))
-            menu.add_command(label="🔴 Mark Rejected", command=lambda: self.update_status_hotkey("Rejected"))
+            menu.add_command(label="🔴 Mark Rejected (Initial)", command=lambda: self.update_status_hotkey("Rejected (Initial)"))
+            menu.add_command(label="💥 Mark Rejected (Post-Interview)", command=lambda: self.update_status_hotkey("Rejected (Post-Interview)"))
+            menu.add_command(label="✨ Mark Offer", command=lambda: self.update_status_hotkey("Offer"))
             menu.add_command(label="⚪ Mark Unknown", command=lambda: self.update_status_hotkey("Unknown"))
             menu.add_separator()
             menu.add_command(label="📝 Edit Details...", command=lambda: self.on_row_double_click(None))
@@ -685,7 +698,6 @@ class ApplicationAuditPanel(ctk.CTkFrame):
         self.filtered_data = self.apply_filters(stats)
         filtered_stats = self.filtered_data
         filtered_dict = dict(filtered_stats)
-        
         # Revert to simple status pills
         filtered_count = len(filtered_stats)
         ctk.CTkLabel(self.summary_container, text=f"Total: {filtered_count}", 
@@ -697,11 +709,23 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             s = data['status']
             status_counts[s] = status_counts.get(s, 0) + 1
 
-        status_colors = {"In Process": "#3B82F6", "Rejected": "#EF4444", 
-                        "Followed Up": "#10B981", "Unknown": "#64748B"}
+        status_colors = {
+            "In Process": "#3B82F6", 
+            "Rejected": "#EF4444", 
+            "Followed Up": "#10B981", 
+            "Offer": "#8B5CF6",
+            "Unknown": "#64748B"
+        }
         
-        for status in ["In Process", "Followed Up", "Rejected", "Unknown"]:
-            target_count = status_counts.get(status, 0)
+        display_statuses = ["In Process", "Followed Up", "Rejected", "Offer", "Unknown"]
+        
+        for status in display_statuses:
+            if status == "Rejected":
+                target_count = sum(count for s, count in status_counts.items() if "rejected" in s.lower())
+            elif status == "In Process":
+                target_count = status_counts.get("In Process", 0) + status_counts.get("Accepted", 0)
+            else:
+                target_count = status_counts.get(status, 0)
             
             pill = ctk.CTkLabel(self.summary_container, 
                                text=f"{status.upper()}: 0", 
@@ -892,7 +916,6 @@ class ApplicationAuditPanel(ctk.CTkFrame):
 
     def render_intelligence(self, stats):
         # Render Market Intel
-        from core.audit_intel import AuditIntel
         AuditIntel.render_intelligence(None, self.market_body, stats, self.colors)
 
     def apply_filters(self, stats):
@@ -1012,7 +1035,8 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             
             # Status tag
             status = app['status']
-            tags.append(status.lower().replace(" ", "_"))
+            status_tag = status.lower().replace(" ", "_").replace("(", "").replace(")", "")
+            tags.append(status_tag)
             
             # Found CV tag
             if not app.get('cv_found', True):
@@ -1059,9 +1083,12 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                 # Apply new tag
                 tags = list(self.tree.item(app_id, "tags"))
                 # Remove old status tag if exists
-                for t in ["unknown", "in_process", "rejected", "followed_up"]:
-                    if t in tags: tags.remove(t)
-                tags.append(status.lower().replace(" ", "_"))
+                tags = [t for t in tags if t not in [
+                    "unknown", "in_process", "followed_up", "offer", "accepted",
+                    "rejected_initial", "rejected_post-interview", "rejected_post-task"
+                ]]
+                status_tag = status.lower().replace(" ", "_").replace("(", "").replace(")", "")
+                tags.append(status_tag)
                 self.tree.item(app_id, tags=tuple(tags))
         
         # Update summary cards after a short delay
@@ -1089,7 +1116,7 @@ class ApplicationAuditPanel(ctk.CTkFrame):
             with open(file_path, mode='w', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 # Header
-                writer.writerow(["ID", "Date", "Company", "Role Title", "Country", "Status", "Manual Entry"])
+                writer.writerow(["ID", "Date", "Company", "Role Title", "Country", "Status", "Manual Entry", "Notes"])
                 
                 # Data
                 for i, (app_id, data) in enumerate(self.filtered_data):
@@ -1100,7 +1127,8 @@ class ApplicationAuditPanel(ctk.CTkFrame):
                         data.get('role_title', ''),
                         data.get('country', ''),
                         data.get('status', ''),
-                        "Yes" if data.get('manual') else "No"
+                        "Yes" if data.get('manual') else "No",
+                        data.get('notes', '')
                     ])
             
             # Subtle feedback (could be a toast, but using print/console for now)

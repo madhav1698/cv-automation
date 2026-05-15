@@ -4,3 +4,7 @@ flask>=2.3.0
 pywin32>=306
 comtypes>=1.4.15
 PyPDF2>=3.0.0
+customtkinter>=5.2.0
+SQLAlchemy>=2.0.0
+tkcalendar>=1.6.1
+pyinstaller>=6.0.0

@@ -1,7 +1,7 @@
 """
 Test script to verify flexible bullet counts
 """
-from core.update_cv import update_cv_bullets
+from update_cv import update_cv_bullets
 
 # Test with DIFFERENT numbers of bullets per job
 # Template has: PEERMUSIC (6), REPHRAIN (6), IBA (6), BRISTOL (4)

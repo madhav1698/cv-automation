@@ -37,9 +37,6 @@ class ExperienceBlock(BaseModel):
     company_label: Optional[str] = ""
     role_label: Optional[str] = ""
     date_label: Optional[str] = ""
-    
-    # Text Anchor for finding this block later
-    anchor_text: Optional[str] = None
 
 class TemplateAnalysis(BaseModel):
     paragraphs: List[ParagraphData]
