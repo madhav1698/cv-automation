@@ -12,12 +12,29 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from helpers.logger import logger
+from helpers import user_config
 
-def generate_cover_letter(output_path, company_name, city, country, date_str, body_text, hiring_manager="Hiring Manager", candidate_name="Madhav Manohar Gopal"):
+
+def generate_cover_letter(
+    output_path,
+    company_name,
+    city,
+    country,
+    date_str,
+    body_text,
+    hiring_manager="Hiring Manager",
+    candidate_name=None,
+):
+    """Generate a cover letter .docx.
+
+    ``candidate_name`` defaults to whatever is set in user_config.json so
+    the tool is reusable by anyone.
     """
-    Generates a cover letter docx file with premium formatting.
-    """
-    # Only title case if it's a short string (likely a name), not if it's the whole body by mistake
+    if candidate_name is None:
+        candidate_name = user_config.name()
+
+    # Only title-case if it's a short string (likely a name), not if the
+    # caller accidentally passed a whole paragraph.
     if len(hiring_manager) < 100:
         hiring_manager = hiring_manager.title()
     

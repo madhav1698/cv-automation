@@ -1,10 +1,26 @@
-python-docx>=0.8.11
-docx2pdf>=0.1.8
-flask>=2.3.0
-pywin32>=306
-comtypes>=1.4.15
-PyPDF2>=3.0.0
-customtkinter>=5.2.0
-SQLAlchemy>=2.0.0
-tkcalendar>=1.6.1
+# --- Core ---
+python-docx>=0.8.11        # Word document surgery
+docx2pdf>=0.1.8            # docx -> pdf (uses Word on Windows / soffice elsewhere)
+PyPDF2>=3.0.0              # blank-page cleanup of generated PDFs
+SQLAlchemy>=2.0.0          # not strictly required by stats_manager today, but
+                           # retained for compatibility with audit modules
+customtkinter>=5.2.0       # GUI framework
+tkcalendar>=1.6.1          # date picker in the Audit panel
+
+# --- Windows-only ---
+# Used by core.update_cv when docx2pdf falls back to native Word automation.
+# Safe to leave installed cross-platform; the imports happen lazily.
+pywin32>=306 ; sys_platform == "win32"
+comtypes>=1.4.15 ; sys_platform == "win32"
+
+# --- Optional: distribution ---
+# Only needed if you want to build a single-file .exe via `python build_exe.py`.
 pyinstaller>=6.0.0
+
+# --- Local LLM (bullet ranking) ---
+# sentence-transformers runs a small embedding model entirely on-device
+# (~80MB weights, MIT-licensed). First rank downloads the weights into
+# the HuggingFace cache; everything after is offline.
+# If you want to skip it (smaller install), comment this out and set
+# user_config.json -> llm.provider = "local" (pure-Python TF-IDF fallback).
+sentence-transformers>=2.5.0

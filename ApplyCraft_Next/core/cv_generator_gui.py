@@ -14,10 +14,60 @@ if project_root not in sys.path:
 
 import customtkinter as ctk
 from helpers.logger import logger
+from helpers import user_config
 from core.config import DESIGN_TOKENS, JOB_POSITIONS, DEFAULT_CL_BODY, SUMMARY_TEXT
 from core.cv_service import CVGeneratorService
 from core.stats_manager import StatsManager
 from core.application_audit import ApplicationAuditPanel
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+from core.jd_ranker import rank_bullets, BulletScore
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
+=======
+from core.user_profile import UserProfileStore
+>>>>>>> theirs
 
 # --- ANIMATION UTILITY ---
 
@@ -37,17 +87,42 @@ class ApplyCraftApp(ctk.CTk):
 
         self.configure(fg_color=self.colors["bg"])
 
+<<<<<<< ours
+        # State Variables — templates come from user_config.json so each
+        # user can register their own master .docx files.
+        self.templates = user_config.resolved_template_paths()
+        if not self.templates:
+            # Defensive: ensure the segmented selector always has something.
+            self.templates = {"Template 1": ""}
+        self._template_labels = list(self.templates.keys())
+        self.current_template_name = ctk.StringVar(value=self._template_labels[0])
+
+        # Cached: latest JD-ranked bullets, set when the user presses
+        # "Rank against JD" in the Smart Import panel.
+        self.last_jd_text = ""
+        self.last_jd_ranking = []  # list[BulletScore]
+=======
         # State Variables
+        self.profile_store = UserProfileStore(os.path.dirname(current_dir))
+        self.user_profile = self.profile_store.load()
+        template_1 = os.path.join(current_dir, "..", self.user_profile.template_1)
+        template_2 = os.path.join(current_dir, "..", self.user_profile.template_2)
+        if not os.path.exists(template_1):
+            template_1 = os.path.join(current_dir, "..", "templates", "Madhav_Manohar Gopal_CV.docx")
+        if not os.path.exists(template_2):
+            template_2 = os.path.join(current_dir, "..", "templates", "Madhav_Manohar_Gopal_CV_2.docx")
+
         self.templates = {
-            "Template 1": os.path.join(current_dir, "..", "templates", "Madhav_Manohar Gopal_CV.docx"),
-            "Template 2": os.path.join(current_dir, "..", "templates", "Madhav_Manohar_Gopal_CV_2.docx")
+            "Template 1": template_1,
+            "Template 2": template_2
         }
         self.current_template_name = ctk.StringVar(value="Template 1")
+>>>>>>> theirs
         self.job_text_widgets = {}
         self.job_headline_widgets = {}
         self.preview_zoom = 1.0
         self.stats_manager = StatsManager(os.path.dirname(current_dir))
-        self.cv_service = CVGeneratorService(self.stats_manager)
+        self.cv_service = CVGeneratorService(self.stats_manager, self.user_profile)
 
         # Layout Grid
         self.grid_columnconfigure(1, weight=1)
@@ -218,12 +293,14 @@ class ApplyCraftApp(ctk.CTk):
                                       command=self.open_outputs)
         self.open_folder_btn.pack(side="left", padx=(15, 5), pady=10)
 
-        # Panels
+        # Panels. NOTE: import_panel must be scrollable — it now holds
+        # two cards (Smart Bullet Parser + JD-Aware Ranking) and the
+        # Rank button would otherwise be hidden below the viewport.
         self.cv_panel = ctk.CTkScrollableFrame(self.editor_column, fg_color="transparent")
         self.cl_panel = ctk.CTkScrollableFrame(self.editor_column, fg_color="transparent")
-        self.import_panel = ctk.CTkFrame(self.editor_column, fg_color="transparent")
+        self.import_panel = ctk.CTkScrollableFrame(self.editor_column, fg_color="transparent")
         self.audit_panel = ApplicationAuditPanel(self.editor_column, colors=self.colors)
-        self.settings_panel = ctk.CTkFrame(self.editor_column, fg_color="transparent")
+        self.settings_panel = ctk.CTkScrollableFrame(self.editor_column, fg_color="transparent")
         
         # Entrance Animation State
         self.panels = [self.cv_panel, self.cl_panel, self.import_panel, self.settings_panel, self.audit_panel]
@@ -273,7 +350,7 @@ class ApplyCraftApp(ctk.CTk):
         # Template selector with better dark mode support
         ctk.CTkLabel(card, text="Active Template", font=ctk.CTkFont(size=13, weight="bold"), 
                     text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(10, 8))
-        self.cv_template_selector = ctk.CTkSegmentedButton(card, values=["Template 1", "Template 2"],
+        self.cv_template_selector = ctk.CTkSegmentedButton(card, values=self._template_labels,
                                                        variable=self.current_template_name,
                                                        command=self.update_template_path,
                                                        height=45,
@@ -335,10 +412,10 @@ class ApplyCraftApp(ctk.CTk):
         self.current_location_entry = ctk.CTkEntry(card, height=50, fg_color=self.colors["input_bg"],
                                             text_color=self.colors["text"], border_width=2,
                                             border_color=self.colors["border"], corner_radius=10,
-                                            placeholder_text="e.g. Stockholm",
+                                            placeholder_text="e.g. " + (user_config.location() or "London"),
                                             font=ctk.CTkFont(size=13))
         self.current_location_entry.pack(fill="x", padx=25)
-        self.current_location_entry.insert(0, "Stockholm")
+        self.current_location_entry.insert(0, user_config.location())
         self.current_location_entry.bind("<KeyRelease>", lambda e: self.update_live_preview())
         self.current_location_entry.bind("<FocusIn>", lambda e: self.current_location_entry.configure(border_color=self.colors["accent"]))
         self.current_location_entry.bind("<FocusOut>", lambda e: self.current_location_entry.configure(border_color=self.colors["border"]))
@@ -384,14 +461,71 @@ class ApplyCraftApp(ctk.CTk):
         self.cl_body_text = self.create_textbox(body_card, "Body", DEFAULT_CL_BODY, height=400)
 
     def setup_import_panel(self):
+        # --- Card 1: Auto-sort raw resume text into job-bucketed bullets ---
         card = self.create_card(self.import_panel, "SMART BULLET PARSER")
-        ctk.CTkLabel(card, text="Paste raw bullets with job titles. The system will auto-sort them.", 
+        ctk.CTkLabel(card, text="Paste raw bullets with job titles. The system will auto-sort them.",
                      font=ctk.CTkFont(size=13), text_color=self.colors["text_muted"]).pack(anchor="w", padx=25)
-        self.import_text = self.create_textbox(card, "", "", height=400)
-        
-        btn = ctk.CTkButton(card, text="⚡ Auto-Sort Into CV", corner_radius=10, 
+        self.import_text = self.create_textbox(card, "", "", height=260)
+
+        btn = ctk.CTkButton(card, text="⚡ Auto-Sort Into CV", corner_radius=10,
                             fg_color=self.colors["accent"], height=45, command=self.auto_sort)
-        btn.pack(fill="x", padx=25, pady=25)
+        btn.pack(fill="x", padx=25, pady=(5, 25))
+
+        # --- Card 2: JD-aware bullet ranking -----------------------------
+        # Paste a JD, press the button, and we score every bullet in the
+        # inventory against it. The user sees a ranked list with the
+        # matched keywords, then either copies a bullet into the CV panel
+        # or auto-applies the top N per job.
+        jd_card = self.create_card(self.import_panel, "JD-AWARE BULLET RANKING")
+        ctk.CTkLabel(
+            jd_card,
+            text="Paste a job description. The local ranker scores every bullet "
+                 "in your inventory against it. Top matches show below — "
+                 "click 'Apply Top 5 / Job' to pre-fill the CV builder.",
+            font=ctk.CTkFont(size=13),
+            text_color=self.colors["text_muted"],
+            wraplength=820,
+            justify="left",
+        ).pack(anchor="w", padx=25, pady=(0, 5))
+
+        self.jd_text = self.create_textbox(jd_card, "Job Description", "", height=180)
+
+        controls = ctk.CTkFrame(jd_card, fg_color="transparent")
+        controls.pack(fill="x", padx=25, pady=(0, 10))
+
+        rank_btn = ctk.CTkButton(
+            controls, text="🎯 Rank Against JD", corner_radius=10,
+            fg_color=self.colors["accent"], height=42, width=200,
+            command=self.run_jd_ranking,
+        )
+        rank_btn.pack(side="left")
+
+        apply_btn = ctk.CTkButton(
+            controls, text="Apply Top 5 / Job", corner_radius=10,
+            fg_color="transparent", text_color=self.colors["text"],
+            border_width=1, border_color=self.colors["border"],
+            hover_color=self.colors["accent_soft"],
+            height=42, width=180,
+            command=self.apply_top_ranked_bullets,
+        )
+        apply_btn.pack(side="left", padx=(10, 0))
+
+        self.jd_results_label = ctk.CTkLabel(
+            jd_card, text="", font=ctk.CTkFont(size=12),
+            text_color=self.colors["text_muted"], justify="left", anchor="w",
+        )
+        self.jd_results_label.pack(anchor="w", padx=25, pady=(2, 5))
+
+        # Scrollable list of top-ranked bullets. We render it as plain
+        # text in a textbox: simpler than a treeview, perfectly readable.
+        self.jd_results_box = ctk.CTkTextbox(
+            jd_card, height=260, fg_color=self.colors["bg"],
+            text_color=self.colors["text"], border_width=1,
+            border_color=self.colors["border"], corner_radius=12,
+            font=ctk.CTkFont(family="Inter", size=13), wrap="word",
+        )
+        self.jd_results_box.pack(fill="x", padx=25, pady=(0, 20))
+        self.jd_results_box.configure(state="disabled")
 
 
     def setup_preview_panel(self):
@@ -423,7 +557,7 @@ class ApplyCraftApp(ctk.CTk):
         card = self.create_card(self.settings_panel, "FILE CONFIGURATION")
         
         ctk.CTkLabel(card, text="Select Active Template", font=ctk.CTkFont(size=13, weight="normal"), text_color=self.colors["text"]).pack(anchor="w", padx=25, pady=(10, 0))
-        self.template_selector = ctk.CTkSegmentedButton(card, values=["Template 1", "Template 2"],
+        self.template_selector = ctk.CTkSegmentedButton(card, values=self._template_labels,
                                                        variable=self.current_template_name,
                                                        command=self.update_template_path,
                                                        height=40,
@@ -431,8 +565,9 @@ class ApplyCraftApp(ctk.CTk):
                                                        selected_color=self.colors["accent"],
                                                        selected_hover_color=self.colors["accent"])
         self.template_selector.pack(fill="x", padx=25, pady=(8, 15))
-        
-        self.template_path_entry = self.create_input(card, "CV Template Path", self.templates["Template 1"])
+
+        first_label = self._template_labels[0]
+        self.template_path_entry = self.create_input(card, "CV Template Path", self.templates.get(first_label, ""))
 
     def update_template_path(self, selected_name):
         path = self.templates.get(selected_name, "")
@@ -581,19 +716,26 @@ class ApplyCraftApp(ctk.CTk):
         country = self.cl_country.get().strip().title()
         
         if self.preview_mode.get() == "CV":
-            location = self.current_location_entry.get().strip() or "Stockholm"
-            relocation_line = f"EU citizen, no visa required to work in EU. Currently in {location}, willing to relocate."
-            content = f"MADHAV MANOHAR GOPAL\n\nPROFESSIONAL SUMMARY\n{self.summary_text.get('0.0', 'end').strip()} {relocation_line}\n\n"
+            location = self.current_location_entry.get().strip() or user_config.location() or ""
+            relocation_line = user_config.relocation_line(location)
+            user_name = user_config.name().upper()
+            tail = f" {relocation_line}" if relocation_line else ""
+            content = (
+                f"{user_name}\n\n"
+                f"PROFESSIONAL SUMMARY\n"
+                f"{self.summary_text.get('0.0', 'end').strip()}{tail}\n\n"
+            )
             for job, widget in self.job_text_widgets.items():
                 content += f"{job.upper()}\n"
-                
+
                 headline = self.job_headline_widgets[job].get().strip()
                 if headline:
                     content += f"[{headline}]\n"
 
                 bullets = widget.get("0.0", "end").strip().split("\n")
                 for b in bullets:
-                    if b.strip(): content += f"• {b.strip()}\n"
+                    if b.strip():
+                        content += f"• {b.strip()}\n"
                 content += "\n"
         else:
             body = self.cl_body_text.get("0.0", "end").strip().replace("[Company Name]", company)
@@ -605,7 +747,7 @@ class ApplyCraftApp(ctk.CTk):
                 f"Dear {self.cl_hiring_manager.get()},\n\n"
                 f"{body}\n\n"
                 "Sincerely,\n"
-                "Madhav Manohar Gopal"
+                f"{user_config.name()}"
             )
             
         self.preview_text.insert("end", content)
@@ -695,6 +837,101 @@ class ApplyCraftApp(ctk.CTk):
                 self.job_text_widgets[job].insert("0.0", "\n".join(bullets))
         
         self.set_status("Bullets Sorted (Filtered Dates)", "success")
+        self.show_cv_panel()
+
+    # ------------------------------------------------------------------
+    # JD-aware ranking handlers
+    # ------------------------------------------------------------------
+    def run_jd_ranking(self):
+        """Score every bullet in the inventory against the pasted JD.
+
+        Runs the ranker on a background thread so the UI stays responsive
+        if the user has opted into a heavier model (embeddings, Ollama).
+        """
+        jd = self.jd_text.get("0.0", "end").strip()
+        if not jd:
+            self.set_status("Paste a JD first", "text_muted")
+            return
+
+        self.set_status("Ranking bullets...", "accent")
+        self.jd_results_label.configure(text="Scoring against your bullet inventory…")
+        # Refresh job_positions in case the user edited config.
+        inventory = user_config.job_positions()
+
+        def worker():
+            try:
+                from core.jd_ranker import rank_bullets, compute_fit_score
+                ranked = rank_bullets(jd, inventory)
+                fit = compute_fit_score(jd, ranked)
+                self.after(0, lambda: self._render_jd_results(ranked, fit))
+            except Exception as e:
+                logger.error(f"JD ranking failed: {e}")
+                self.after(0, lambda: self.set_status("Ranking failed (see logs)", "text_muted"))
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def _render_jd_results(self, ranked, fit):
+        """Paint the ranked list and the overall fit score into the UI."""
+        self.last_jd_ranking = ranked
+        self.last_jd_text = self.jd_text.get("0.0", "end").strip()
+
+        backend = fit.get("backend", "local TF-IDF")
+        score_pct = int(round(fit.get("fit_score", 0.0) * 100))
+        n_bullets = fit.get("considered", len(ranked))
+        n_strong = fit.get("strong_matches", 0)
+
+        self.jd_results_label.configure(
+            text=(
+                f"Overall fit: {score_pct}%  ·  "
+                f"{n_strong} strong matches across {n_bullets} bullets  ·  "
+                f"backend: {backend}"
+            )
+        )
+
+        # Top 20 bullets, grouped by score band for readability.
+        lines = []
+        for i, item in enumerate(ranked[:20], start=1):
+            keywords = (
+                f"  [{', '.join(item.matched_keywords[:6])}]"
+                if item.matched_keywords else ""
+            )
+            score_pct = int(round(item.score * 100))
+            lines.append(f"{i:>2}. [{score_pct:>2}%] {item.job_title}")
+            lines.append(f"     • {item.bullet}")
+            if keywords:
+                lines.append(f"     matched:{keywords}")
+            lines.append("")
+
+        self.jd_results_box.configure(state="normal")
+        self.jd_results_box.delete("0.0", "end")
+        self.jd_results_box.insert("0.0", "\n".join(lines) if lines else "No bullets ranked.")
+        self.jd_results_box.configure(state="disabled")
+        self.set_status("Ranking complete", "success")
+
+    def apply_top_ranked_bullets(self):
+        """Replace each job's CV bullets with the top 5 from the last ranking.
+
+        Non-destructive in the sense that the inventory in user_config is
+        not modified; only the in-memory CV builder widgets are updated.
+        The user can still tweak and revert before generating.
+        """
+        if not self.last_jd_ranking:
+            self.set_status("Run 'Rank Against JD' first", "text_muted")
+            return
+
+        from core.jd_ranker import top_bullets_per_job
+        buckets = top_bullets_per_job(self.last_jd_ranking, per_job_cap=5)
+
+        applied = 0
+        for job_title, items in buckets.items():
+            widget = self.job_text_widgets.get(job_title)
+            if widget is None:
+                continue
+            widget.delete("0.0", "end")
+            widget.insert("0.0", "\n".join(item.bullet for item in items))
+            applied += len(items)
+
+        self.set_status(f"Applied {applied} bullets to the CV builder", "success")
         self.show_cv_panel()
 
     def _animate_status_pulse(self, step):

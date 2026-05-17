@@ -40,7 +40,12 @@ test_bullets = {
 
 test_summary = "Test summary for flexible bullet counts."
 
-input_file = "templates/Madhav_Manohar Gopal_CV.docx"
+# Use the first configured template so this test runs for any user.
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from helpers import user_config
+_templates = user_config.resolved_template_paths()
+input_file = next(iter(_templates.values())) if _templates else "templates/CV_Template_1.docx"
 output_file = "outputs/test_flexible_bullets.docx"
 
 print("Testing flexible bullet counts...")

@@ -1,0 +1,60 @@
+{
+  "_comment_1": "Copy this file to user_config.json and edit it. ApplyCraft will read user_config.json on launch. The first-run setup wizard inside the app can also write this file for you.",
+
+  "name": "Jane Doe",
+  "filename_slug": "Jane_Doe",
+  "email": "jane.doe@example.com",
+  "phone": "+44 7000 000000",
+  "location": "London",
+
+  "default_summary": "Data Analytics professional with experience across [industries], specialising in turning complex data into decision-ready reporting. Skilled in Python, SQL, and modern BI tools, with a track record of automating workflows and driving adoption with non-technical stakeholders.",
+
+  "default_cover_letter_body": "At scale, the hardest part of analytics is not the analysis itself; it is deciding which signals deserve attention and how findings should be framed so leaders actually act. What drew me to this role at [Company Name] is that it treats data as a system with ownership and consequences, not as a reporting cycle.\n\nIn my work, I have spent much of my time operating in the gap between data and decision, clarifying intent upfront, stress-testing findings, and narrowing focus to actions that are both realistic and measurable.\n\nI am applying because this role sits where analytical judgment, communication, and organisational responsibility intersect. I would value the opportunity to contribute to [Company Name]'s mission.",
+
+  "relocation_line": "EU citizen, no visa required to work in EU. Currently in {location}, willing to relocate.",
+  "show_relocation_line": true,
+
+  "_comment_2": "job_positions is the master inventory the CV builder reads. Each key is the heading shown in the document; the array is the default set of bullets for that role. You can have as many roles as you like.",
+  "job_positions": {
+    "ACME CORPORATION – Senior Data Analyst": [
+      "Owned the analytics roadmap for a 40-person product team, translating ambiguous questions into shipped dashboards used in weekly business reviews.",
+      "Built and maintained the company-wide KPI layer in dbt + Snowflake, cutting time-to-insight for new reports from days to hours.",
+      "Mentored two junior analysts through structured code review and weekly 1:1s, both of whom were promoted within the year.",
+      "Partnered with engineering to instrument event tracking across web and mobile, increasing event coverage from 60% to 95% of critical flows.",
+      "Replaced an ageing Excel reporting pack with a Power BI suite adopted by Finance, Operations, and the CEO's office."
+    ],
+    "BETA RESEARCH GROUP – Data Scientist": [
+      "Delivered analytical outputs across multiple projects, ensuring datasets were accurate, compliant, and usable by stakeholders.",
+      "Built a Python-based data quality tool that reduced manual review time by 80%, accelerating project delivery.",
+      "Produced dashboards and analytical summaries that enabled stakeholders to interpret sensitive data with confidence.",
+      "Presented findings to mixed technical and non-technical audiences, supporting informed project decisions."
+    ]
+  },
+
+  "_comment_3": "templates maps a friendly label (shown in the UI) to the path of a .docx template. Paths can be absolute, or relative to the project root.",
+  "templates": {
+    "Template 1": "templates/CV_Template_1.docx",
+    "Template 2": "templates/CV_Template_2.docx"
+  },
+  "cover_letter_template": "templates/Cover_Letter_Template.docx",
+
+  "_comment_4": "country_keywords lets stats_manager auto-tag the country of an application from the output filename. Add any city/country pairs you commonly target.",
+  "country_keywords": {
+    "UK": ["UK", "London", "Manchester", "Birmingham", "Edinburgh", "Glasgow", "Leeds", "Bristol", "Liverpool"],
+    "Ireland": ["Ireland", "Dublin", "Cork", "Galway", "Limerick"],
+    "Germany": ["Germany", "Berlin", "Munich", "Hamburg", "Frankfurt"],
+    "Netherlands": ["Netherlands", "Amsterdam", "Rotterdam", "Utrecht", "Eindhoven", "The Hague"]
+  },
+
+  "_comment_5": "JD-aware bullet ranking uses one of four backends. ALL FOUR can run with zero data leaving your machine — only 'openai' makes a network call.",
+  "_comment_5a": "  'local' (default) — pure-Python TF-IDF + keyword overlap. No install, instant, decent. Set this and you're done.",
+  "_comment_5b": "  'sentence_transformers' — runs a small embedding model on-device (all-MiniLM-L6-v2 by default, ~80MB, MIT). pip install sentence-transformers. First run downloads weights; offline after that. Best balance of quality vs setup.",
+  "_comment_5c": "  'ollama' — calls an Ollama daemon on localhost. Install Ollama (https://ollama.com), then `ollama pull nomic-embed-text`. Highest-quality local option if you already use Ollama.",
+  "_comment_5d": "  'openai' — paid cloud API. Highest quality, but your JD text is sent to OpenAI. Opt-in only. Set provider='openai' AND api_key.",
+  "llm": {
+    "provider": "sentence_transformers",
+    "model": "",
+    "api_key": "",
+    "host": "http://localhost:11434"
+  }
+}

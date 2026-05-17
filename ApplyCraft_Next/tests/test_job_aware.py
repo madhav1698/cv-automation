@@ -35,7 +35,12 @@ test_summary = (
     "enforcing schemas and metadata, and balancing correctness, usability, and long-term maintainability."
 )
 
-input_file = "templates/Madhav_Manohar Gopal_CV.docx"
+# Use the first configured template so this test runs for any user.
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from helpers import user_config
+_templates = user_config.resolved_template_paths()
+input_file = next(iter(_templates.values())) if _templates else "templates/CV_Template_1.docx"
 output_file = "outputs/test_job_aware_cv.docx"
 
 print("Testing job-aware bullet replacement...")

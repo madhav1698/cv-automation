@@ -19,6 +19,7 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from helpers.logger import logger
+from helpers import user_config
 from core.config import SUMMARY_TEXT, JOB_POSITIONS
 
 dummy_bullets = [bullet for bullets in JOB_POSITIONS.values() for bullet in bullets]
@@ -48,25 +49,49 @@ def update_cv_bullets(input_file, output_file, custom_summary=None, custom_bulle
         bullets_list = custom_bullets if custom_bullets else dummy_bullets
         use_job_aware = False
 
-    # First, replace any existing summary text that appears *before*
-    # the fixed EU-citizen line, while keeping that line updated and BOLD.
-    marker_base = "EU citizen, no visa required to work in EU."
-    location_text = f"Currently in {current_location}, willing to relocate." if current_location else "Currently in Stockholm, willing to relocate."
-    eu_marker_full = f"{marker_base} {location_text}"
+    # Build the "extra line" (visa / relocation status) from user_config.
+    # The user controls both whether this line is shown and its wording
+    # via ``show_relocation_line`` + ``relocation_line``. If the user has
+    # not opted in, we still look for the legacy marker so old templates
+    # keep working.
+    relocation_line_text = user_config.relocation_line(current_location)
+
+    # The "marker" is whatever first word the user's relocation line starts
+    # with (e.g. "EU citizen..." or "Authorised to work..."). If the user
+    # didn't configure one, fall back to common phrases so existing
+    # templates with the legacy "EU citizen" line still get rewritten.
+    candidate_markers = []
+    if relocation_line_text:
+        # Use the first sentence as the search marker.
+        candidate_markers.append(relocation_line_text.split(".")[0])
+    # Legacy markers for templates created by earlier versions:
+    candidate_markers.extend([
+        "EU citizen, no visa required to work in EU.",
+        "Authorised to work",
+        "Right to work",
+    ])
+
+    def _paragraph_has_marker(para_text: str) -> bool:
+        return any(m and m in para_text for m in candidate_markers)
 
     for paragraph in doc.paragraphs:
-        if marker_base in paragraph.text:
-            # Clear the paragraph and add summary text + bold EU line
+        if _paragraph_has_marker(paragraph.text):
             paragraph.clear()
             paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.JUSTIFY
-            run1 = paragraph.add_run(summary_text + " ")
+            run1 = paragraph.add_run(summary_text + (" " if relocation_line_text else ""))
             run1.font.name = 'Times New Roman'
             run1.font.size = Pt(10)
-            run2 = paragraph.add_run(eu_marker_full)
-            run2.font.name = 'Times New Roman'
-            run2.font.size = Pt(10)
-            run2.bold = True  # Make EU citizen line bold
+            if relocation_line_text:
+                run2 = paragraph.add_run(relocation_line_text)
+                run2.font.name = 'Times New Roman'
+                run2.font.size = Pt(10)
+                run2.bold = True
             break
+    else:
+        # No marker paragraph found in the template — fall through; the
+        # template likely uses {{SUMMARY}} placeholders handled below or
+        # the user simply doesn't want a relocation line.
+        pass
     
     def is_bullet_paragraph(paragraph):
         """Check if a paragraph is a bullet point"""
@@ -458,48 +483,56 @@ def remove_blank_pages(pdf_path):
                 pass
 
 if __name__ == "__main__":
+    # CLI entry: useful for batch-regenerating CVs without opening the GUI.
+    # Picks template + filename from user_config and asks for the company.
     import sys
-    
-    input_file = "Madhav_Manohar Gopal_CV.docx"
-    
-    # Get company name from command line argument or prompt user
-    company_name = None
-    if len(sys.argv) > 1:
-        company_name = sys.argv[1].strip()
-    
+    from datetime import datetime
+
+    templates_map = user_config.resolved_template_paths()
+    if not templates_map:
+        print("No templates configured in user_config.json. Aborting.")
+        sys.exit(1)
+
+    # Use the first template by default; ``-t <label>`` overrides.
+    template_label = next(iter(templates_map))
+    args = list(sys.argv[1:])
+    if "-t" in args:
+        i = args.index("-t")
+        if i + 1 < len(args):
+            template_label = args[i + 1]
+            del args[i:i + 2]
+
+    if template_label not in templates_map:
+        print(f"Unknown template label: {template_label!r}. Available: {list(templates_map)}")
+        sys.exit(1)
+
+    input_file = templates_map[template_label]
+    company_name = args[0].strip() if args else ""
     if not company_name:
         company_name = input("Enter company name (or press Enter to skip): ").strip()
-    
     if not company_name:
-        company_name = "Updated"  # Default fallback
-    
-    # Clean company name for filename (remove special characters, replace spaces with underscores)
-    company_name_clean = company_name.replace(" ", "_").replace("/", "_").replace("\\", "_")
-    company_name_clean = "".join(c for c in company_name_clean if c.isalnum() or c in ("_", "-"))
-    
-    # Create outputs folder structure with date-based subfolders
-    from datetime import datetime
-    base_dir = os.path.dirname(input_file) or "."
-    outputs_dir = os.path.join(base_dir, "outputs")
-    
-    # Create date folder name (format: D-M-YY)
+        company_name = "Updated"
+
+    company_name_clean = "".join(
+        c for c in company_name.replace(" ", "_") if c.isalnum() or c in ("_", "-")
+    )
+
     today = datetime.now()
-    date_folder_name = f"{today.day}-{today.month}-{today.strftime('%y')}"  # e.g., "3-2-26"
-    date_output_dir = os.path.join(outputs_dir, date_folder_name)
-    
-    # Create company folder inside date folder
-    company_output_dir = os.path.join(date_output_dir, company_name_clean)
+    date_folder_name = f"{today.day}-{today.month}-{today.strftime('%y')}"
+
+    # Project-root /outputs is the canonical location.
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    outputs_dir = os.path.join(project_root, "outputs")
+    company_output_dir = os.path.join(outputs_dir, date_folder_name, company_name_clean)
     os.makedirs(company_output_dir, exist_ok=True)
-    
-    # Generate output filenames in company folder
-    output_docx = os.path.join(company_output_dir, f"Madhav_Manohar_Gopal_CV_{company_name_clean}.docx")
-    output_pdf = os.path.join(company_output_dir, f"Madhav_Manohar_Gopal_CV_{company_name_clean}.pdf")
-    
+
+    slug = user_config.filename_slug()
+    output_docx = os.path.join(company_output_dir, f"{slug}_CV_{company_name_clean}.docx")
+    output_pdf = os.path.join(company_output_dir, f"{slug}_CV_{company_name_clean}.pdf")
+
     print(f"\nGenerating CV for: {company_name}")
-    print(f"Output files: {output_docx} and {output_pdf}\n")
+    print(f"Using template: {input_file}")
+    print(f"Output files:\n  {output_docx}\n  {output_pdf}\n")
 
-    # Update bullets
     update_cv_bullets(input_file, output_docx)
-
-    # Convert to PDF
     convert_to_pdf(output_docx, output_pdf)

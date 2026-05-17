@@ -1,22 +1,43 @@
-# Python
+# --- Python ---
 __pycache__/
 *.py[cod]
 *$py.class
+*.egg-info/
+.pytest_cache/
+
+# --- Virtual environments ---
 venv/
 .venv/
 env/
 .env/
+ENV/
 
-# Project specific
+# --- IDE / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- ApplyCraft user data (private; never commit) ---
+# These are written by the running app. Keeping them out of git is the
+# whole point of "local-first" — your job-hunt data stays on your machine.
+user_config.json
+application_stats.json
+application_stats.db
+application_stats.db-journal
+application_stats.db-wal
+application_stats.db-shm
+application_deleted.json
 outputs/
+logs/
+
+# --- Working folders not meant for distribution ---
 archive/
 experiments/
 
-# IDE
-.vscode/
-.idea/
-
-# OS
-Thumbs.db
-Desktop.ini
-.DS_Store
+# --- Build artefacts ---
+build/
+dist/
+*.spec

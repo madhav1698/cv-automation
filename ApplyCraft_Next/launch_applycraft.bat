@@ -1,49 +1,46 @@
 @echo off
 setlocal enabledelayedexpansion
 
-title ApplyCraft NEXT - Launcher
+title ApplyCraft - Launcher
 echo ========================================
-echo   ApplyCraft NEXT ^| Deployment Test
+echo   ApplyCraft ^| Launcher
 echo ========================================
 echo.
+
+cd /d "%~dp0"
 
 :: 1. Check for Python
 python --version >nul 2>&1
 if errorlevel 1 (
     echo ERROR: Python is not installed or not in PATH.
-    echo Please install Python 3.10 or newer.
+    echo Please install Python 3.10 or newer from python.org and re-run this script.
     pause
     exit /b 1
 )
 
-:: 2. Setup Virtual Environment
-if not exist "venv" (
-    echo [1/3] Creating virtual environment...
-    python -m venv venv
+:: 2. First-time setup if no venv exists. The setup script creates the
+::    venv, installs requirements, and seeds user_config.json from the
+::    example so the GUI has a usable config on first launch.
+if not exist "venv\Scripts\python.exe" (
+    echo No venv detected. Running first-run setup...
+    python setup_applycraft.py
     if errorlevel 1 (
-        echo Failed to create venv.
+        echo Setup failed. See messages above.
         pause
         exit /b 1
     )
+) else (
+    :: Quietly refresh deps in case requirements.txt changed since last launch.
+    call venv\Scripts\python.exe -m pip install -r requirements.txt --quiet
 )
 
-:: 3. Install/Update Dependencies
-echo [2/3] Verifying dependencies...
-call venv\Scripts\activate
-python -m pip install --upgrade pip >nul
-pip install -r requirements.txt
-if errorlevel 1 (
-    echo Warning: Some dependencies failed to install.
-    echo The app might not run correctly.
-)
-
-:: 4. Launch Application
-echo [3/3] Launching ApplyCraft...
+:: 3. Launch the GUI using the venv interpreter (no global state needed).
+echo Launching ApplyCraft...
 echo.
-python core\cv_generator_gui.py
+"venv\Scripts\python.exe" core\cv_generator_gui.py
 
 if errorlevel 1 (
     echo.
-    echo App closed with an error.
+    echo App closed with an error. See logs\ for details.
     pause
 )

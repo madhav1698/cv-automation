@@ -12,17 +12,26 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from helpers.logger import logger
+from helpers import user_config
 
-COUNTRY_MAP = {
-    "Denmark": ["Denmark", "Copenhagen", "Aarhus", "Odense", "Aalborg"],
-    "Sweden": ["Sweden", "Stockholm", "Gothenburg", "Malmo", "Uppsala"],
-    "UK": ["UK", "London", "Manchester", "Birmingham", "Edinburgh", "Glasgow", "Leeds", "Bristol", "Liverpool"],
-    "Spain": ["Spain", "Madrid", "Barcelona", "Valencia", "Seville", "Malaga", "Bilbao", "Alicante", "Palma"],
-    "Ireland": ["Ireland", "Dublin", "Cork", "Galway", "Limerick", "Waterford", "Dundalk", "Drogheda", "Swords"],
-    "Norway": ["Norway", "Oslo", "Bergen", "Trondheim", "Stavanger"],
-    "Finland": ["Finland", "Helsinki", "Espoo", "Tampere", "Vantaa", "Oulu"],
-    "Netherlands": ["Netherlands", "Amsterdam", "Rotterdam", "Utrecht", "Eindhoven", "Den Haag", "The Hague"]
-}
+
+def _country_map():
+    """Country -> list of city/country keywords, sourced from user_config."""
+    return user_config.country_keywords()
+
+
+def _filename_prefix_to_strip() -> str:
+    """The prefix written by ``cv_service`` to a generated CV.
+
+    Knowing this lets us strip it off when sniffing the country/company
+    suffix in a filename. Falls back to ``CV_`` if nothing is set.
+    """
+    slug = user_config.filename_slug()
+    return f"{slug}_CV_" if slug else "CV_"
+
+
+# Re-export for any callers that import the old constant.
+COUNTRY_MAP = _country_map()
 
 
 class StatsManager:
@@ -436,15 +445,65 @@ class StatsManager:
                         current_country = data.get('country', 'Unknown')
                         if current_country == "Unknown" or not current_country:
                             found_country = "Unknown"
+                            prefix = _filename_prefix_to_strip()
+                            country_map = _country_map()
                             for filename in files:
                                 if "CV" in filename and filename.endswith(".pdf"):
                                     suffix = (
-                                        filename.replace("Madhav_Manohar_Gopal_CV_", "")
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+                                        filename.replace(prefix, "")
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                        filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
                                         .replace(".pdf", "")
                                         .replace("_", " ")
                                         .lower()
                                     )
-                                    for country_name, keywords in COUNTRY_MAP.items():
+                                    for country_name, keywords in country_map.items():
                                         if any(kw.lower() in suffix for kw in keywords):
                                             found_country = country_name
                                             break
@@ -505,16 +564,66 @@ class StatsManager:
                 try:
                     files = os.listdir(company_path)
                     files.sort(reverse=True)
+                    prefix = _filename_prefix_to_strip()
+                    country_map = _country_map()
                     for filename in files:
                         if "CV" in filename and filename.endswith(".pdf"):
                             cv_found = True
                             suffix = (
-                                filename.replace("Madhav_Manohar_Gopal_CV_", "")
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+                                filename.replace(prefix, "")
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
+=======
+                                filename.rsplit("_CV_", 1)[-1]
+>>>>>>> theirs
                                 .replace(".pdf", "")
                                 .replace("_", " ")
                                 .lower()
                             )
-                            for country_name, keywords in COUNTRY_MAP.items():
+                            for country_name, keywords in country_map.items():
                                 if any(kw.lower() in suffix for kw in keywords):
                                     country = country_name
                                     break

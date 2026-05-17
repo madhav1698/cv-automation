@@ -1,95 +1,86 @@
+"""
+core/config.py
+---------------
+Bridges UI / generation modules to the user-supplied configuration.
+
+Previously this file hardcoded one person's CV. Now the only hardcoded
+values are the visual design tokens; everything user-specific (summary,
+job positions, default cover letter, etc.) is pulled from
+``helpers.user_config`` which reads ``user_config.json``.
+
+Backwards-compatible: existing imports of ``SUMMARY_TEXT``,
+``JOB_POSITIONS``, ``DEFAULT_CL_BODY`` still work — they are populated
+at import time from the user's config.
+"""
+
+from __future__ import annotations
+
 import os
 import sys
-import customtkinter as ctk
 
-# --- UI CONSTANTS & DESIGN TOKENS ---
+import customtkinter as ctk  # noqa: F401 -- kept for import-side effects elsewhere
+
+# Make the project root importable so ``from helpers...`` works whether
+# this module is loaded as ``core.config`` or run directly.
+_current_dir = os.path.dirname(os.path.abspath(__file__))
+_project_root = os.path.dirname(_current_dir)
+if _project_root not in sys.path:
+    sys.path.insert(0, _project_root)
+
+from helpers import user_config  # noqa: E402
+
+
+# --------------------------------------------------------------------------
+# UI design tokens (intentionally hardcoded — these are theme constants,
+# not user data).
+# --------------------------------------------------------------------------
 DESIGN_TOKENS = {
-    "bg": ("#F9FAFB", "#0B0F14"),       # Slightly cleaner white, deeper midnight
-    "sidebar": ("#FFFFFF", "#111622"),  # Bright white sidebar, slate midnight
-    "preview_bg": ("#F1F5F9", "#080B10"), # Light slate gray, deep noir
-    "input_bg": ("#FFFFFF", "#1A202C"), # Pure surfaces
-    "accent": "#6366F1",                # Muted Indigo (Premium restraint)
-    "accent_soft": ("#EEF2FF", "#1E2235"), 
-    "text": ("#111827", "#F3F4F6"),     # Deep ink to soft silver
-    "text_muted": ("#6B7280", "#9CA3AF"),
-    "border": ("#E5E7EB", "#1F2937"),   # Subtle separation
-    "success": "#10B981",
-    "card": ("#FFFFFF", "#161D29")      # Elevated card surfaces
+    "bg":            ("#F9FAFB", "#0B0F14"),
+    "sidebar":       ("#FFFFFF", "#111622"),
+    "preview_bg":    ("#F1F5F9", "#080B10"),
+    "input_bg":      ("#FFFFFF", "#1A202C"),
+    "accent":        "#6366F1",
+    "accent_soft":   ("#EEF2FF", "#1E2235"),
+    "text":          ("#111827", "#F3F4F6"),
+    "text_muted":    ("#6B7280", "#9CA3AF"),
+    "border":        ("#E5E7EB", "#1F2937"),
+    "success":       "#10B981",
+    "card":          ("#FFFFFF", "#161D29"),
 }
 
-# --- APPLICATION CONSTANTS ---
-DEFAULT_CL_BODY = (
-    "At scale, employee listening fails for one simple reason: feedback is collected faster than organisations "
-    "can decide what to do with it. What drew me to this role at [Company Name] is that it treats listening as a system "
-    "with ownership, governance, and consequences, not just a survey cycle.\n\n"
-    "In my work, the most difficult part has never been analysis. It has been deciding which signals deserve attention, "
-    "which patterns are noise, and how insights should be framed so leaders actually act. I have spent much of my time "
-    "operating in that gap between data and decision, working with stakeholders to clarify intent upfront, "
-    "stress-test findings, and narrow focus to actions that are both realistic and measurable.\n\n"
-    "[Company Name]’s context makes this discipline especially important. When employee data is sensitive and trust is "
-    "non-negotiable, insight must be precise, defensible, and handled with care. My background has made me deliberate about "
-    "governance, data quality, and how findings are shared, particularly when results affect perception, prioritisation, or "
-    "leadership accountability. Credibility, once lost, cannot be dashboarded back.\n\n"
-    "I am particularly interested in the combination of employee listening and hands-on people analytics in this role. "
-    "Building dashboards, defining meaningful KPIs, and supporting leaders through data-driven conversations are how "
-    "listening becomes embedded rather than episodic. I care about consistency and usability because insights only "
-    "matter if they are understood the same way across teams and over time.\n\n"
-    "I am applying because this role sits where research judgment, analytics, and organisational responsibility intersect. "
-    "I would value the opportunity to contribute to [Company Name]’s employee listening strategy and help ensure feedback "
-    "leads to focused, durable change rather than well-intentioned reporting."
-)
 
-SUMMARY_TEXT = (
-    "Data Analytics professional with experience across music rights, consulting, and research, "
-    "specialising in turning complex operational data into decision-ready reporting and BI products. "
-    "Skilled in Python, SQL, and modern BI tools, with a track record of automating workflows, "
-    "improving data quality, and driving adoption among non-technical stakeholders."
-)
+# --------------------------------------------------------------------------
+# Legacy module-level constants — populated from user_config.
+# These remain so existing code that does ``from core.config import
+# JOB_POSITIONS`` keeps working without edits.
+# --------------------------------------------------------------------------
+SUMMARY_TEXT = user_config.default_summary()
+DEFAULT_CL_BODY = user_config.default_cover_letter_body()
+JOB_POSITIONS = user_config.job_positions()
 
-JOB_POSITIONS = {
-    "MAYNOOTH UNIVERSITY – Data Analyst": [
-        "Developed and maintained institutional Power BI dashboard tracking research funding, outputs, and impact metrics across the MU Futures Hub",
-        "Designed and implemented data quality assurance framework across multiple integrated internal and external data sources ensuring accuracy and consistency",
-        "Managed data integration from diverse stakeholder sources including academic departments, industry partners, and national research bodies",
-        "Delivered recurring and ad hoc data reports meeting HEA compliance and institutional research strategy requirements",
-        "Liaised with internal and external stakeholders to communicate data findings clearly to non-technical audiences including senior university management"
-    ],
-    "PEERMUSIC – Data Analytics Developer": [
-        "Delivered production BI dashboards used by operational and finance teams to monitor music rights data, improving visibility into revenue drivers and data completeness.",
-        "Took ownership of stakeholder requirements and translated business questions into decision-ready reporting, reducing turnaround time for insights.",
-        "Automated metadata ingestion and validation using Python, cutting manual setup effort and reducing reporting errors.",
-        "Built and maintained structured SQL-based data models to ensure consistent, reliable reporting across datasets.",
-        "Produced clear documentation and walkthroughs that increased dashboard adoption across international teams."
-    ],
-    "REPHRAIN, University of Bristol – Research Data Scientist": [
-        "Owned delivery of analytical outputs across multiple projects, ensuring datasets were accurate, compliant, and usable by stakeholders.",
-        "Built a Python-based data quality tool that reduced review time by 80 percent, accelerating project delivery.",
-        "Produced dashboards and analytical summaries that enabled stakeholders to interpret sensitive data with confidence.",
-        "Scoped data requirements directly with researchers and ensured outputs aligned with governance and security constraints.",
-        "Presented findings clearly to mixed technical and non-technical audiences, supporting informed project decisions."
-    ],
-    "IBA GROUP – Data Scientist": [
-        "Delivered Power BI and QlikSense dashboards that enabled management to identify operational issues and data gaps earlier.",
-        "Automated ETL and validation workflows using Python, SQL, and Excel, improving data accuracy by 75 percent.",
-        "Worked directly with department heads to diagnose data issues and implement practical, business-focused analytical solutions.",
-        "Managed large, multi-source datasets with a strong emphasis on precision, traceability, and reporting reliability.",
-        "Improved efficiency of recurring reporting cycles by 50 percent, reducing manual effort under tight timelines."
-    ],
-    "BRISTOL DIGITAL FUTURES INSTITUTE – Data Analyst": [
-        "Delivered analytical reports and dashboards that directly informed senior stakeholder decisions.",
-        "Ensured data accuracy through structured cleaning, validation, and hypothesis testing.",
-        "Presented insights at an international conference, adapting technical content for non-technical audiences.",
-        "Met fixed research and delivery deadlines within a multi-stakeholder project environment."
-    ]
-}
 
-# --- HELPERS ---
-def get_resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
+def refresh_from_user_config() -> None:
+    """Re-read user_config.json and refresh the legacy module-level names.
+
+    Call this after the settings panel writes a new config so importers
+    that captured the names at import time can re-sync. Note: code paths
+    that always call ``user_config.X()`` directly are immune to staleness
+    and should be preferred for new code.
+    """
+    global SUMMARY_TEXT, DEFAULT_CL_BODY, JOB_POSITIONS
+    user_config.load(force_reload=True)
+    SUMMARY_TEXT = user_config.default_summary()
+    DEFAULT_CL_BODY = user_config.default_cover_letter_body()
+    JOB_POSITIONS = user_config.job_positions()
+
+
+# --------------------------------------------------------------------------
+# Helpers
+# --------------------------------------------------------------------------
+def get_resource_path(relative_path: str) -> str:
+    """Get absolute path to a resource, working both in dev and in PyInstaller."""
     try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_path = sys._MEIPASS
+        base_path = sys._MEIPASS  # type: ignore[attr-defined]
     except Exception:
-        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+        base_path = _project_root
     return os.path.join(base_path, relative_path)

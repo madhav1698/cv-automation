@@ -3968,12 +3968,12 @@
         "country": "Ireland",
         "country_manual": false,
         "role_title": "Senior HR Data Analyst",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
         "notes": "",
-        "last_updated": "2026-03-18 14:25:27"
+        "last_updated": "2026-05-17 12:46:09"
     },
     "18-03-26_Hibernian_Recruitment": {
         "date": "18-03-26",
@@ -4164,12 +4164,12 @@
         "country": "Ireland",
         "country_manual": false,
         "role_title": "Data Analyst",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected (Initial)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
         "notes": "",
-        "last_updated": "2026-03-19 17:18:09"
+        "last_updated": "2026-05-17 12:46:11"
     },
     "22-03-26_Msr-Fsr": {
         "date": "22-03-26",
@@ -5683,20 +5683,6 @@
         "notes": "",
         "last_updated": "2026-05-03 19:09:08"
     },
-    "2-5-26_test_company": {
-        "date": "2-5-26",
-        "company": "test company",
-        "folder_name": "test_company",
-        "country": "Unknown",
-        "country_manual": false,
-        "role_title": "",
-        "status": "Unknown",
-        "status_manual": false,
-        "manual": false,
-        "cv_found": false,
-        "notes": "",
-        "last_updated": "2026-05-02 15:57:43"
-    },
     "02-05-26_Lidl": {
         "date": "02-05-26",
         "company": "Lidl",
@@ -5732,12 +5718,12 @@
         "country": "Ireland",
         "country_manual": false,
         "role_title": "Product Analyst",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected (Post-Interview)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
         "notes": "",
-        "last_updated": "2026-05-03 19:09:08"
+        "last_updated": "2026-05-17 12:44:55"
     },
     "03-05-26_Sourced": {
         "date": "03-05-26",
@@ -5851,20 +5837,6 @@
         "notes": "",
         "last_updated": "2026-05-06 16:23:43"
     },
-    "05-05-26_Agoda": {
-        "date": "05-05-26",
-        "company": "Agoda",
-        "folder_name": "Agoda",
-        "country": "Ireland",
-        "country_manual": false,
-        "role_title": "Data Analyst",
-        "status": "Unknown",
-        "status_manual": false,
-        "manual": false,
-        "cv_found": true,
-        "notes": "",
-        "last_updated": "2026-05-06 16:23:43"
-    },
     "05-05-26_Codebasics": {
         "date": "05-05-26",
         "company": "Codebasics",
@@ -5872,12 +5844,12 @@
         "country": "India",
         "country_manual": false,
         "role_title": "Data Analyst",
-        "status": "Unknown",
-        "status_manual": false,
+        "status": "Rejected (Post-Interview)",
+        "status_manual": true,
         "manual": false,
         "cv_found": true,
         "notes": "",
-        "last_updated": "2026-05-06 16:23:43"
+        "last_updated": "2026-05-17 12:44:45"
     },
     "06-05-26_Morgan_Mckinley": {
         "date": "06-05-26",
@@ -6141,8 +6113,64 @@
         "status": "Unknown",
         "status_manual": false,
         "manual": false,
+        "cv_found": true,
+        "notes": "",
+        "last_updated": "2026-05-17 11:26:19"
+    },
+    "17-05-26_Arup": {
+        "date": "17-05-26",
+        "company": "Arup",
+        "folder_name": "Arup",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
         "cv_found": false,
         "notes": "",
-        "last_updated": "2026-05-15 18:01:28"
+        "last_updated": "2026-05-17 11:59:59"
+    },
+    "17-05-26_Unijobs": {
+        "date": "17-05-26",
+        "company": "Unijobs",
+        "folder_name": "Unijobs",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": false,
+        "notes": "",
+        "last_updated": "2026-05-17 12:00:53"
+    },
+    "17-05-26_Icon_Plc": {
+        "date": "17-05-26",
+        "company": "Icon Plc",
+        "folder_name": "Icon_Plc",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "IPG Reporting Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": false,
+        "notes": "",
+        "last_updated": "2026-05-17 12:17:42"
+    },
+    "17-05-26_Pgim_Ireland": {
+        "date": "17-05-26",
+        "company": "Pgim Ireland",
+        "folder_name": "Pgim_Ireland",
+        "country": "Ireland",
+        "country_manual": false,
+        "role_title": "Data Analyst",
+        "status": "Unknown",
+        "status_manual": false,
+        "manual": false,
+        "cv_found": false,
+        "notes": "",
+        "last_updated": "2026-05-17 12:38:22"
     }
 }
