@@ -1,63 +1,82 @@
-"""
-Test script to verify job-aware bullet replacement
-"""
-from update_cv import update_cv_bullets
+"""Integration test for job-aware bullet replacement in update_cv."""
 
-# Test data with bullets grouped by job
-test_bullets = {
-    "PEERMUSIC – Data Analytics Developer": [
-        "Built and maintained analytics-ready data models across bronze, silver, and gold layers, enabling consistent, attribution-style analysis on complex operational data.",
-        "Standardized heterogeneous datasets by designing SQL transformations and entity mappings, reducing ambiguity and making data easier to consume and explain.",
-        "Supported data ingestion workflows by inspecting incoming metadata structures, validating schemas, and enforcing column-level consistency, improving reliability of downstream models.",
-        "Automated data preparation and validation using Python, accelerating delivery of usable datasets while reducing manual intervention.",
-        "Translated ambiguous business requirements into transparent, well-documented data models, prioritizing correctness, usability, and long-term maintainability."
+import os
+import sys
+import tempfile
+import unittest
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+from core.update_cv import update_cv_bullets
+from helpers import user_config
+
+
+TEST_BULLETS = {
+    "PEERMUSIC - Data Analytics Developer": [
+        "Built and maintained analytics-ready data models across bronze, silver, and gold layers.",
+        "Standardized heterogeneous datasets via SQL transformations and entity mappings.",
+        "Validated schemas and metadata for more reliable downstream models.",
+        "Automated data preparation and validation using Python.",
+        "Translated ambiguous requirements into transparent, maintainable data models.",
     ],
-    "REPHRAIN, University of Bristol – Research Data Scientist": [
-        "Designed unified data models integrating multiple structured and unstructured sources, enabling consistent analytics across complex datasets.",
-        "Built Python-based data quality and validation tooling, reducing assessment time by 80% and increasing trust in transformed datasets.",
-        "Worked closely with non-technical stakeholders to explain data transformations, assumptions, and limitations, ensuring correct interpretation and adoption.",
-        "Delivered analytics outputs focused on clarity, traceability, and reproducibility, aligning data work with real user needs and governance requirements."
+    "REPHRAIN, University of Bristol - Research Data Scientist": [
+        "Designed unified data models across structured and unstructured sources.",
+        "Built Python-based data quality tooling and reduced assessment time.",
+        "Explained data transformations and assumptions to non-technical stakeholders.",
+        "Delivered reproducible analytics aligned with governance requirements.",
     ],
-    "IBA GROUP – Data Scientist": [
-        "Automated ETL pipelines using Python and SQL, consolidating data from multiple operational systems into a clean analytics layer.",
-        "Modeled aviation datasets to support performance monitoring and anomaly detection, improving data accuracy by 75%.",
-        "Partnered with business teams to translate operational needs into structured, decision-ready datasets and analytics outputs."
+    "IBA GROUP - Data Scientist": [
+        "Automated ETL pipelines using Python and SQL.",
+        "Modeled aviation datasets for performance monitoring and anomaly detection.",
+        "Translated business needs into decision-ready datasets.",
     ],
-    "BRISTOL DIGITAL FUTURES INSTITUTE – Data Analyst": [
-        "Cleaned, modeled, and analyzed multi-source telecom datasets, producing insights used directly by senior stakeholders.",
-        "Built dashboards on top of well-structured analytical datasets, ensuring insights were explainable and reusable."
-    ]
+    "BRISTOL DIGITAL FUTURES INSTITUTE - Data Analyst": [
+        "Analyzed multi-source telecom datasets for senior stakeholders.",
+        "Built dashboards on top of reusable analytical datasets.",
+    ],
 }
 
-test_summary = (
-    "Analytics engineer with 5+ years of progressive modeling analytics-ready data models and data transformation pipelines across "
-    "complex, multi-source environments. Strong in SQL and Python, with hands-on experience standardizing heterogeneous datasets, "
-    "enforcing schemas and metadata, and balancing correctness, usability, and long-term maintainability."
+TEST_SUMMARY = (
+    "Analytics engineer with 5+ years building data models and transformation pipelines "
+    "across complex, multi-source environments."
 )
 
-# Use the first configured template so this test runs for any user.
-import os, sys
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from helpers import user_config
-_templates = user_config.resolved_template_paths()
-input_file = next(iter(_templates.values())) if _templates else "templates/CV_Template_1.docx"
-output_file = "outputs/test_job_aware_cv.docx"
 
-print("Testing job-aware bullet replacement...")
-print(f"Jobs to update: {list(test_bullets.keys())}")
-print(f"Total bullets: {sum(len(bullets) for bullets in test_bullets.values())}")
-print()
+def _first_existing_template() -> str:
+    templates = user_config.resolved_template_paths()
+    for path in templates.values():
+        if path and os.path.exists(path):
+            return path
 
-try:
-    update_cv_bullets(
-        input_file=input_file,
-        output_file=output_file,
-        custom_summary=test_summary,
-        custom_bullets=test_bullets
-    )
-    print("\nTest completed successfully!")
-    print(f"Check the output file: {output_file}")
-except Exception as e:
-    print(f"\nTest failed: {e}")
-    import traceback
-    traceback.print_exc()
+    templates_dir = os.path.join(ROOT, "templates")
+    if os.path.isdir(templates_dir):
+        for name in os.listdir(templates_dir):
+            if name.lower().endswith(".docx"):
+                return os.path.join(templates_dir, name)
+
+    return ""
+
+
+class TestJobAwareUpdateCV(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.template_path = _first_existing_template()
+        if not cls.template_path:
+            raise unittest.SkipTest("No .docx template found for integration test")
+
+    def test_job_aware_update_cv_generates_docx(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output_file = os.path.join(tmp, "test_job_aware_cv.docx")
+            update_cv_bullets(
+                input_file=self.template_path,
+                output_file=output_file,
+                custom_summary=TEST_SUMMARY,
+                custom_bullets=TEST_BULLETS,
+            )
+            self.assertTrue(os.path.exists(output_file))
+
+
+if __name__ == "__main__":
+    unittest.main()

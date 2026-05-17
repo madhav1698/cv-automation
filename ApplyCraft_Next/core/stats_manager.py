@@ -450,55 +450,7 @@ class StatsManager:
                             for filename in files:
                                 if "CV" in filename and filename.endswith(".pdf"):
                                     suffix = (
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
                                         filename.replace(prefix, "")
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                        filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
                                         .replace(".pdf", "")
                                         .replace("_", " ")
                                         .lower()
@@ -570,55 +522,7 @@ class StatsManager:
                         if "CV" in filename and filename.endswith(".pdf"):
                             cv_found = True
                             suffix = (
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
                                 filename.replace(prefix, "")
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
-=======
-                                filename.rsplit("_CV_", 1)[-1]
->>>>>>> theirs
                                 .replace(".pdf", "")
                                 .replace("_", " ")
                                 .lower()

@@ -56,7 +56,7 @@ DEFAULT_CONFIG: Dict[str, Any] = {
     "show_relocation_line": False,
     "job_positions": {
         # Display name -> list of default bullets
-        "EXAMPLE COMPANY – Role Title": [
+        "EXAMPLE COMPANY â€“ Role Title": [
             "Replace these bullets with real achievements from this role.",
             "Each bullet should be a concrete outcome, not a duty.",
             "Quantify wherever possible (%, $, time saved, users, etc).",
@@ -92,11 +92,12 @@ DEFAULT_CONFIG: Dict[str, Any] = {
         #   "ollama"                 - local Ollama daemon on localhost
         #   "openai"                 - paid cloud (data leaves the machine)
         #
-        # Default is sentence_transformers — the app gracefully falls back to
+        # Default is sentence_transformers â€” the app gracefully falls back to
         # TF-IDF on the first run if it isn't installed yet, and the GUI
         # has a one-click "Install Local LLM" button for the user.
         "provider": "sentence_transformers",
         "model": "",
+        "recommendation_model": "llama3.2:3b",
         "api_key": "",
         "host": "http://localhost:11434",
     },

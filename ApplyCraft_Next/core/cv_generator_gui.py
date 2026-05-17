@@ -19,55 +19,7 @@ from core.config import DESIGN_TOKENS, JOB_POSITIONS, DEFAULT_CL_BODY, SUMMARY_T
 from core.cv_service import CVGeneratorService
 from core.stats_manager import StatsManager
 from core.application_audit import ApplicationAuditPanel
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
-<<<<<<< ours
 from core.jd_ranker import rank_bullets, BulletScore
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
-=======
-from core.user_profile import UserProfileStore
->>>>>>> theirs
 
 # --- ANIMATION UTILITY ---
 
@@ -87,8 +39,7 @@ class ApplyCraftApp(ctk.CTk):
 
         self.configure(fg_color=self.colors["bg"])
 
-<<<<<<< ours
-        # State Variables — templates come from user_config.json so each
+        # State Variables - templates come from user_config.json so each
         # user can register their own master .docx files.
         self.templates = user_config.resolved_template_paths()
         if not self.templates:
@@ -101,28 +52,14 @@ class ApplyCraftApp(ctk.CTk):
         # "Rank against JD" in the Smart Import panel.
         self.last_jd_text = ""
         self.last_jd_ranking = []  # list[BulletScore]
-=======
-        # State Variables
-        self.profile_store = UserProfileStore(os.path.dirname(current_dir))
-        self.user_profile = self.profile_store.load()
-        template_1 = os.path.join(current_dir, "..", self.user_profile.template_1)
-        template_2 = os.path.join(current_dir, "..", self.user_profile.template_2)
-        if not os.path.exists(template_1):
-            template_1 = os.path.join(current_dir, "..", "templates", "Madhav_Manohar Gopal_CV.docx")
-        if not os.path.exists(template_2):
-            template_2 = os.path.join(current_dir, "..", "templates", "Madhav_Manohar_Gopal_CV_2.docx")
-
-        self.templates = {
-            "Template 1": template_1,
-            "Template 2": template_2
-        }
-        self.current_template_name = ctk.StringVar(value="Template 1")
->>>>>>> theirs
+        self.last_jd_recommendations = []
+        self.last_jd_fit = {}
+        self.last_jd_analysis = {}
         self.job_text_widgets = {}
         self.job_headline_widgets = {}
         self.preview_zoom = 1.0
         self.stats_manager = StatsManager(os.path.dirname(current_dir))
-        self.cv_service = CVGeneratorService(self.stats_manager, self.user_profile)
+        self.cv_service = CVGeneratorService(self.stats_manager)
 
         # Layout Grid
         self.grid_columnconfigure(1, weight=1)
@@ -137,7 +74,7 @@ class ApplyCraftApp(ctk.CTk):
         logo_container = ctk.CTkFrame(self.navigation_frame, fg_color="transparent")
         logo_container.grid(row=0, column=0, padx=20, pady=(40, 30), sticky="ew")
         
-        self.logo_label = ctk.CTkLabel(logo_container, text="✨ ApplyCraft", 
+        self.logo_label = ctk.CTkLabel(logo_container, text="ApplyCraft", 
                                        font=ctk.CTkFont(family="Inter", size=30, weight="bold"),
                                        text_color=self.colors["accent"])
         self.logo_label.pack(pady=(0, 4))
@@ -148,11 +85,11 @@ class ApplyCraftApp(ctk.CTk):
         self.tagline_label.pack()
 
         # Navigation Buttons with keyboard shortcuts
-        self.import_btn = self.create_nav_button("⚡  Smart Import", 1, self.show_import_panel)
-        self.cv_btn = self.create_nav_button("💼  Experience (CV)", 2, self.show_cv_panel)
-        self.cl_btn = self.create_nav_button("✉️  Cover Letter", 3, self.show_cl_panel)
-        self.audit_btn = self.create_nav_button("📊  Audit & Stats", 4, self.show_audit_panel)
-        self.settings_btn = self.create_nav_button("⚙️  Settings", 6, self.show_settings_panel)
+        self.import_btn = self.create_nav_button("Smart Import", 1, self.show_import_panel)
+        self.cv_btn = self.create_nav_button("Experience (CV)", 2, self.show_cv_panel)
+        self.cl_btn = self.create_nav_button("Cover Letter", 3, self.show_cl_panel)
+        self.audit_btn = self.create_nav_button("Audit & Stats", 4, self.show_audit_panel)
+        self.settings_btn = self.create_nav_button("Settings", 6, self.show_settings_panel)
         
         # Keyboard shortcuts hint (Muted bottom hint)
         shortcuts_frame = ctk.CTkFrame(self.navigation_frame, fg_color="transparent")
@@ -199,13 +136,13 @@ class ApplyCraftApp(ctk.CTk):
         # Status Badge (Top Right of Editor)
         self.status_frame = ctk.CTkFrame(self.header_frame, fg_color=self.colors["card"], corner_radius=20, border_width=1, border_color=self.colors["border"])
         self.status_frame.place(relx=1.0, rely=0.5, anchor="e")
-        self.status_dot = ctk.CTkLabel(self.status_frame, text="●", text_color=self.colors["success"], font=ctk.CTkFont(size=14))
+        self.status_dot = ctk.CTkLabel(self.status_frame, text="*", text_color=self.colors["success"], font=ctk.CTkFont(size=14))
         self.status_dot.pack(side="left", padx=(10, 4), pady=4)
         self.status_label = ctk.CTkLabel(self.status_frame, text="Ready", font=ctk.CTkFont(size=13, weight="normal"), text_color=self.colors["text"])
         self.status_label.pack(side="left", padx=(0, 10), pady=4)
 
         # Preview Toggle Button
-        self.toggle_preview_btn = ctk.CTkButton(self.header_frame, text="👁️  Hide Preview", width=140, height=40,
+        self.toggle_preview_btn = ctk.CTkButton(self.header_frame, text="Hide Preview", width=140, height=40,
                                               fg_color=self.colors["input_bg"], text_color=self.colors["text"],
                                               border_width=1, border_color=self.colors["border"],
                                               corner_radius=20,
@@ -226,7 +163,7 @@ class ApplyCraftApp(ctk.CTk):
         zoom_frame = ctk.CTkFrame(preview_header_frame, fg_color="transparent")
         zoom_frame.pack(side="right")
         
-        self.zoom_out_btn = ctk.CTkButton(zoom_frame, text="−", width=35, height=30, fg_color="transparent", text_color=self.colors["text"], hover_color=self.colors["sidebar"], command=lambda: self.change_zoom(-0.1))
+        self.zoom_out_btn = ctk.CTkButton(zoom_frame, text="-", width=35, height=30, fg_color="transparent", text_color=self.colors["text"], hover_color=self.colors["sidebar"], command=lambda: self.change_zoom(-0.1))
         self.zoom_out_btn.pack(side="left", padx=2)
         
         self.zoom_label = ctk.CTkLabel(zoom_frame, text="100%", font=ctk.CTkFont(size=13), text_color=self.colors["text_muted"])
@@ -265,7 +202,7 @@ class ApplyCraftApp(ctk.CTk):
         self.action_bar.place(relx=0.42, rely=0.92, anchor="center") 
         
         # Primary Action: Generate Both
-        self.gen_both_btn = ctk.CTkButton(self.action_bar, text="🪄 Generate (Ctrl+G)", corner_radius=24,
+        self.gen_both_btn = ctk.CTkButton(self.action_bar, text="Generate (Ctrl+G)", corner_radius=24,
                                      fg_color=self.colors["accent"], text_color="white",
                                      hover_color=self.colors["accent"],
                                      font=ctk.CTkFont(family="Inter", size=16, weight="bold"), height=55, width=240,
@@ -287,13 +224,13 @@ class ApplyCraftApp(ctk.CTk):
                                         font=ctk.CTkFont(family="Inter", size=14, weight="bold"),
                                         command=self.generate_cl)
 
-        self.open_folder_btn = ctk.CTkButton(self.action_bar, text="📁", corner_radius=22,
+        self.open_folder_btn = ctk.CTkButton(self.action_bar, text="Open", corner_radius=22,
                                       fg_color="transparent", text_color=self.colors["text_muted"],
                                       hover_color=self.colors["accent_soft"], height=42, width=50,
                                       command=self.open_outputs)
         self.open_folder_btn.pack(side="left", padx=(15, 5), pady=10)
 
-        # Panels. NOTE: import_panel must be scrollable — it now holds
+        # Panels. NOTE: import_panel must be scrollable - it now holds
         # two cards (Smart Bullet Parser + JD-Aware Ranking) and the
         # Rank button would otherwise be hidden below the viewport.
         self.cv_panel = ctk.CTkScrollableFrame(self.editor_column, fg_color="transparent")
@@ -467,7 +404,7 @@ class ApplyCraftApp(ctk.CTk):
                      font=ctk.CTkFont(size=13), text_color=self.colors["text_muted"]).pack(anchor="w", padx=25)
         self.import_text = self.create_textbox(card, "", "", height=260)
 
-        btn = ctk.CTkButton(card, text="⚡ Auto-Sort Into CV", corner_radius=10,
+        btn = ctk.CTkButton(card, text="Auto-Sort Into CV", corner_radius=10,
                             fg_color=self.colors["accent"], height=45, command=self.auto_sort)
         btn.pack(fill="x", padx=25, pady=(5, 25))
 
@@ -480,8 +417,8 @@ class ApplyCraftApp(ctk.CTk):
         ctk.CTkLabel(
             jd_card,
             text="Paste a job description. The local ranker scores every bullet "
-                 "in your inventory against it. Top matches show below — "
-                 "click 'Apply Top 5 / Job' to pre-fill the CV builder.",
+                 "in your inventory against it. Top matches show below. "
+                 "Click 'Apply Top 5 / Job' to pre-fill the CV builder.",
             font=ctk.CTkFont(size=13),
             text_color=self.colors["text_muted"],
             wraplength=820,
@@ -494,7 +431,7 @@ class ApplyCraftApp(ctk.CTk):
         controls.pack(fill="x", padx=25, pady=(0, 10))
 
         rank_btn = ctk.CTkButton(
-            controls, text="🎯 Rank Against JD", corner_radius=10,
+            controls, text="Rank Against JD", corner_radius=10,
             fg_color=self.colors["accent"], height=42, width=200,
             command=self.run_jd_ranking,
         )
@@ -509,6 +446,16 @@ class ApplyCraftApp(ctk.CTk):
             command=self.apply_top_ranked_bullets,
         )
         apply_btn.pack(side="left", padx=(10, 0))
+
+        self.jd_why_btn = ctk.CTkButton(
+            controls, text="Why this score?", corner_radius=10,
+            fg_color="transparent", text_color=self.colors["text"],
+            border_width=1, border_color=self.colors["border"],
+            hover_color=self.colors["accent_soft"],
+            height=42, width=150,
+            command=self.show_llm_reason_dialog,
+        )
+        self.jd_why_btn.pack(side="left", padx=(10, 0))
 
         self.jd_results_label = ctk.CTkLabel(
             jd_card, text="", font=ctk.CTkFont(size=12),
@@ -688,13 +635,13 @@ class ApplyCraftApp(ctk.CTk):
             self.preview_column.grid_forget()
             self.main_container.grid_columnconfigure(0, weight=1)
             self.main_container.grid_columnconfigure(1, weight=0)
-            self.toggle_preview_btn.configure(text="👁️  Show Preview")
+            self.toggle_preview_btn.configure(text="Show Preview")
             self.action_bar.place(relx=0.5, rely=0.92, anchor="center") # Centered for full width
         else:
             self.preview_column.grid(row=0, column=1, sticky="nsew")
             self.main_container.grid_columnconfigure(0, weight=3)
             self.main_container.grid_columnconfigure(1, weight=2)
-            self.toggle_preview_btn.configure(text="👁️  Hide Preview")
+            self.toggle_preview_btn.configure(text="Hide Preview")
             self.action_bar.place(relx=0.42, rely=0.92, anchor="center") # Offset for partial width
 
     def change_zoom(self, delta):
@@ -735,7 +682,7 @@ class ApplyCraftApp(ctk.CTk):
                 bullets = widget.get("0.0", "end").strip().split("\n")
                 for b in bullets:
                     if b.strip():
-                        content += f"• {b.strip()}\n"
+                        content += f"- {b.strip()}\n"
                 content += "\n"
         else:
             body = self.cl_body_text.get("0.0", "end").strip().replace("[Company Name]", company)
@@ -772,17 +719,17 @@ class ApplyCraftApp(ctk.CTk):
         current_job = None
         job_bullets = {}
         
-        # Regex for common date patterns (e.g., "Jan 2024 – May 2025", "May 2025 – Present", "2022 - 2023")
+        # Regex for common date patterns (e.g., "Jan 2024 - May 2025", "May 2025 - Present", "2022 - 2023")
         # Matches months + year, or year-year ranges, or just "Month Year"
         date_pattern = re.compile(
             r"(?i)\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)\b.*\d{2,4}"
-            r"|\b\d{4}\s?[\-–]\s?(Present|\d{4}|\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b)"
+            r"|\b\d{4}\s?-\s?(Present|\d{4}|\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b)"
             r"|^Present$|^\d{4}$"
         )
 
         def normalize_for_match(s):
             # Remove all whitespace and common punctuation for a "fuzzy" match
-            return re.sub(r'[\s,.\-\|–]', '', s).upper()
+            return re.sub(r'[\s,.\-\|]', '', s).upper()
 
         for line in lines:
             line = line.strip()
@@ -794,7 +741,7 @@ class ApplyCraftApp(ctk.CTk):
             
             for title in JOB_POSITIONS.keys():
                 # Extract the company/main identifier (part before the delimiter)
-                company_part = re.split(r'[–\-\|]', title)[0].strip()
+                company_part = re.split(r'[\-\|]', title)[0].strip()
                 norm_company = normalize_for_match(company_part)
                 
                 # Use fuzzy normalized match
@@ -814,7 +761,7 @@ class ApplyCraftApp(ctk.CTk):
                     continue
                 
                 # CLEAN bullet characters from the start of the line
-                bullet_chars = ['•', '-', '*', '▪', '▫', '○', '●', '→', '►']
+                bullet_chars = ['-', '*']
                 clean_line = line
                 for char in bullet_chars:
                     if clean_line.startswith(char):
@@ -853,27 +800,69 @@ class ApplyCraftApp(ctk.CTk):
             self.set_status("Paste a JD first", "text_muted")
             return
 
+        # Preflight: fail fast if no local LLM backend is usable.
+        try:
+            from core.jd_ranker import backend_status
+            bstat = backend_status()
+            active = (bstat.get("active") or "").lower()
+            configured = bstat.get("configured", "local")
+            if "local tf-idf" in active:
+                self._render_jd_error(
+                    "No local LLM backend is active.\n"
+                    f"Configured provider: {configured}\n\n"
+                    "Set llm.provider to 'ollama' or 'sentence_transformers', "
+                    "then ensure the backend is installed/running."
+                )
+                return
+        except Exception:
+            # If diagnostics fail, continue and let worker handle runtime errors.
+            pass
+
         self.set_status("Ranking bullets...", "accent")
-        self.jd_results_label.configure(text="Scoring against your bullet inventory…")
-        # Refresh job_positions in case the user edited config.
+        self.jd_results_label.configure(text="Scoring JD against your CV bullets...")
+        self.jd_results_box.configure(state="normal")
+        self.jd_results_box.delete("0.0", "end")
+        self.jd_results_box.insert("0.0", "Running local LLM scoring...\nPlease wait.")
+        self.jd_results_box.configure(state="disabled")
         inventory = user_config.job_positions()
 
         def worker():
             try:
-                from core.jd_ranker import rank_bullets, compute_fit_score
+                from core.jd_ranker import (
+                    rank_bullets,
+                    compute_fit_score,
+                    generate_match_recommendations,
+                )
                 ranked = rank_bullets(jd, inventory)
                 fit = compute_fit_score(jd, ranked)
-                self.after(0, lambda: self._render_jd_results(ranked, fit))
+                backend = (fit.get("backend") or "").lower()
+                if "local tf-idf" in backend:
+                    raise RuntimeError(
+                        "Local LLM backend not available for matching. "
+                        "Start Ollama or install sentence-transformers."
+                    )
+                rec_payload = generate_match_recommendations(
+                    jd, ranked, max_items=5
+                )
+                self.after(0, lambda: self._render_jd_results(ranked, fit, rec_payload))
             except Exception as e:
                 logger.error(f"JD ranking failed: {e}")
-                self.after(0, lambda: self.set_status("Ranking failed (see logs)", "text_muted"))
+                err_msg = str(e)
+                self.after(0, lambda m=err_msg: self._render_jd_error(m))
 
         threading.Thread(target=worker, daemon=True).start()
 
-    def _render_jd_results(self, ranked, fit):
-        """Paint the ranked list and the overall fit score into the UI."""
+    def _render_jd_results(self, ranked, fit, rec_payload=None):
+        """Paint the ranked list, fit score, and recommendations into the UI."""
         self.last_jd_ranking = ranked
         self.last_jd_text = self.jd_text.get("0.0", "end").strip()
+
+        rec_payload = rec_payload or {}
+        recommendations = rec_payload.get("recommendations", [])
+        rec_source = rec_payload.get("source", "local-llm")
+        self.last_jd_recommendations = recommendations
+        self.last_jd_fit = fit
+        self.last_jd_analysis = rec_payload
 
         backend = fit.get("backend", "local TF-IDF")
         score_pct = int(round(fit.get("fit_score", 0.0) * 100))
@@ -882,22 +871,33 @@ class ApplyCraftApp(ctk.CTk):
 
         self.jd_results_label.configure(
             text=(
-                f"Overall fit: {score_pct}%  ·  "
-                f"{n_strong} strong matches across {n_bullets} bullets  ·  "
-                f"backend: {backend}"
+                f"Overall fit: {score_pct}%  |  "
+                f"{n_strong} strong matches across {n_bullets} bullets  |  "
+                f"backend: {backend}  |  recommendations: {rec_source}"
             )
         )
 
-        # Top 20 bullets, grouped by score band for readability.
         lines = []
+        lines.append("RECOMMENDED FIXES")
+        lines.append(f"source: {rec_source}")
+        lines.append("")
+        if recommendations:
+            for i, rec in enumerate(recommendations, start=1):
+                lines.append(f"{i}. {rec}")
+        else:
+            lines.append("No recommendations generated.")
+        lines.append("")
+        lines.append("TOP MATCHED BULLETS")
+        lines.append("")
+
         for i, item in enumerate(ranked[:20], start=1):
             keywords = (
                 f"  [{', '.join(item.matched_keywords[:6])}]"
                 if item.matched_keywords else ""
             )
-            score_pct = int(round(item.score * 100))
-            lines.append(f"{i:>2}. [{score_pct:>2}%] {item.job_title}")
-            lines.append(f"     • {item.bullet}")
+            item_pct = int(round(item.score * 100))
+            lines.append(f"{i:>2}. [{item_pct:>2}%] {item.job_title}")
+            lines.append(f"     - {item.bullet}")
             if keywords:
                 lines.append(f"     matched:{keywords}")
             lines.append("")
@@ -907,6 +907,93 @@ class ApplyCraftApp(ctk.CTk):
         self.jd_results_box.insert("0.0", "\n".join(lines) if lines else "No bullets ranked.")
         self.jd_results_box.configure(state="disabled")
         self.set_status("Ranking complete", "success")
+
+    def _render_jd_error(self, message):
+        """Show an explicit JD-ranking failure in the results panel."""
+        self.jd_results_label.configure(text="Ranking failed")
+        self.jd_results_box.configure(state="normal")
+        self.jd_results_box.delete("0.0", "end")
+        self.jd_results_box.insert(
+            "0.0",
+            "Local LLM required.\n\n"
+            f"Error: {message}\n\n"
+            "Fix:\n"
+            "1. Start Ollama locally.\n"
+            "2. Ensure a generation model is available (e.g., llama3.2:3b).\n"
+            "3. Re-run Rank Against JD.",
+        )
+        self.jd_results_box.configure(state="disabled")
+        self.set_status("Ranking failed", "text_muted")
+
+
+    def show_llm_reason_dialog(self):
+        """Show a small dialog explaining what the LLM ranked and why."""
+        if not self.last_jd_ranking:
+            self.set_status("Run 'Rank Against JD' first", "text_muted")
+            return
+
+        fit = self.last_jd_fit or {}
+        analysis = self.last_jd_analysis or {}
+        source = analysis.get("source", "local-llm")
+        recommendations = analysis.get("recommendations", [])
+        missing = analysis.get("missing_keywords", [])
+
+        dlg = ctk.CTkToplevel(self)
+        dlg.title("LLM Match Explanation")
+        dlg.geometry("760x560")
+        dlg.transient(self)
+
+        header = ctk.CTkLabel(
+            dlg,
+            text=(
+                f"Fit: {int(round((fit.get('fit_score', 0.0))*100))}%   |   "
+                f"Backend: {fit.get('backend', 'unknown')}   |   Source: {source}"
+            ),
+            font=ctk.CTkFont(size=13, weight="bold"),
+            text_color=self.colors["text"],
+            justify="left",
+            anchor="w",
+        )
+        header.pack(fill="x", padx=16, pady=(12, 8))
+
+        box = ctk.CTkTextbox(
+            dlg,
+            fg_color=self.colors["bg"],
+            text_color=self.colors["text"],
+            border_width=1,
+            border_color=self.colors["border"],
+            corner_radius=12,
+            font=ctk.CTkFont(family="Inter", size=13),
+            wrap="word",
+        )
+        box.pack(fill="both", expand=True, padx=16, pady=(0, 16))
+
+        lines = []
+        lines.append("WHAT THE MODEL RANKED HIGHEST")
+        lines.append("")
+        for i, item in enumerate(self.last_jd_ranking[:8], start=1):
+            item_pct = int(round(item.score * 100))
+            lines.append(f"{i}. [{item_pct}%] {item.job_title}")
+            lines.append(f"   - {item.bullet}")
+            if item.matched_keywords:
+                lines.append(f"   matched keywords: {', '.join(item.matched_keywords[:8])}")
+            lines.append("")
+
+        lines.append("LLM RECOMMENDATIONS")
+        lines.append("")
+        if recommendations:
+            for i, rec in enumerate(recommendations, start=1):
+                lines.append(f"{i}. {rec}")
+        else:
+            lines.append("No recommendations returned by local LLM.")
+        lines.append("")
+
+        lines.append("MISSING JD KEYWORDS")
+        lines.append("")
+        lines.append(", ".join(missing[:20]) if missing else "None reported.")
+
+        box.insert("0.0", "\n".join(lines))
+        box.configure(state="disabled")
 
     def apply_top_ranked_bullets(self):
         """Replace each job's CV bullets with the top 5 from the last ranking.

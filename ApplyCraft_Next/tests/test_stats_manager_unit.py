@@ -1,21 +1,23 @@
 
 import unittest
 import os
-import json
 import shutil
+import tempfile
 from core.stats_manager import StatsManager
 
 class TestStatsManager(unittest.TestCase):
     def setUp(self):
-        self.test_dir = os.path.join(os.getcwd(), "test_temp_dir")
-        if not os.path.exists(self.test_dir):
-            os.makedirs(self.test_dir)
+        self.test_dir = tempfile.mkdtemp(prefix="applycraft_stats_test_")
         self.stats_file = os.path.join(self.test_dir, "application_stats.json")
         self.manager = StatsManager(self.test_dir)
 
     def tearDown(self):
+        try:
+            self.manager.close()
+        except Exception:
+            pass
         if os.path.exists(self.test_dir):
-            shutil.rmtree(self.test_dir)
+            shutil.rmtree(self.test_dir, ignore_errors=True)
 
     def test_add_application(self):
         app_id = self.manager.add_application("2026-02-17", "Test Company", "Denmark", "Applied")

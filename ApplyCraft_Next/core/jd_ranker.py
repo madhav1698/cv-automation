@@ -7,15 +7,15 @@ Given a pasted job description and the user's bullet inventory (i.e.
 ``user_config.job_positions()``) this module returns:
 
 1. A ranked list of bullets with relevance score in [0.0, 1.0].
-2. An overall *fit score* — a single number that says "how well does
+2. An overall *fit score* â€” a single number that says "how well does
    your inventory cover what this JD asks for?".
 
 Four scoring backends are supported, all chosen via ``user_config.llm``::
 
-    "provider": "local"               (default — pure-Python TF-IDF, no deps)
+    "provider": "local"               (default â€” pure-Python TF-IDF, no deps)
     "provider": "sentence_transformers" (local embeddings, pip install)
     "provider": "ollama"              (local LLM server on localhost:11434)
-    "provider": "openai"              (paid cloud — opt-in only)
+    "provider": "openai"              (paid cloud â€” opt-in only)
 
 Crucially, the first three are **fully local**. The ``sentence_transformers``
 and ``ollama`` paths exist precisely so the ranker can use a real
@@ -109,7 +109,7 @@ class BulletScore:
     score : float
         Relevance score in [0.0, 1.0]. Higher is better.
     matched_keywords : list[str]
-        JD content words that also appear in the bullet — used to explain
+        JD content words that also appear in the bullet â€” used to explain
         the score in the UI.
     """
     job_title: str
@@ -308,7 +308,7 @@ def _rank_with_sentence_transformers(
 # exposes an HTTP API on localhost:11434. We use the /api/embed endpoint
 # for embedding-based ranking when the user has set
 # ``llm.provider = "ollama"``. Default embedding model is
-# nomic-embed-text — small (~270MB), fast, MIT licensed.
+# nomic-embed-text â€” small (~270MB), fast, MIT licensed.
 
 def _ollama_embed_batch(
     inputs: List[str],
@@ -335,7 +335,7 @@ def _ollama_embed_batch(
             payload = json.loads(resp.read().decode("utf-8"))
     except urllib.error.URLError as e:
         logger.warning(
-            f"Ollama unreachable at {host} — is the daemon running? ({e}). "
+            f"Ollama unreachable at {host} â€” is the daemon running? ({e}). "
             "Falling back to local TF-IDF."
         )
         return None
@@ -482,7 +482,7 @@ def rank_bullets(
         _LAST_BACKEND_USED = "local TF-IDF"
         return []
 
-    # Pre-tokenise the inventory once — every backend uses it for keyword
+    # Pre-tokenise the inventory once â€” every backend uses it for keyword
     # match annotations even when scoring with embeddings.
     flat: List[Tuple[str, str, List[str]]] = []
     for job, bullets in inventory.items():
@@ -542,9 +542,9 @@ def compute_fit_score(
 
     The score blends three signals:
 
-    * **Best-bullet score** — how strong is your single best bullet?
-    * **Top-N average** — how strong are your top 5 bullets on average?
-    * **Keyword coverage** — what share of the JD's content words does
+    * **Best-bullet score** â€” how strong is your single best bullet?
+    * **Top-N average** â€” how strong are your top 5 bullets on average?
+    * **Keyword coverage** â€” what share of the JD's content words does
       *any* bullet in the inventory mention at least once?
 
     None of these alone is enough: a CV could have one great bullet but
@@ -591,6 +591,147 @@ def compute_fit_score(
     }
 
 
+def _candidate_jd_keywords(jd_text: str, limit: int = 20) -> List[str]:
+    """Return important JD tokens sorted by frequency."""
+    tokens = _content_tokens(jd_text)
+    if not tokens:
+        return []
+    freq = Counter(tokens)
+    ranked = sorted(freq.items(), key=lambda kv: (-kv[1], -len(kv[0]), kv[0]))
+    return [term for term, _ in ranked[:limit]]
+
+
+def _ollama_generate_recommendations(
+    jd_text: str,
+    ranked: List[BulletScore],
+    *,
+    host: str,
+    model: str,
+    max_items: int,
+) -> Optional[List[str]]:
+    """Ask a local Ollama model for concise CV improvement suggestions."""
+    import json
+    import urllib.error
+    import urllib.request
+
+    fit = compute_fit_score(jd_text, ranked)
+    top = ranked[:8]
+    top_lines = []
+    for item in top:
+        top_lines.append(
+            {
+                "job": item.job_title,
+                "score": round(item.score, 3),
+                "bullet": item.bullet[:280],
+                "matched": item.matched_keywords[:6],
+            }
+        )
+
+    jd_keywords = _candidate_jd_keywords(jd_text, limit=24)
+    covered = set()
+    for item in ranked:
+        covered.update(item.matched_keywords)
+    missing = [kw for kw in jd_keywords if kw not in covered][:8]
+    prompt = (
+        "You are a CV optimization assistant. "
+        "Given a job description and scored CV bullets, return concise, actionable fixes. "
+        f"Return ONLY valid JSON in this shape: {{\"recommendations\": [\"...\"]}} "
+        f"with 1 to {max_items} items. "
+        "Each item must be one sentence, practical, and specific.\n\n"
+        f"Fit score: {int(round(fit['fit_score'] * 100))}%\n"
+        f"Missing keywords: {', '.join(missing) if missing else 'none'}\n"
+        f"Top scored bullets JSON: {json.dumps(top_lines, ensure_ascii=False)}\n"
+        f"Job description: {jd_text[:2500]}"
+    )
+
+    payload = json.dumps(
+        {
+            "model": model,
+            "prompt": prompt,
+            "stream": False,
+            "options": {"temperature": 0.2},
+        }
+    ).encode("utf-8")
+    url = host.rstrip("/") + "/api/generate"
+    req = urllib.request.Request(
+        url,
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, TimeoutError, ValueError):
+        return None
+
+    text = (data.get("response") or "").strip()
+    if not text:
+        return None
+
+    # Best case: valid JSON object payload.
+    try:
+        parsed = json.loads(text)
+        if isinstance(parsed, dict) and isinstance(parsed.get("recommendations"), list):
+            out = [str(x).strip() for x in parsed["recommendations"] if str(x).strip()]
+            return out[:max_items] if out else None
+    except Exception:
+        pass
+
+    # Fallback: parse lines.
+    lines = [ln.strip(" -*0123456789.").strip() for ln in text.splitlines()]
+    lines = [ln for ln in lines if ln]
+    return lines[:max_items] if lines else None
+
+
+def generate_match_recommendations(
+    jd_text: str,
+    ranked: List[BulletScore],
+    *,
+    max_items: int = 5,
+) -> Dict[str, Any]:
+    """Return actionable CV improvements from a local LLM only.
+
+    No heuristic fallback is used. If Ollama/local model is unavailable,
+    this function raises RuntimeError.
+    """
+    if not ranked:
+        raise RuntimeError("No ranked bullets available for local LLM recommendations.")
+
+    cfg = user_config.llm_config() or {}
+    host = (cfg.get("host") or "http://localhost:11434").rstrip("/")
+
+    model = cfg.get("recommendation_model") or cfg.get("model") or "llama3.2:3b"
+    if "embed" in model.lower():
+        model = "llama3.2:3b"
+
+    jd_keywords = _candidate_jd_keywords(jd_text, limit=24)
+    covered = set()
+    for item in ranked:
+        covered.update(item.matched_keywords)
+    missing = [kw for kw in jd_keywords if kw not in covered][:12]
+
+    llm_recs = _ollama_generate_recommendations(
+        jd_text,
+        ranked,
+        host=host,
+        model=model,
+        max_items=max_items,
+    )
+    if not llm_recs:
+        raise RuntimeError(
+            f"Local LLM recommendations unavailable via Ollama model '{model}' at {host}."
+        )
+
+    return {
+        "recommendations": llm_recs[:max_items],
+        "source": f"local-llm (ollama:{model})",
+        "missing_keywords": missing,
+        "fit_score": compute_fit_score(jd_text, ranked).get("fit_score", 0.0),
+    }
+
+
 def top_bullets_per_job(
     ranked: List[BulletScore],
     per_job_cap: int = 5,
@@ -605,7 +746,7 @@ def top_bullets_per_job(
 
 
 # --------------------------------------------------------------------------
-# Diagnostics — used by the GUI to show backend status / install hints
+# Diagnostics â€” used by the GUI to show backend status / install hints
 # --------------------------------------------------------------------------
 
 def backend_status() -> Dict[str, Any]:
@@ -679,7 +820,7 @@ if __name__ == "__main__":
     )
     inv = user_config.job_positions()
     if not inv:
-        print("No bullets configured in user_config.json — nothing to rank.")
+        print("No bullets configured in user_config.json â€” nothing to rank.")
         sys.exit(0)
 
     ranked = rank_bullets(sample_jd, inv)

@@ -1,69 +1,82 @@
-"""
-Test script to verify flexible bullet counts
-"""
-from update_cv import update_cv_bullets
+"""Integration test for flexible bullet counts in update_cv."""
 
-# Test with DIFFERENT numbers of bullets per job
-# Template has: PEERMUSIC (6), REPHRAIN (6), IBA (6), BRISTOL (4)
-# We'll provide: PEERMUSIC (3), REPHRAIN (7), IBA (5), BRISTOL (2)
-test_bullets = {
-    "PEERMUSIC – Data Analytics Developer": [
+import os
+import sys
+import tempfile
+import unittest
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+from core.update_cv import update_cv_bullets
+from helpers import user_config
+
+
+TEST_BULLETS = {
+    "PEERMUSIC - Data Analytics Developer": [
         "First bullet for Peermusic",
         "Second bullet for Peermusic",
-        "Third bullet for Peermusic"
-        # Only 3 bullets - should DELETE 3 old bullets from template
+        "Third bullet for Peermusic",
     ],
-    "REPHRAIN, University of Bristol – Research Data Scientist": [
+    "REPHRAIN, University of Bristol - Research Data Scientist": [
         "First bullet for REPHRAIN",
         "Second bullet for REPHRAIN",
         "Third bullet for REPHRAIN",
         "Fourth bullet for REPHRAIN",
         "Fifth bullet for REPHRAIN",
         "Sixth bullet for REPHRAIN",
-        "Seventh bullet for REPHRAIN - THIS IS NEW!"
-        # 7 bullets - should ADD 1 new bullet
+        "Seventh bullet for REPHRAIN - THIS IS NEW!",
     ],
-    "IBA GROUP – Data Scientist": [
+    "IBA GROUP - Data Scientist": [
         "First bullet for IBA",
         "Second bullet for IBA",
         "Third bullet for IBA",
         "Fourth bullet for IBA",
-        "Fifth bullet for IBA"
-        # 5 bullets - should DELETE 1 old bullet
+        "Fifth bullet for IBA",
     ],
-    "BRISTOL DIGITAL FUTURES INSTITUTE – Data Analyst": [
+    "BRISTOL DIGITAL FUTURES INSTITUTE - Data Analyst": [
         "First bullet for Bristol",
-        "Second bullet for Bristol"
-        # 2 bullets - should DELETE 2 old bullets
-    ]
+        "Second bullet for Bristol",
+    ],
 }
 
-test_summary = "Test summary for flexible bullet counts."
+TEST_SUMMARY = "Test summary for flexible bullet counts."
 
-# Use the first configured template so this test runs for any user.
-import os, sys
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from helpers import user_config
-_templates = user_config.resolved_template_paths()
-input_file = next(iter(_templates.values())) if _templates else "templates/CV_Template_1.docx"
-output_file = "outputs/test_flexible_bullets.docx"
 
-print("Testing flexible bullet counts...")
-print("Template bullets: PEERMUSIC (6), REPHRAIN (6), IBA (6), BRISTOL (4)")
-print("Providing: PEERMUSIC (3), REPHRAIN (7), IBA (5), BRISTOL (2)")
-print()
+def _first_existing_template() -> str:
+    templates = user_config.resolved_template_paths()
+    for path in templates.values():
+        if path and os.path.exists(path):
+            return path
 
-try:
-    update_cv_bullets(
-        input_file=input_file,
-        output_file=output_file,
-        custom_summary=test_summary,
-        custom_bullets=test_bullets
-    )
-    print("\nTest completed!")
-    print(f"Check the output: {output_file}")
-    print("\nExpected: Replaced 17, Added 1, Removed 6")
-except Exception as e:
-    print(f"\nTest failed: {e}")
-    import traceback
-    traceback.print_exc()
+    templates_dir = os.path.join(ROOT, "templates")
+    if os.path.isdir(templates_dir):
+        for name in os.listdir(templates_dir):
+            if name.lower().endswith(".docx"):
+                return os.path.join(templates_dir, name)
+
+    return ""
+
+
+class TestFlexibleUpdateCV(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.template_path = _first_existing_template()
+        if not cls.template_path:
+            raise unittest.SkipTest("No .docx template found for integration test")
+
+    def test_update_cv_accepts_flexible_bullet_counts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output_file = os.path.join(tmp, "test_flexible_bullets.docx")
+            update_cv_bullets(
+                input_file=self.template_path,
+                output_file=output_file,
+                custom_summary=TEST_SUMMARY,
+                custom_bullets=TEST_BULLETS,
+            )
+            self.assertTrue(os.path.exists(output_file))
+
+
+if __name__ == "__main__":
+    unittest.main()
